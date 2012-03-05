@@ -1,0 +1,36 @@
+<%= form_for(@project, :remote => true) do |f| %>
+    <%= f.hidden_field :lat_sw %>
+    <%= f.hidden_field :lng_sw %>
+    <%= f.hidden_field :lat_ne %>
+    <%= f.hidden_field :lng_ne %>
+
+
+    <% if @project.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+          <ul>
+            <% @project.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :name %>
+      <br/>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :description %>
+      <br/>
+      <%= f.text_field :description %>
+    </div>
+
+
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
