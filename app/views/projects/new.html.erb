@@ -16,6 +16,7 @@
      * Called on the initial page load.
      */
     function init() {
+
         $("#clean").click(function() {
             if (marker1 != null) {
                 marker1.setMap(null);
@@ -48,7 +49,7 @@
                 });
                 map.setCenter(event.latLng);
 
-            }else
+            } else
 
             if (marker2 == null) {
                 marker2 = new google.maps.Marker({
@@ -88,50 +89,54 @@
     }
 
     // Register an event listener to fire when the page finishes loading.
-    google.maps.event.addDomListener(window, 'load', init);
+    $(function() {
+        init();
+    });
 </script>
 <h1>New project</h1>
+<div class="container">
+  <div class="row">
+    <div class="span4">
 
-<%= form_for(@project) do |f| %>
-    <%= f.hidden_field :lat_sw %>
-    <%= f.hidden_field :lng_sw %>
-    <%= f.hidden_field :lat_ne %>
-    <%= f.hidden_field :lng_ne %>
+      <%= form_for(@project) do |f| %>
+          <%= f.hidden_field :lat_sw %>
+          <%= f.hidden_field :lng_sw %>
+          <%= f.hidden_field :lat_ne %>
+          <%= f.hidden_field :lng_ne %>
 
+          <% if @project.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+                <ul>
+                  <% @project.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
 
-    <% if @project.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
-
-          <ul>
-            <% @project.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-
-    <div class="field">
-     Name of the project
-      <br/>
-      <%= f.text_field :name %>
-    </div>
-    <div class="field">
-      Instructions to ask to the volunteer for each task.
-      <br/>
-      <%= f.text_area :description, :size => "50x5" %>
-    </div>
-
-
-
-    Click on the map to delimite the area to annotate
-    (
-    <button id='clean'>clean area</button>)
-    <div id="map"></div>
+          <div class="field">
+            Name of the project
+            <br/>
+            <%= f.text_field :name %>
+          </div>
+          <div class="field">
+            Instructions displayed for the volunteers.
+            <br/>(Wiki style , see <a href="http://redcloth.org/hobix.com/textile/">wiki format</a>)
+            <br/>
+            <%= f.text_area :description, :size => "50x5" %>
+          </div>
 
 
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-<% end %>
-<%= link_to 'Back', projects_path %>
+          Click on the map to define the area to divide (<button id='clean'>clean area</button>)
+          <div id="map"></div>
+
+
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+
+          </div>
+          <div class="span7">
+            <div id="map"></div>
+      <% end %>

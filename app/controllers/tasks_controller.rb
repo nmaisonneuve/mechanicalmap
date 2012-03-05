@@ -2,14 +2,21 @@ class TasksController < ApplicationController
 
 
   def show
+
     @task=Task.find(params[:id])
     @area=@task.area
     @project=@area.project
+    @completed, @size=@area.completion
+    @contributable=!(@area.annotated_by?(current_user))
   end
 
   def update
     @task=Task.find(params[:id])
+    @task.user=current_user
     @task.state=Task::COMPLETED
+    @task.answer=params[:task][:answer]
+
+
     if (@task.save)
       redirect_to next_project_area_path(@task.area.project,@task.area)
     else

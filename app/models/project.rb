@@ -5,7 +5,7 @@ class Project < ActiveRecord::Base
   before_save :create_tasks
 
   def completion
-    completed=self.tasks.open.count
+    completed=self.tasks.completed.count
     size=self.tasks.count
     [completed,size]
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120305111428) do
+ActiveRecord::Schema.define(:version => 20120305170329) do
 
   create_table "areas", :force => true do |t|
     t.integer  "project_id"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20120305111428) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
+    t.text     "answer"
   end
 
   add_index "tasks", ["area_id"], :name => "index_tasks_on_area_id"

@@ -4,8 +4,6 @@
   <tr>
     <th>Name</th>
     <th>Description</th>
-    <th>Lat sw</th>
-    <th></th>
     <th></th>
     <th></th>
   </tr>
@@ -14,10 +12,7 @@
   <tr>
     <td><%= project.name %></td>
     <td><%= project.description %></td>
-    <td><%= project.lat_sw %></td>
-    <td><%= link_to 'Participate', project_area_path(project, project.areas.first) %></td>
-
-    <td><%= link_to 'Edit', edit_project_path(project) %></td>
+    <td><%= link_to 'Show', project_path(project) %></td>
     <td><%= link_to 'Destroy', project, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
