@@ -6,7 +6,8 @@ gem 'rails', '3.2.2'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails'
+#gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails'
+gem "twitter-bootstrap-rails"
 gem 'devise'
 gem 'color'
 gem "RedCloth"
@@ -17,7 +18,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
+   #gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
 end

@@ -121,7 +121,7 @@
  <div class="field">
            Add your own map WMS URL (optional)
             <br/>
-            <%= f.text_field :wms_map %>
+            <%= f.text_field :wms %>
           </div>
           <div class="field">
             Instructions displayed for the volunteers.

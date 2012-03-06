@@ -4,8 +4,7 @@ class ApplicationController < ActionController::Base
 
 def anonymous_sign_in
   return if user_signed_in?
-  u = User.new()
-u.anonymous=true
+  u = User.new(:anonymous => true)
   u.save(:validate => false)
   sign_in :user, u
 end

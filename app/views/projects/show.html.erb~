@@ -112,7 +112,7 @@ function add_tile(map, tile_url){
 <br/></br>
 	<h4>Open data: analyze yourself the data</h4>
 
-	The raw data are regularily updated and published on the google fusion table service. You can analyze and aggregate them yourself.
+	The data are regularily updated and published on the google fusion table service. You can analyze and aggregate them yourself.
 <br/> <a href="#">>> Link to google spreadsheet</a>
 
       </p>

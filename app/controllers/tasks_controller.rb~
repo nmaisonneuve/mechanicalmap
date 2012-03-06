@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-	before_filter :anonymous_sign_in
+	:before_filter :anonymous_sign_in
 
   def show
 

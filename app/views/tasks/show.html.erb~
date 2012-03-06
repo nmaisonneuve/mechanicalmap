@@ -79,7 +79,6 @@
           <% end %>
       <% else %>
       You have already contributed to this area.
-      <button class="btn " onclick="window.location.href='<%= next_project_area_path(@project, @area) %>'">Skip Task</button>
       <% end %>
       <br/>
 

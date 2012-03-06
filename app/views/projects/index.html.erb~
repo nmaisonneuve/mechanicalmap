@@ -14,6 +14,7 @@
 <% @projects.each do |project| %>
   <tr>
     <td><%= link_to project.name, project_path(project) %></td>
+    <td></td>
     <td><%= link_to 'Destroy', project, confirm: 'Are you sure?', method: :delete, :class=>"btn btn-mini btn-danger" %></td>
   </tr>
 <% end %>

@@ -22,7 +22,7 @@
         <a class="brand" href="#">MechanicalMaps</a>
         <div class="nav-collapse">
           <ul class="nav">
-            <li><%= link_to "Browse Projects", projects_path %></li>
+            <li><%= link_to "Browse Project", projects_path %></li>
           </ul>
         </div>
       </div>

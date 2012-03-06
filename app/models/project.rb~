@@ -4,7 +4,7 @@ class Project < ActiveRecord::Base
 
   before_save :create_tasks
 
-attr_accessible :wms_map, :lat_sw, :lng_sw, :lat_ne, :lng_ne, :name, :description
+attr_accessible :wms_map
 
   def completion
     completed=self.tasks.completed.count
