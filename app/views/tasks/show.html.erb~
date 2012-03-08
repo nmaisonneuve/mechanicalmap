@@ -68,17 +68,15 @@
 
       <% if @contributable %>
           <h3>Instructions</h3>
-
-          <%= raw RedCloth.new(@task.area.project.description).to_html %>
-
-          <%= form_for [@project, @area, @task], :html => {:id => "edit_task"} do |f| %>
+          <%= form_for [@project, @area, @task], :html => {:id => "submit_task"} do |f| %>
               <%= f.hidden_field :answer %>
-              <button class="btn btn-primary" onclick="submit_answer(1)">YES</button>
-              <button class="btn btn-primary" onclick="submit_answer(0)">NO</button>
+              <%= f.hidden_field :user %>
+              <%= raw RedCloth.new(@task.area.project.description).to_html %>              
 	      <button class="btn " onclick="window.location.href='<%= next_project_area_path(@project, @area) %>'">Skip Task</button>
           <% end %>
       <% else %>
       You have already contributed to this area.
+      <button class="btn " onclick="window.location.href='<%= next_project_area_path(@project, @area) %>'">Skip Task</button>
       <% end %>
       <br/>
 

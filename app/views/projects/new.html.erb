@@ -6,7 +6,7 @@
     var marker1;
     var marker2;
     var rectangle;
-
+var G=google.maps;
     /**
      * Called on the initial page load.
      */
@@ -24,7 +24,6 @@
                 rectangle.setMap(null);
                 rectangle = null;
             }
-
         });
 
         map = new google.maps.Map(document.getElementById('map'), {
@@ -35,36 +34,51 @@
 
         google.maps.event.addListener(map, 'click', function(event) {
 
-            if (marker1 == null) {
-                marker1 = new google.maps.Marker({
-                    map: map,
-                    position: event.latLng,
-                    draggable: true,
-                    title: 'Drag me!'
-                });
-                map.setCenter(event.latLng);
-
-            } else
-
-            if (marker2 == null) {
-                marker2 = new google.maps.Marker({
-                    map: map,
-                    position: event.latLng,
-                    draggable: true,
-                    title: 'Drag me!'
-                });
-
-	rectangle= new google.maps.Rectangle({map:map});
-                redraw();   
-         
-                google.maps.event.addListener(marker1, 'dragend', redraw);
-                google.maps.event.addListener(marker2, 'dragend', redraw);
-
-	}
+            if (marker1==null || marker2 != null) {
+				marker1= new google.maps.LatLng(event.latLng.lat(),event.latLng.lng());
+                map.setCenter(marker1);
+				marker2=null;
+            } else	{
+				marker2= new google.maps.LatLng(event.latLng.lat(),event.latLng.lng());
+				create_area(marker1.lat(),marker1.lng(),marker2.lat(),marker2.lng());
+			}
         });
 
-
     }
+
+function create_grid(lat_sw, lng_sw, lat_ne, lng_ne){
+	var    div_lat=5.0;
+	var    div_lng=5.0;
+
+	var  lat_unit=(lat_ne-lat_sw)/div_lat;
+	var  lng_unit =(lng_ne-lng_sw)/div_lng;
+
+	for (var i=0; i<div_lat; i++){
+		for (var j=0; j<div_lng; j++){
+			var cell_lat_sw=lat_sw+lat_unit*i;
+			var cell_lng_sw=lng_sw+lng_unit*j;
+			var        cell_lat_ne=cell_lat_sw+lat_unit;
+			var        cell_lng_ne=cell_lng_sw+lng_unit;
+			create_area(cell_lat_sw, cell_lng_sw, cell_lat_ne, cell_lng_ne);
+		}
+
+	}
+}
+
+ function create_area(lat_sw, lng_sw, lat_ne, lng_ne) {
+
+   var bounds = new google.maps.LatLngBounds(
+                new G.LatLng(lat_sw, lng_sw),
+                new G.LatLng(lat_ne, lng_ne));
+
+console.log(bounds);
+        var rectangle = new google.maps.Rectangle({
+            map: map,
+            bounds: bounds,            
+            strokeColor:"#FF0000"            
+        });
+	return (rectangle);
+}
 
     /**
      * Updates the Rectangle's bounds to resize its dimensions.
@@ -81,7 +95,6 @@
         $("#project_lng_ne").val(latLngBounds.getNorthEast().lng());
         $("#project_lat_sw").val(latLngBounds.getSouthWest().lat());
         $("#project_lng_sw").val(latLngBounds.getSouthWest().lng());
-
 
     }
 
@@ -124,7 +137,8 @@
             <%= f.text_field :wms_map %>
           </div>
           <div class="field">
-            Instructions displayed for the volunteers.
+            Copy & Paste your MicroTask template code
+	(for more information <a href="/templates">micro task templates</a> )
             <br/>(Wiki style , see <a href="http://redcloth.org/hobix.com/textile/">wiki format</a>)
             <br/>
             <%= f.text_area :description, :size => "50x5" %>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mechanical Turk for Mapping</title>
+    <link rel="stylesheet" href="/stylesheets/default.css" type="text/css" media="screen, print"/>
+</head>
+<body>
+<div class="container">
+<div class="row">
+<div class="span5">
+    <img src="http://mechanicalmapping.heroku.com/images/assembly-line2.jpg">
+</div>
+<div class="span4">
+ <a href="#"><h1>Mechanical Mapping</h1></a>
+<p>Platform for organizing volunteers in mapping-related activities using a micro-task driven
+        approach.
+    -NM <p/>
+<p>
+	Create (or modify from another project) <a href="/templates">your MicroTask template</a> for any crowdmapping task </p>
+</div>
+
+</body>
+</html>

@@ -12,7 +12,10 @@ attr_accessible :wms_map, :lat_sw, :lng_sw, :lat_ne, :lng_ne, :name, :descriptio
     [completed,size]
   end
 
-  def create_tasks()
+def create_fusion_table
+
+end
+  def create_tasks(lat_unit=3,lng_unit=5)
 
     div_lat=5.0
     div_lng=5.0
@@ -21,8 +24,8 @@ attr_accessible :wms_map, :lat_sw, :lng_sw, :lat_ne, :lng_ne, :name, :descriptio
     lng_unit =(lng_ne-lng_sw)/div_lng
 
     #user capacity (in km/km_to_degree)
-    #lng_unit=5.0/111.12
-    #lat_unit=3.0/111.12
+    lng_unit=5.0/111.12
+    lat_unit=3.0/111.12
     # num of cells
     #div_lat =(lat_ne-lat_sw)/lat_unit # /111.12 to convert km to degree
     #div_lng =(lng_ne-lng_sw)/lng_unit
