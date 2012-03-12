@@ -5,3 +5,6 @@
  * Time: 00:08
  * To change this template use File | Settings | File Templates.
  */
+function add_wms_url(url){
+
+}

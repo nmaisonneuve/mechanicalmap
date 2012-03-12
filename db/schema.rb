@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120306004643) do
+ActiveRecord::Schema.define(:version => 20120308110558) do
 
   create_table "areas", :force => true do |t|
     t.integer  "project_id"
@@ -32,19 +32,21 @@ ActiveRecord::Schema.define(:version => 20120306004643) do
     t.float    "lng_sw"
     t.float    "lat_ne"
     t.float    "lng_ne"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.string   "wms_map"
+    t.integer  "lat_res",     :default => 1
+    t.integer  "lng_res",     :default => 1
+    t.integer  "redundancy",  :default => 3
   end
 
   create_table "tasks", :force => true do |t|
     t.integer  "area_id"
     t.integer  "state"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "user_id"
     t.text     "answer"
-    t.boolean  "anonymous",  :default => false
   end
 
   add_index "tasks", ["area_id"], :name => "index_tasks_on_area_id"
@@ -63,7 +65,6 @@ ActiveRecord::Schema.define(:version => 20120306004643) do
     t.datetime "created_at",                                               :null => false
     t.datetime "updated_at",                                               :null => false
     t.boolean  "anonymous",                             :default => false
-    t.string   "wms_map"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,0 +1,34 @@
+google.maps.event.addListener(map, 'click', function(event) {
+
+        if (marker_sw == null) {
+            marker_sw = new google.maps.Marker({
+                map: map,
+                position: event.latLng,
+                // icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png',
+                title: 'Deplacez ce marqueur pour redessiner le rectangle',
+                draggable: true
+            });
+
+            google.maps.event.addListener(marker_sw, 'dragend', function(event) {
+                creerRectangle(marker_sw.position, marker_ne.position);
+            });
+            return;
+        }
+        if (marker_ne == null) {
+            marker_ne = new google.maps.Marker({
+                map: map,
+                position: event.latLng,
+                // icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png',
+                title: 'Deplacez ce marqueur pour redessiner le rectangle',
+                draggable: true
+            });
+
+            google.maps.event.addListener(marker_ne, 'dragend', function(event) {
+                creerRectangle(marker_sw.position, marker_ne.position);
+            });
+            creerRectangle(marker_sw.position, marker_ne.position);
+
+            return;
+        }
+
+    });
