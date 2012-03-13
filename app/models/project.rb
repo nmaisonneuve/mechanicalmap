@@ -22,7 +22,7 @@ class Project < ActiveRecord::Base
   end
 
   def insert(rows)
-    FtDao.instance.enqueue(self.name, rows)
+    FtDao.instance.enqueue(self.ft_id, rows)
   end
   def pre_processing(user)
     #begin

@@ -8,7 +8,7 @@ class FtDao
 
   def initialize()
     @ft=GData::Client::FusionTables.new
-    @ft.clientlogin("citizencyberscience", "noisetube")
+    @ft.clientlogin("citizencyberscience", "noisetube")  # I know you know...
 
     @doclist=GData::Client::DocList.new(:authsub_scope => ["https://docs.google.com/feeds/"], :source => "fusiontables-v1", :version => '3.0')
     @doclist.clientlogin("citizencyberscience", "noisetube")
@@ -60,10 +60,11 @@ class FtDao
   end
 
   def enqueue(table_id, rows)
+    queries=[]
     rows.each { |row|
-      rows<<"INSERT INTO #{table_id} (#{row.keys.joins(",")}) VALUES (#{row.values.joins(",")})"
+      queries<<"INSERT INTO #{table_id} (#{row.keys.join(",")}) VALUES (#{row.values.map{|value| "'#{value}'"}.join(",")});"
     }
-    queries=rows.joins(";")
+    queries=queries.join("")
     p queries
     @ft.execute queries
 
