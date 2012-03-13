@@ -29,7 +29,6 @@ class Project < ActiveRecord::Base
       first_line=self.description.split("\n")[0]
       first_line=first_line.match(/<!--(.*)-->/)[1].chomp.strip
       cols=ActiveSupport::JSON.decode(first_line)
-      p cols
       table_id=FtDao.instance.create_table(self.name, cols)
       self.ft_id=table_id
       FtDao.instance.set_permission("table:#{self.ft_id}", user.email)
