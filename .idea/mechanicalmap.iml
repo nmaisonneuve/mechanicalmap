@@ -36,6 +36,7 @@
     <orderEntry type="library" scope="PROVIDED" name="sqlite3 (v1.3.5, ruby-1.9.2-p180) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionpack (v3.2.2, ruby-1.9.2-p180) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.1.0, ruby-1.9.2-p180) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="nofxx-georuby (v1.9.2, ruby-1.9.2-p180) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hike (v1.2.1, ruby-1.9.2-p180) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="execjs (v1.3.0, ruby-1.9.2-p180) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubis (v2.7.0, ruby-1.9.2-p180) [gem]" level="application" />
@@ -43,8 +44,8 @@
     <orderEntry type="library" scope="PROVIDED" name="fusion_tables (v0.3.1, ruby-1.9.2-p180) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="color (v1.4.1, ruby-1.9.2-p180) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script (v2.2.0, ruby-1.9.2-p180) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="coffee-rails (v3.2.2, ruby-1.9.2-p180) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activesupport (v3.2.2, ruby-1.9.2-p180) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="coffee-rails (v3.2.2, ruby-1.9.2-p180) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script-source (v1.2.0, ruby-1.9.2-p180) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rdoc (v3.12, ruby-1.9.2-p180) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="RedCloth (v4.2.3, ruby-1.9.2-p180) [gem]" level="application" />

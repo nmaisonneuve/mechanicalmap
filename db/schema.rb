@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120308110558) do
+ActiveRecord::Schema.define(:version => 20120313130211) do
 
   create_table "areas", :force => true do |t|
     t.integer  "project_id"
@@ -32,12 +32,13 @@ ActiveRecord::Schema.define(:version => 20120308110558) do
     t.float    "lng_sw"
     t.float    "lat_ne"
     t.float    "lng_ne"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.string   "wms_map"
-    t.integer  "lat_res",     :default => 1
-    t.integer  "lng_res",     :default => 1
+    t.float    "lat_res",     :default => 1.0
+    t.float    "lng_res",     :default => 1.0
     t.integer  "redundancy",  :default => 3
+    t.string   "ft_id"
   end
 
   create_table "tasks", :force => true do |t|

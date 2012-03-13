@@ -15,6 +15,8 @@ class TasksController < ApplicationController
     @task.user=current_user
     @task.state=Task::COMPLETED
     @task.answer=params[:task][:answer]
+    project=@task.area.project
+    project.insert(ActiveSupport::JSON.decode(@task.answer))
 
 
     if (@task.save)

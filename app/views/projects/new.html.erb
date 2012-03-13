@@ -1,4 +1,4 @@
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=drawing"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=drawing,geometry"></script>
 
 <script type="text/javascript">
     // Global variables
@@ -7,6 +7,12 @@
     var marker_ne;
     var current_rectangle;
     var G = google.maps;
+
+    function refresh_map() {
+            var wms_server=$("#project_wms_map").val();
+            add_wms_url(wms_server,"toto");
+    }
+
     /**
      * Called on the initial page load.
      */
@@ -15,6 +21,15 @@
         $("#project_lat_res").change(compute_nb_tasks);
         $("#project_lng_res").change(compute_nb_tasks);
         $("#project_redundancy").change(compute_nb_tasks);
+        $("#add_wms").click(function() {
+           event.preventDefault();
+            var wms=$(this).attr("href");
+            $("#project_wms_map").val(wms);
+            refresh_map();
+            map.setCenter(new google.maps.LatLng(40.8, -101.6));
+        });
+
+        $("#refresh_map").click(refresh_map);
 
         $("#clean").click(function() {
             if (marker_sw != null) {
@@ -28,8 +43,8 @@
         });
 
         map = new google.maps.Map(document.getElementById('map'), {
-            'zoom': 3,
-            'center': new google.maps.LatLng(70, 0),
+            'zoom': 13,
+            'center': new google.maps.LatLng(48.8588, 2.336),
             'mapTypeId': google.maps.MapTypeId.SATELLITE
         });
 
@@ -52,6 +67,7 @@
             }
         });
         drawingManager.setMap(map);
+
         google.maps.event.addListener(drawingManager, 'rectanglecomplete', function(rectangle) {
             if (current_rectangle != null) {
                 current_rectangle.setMap(null);
@@ -72,13 +88,23 @@
     function compute_nb_tasks() {
         $("#project_lat_res").val();
 
-        //resolution in degree
-        var res_lat = $("#project_lat_res").val() / 111.19;
-        var res_lng = $("#project_lng_res").val() / 111.19;
-        var nb_lat = Math.ceil((marker_ne.lat() - marker_sw.lat()) / res_lat);
-        var nb_lng = Math.ceil((marker_ne.lng() - marker_sw.lng()) / res_lng);
+        console.log(marker_ne.lat()+","+marker_ne.lng());
 
-        console.log(nb_lat + "," + nb_lng);
+        console.log(marker_ne.lat()+","+marker_sw.lng());
+
+        console.log(marker_sw.lat()+","+marker_ne.lng());
+
+        lng_distance=google.maps.geometry.spherical.computeDistanceBetween (marker_ne,new google.maps.LatLng(marker_ne.lat(),marker_sw.lng()));
+        lat_distance=google.maps.geometry.spherical.computeDistanceBetween (marker_ne,new google.maps.LatLng(marker_sw.lat(),marker_ne.lng()));
+
+        console.log(lng_distance + "," + lat_distance);
+
+        //resolution in degree
+        var nb_lat = Math.ceil(lat_distance/($("#project_lat_res").val()*1000));
+        var nb_lng = Math.ceil(lng_distance/($("#project_lng_res").val()*1000));
+
+        console.log(nb_lng + "," + nb_lat);
+
 
         var redundancy = Math.round($("#project_redundancy").val());
         var nb_tasks = nb_lat * nb_lng * redundancy;
@@ -134,10 +160,11 @@
           </div>
 
           <div class="control-group">
-            <div class="control-label">Add your own map (optional)</div>
+            <div class="control-label">Add your own map (optional)
+            <a id="add_wms" href="http://sampleserver1.arcgisonline.com/arcgis/services/Specialty/ESRI_StatesCitiesRivers_USA/MapServer/WMSServer?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&WIDTH=256&HEIGHT=256&Styles=default&FORMAT=image/jpeg&CRS=EPSG:4326&layers=0">example</a></div>
             <div class="controls"><%= f.text_field :wms_map, :class=>"text-field", :placeholder=>"URL of your WMS server" %>
               <br/>
-              <button class="btn btn-small">refresh map <i class="icon-refresh"></i></button>
+              <button type="button" id="refresh_map" class="btn btn-small">refresh map <i class="icon-refresh"></i></button>
             </div>
 
           </div>
@@ -174,7 +201,7 @@
 
           <div class="control-group">
             <div class="control-label">
-              Paste <a href="#">your MicroTask template code for each task</a>
+              Paste <a href="#">your scripting micro-task template code</a>
             </div>
             <div class="controls">
               <%= f.text_area :description, :class=>"span12", :size => "50x5", :placeholder=>"Paste your micro-task template code" %>
@@ -182,7 +209,7 @@
           </div>
 
           <div class="form-actions">
-            <button class="btn btn-primary" disabled>Submit</button>
+            <button class="btn btn-primary">Submit</button>
           </div>
         </div>
       </div>

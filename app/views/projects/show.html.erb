@@ -7,8 +7,6 @@
     var G = google.maps;
 
     function create_area(lat_sw, lng_sw, lat_ne, lng_ne, color, url) {
-
-
         var bounds = new google.maps.LatLngBounds(
                 new G.LatLng(lat_sw, lng_sw),
                 new G.LatLng(lat_ne, lng_ne));
@@ -24,30 +22,10 @@
         });
 
         google.maps.event.addListener(rectangle, 'click', function() {
-            //infowindow.open(map,rectangle);
             window.location.href = rectangle.url;
         });
     }
 
-function add_tile(map, tile_url){
-
-        var options = {
-            getTileUrl: function(tile, zoom) {
-                var ymax = 1 << zoom;
-                var y = ymax - tile.y - 1;
-                return tile + zoom + "/" + tile.x + "/" + y + ".jpg";
-            },
-            tileSize: new G.Size(256, 256),
-            opacity:1.0,
-            isPng: false,
-            maxZoom: 20,
-            name: "custom_layer"
-        };
-
-        // layers    
-        map.mapTypes.set('custom_layer', new G.ImageMapType(options));
-	map.setMapTypeId('custom_layer');
-}
     /**
      * Called on the initial page load.
      */
@@ -59,9 +37,9 @@ function add_tile(map, tile_url){
             'mapTypeId': google.maps.MapTypeId.SATELLITE
         });
 
-	<% unless @project.wms_map.blank? %>
-		add_tile(map, <%= @project.wms_map %>);
-	<% end %>
+    <% unless @project.wms_map.blank? %>
+        add_wms_url(<%= @project.wms_map %>, "toto");
+    <% end %>
 
 
         var bounds = new google.maps.LatLngBounds(
@@ -75,7 +53,6 @@ function add_tile(map, tile_url){
         completion=completed.to_f/size.to_f
         color=Color::HSL.new(completion*120,50,50).html
     %>
-
         create_area(<%= area.lat_sw %>, <%= area.lng_sw %>, <%= area.lat_ne %>, <%= area.lng_ne %>, "<%= color %>", "<%= gettask_project_area_path(area.project, area) %>");
     <%} %>
 
@@ -94,35 +71,33 @@ function add_tile(map, tile_url){
 
       <h2><%= @project.name %></h2>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in.</p>
 
-
-      <% completed,size=@project.completion
+      <% completed, size=@project.completion
       %>
-
+      <b>Project completeness:</b>
       <div class="progress progress-info
      progress-striped">
         <div class="bar"
              style="width: <%= completed.to_f/size.to_f*100 %>%;"></div>
 
       </div>
-        <button class="btn btn-primary btn-large" onclick="window.location.href='<%= start_project_path(@project) %>'" <%=    (@available_tasks)? "" : "disabled" %>>Start</button>
-<br/></br>
-	<h4>Open data: analyze yourself the data</h4>
+      <button class="btn btn-primary btn-large" onclick="window.location.href='<%= start_project_path(@project) %>'" <%= (@available_tasks) ? "" : "disabled" %>>Participate</button>
+      <br/></br>
+      <h4>Open data: analyze yourself the data</h4>
 
-	The raw data are regularily updated and published on the google fusion table service. You can analyze and aggregate them yourself.
-<br/> <a href="#">>> Link to google spreadsheet</a>
+      The raw data are regularily updated and published on the google fusion table service. You can analyze and
+      aggregate them yourself.
+      <br/>
+      <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @project.ft_id %>"> >> Link to Data</a>
 
-	<h4>Result</h4>
-		
+
+
       </p>
     </div>
 
     <div class="span9">
-	Spatial completeness
-      <div id="map"></div>
+      Spatial completeness
+      <div id="map" style="height:500px"></div>
     </div>
 
   </div>

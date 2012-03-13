@@ -14,7 +14,8 @@ gem 'devise'
 gem 'color'
 gem "RedCloth"
 gem "fusion_tables"
-
+gem "nofxx-georuby"
+#gem 'georuby'
 # Gems used only for assets and not required
 # in production environments by default.
 #gem 'thin'

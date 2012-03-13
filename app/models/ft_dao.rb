@@ -1,22 +1,71 @@
 require 'fusion_tables'
-
+require 'open-uri'
+SERVICE_URL = "https://tables.googlelabs.com/api/query"
 
 class FtDao
 
-include Singleton
+  include Singleton
 
-def initialize()
-@ft=GData::Client::FusionTables.new
-@ft.clientlogin("citizencyberscience","noisetube")	
-end
+  def initialize()
+    @ft=GData::Client::FusionTables.new
+    @ft.clientlogin("citizencyberscience", "noisetube")
 
-def create_table(name, cols)
-	@ft.create_table name , cols
-end
+    @doclist=GData::Client::DocList.new(:authsub_scope => ["https://docs.google.com/feeds/"], :source => "fusiontables-v1", :version => '3.0')
+    @doclist.clientlogin("citizencyberscience", "noisetube")
+  end
 
-def enqueue(table_id, cols, data)
+  def create_table(table_name, columns)
+    fields = columns.map { |col| "'#{col["name"]}': #{col["type"].upcase}" }.join(", ")
+    sql = "CREATE TABLE #{table_name} (#{fields})"
+    sql="sql=" + CGI::escape(sql)+"&encid=true" #encrypted table id
+                                                # create table
+    resp = @ft.post(SERVICE_URL, sql)
+    table_id = resp.body.split("\n")[1].chomp
+    table_id
+  end
 
-@ft.execute "INSERT INTO #{table_id} (#{cols.joins(",")}) VALUES (#{data.joins(",")})"
 
-end
+# Connect to service
+  def set_permission(resource_id, email_owner)
+
+    p resource_id
+    p email_owner
+    p @doclist
+    #Client Document List API
+    #feed = @doclist.get("https://docs.google.com/feeds/default/private/full/#{resource_id}/acl").to_xml
+
+    #generate queries for changing permission
+    acl_entry_owner = <<-EOF
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:gAcl='http://schemas.google.com/acl/2007'>
+  <category scheme='http://schemas.google.com/g/2005#kind'
+    term='http://schemas.google.com/acl/2007#accessRule'/>
+  <gAcl:role value='writer'/>
+  <gAcl:scope type='user' value='#{email_owner}'/>
+</entry>
+    EOF
+
+    acl_entry_visibility = <<-EOF
+<entry xmlns="http://www.w3.org/2005/Atom"
+       xmlns:gAcl='http://schemas.google.com/acl/2007'>
+<category scheme='http://schemas.google.com/g/2005#kind'
+           term='http://schemas.google.com/acl/2007#accessRule'/>
+<gAcl:role value='reader'/>
+<gAcl:scope type="default"/>
+</entry>
+    EOF
+
+    #TODO handling errors
+    response = @doclist.post("https://docs.google.com/feeds/default/private/full/#{resource_id}/acl", acl_entry_owner).to_xml
+    response = @doclist.post("https://docs.google.com/feeds/default/private/full/#{resource_id}/acl", acl_entry_visibility).to_xml
+  end
+
+  def enqueue(table_id, rows)
+    rows.each { |row|
+      rows<<"INSERT INTO #{table_id} (#{row.keys.joins(",")}) VALUES (#{row.values.joins(",")})"
+    }
+    queries=rows.joins(";")
+    p queries
+    @ft.execute queries
+
+  end
 end
