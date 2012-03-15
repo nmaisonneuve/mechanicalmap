@@ -35,7 +35,7 @@ class ProjectsController < ApplicationController
       }
       format.js {
         if params[:widget].blank?
-          render json: @project,
+          render :json=>@project
         else
           render 'widget.js.erb'
         end
