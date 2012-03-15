@@ -2,10 +2,10 @@ Mechanicalmap::Application.routes.draw do
   devise_for :users
 
   resources :projects do
-    get 'start', :on => :member
+    get 'getjob', :on => :member
+    get 'widget', :on => :member
     resources :areas do
-      get 'next', :on => :member
-      get 'gettask', :on => :member
+      get 'getjob', :on => :member
       resources :tasks
     end
 

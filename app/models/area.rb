@@ -1,7 +1,10 @@
 class Area < ActiveRecord::Base
   belongs_to :project
   has_many :tasks
-  serialize :aggregated_info
+
+  scope :opened, lambda{
+     joins(:tasks).group("areas.id").merge(Task.available)
+  }
 
   scope :not_annotated_by, lambda { |user|
     area_ids=Area.joins(:tasks).where("tasks.state=?", Task::COMPLETED).where("tasks.user_id=?", user)

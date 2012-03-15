@@ -1,29 +1,44 @@
 class TasksController < ApplicationController
-	before_filter :anonymous_sign_in
 
   def show
-
     @task=Task.find(params[:id])
     @area=@task.area
     @project=@area.project
     @completed, @size=@area.completion
-    @contributable=!(@area.annotated_by?(current_user))
+    @editable=!(@area.annotated_by?(current_or_guest_user))
+    respond_to do |format|
+      format.html {}
+      format.js {
+        json_answer={:id=>@task.id, :submit_url=>project_area_task_url(@project, @area,@task), :area=>@area, :editable=>@editable}
+        render :json=> json_answer
+      }
+      format.json {
+        json_answer={:id=>@task.id, :submit_url=>project_area_task_url(@project, @area,@task), :area=>@area, :editable=>@editable}
+        render :json=> json_answer
+      }
+    end
+
   end
 
   def update
     @task=Task.find(params[:id])
-    @task.user=current_user
+    @task.user=current_or_guest_user
     @task.state=Task::COMPLETED
     @task.answer=params[:task][:answer]
-    project=@task.area.project
-    project.insert(ActiveSupport::JSON.decode(@task.answer))
-
-
     if (@task.save)
-      redirect_to next_project_area_path(@task.area.project,@task.area)
-    else
-      redirect_to @task.area.project, notice: 'Sorry, there was an error while saving your annotation'
+      project=@task.area.project
+
+      #add user_id
+      answer=ActiveSupport::JSON.decode(@task.answer)
+
+     # project.insert()
+
+      redirect_to getjob_project_path(project)
+
+
     end
+
+
   end
 
 end

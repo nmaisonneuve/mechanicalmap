@@ -29,6 +29,7 @@ class Project < ActiveRecord::Base
       first_line=self.description.split("\n")[0]
       first_line=first_line.match(/<!--(.*)-->/)[1].chomp.strip
       cols=ActiveSupport::JSON.decode(first_line)
+
       table_id=FtDao.instance.create_table(self.name, cols)
       self.ft_id=table_id
       FtDao.instance.set_permission("table:#{self.ft_id}", user.email)
@@ -36,6 +37,19 @@ class Project < ActiveRecord::Base
 
     #rescue MultiJson::DecodeError=> e
     #end
+
+  end
+
+  def get_area_to_analyze(context)
+
+    areas=self.areas.opened.not_annotated_by(context[:current_user])
+    unless (context[:from_area].blank?)
+      areas=areas.where('areas.id>?',context[:from_area])
+    end
+    area=areas.order('areas.id asc').limit(1).first
+    return nil if (area.nil?)
+
+    area.tasks.available.first
 
   end
 

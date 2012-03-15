@@ -4,6 +4,10 @@ def index
 	
 end
 
+def widget
+
+end
+
 def templates
 end
 

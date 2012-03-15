@@ -5,13 +5,14 @@ class Task < ActiveRecord::Base
   COMPLETED=2
 
   belongs_to :user
-  scope :open, where(:state=>AVAILABLE)
+
+  scope :available, where(:state=>AVAILABLE)
   scope :pending, where(:state=> IN_PROGRESS)
   scope :completed, where(:state=>COMPLETED)
 
   #any kind of answer e.g string , json
   # interpreted by the related aggregator
-  attr_accessible  :state, :answer
+  attr_accessible  :state, :answer, :user
 
   belongs_to :area
 

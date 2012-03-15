@@ -1,4 +1,120 @@
+<%= form_for(@project, :html=>{:class=>'form-vertical'}) do |f| %>
+    <input type="hidden" name="project[schema]" id="project_schema" value=""/>
+    <%= f.hidden_field :lat_sw %>
+    <%= f.hidden_field :lng_sw %>
+    <%= f.hidden_field :lat_ne %>
+    <%= f.hidden_field :lng_ne %>
+
+    <fieldset>
+      <h3><%= controller.action_name.capitalize %>
+        Project: <%= f.text_field :name, :placeholder=>"name of the project", :class=>"text-field" %></h3>
+
+      <div class="row">
+        <% if @project.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+              <ul>
+                <% @project.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+      </div>
+      <hr/>
+      <h3>Tasks generator
+        <small>(only 1 generator for the moment)</small>
+      </h3>
+
+      <div class="row">
+        <div class="span3">
+          <div class="alert alert-info" id='task_helper'>
+            Draw a rectangle on the map to define the area to analyze
+          </div>
+
+
+          <div id="task_info" style="display:none">
+            <div class="control-group">
+              <div class="control-label">Area resolution per task (in Km)</div>
+              <%= f.text_field :lat_res, :class=>"input-mini", :size=>"3", :maxlength=>"10", :placeholder=>"in km" %>
+              x
+              <%= f.text_field :lng_res, :class=>"input-mini", :size=>"3", :maxlength=>"10", :placeholder=>"in km" %>
+            </div>
+
+            <div class="control-group">
+              <div class="control-label">Task redundancy</div>
+              <div class="controls">
+                <%= f.text_field :redundancy, :class=>"span1", :placeholder=>"3" %>
+              </div>
+            </div>
+            <div class="alert"><i class="icon-warning-sign"></i> Tasks generated:
+              <h3 id="nb_tasks" class=""></h3>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-label">Add your own map (optional)
+              <a id="add_wms" href="http://sampleserver1.arcgisonline.com/arcgis/services/Specialty/ESRI_StatesCitiesRivers_USA/MapServer/WMSServer?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&WIDTH=256&HEIGHT=256&Styles=default&FORMAT=image/jpeg&CRS=EPSG:4326&layers=0">example</a>
+            </div>
+            <div class="controls"><%= f.text_field :wms_map, :class=>"text-field", :placeholder=>"URL of your WMS server" %>
+              <br/>
+              <button type="button" id="refresh_map" class="btn btn-small">refresh map <i class="icon-refresh"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="span9">
+          <div id="map" style="width:100%;height: 400px"></div>
+        </div>
+
+      </div>
+      <hr/>
+      <div class="row">
+
+        <div class="span12">
+          <h3>Tasks Interpreter Script</h3>
+
+          <div id='script_error' class="alert alert-block alert-error hide fade in">
+            <a class="close" data-dismiss="alert" href="#">×</a>
+            <h4 class="alert-heading">Oh snap! You got an script error!</h4>
+
+            <p id='script_error_text'></p>
+          </div>
+          <div class="control-group">
+            <div class="control-label">
+              Paste <a href="#">your task interpreter script</a>
+            </div>
+            <div class="controls">
+              <%= f.text_area :script, :class=>"span12", :size => "50x15", :placeholder=>"Paste your micro-task template here" %>
+            </div>
+            <button class="btn btn-primary" id="check_script">Check script</button>
+          </div>
+          <h3>UI template</h3>
+
+          <div class="control-group">
+            <div class="control-label">
+              Paste <a href="#">your UI template</a>
+            </div>
+            <div class="controls">
+              <%= f.text_area :ui_template, :class=>"span12", :size => "50x15", :placeholder=>"Paste your UI template here" %>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+<% end %>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=drawing,geometry"></script>
+<%= javascript_include_tag "inheritance" %>
+<%= javascript_include_tag "abstract_micro_task" %>
+<%= javascript_include_tag "map_helper" %>
+<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
+
 
 <script type="text/javascript">
     // Global variables
@@ -9,8 +125,8 @@
     var G = google.maps;
 
     function refresh_map() {
-            var wms_server=$("#project_wms_map").val();
-            add_wms_url(wms_server,"toto");
+        var wms_server = $("#project_wms_map").val();
+        add_wms_url(wms_server, "toto");
     }
 
     /**
@@ -22,14 +138,37 @@
         $("#project_lng_res").change(compute_nb_tasks);
         $("#project_redundancy").change(compute_nb_tasks);
         $("#add_wms").click(function() {
-           event.preventDefault();
-            var wms=$(this).attr("href");
+            event.preventDefault();
+            var wms = $(this).attr("href");
             $("#project_wms_map").val(wms);
             refresh_map();
+            map.setZoom(4);
             map.setCenter(new google.maps.LatLng(40.8, -101.6));
         });
 
         $("#refresh_map").click(refresh_map);
+        $("#check_script").click(function(event) {
+            event.preventDefault();
+            eval($("#project_script").val());
+
+            if (typeof MicroTask == 'undefined') {
+                $("#script_error_text").html("Parsing error. MicroTask Class required!");
+                $("#script_error").show();
+                return;
+            }
+            var micro = new MicroTask("");
+
+            var schema = micro.table_schema();
+            console.log(schema);
+            if (typeof(schema) == 'undefined') {
+                $("#script_error_text").html("Parsing error. Table schema required (Method schema)");
+                $("#script_error").show();
+                return;
+            }
+            console.log(schema);
+
+        });
+
 
         $("#clean").click(function() {
             if (marker_sw != null) {
@@ -45,7 +184,12 @@
         map = new google.maps.Map(document.getElementById('map'), {
             'zoom': 13,
             'center': new google.maps.LatLng(48.8588, 2.336),
-            'mapTypeId': google.maps.MapTypeId.SATELLITE
+            'mapTypeId': google.maps.MapTypeId.SATELLITE,
+            panControl: false,
+            zoomControl: true,
+            scaleControl: false,
+            streetViewControl: false,
+            overviewMapControl: false
         });
 
 
@@ -88,20 +232,20 @@
     function compute_nb_tasks() {
         $("#project_lat_res").val();
 
-        console.log(marker_ne.lat()+","+marker_ne.lng());
+        console.log(marker_ne.lat() + "," + marker_ne.lng());
 
-        console.log(marker_ne.lat()+","+marker_sw.lng());
+        console.log(marker_ne.lat() + "," + marker_sw.lng());
 
-        console.log(marker_sw.lat()+","+marker_ne.lng());
+        console.log(marker_sw.lat() + "," + marker_ne.lng());
 
-        lng_distance=google.maps.geometry.spherical.computeDistanceBetween (marker_ne,new google.maps.LatLng(marker_ne.lat(),marker_sw.lng()));
-        lat_distance=google.maps.geometry.spherical.computeDistanceBetween (marker_ne,new google.maps.LatLng(marker_sw.lat(),marker_ne.lng()));
+        lng_distance = google.maps.geometry.spherical.computeDistanceBetween(marker_ne, new google.maps.LatLng(marker_ne.lat(), marker_sw.lng()));
+        lat_distance = google.maps.geometry.spherical.computeDistanceBetween(marker_ne, new google.maps.LatLng(marker_sw.lat(), marker_ne.lng()));
 
         console.log(lng_distance + "," + lat_distance);
 
         //resolution in degree
-        var nb_lat = Math.ceil(lat_distance/($("#project_lat_res").val()*1000));
-        var nb_lng = Math.ceil(lng_distance/($("#project_lng_res").val()*1000));
+        var nb_lat = Math.ceil(lat_distance / ($("#project_lat_res").val() * 1000));
+        var nb_lng = Math.ceil(lng_distance / ($("#project_lng_res").val() * 1000));
 
         console.log(nb_lng + "," + nb_lat);
 
@@ -130,88 +274,3 @@
         init();
     });
 </script>
-
-<%= form_for(@project, :html=>{:class=>'form-vertical'}) do |f| %>
-    <fieldset>
-      <legend><%= controller.action_name.capitalize %> Project</legend>
-      <div class="row">
-        <% if @project.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
-              <ul>
-                <% @project.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                <% end %>
-              </ul>
-            </div>
-        <% end %>
-
-        <div class="span3">
-
-
-          <%= f.hidden_field :lat_sw %>
-          <%= f.hidden_field :lng_sw %>
-          <%= f.hidden_field :lat_ne %>
-          <%= f.hidden_field :lng_ne %>
-
-          <div class="control-group">
-            <div class="control-label">Name of the project</div>
-            <div class="controls"><%= f.text_field :name, :class=>"text-field" %></div>
-          </div>
-
-          <div class="control-group">
-            <div class="control-label">Add your own map (optional)
-            <a id="add_wms" href="http://sampleserver1.arcgisonline.com/arcgis/services/Specialty/ESRI_StatesCitiesRivers_USA/MapServer/WMSServer?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&WIDTH=256&HEIGHT=256&Styles=default&FORMAT=image/jpeg&CRS=EPSG:4326&layers=0">example</a></div>
-            <div class="controls"><%= f.text_field :wms_map, :class=>"text-field", :placeholder=>"URL of your WMS server" %>
-              <br/>
-              <button type="button" id="refresh_map" class="btn btn-small">refresh map <i class="icon-refresh"></i></button>
-            </div>
-
-          </div>
-          <div class="alert alert-info" id='task_helper'>
-            Draw a rectangle on the map to define the area to analyze
-          </div>
-
-          <div id="task_info" style="display:none">
-            <div class="control-group">
-              <div class="control-label">Area resolution per task (in Km)</div>
-              <%= f.text_field :lat_res, :class=>"input-mini", :size=>"3", :maxlength=>"10", :placeholder=>"in km" %> x
-              <%= f.text_field :lng_res, :class=>"input-mini", :size=>"3", :maxlength=>"10", :placeholder=>"in km" %>
-            </div>
-
-            <div class="control-group">
-              <div class="control-label">Task redundancy</div>
-              <div class="controls">
-                <%= f.text_field :redundancy, :class=>"span1", :placeholder=>"3" %>
-              </div>
-            </div>
-            <div><i class="icon-warning-sign"></i> Tasks generated:</div>
-            <h3 id="nb_tasks" class=""></h3>
-          </div>
-
-        </div>
-
-        <div class="span9">
-          <div id="map" style="max-width:100%"></div>
-        </div>
-
-      </div>
-      <div class="row">
-        <div class="span12">
-
-          <div class="control-group">
-            <div class="control-label">
-              Paste <a href="#">your scripting micro-task template code</a>
-            </div>
-            <div class="controls">
-              <%= f.text_area :description, :class=>"span12", :size => "50x5", :placeholder=>"Paste your micro-task template code" %>
-            </div>
-          </div>
-
-          <div class="form-actions">
-            <button class="btn btn-primary">Submit</button>
-          </div>
-        </div>
-      </div>
-    </fieldset>
-<% end %>

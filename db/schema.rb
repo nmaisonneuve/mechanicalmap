@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120313130211) do
+ActiveRecord::Schema.define(:version => 20120315111013) do
 
   create_table "areas", :force => true do |t|
     t.integer  "project_id"
@@ -39,6 +39,9 @@ ActiveRecord::Schema.define(:version => 20120313130211) do
     t.float    "lng_res",     :default => 1.0
     t.integer  "redundancy",  :default => 3
     t.string   "ft_id"
+    t.text     "script"
+    t.string   "script_url"
+    t.text     "ui_template"
   end
 
   create_table "tasks", :force => true do |t|
@@ -66,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20120313130211) do
     t.datetime "created_at",                                               :null => false
     t.datetime "updated_at",                                               :null => false
     t.boolean  "anonymous",                             :default => false
+    t.string   "username"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

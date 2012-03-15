@@ -1,107 +1,54 @@
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=drawing"></script>
-
-<style type="text/css">
-    #map {
-        width: 100%;
-        height: 500px;
-    }
-</style>
-<script type="text/javascript">
-    // Global variables
-    var map;
-    var rectangle;
-    var area_id =<%= @area.id %>;
-    var user_id =<%= current_user.id %>;
-    var task_id =<%= @task.id %>;
-
-    // Gets the application name and gets all its tasks
-    function submit_answer(answer) {
-        $("#task_answer").val(answer);
-        $('#submit_task').submit();
-    }
-
-    function create_area(lat_sw, lng_sw, lat_ne, lng_ne) {
-        var bounds = new google.maps.LatLngBounds(
-                new google.maps.LatLng(lat_sw, lng_sw),
-                new google.maps.LatLng(lat_ne, lng_ne));
-
-        map.fitBounds(bounds);
-
-        rectangle = new google.maps.Rectangle({
-            map: map,
-            bounds:bounds,
-            strokeColor:"#FF0000",
-            fillOpacity:0
-        });
-        google.maps.event.addListener(rectangle, 'click', function(event) {
-        });
-    }
-
-
-    $(function() {
-        map = new google.maps.Map(document.getElementById('map'), {
-            'zoom': 3,
-            'center': new google.maps.LatLng(70, 0),
-            'mapTypeId': google.maps.MapTypeId.SATELLITE
-        });
-
-        create_area(<%= @task.area.lat_sw %>, <%= @task.area.lng_sw %>, <%= @task.area.lat_ne %>, <%= @task.area.lng_ne %>);
-
-        if (typeof init_task == 'function') {
-            init_task();
-        }
-    });
-
-</script>
-
 <% completed, size=@area.completion %>
+<% content_for :head do %>
 
-<div class="container">
-  <div class="row">
-    <div class="span2">
-      Task: <span id="task-id" class="label label-warning"><%= @task.id %></span>
-    </div>
-    <div class="span3">
-      <div class="progress progress-info
-     progress-striped">
-        <div class="bar"
-             style="width: <%= (completed.to_f/size.to_f)*100 %>%;"></div>
-      </div>
-    </div>
-    <div class="span3">
-      <button class="btn " onclick="window.location.href='<%= project_path(@project) %>'">Project Summary</button>
-    </div>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=drawing"></script>
+
+    <%= javascript_include_tag "inheritance" %>
+    <%= javascript_include_tag "abstract_micro_task" %>
+
+    <style type="text/css">
+        #map {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+    <script type="text/javascript">
+        // Global variables
+        var map;
+        $(function() {
+            var scheduler_url = "<%= getjob_project_url(@project) %>";
+            var micro_task = new MicroTask(scheduler_url);
+            micro_task.request_task();
+        });
+    </script>
+<% end %>
+
+<div class="row">
+  <div class="span9">
+    <div id="map"></div>
   </div>
+  <div class="span3">
 
-  <div class="row">
-    <div class="span9">
-      <div id="map"></div>
-    </div>
-    <div class="span3">
+    Task: <span id="task-id" class="label label-warning"><%= @task.id %></span>
 
-      <% if @contributable %>
-          <h3>Instructions</h3>
-          <%= form_for [@project, @area, @task], :html => {:id => "submit_task", :onsubmit=>"generate_rows()"} do |f| %>
-              <%= f.hidden_field :answer %>
-              <%= f.hidden_field :user %>
-
-              <%= raw RedCloth.new(@task.area.project.description).to_html %>
-
-              <button class="btn btn-primary">Submit</button>
-              <a class="btn " href="<%= next_project_area_path(@project, @area) %>">Skip Task</a>
-          <% end %>
+    <hr/>
+    <% if @editable %>
+        <%= form_for [@project, @area, @task], :remote=>true, :html => {:id => "submit_task", 'data-type' => 'json'} do |f| %>
+            <%= f.hidden_field :answer %>
+            <%= raw RedCloth.new(@project.description).to_html %>
+            <div class="form-actions">
+              <a style="float:right;" id='skip_task' class="btn btn-mini" href="#">Skip task</a>
+              <%= submit_tag "Submit", :class=>"btn btn-primary", :disable_with => "Saving..." %>
+            </div>
+        <% end %>
 
 
-      <% else %>
-          You have already contributed to this area.
-          <button class="btn " onclick="window.location.href='<%= next_project_area_path(@project, @area) %>'">Skip
-            Task
-          </button>
-      <% end %>
-      <br/>
+    <% else %>
+        You have already contributed to this area.
+        <a class="btn" href="<%= getjob_project_path(@project) %>?from_area=<%= @area.id %>">Skip Task</a>
 
-
-    </div>
+    <% end %>
+    <br/>
   </div>
 </div>
 

@@ -16,7 +16,7 @@ class FtDao
 
   def create_table(table_name, columns)
     fields = columns.map { |col| "'#{col["name"]}': #{col["type"].upcase}" }.join(", ")
-    sql = "CREATE TABLE #{table_name} (#{fields})"
+    sql = "CREATE TABLE '#{table_name}' (#{fields})"
     sql="sql=" + CGI::escape(sql)+"&encid=true" #encrypted table id
                                                 # create table
     resp = @ft.post(SERVICE_URL, sql)

@@ -53,7 +53,7 @@
         completion=completed.to_f/size.to_f
         color=Color::HSL.new(completion*120,50,50).html
     %>
-        create_area(<%= area.lat_sw %>, <%= area.lng_sw %>, <%= area.lat_ne %>, <%= area.lng_ne %>, "<%= color %>", "<%= gettask_project_area_path(area.project, area) %>");
+        create_area(<%= area.lat_sw %>, <%= area.lng_sw %>, <%= area.lat_ne %>, <%= area.lng_ne %>, "<%= color %>", "<%= getjob_project_area_path(area.project, area) %>");
     <%} %>
 
 
@@ -72,21 +72,19 @@
       <h2><%= @project.name %></h2>
 
 
-      <% completed, size=@project.completion
-      %>
+      <% completed, size=@project.completion%>
       <b>Project completeness:</b>
-      <div class="progress progress-info
-     progress-striped">
-        <div class="bar"
-             style="width: <%= completed.to_f/size.to_f*100 %>%;"></div>
+      <div class="progress progress-info  progress-striped">
+        <div class="bar"  style="width: <%= completed.to_f/size.to_f*100 %>%;"></div>
 
       </div>
-      <button class="btn btn-primary btn-large" onclick="window.location.href='<%= start_project_path(@project) %>'" <%= (@available_tasks) ? "" : "disabled" %>>Participate</button>
+      <button class="btn btn-primary btn-large" onclick="window.location.href='<%= getjob_project_path(@project) %>'" <%= (@available_tasks) ? "" : "disabled" %>>Participate</button>
       <br/></br>
-      <h4>Open data: analyze yourself the data</h4>
-
+      <h4>Open data <small>analyze yourself the data</small></h4>
+       <p>
       The raw data are regularily updated and published on the google fusion table service. You can analyze and
       aggregate them yourself.
+         </p>
       <br/>
       <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @project.ft_id %>"> >> Link to Data</a>
 

@@ -15,7 +15,8 @@ gem 'color'
 gem "RedCloth"
 gem "fusion_tables"
 gem "nofxx-georuby"
-#gem 'georuby'
+gem "whenever"
+
 # Gems used only for assets and not required
 # in production environments by default.
 #gem 'thin'
@@ -41,7 +42,7 @@ gem 'jquery-rails'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+ gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
