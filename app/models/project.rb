@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
   attr_accessible :wms_map, :lat_sw, :lng_sw, :lat_ne, :lng_ne,
                   :name,
                   :description, :lat_res, :lng_res, :redundancy,
-                  :ft_id
+                  :ft_id , :script, :script_ref, :ui_template
 
   def completion
     completed=self.tasks.completed.count
