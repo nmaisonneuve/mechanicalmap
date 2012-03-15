@@ -7,6 +7,7 @@ class Area < ActiveRecord::Base
   }
 
   scope :not_annotated_by, lambda { |user|
+    # not optimized
     area_ids=Area.joins(:tasks).where("tasks.state=?", Task::COMPLETED).where("tasks.user_id=?", user)
     unless (area_ids.empty?)
       where("#{self.table_name}.id not in (?)", area_ids)
