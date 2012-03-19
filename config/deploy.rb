@@ -65,6 +65,7 @@ any other input will cancel the operation.
 EOF
     answer = Capistrano::CLI.ui.ask "Are you sure you want to WIPE your database?: "
     if answer == 'yes'
+      run "cd #{current_path} && RAILS_ENV=production bundle exec rake db:create"
       run "cd #{current_path} && RAILS_ENV=production bundle exec rake db:schema:load"
     else
       puts "Cancelled."

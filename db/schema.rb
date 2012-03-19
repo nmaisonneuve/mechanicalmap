@@ -11,49 +11,43 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120315111013) do
+ActiveRecord::Schema.define(:version => 20120317222339) do
 
-  create_table "areas", :force => true do |t|
-    t.integer  "project_id"
-    t.float    "lat_sw"
-    t.float    "lng_sw"
-    t.float    "lat_ne"
-    t.float    "lng_ne"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "areas", ["project_id"], :name => "index_areas_on_project_id"
-
-  create_table "projects", :force => true do |t|
-    t.string   "name"
+  create_table "apps", :force => true do |t|
+    t.string   "name",        :null => false
+    t.string   "shortname"
     t.string   "description"
-    t.float    "lat_sw"
-    t.float    "lng_sw"
-    t.float    "lat_ne"
-    t.float    "lng_ne"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.string   "wms_map"
-    t.float    "lat_res",     :default => 1.0
-    t.float    "lng_res",     :default => 1.0
-    t.integer  "redundancy",  :default => 3
-    t.string   "ft_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+
+    t.string   "output_ft"
+    t.string   "input_ft"
     t.text     "script"
     t.string   "script_url"
     t.text     "ui_template"
+    t.integer  "user_id"
   end
+  add_index "apps", ["user_id"], :name => "index_apps_on_user_id"
 
   create_table "tasks", :force => true do |t|
-    t.integer  "area_id"
+    t.integer  "app_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.text     "input"
+  end
+  add_index "tasks", ["app_id"], :name => "index_tasks_on_app_id"
+
+  create_table "units", :force => true do |t|
+    t.integer  "task_id"
     t.integer  "state"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
     t.text     "answer"
   end
+  add_index "units", ["task_id"], :name => "index_units_on_task_id"
 
-  add_index "tasks", ["area_id"], :name => "index_tasks_on_area_id"
+
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "",    :null => false

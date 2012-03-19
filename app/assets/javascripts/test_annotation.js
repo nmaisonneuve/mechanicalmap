@@ -13,12 +13,16 @@
 
 var MicroTask = AbstractMicroTask.extend({
 
-    init: function(scheduler_url) {
+    init: function(scheduler_url, ft_table) {
 
         this._super(scheduler_url);
 
+
         this.markers = [];
-        this.rectangle = null;
+        this.area = null;
+        this.ft_table = ft_table;
+
+        this.columns = [];
 
 
         map = new google.maps.Map(document.getElementById('map'), {
@@ -61,45 +65,73 @@ var MicroTask = AbstractMicroTask.extend({
         });
     },
 
-    table_schema:function() {
-        var schema = [
-            {"name":"area_id","type":"number"},
-            {"name":"user_id","type":"number"},
-            {"name":"task_id","type":"number"},
-            {"name":"annotation","type":"location"}
-        ];
-        return(schema);
+    start:function() {
+        var me = this;
+        this.schema_ft_data(function() {
+            me.request_task();
+        });
     },
-
     load:function(task) {
         this._super(task);
-        // clean markers
-        for (var i = 0; i < this.markers.length; i++) {
-            this.markers[i].setMap(null);
+        var me = this;
+
+        // clean map
+        for (var i = 0; i < me.markers.length; i++) {
+            me.markers[i].setMap(null);
         }
-        this.markers.length = 0;
+        me.markers.length = 0;
 
-        // draw rectangle
-        var area = task.area;
+        // load task
+        this.load_ft_data(task.task.id, function(data) {
 
-        this.create_area(area.lat_sw, area.lng_sw, area.lat_ne, area.lng_ne);
-    },
+            var poly_js = data.table.rows[0][2];
+            me.area = new GeoJSON(poly_js);
+            console.log(me.area);
+            if (me.area.error) {
+                console.log(me.area.error)
+            } else {
+                me.area.setOptions({strokeColor:"#FF0000",
+                    strokeWeight:"2",
+                    fillOpacity:0});
 
-    create_area:function (lat_sw, lng_sw, lat_ne, lng_ne) {
-        if (this.rectangle != null) this.rectangle.setMap(null);
-        var bounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng(lat_sw, lng_sw),
-            new google.maps.LatLng(lat_ne, lng_ne));
-
-        map.fitBounds(bounds);
-
-        this.rectangle = new google.maps.Rectangle({
-            map: map,
-            bounds:bounds,
-            strokeColor:"#FF0000",
-            strokeWeight:"2",
-            fillOpacity:0
+                me.area.setMap(map);
+                var bounds = me.area.getBounds();
+                console.log(bounds);
+                map.fitBounds(bounds);
+            }
         });
+    },
+    schema_ft_data:function(callback_fct) {
+
+        var queryUrlHead = 'http://www.google.com/fusiontables/api/query?sql=';
+        var queryUrlTail = '&jsonCallback=?'; // ? could be a function name
+        // write your SQL as normal, then encode it
+        var query = "DESCRIBE " + this.ft_table;
+        query = queryUrlHead + query + queryUrlTail;
+        //console.log(query);
+        var queryurl = encodeURI(query);
+        var me = this;
+        $.get(queryurl, function(data) {
+            $.each(data.table.rows, function(i, row) {
+                me.columns.push(row[1]);
+            });
+            callback_fct();
+        }, "jsonp");
+    }
+    ,
+    load_ft_data:function(task_id, callback_fct) {
+        // Builds a Fusion Tables SQL query and hands the result to dataHandler()
+
+        var queryUrlHead = 'http://www.google.com/fusiontables/api/query?sql=';
+        var queryUrlTail = '&jsonCallback=?'; // ? could be a function name
+
+        // write your SQL as normal, then encode it
+        var query = "SELECT ROWID, " + this.columns.join(",") + " FROM " + this.ft_table + " WHERE task_id='" + task_id + "'";
+        query = queryUrlHead + query + queryUrlTail;
+        var queryurl = encodeURI(query);
+        $.get(queryurl, function(data) {
+            callback_fct(data);
+        }, "jsonp");
     },
 
 
@@ -122,8 +154,10 @@ var MicroTask = AbstractMicroTask.extend({
                 annotation: " "});
         }
         $("#task_answer").val(JSON.stringify(rows));
-    },
-    no_task:function(){
+    }
+    ,
+    no_available_task:function() {
 
     }
-});
+})
+    ;

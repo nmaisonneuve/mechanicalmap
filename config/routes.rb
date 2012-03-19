@@ -1,14 +1,13 @@
 Mechanicalmap::Application.routes.draw do
+
+
   devise_for :users
 
-  resources :projects do
-    get 'getjob', :on => :member
-    get 'widget', :on => :member
-    resources :areas do
-      get 'getjob', :on => :member
-      resources :tasks
+  resources :apps do
+    get 'scheduler', :on => :member
+    resources :tasks do
+      resources :units
     end
-
   end
 
 

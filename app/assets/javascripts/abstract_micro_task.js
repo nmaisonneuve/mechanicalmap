@@ -20,11 +20,6 @@ var AbstractMicroTask = Class.extend({
         this.initialize_ui();
     },
 
-
-    table_schema:function() {
-        //abstract function  to implement in the sub class
-    },
-
     initialize_ui:function() {
 
         var micro_task = this;
@@ -32,7 +27,7 @@ var AbstractMicroTask = Class.extend({
         //bind ajax request to function load/save
         $("#skip_task").click(function(event) {
             event.preventDefault();
-            micro_task.request_task(micro_task.task.area.id);
+            micro_task.request_task(micro_task.task.id);
         });
 
         $("#submit_task").bind('ajax:before',
@@ -40,11 +35,10 @@ var AbstractMicroTask = Class.extend({
                 micro_task.save();
             }).bind('ajax:success',
             function(evt, data, status, xhr) {
-                console.log(data);
-                if (data.submit_url){
+                if (data.submit_url) {
                     micro_task.load(data);
-                }else
-                    micro_task.no_task();
+                } else
+                    micro_task.no_available_task();
 
             }).bind('ajax:error', function(data, status, xhr) {
             });
@@ -53,13 +47,13 @@ var AbstractMicroTask = Class.extend({
 
     request_task:function(from_task) {
         var mt = this;
-        var query = (from_task == undefined) ? ".json" : ".json?from_area=" + from_task;
+        var query = (from_task == undefined) ? ".js" : ".js?from_task=" + from_task;
+
         $.getJSON(this.scheduler_url + query,
             function(task) {
-                console.log(task);
-              if (task.submit_url){
+                if (task.submit_url) {
                     mt.load(task);
-                }else
+                } else
                     mt.no_task();
             })
             .error(function(data, status, xhr) {
@@ -70,9 +64,10 @@ var AbstractMicroTask = Class.extend({
     }
     ,
 
-    load:function(task) {
-        this.task = task;
-        $("#submit_task").attr("action", task.submit_url);
+    load:function(unit) {
+        console.log(unit);
+        this.task = unit.task;
+        $("#submit_task").attr("action", unit.submit_url);
     }
     ,
 

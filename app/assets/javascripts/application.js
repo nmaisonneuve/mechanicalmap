@@ -12,5 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require ./inheritance
+//= require ./abstract_micro_task
+
+
 

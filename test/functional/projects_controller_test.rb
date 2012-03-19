@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ProjectsControllerTest < ActionController::TestCase
+class AppsControllerTest < ActionController::TestCase
   setup do
     @project = projects(:one)
   end
@@ -8,7 +8,7 @@ class ProjectsControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:projects)
+    assert_not_nil assigns(:apps)
   end
 
   test "should get new" do

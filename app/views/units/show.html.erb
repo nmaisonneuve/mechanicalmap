@@ -1,0 +1,45 @@
+<% content_for :head do %>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=drawing"></script>
+    <script type="text/javascript">
+        // Global variables
+        var map;
+        $(function() {
+            var scheduler_url = "<%= scheduler_app_url(@app) %>";
+            var micro_unit = new MicrouTask(scheduler_url);
+            micro_unit.request_unit();
+        });
+    </script>
+<% end %>
+
+<div class="row">
+  <div class="span9">
+    <div id="map" style=" width: 100%; height: 500px;"></div>
+  </div>
+  <div class="span3">
+
+    task: <span id="unit-id" class="label label-warning"><%= @task.id %></span>
+
+    <hr/>
+    <% if @editable %>
+        <%= form_for [@app, @task, @unit], :remote=>true, :html => {:id => "submit_unit", 'data-type' => 'json'} do |f| %>
+            <%= f.hidden_field :answer %>
+            <%= raw RedCloth.new(@app.ui_template).to_html %>
+            <div class="form-actions">
+              <a style="float:right;" id='skip_task' class="btn btn-mini" href="#">Skip task</a>
+              <%= submit_tag "Submit", :class=>"btn btn-primary", :disable_with => "Saving..." %>
+            </div>
+        <% end %>
+
+    <% else %>
+        You have already contributed to this task.
+        <a class="btn" href="<%= getjob_app_path(@app) %>?from_task=<%= @task.id %>">Skip task</a>
+    <% end %>
+    <br/>
+  </div>
+</div>
+
+
+
+
+
+
