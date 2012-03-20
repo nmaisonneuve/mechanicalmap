@@ -86,9 +86,9 @@ function map_get_title_url(current_wms, tile, zoom) {
 function add_wms_url(baseURL, layer_name) {
 
 
-    var tileHeight = 256;
-    var tileWidth = 256;
-    var isPng = false;
+    var tileHeight =  (baseURL.search(/=512/)==-1)? 256 : 512;
+    var tileWidth = (baseURL.search(/=512/)==-1)? 256 : 512;
+    var isPng = (baseURL.search(/png/)==-1);
     var minZoomLevel = 2;
     var maxZoomLevel = 28;
 

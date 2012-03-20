@@ -4,14 +4,19 @@ Mechanicalmap::Application.routes.draw do
   devise_for :users
 
   resources :apps do
-    get 'scheduler', :on => :member
+    get 'workflow', :on => :member
     resources :tasks do
       resources :units
     end
   end
 
 
-  root :to => 'home#index'
+  root :to => "home#index"
+
+  #
+  match "/demo_generator" => "task_generators#new", :via=>"get"
+  match "/demo_generator" => "task_generators#create", :via=>"post"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -4,7 +4,7 @@ def index
 	
 end
 
-def widget
+def generator
 
 end
 

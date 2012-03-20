@@ -23,28 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="tasks_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/tasks_controller.rb">
+      <file leaf-file-name="new.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/apps/new.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="42" selection-start="101" selection-end="101" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="geo_task_generator.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/geo_task_generator.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="0" selection-start="908" selection-end="908" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="units_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/units_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="49" column="52" selection-start="1917" selection-end="1917" vertical-scroll-proportion="-2.5">
               <folding />
             </state>
           </provider>
@@ -53,34 +35,7 @@
       <file leaf-file-name="embeddable.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/apps/embeddable.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="78" column="42" selection-start="2993" selection-end="2993" vertical-scroll-proportion="-6.0833335">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="0" selection-start="682" selection-end="682" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="show.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/apps/show.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="95" selection-end="95" vertical-scroll-proportion="-0.625">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_annotation.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/test_annotation.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="96" column="36" selection-start="3079" selection-end="3079" vertical-scroll-proportion="0.8598131">
+            <state line="83" column="34" selection-start="3376" selection-end="3376" vertical-scroll-proportion="-1.9387755">
               <folding />
             </state>
           </provider>
@@ -89,25 +44,70 @@
       <file leaf-file-name="abstract_micro_task.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="61" selection-start="1380" selection-end="1380" vertical-scroll-proportion="0.0">
+            <state line="36" column="43" selection-start="1154" selection-end="1154" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="map_helper.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/map_helper.js">
+      <file leaf-file-name="routes.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/routes.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="177" column="31" selection-start="6215" selection-end="6215" vertical-scroll-proportion="0.0">
+            <state line="6" column="39" selection-start="120" selection-end="120" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="geo_json.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/geo_json.js">
+      <file leaf-file-name="apps_controller.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="229" column="2" selection-start="6770" selection-end="6770" vertical-scroll-proportion="0.0">
+            <state line="26" column="2" selection-start="739" selection-end="739" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tasks_controller.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/tasks_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="units_controller.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/units_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="42" column="42" selection-start="1024" selection-end="1024" vertical-scroll-proportion="0.5626741">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test_annotation.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/test_annotation.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="104" column="46" selection-start="0" selection-end="4094" vertical-scroll-proportion="-4.44">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ft_micro_task.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ft_micro_task.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="8" selection-start="1003" selection-end="1003" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="show.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/task_generators/show.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="102" selection-start="342" selection-end="342" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -128,25 +128,30 @@
     <option name="CHECKOUT_INCLUDE_TAGS" value="false" />
     <option name="UPDATE_CHANGES_POLICY" value="STASH" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///IRB console" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///IRB console" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///IRB console" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/models/unit.rb" />
-        <option value="$PROJECT_DIR$/app/models/ft_dao.rb" />
-        <option value="$PROJECT_DIR$/app/models/task.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/task_generators_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/task_generators/show.html.erb.html" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/fusion_table.js" />
         <option value="$PROJECT_DIR$/app/views/task_generators/show.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/apps_controller.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/tasks_controller.rb" />
-        <option value="$PROJECT_DIR$/app/models/geo_task_generator.rb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/geo_json.js" />
-        <option value="$PROJECT_DIR$/app/views/apps/show.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/task_generators_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/task_generators/new.html.erb" />
+        <option value="$PROJECT_DIR$/app/models/ft_dao.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/map_helper.js" />
-        <option value="$PROJECT_DIR$/app/views/apps/embeddable.html.erb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js" />
+        <option value="$PROJECT_DIR$/app/models/geo_task_generator.rb" />
+        <option value="$PROJECT_DIR$/app/models/app.rb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/ft_micro_task.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/test_annotation.js" />
+        <option value="$PROJECT_DIR$/app/views/apps/new.html.erb" />
+        <option value="$PROJECT_DIR$/config/routes.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/apps_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/apps/embeddable.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js" />
+        <option value="$PROJECT_DIR$/app/controllers/units_controller.rb" />
       </list>
     </option>
   </component>
@@ -247,7 +252,47 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mechanicalmap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mechanicalmap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mechanicalmap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mechanicalmap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -282,8 +327,22 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
+              <option name="myItemId" value="mechanicalmap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mechanicalmap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -302,10 +361,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javascripts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -327,12 +382,13 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\dev\mechanicalmap\app\views\task_generators" />
       <recent name="C:\dev\mechanicalmap\app\views\apps" />
       <recent name="C:\dev\mechanicalmap\app\views\projects" />
       <recent name="C:\dev\mechanicalmap\app\assets\stylesheets" />
     </key>
   </component>
-  <component name="RunManager" selected="Rails.Development: mechanicalmap">
+  <component name="RunManager" selected="Rake.routes">
     <configuration default="false" name="routes" type="RakeRunConfigurationType" factoryName="Rake" temporary="true">
       <module name="mechanicalmap" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
@@ -715,114 +771,114 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/task_generators_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/task_generators/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="4" selection-start="67" selection-end="67" vertical-scroll-proportion="0.0">
+        <state line="170" column="8" selection-start="6188" selection-end="6188" vertical-scroll-proportion="5.25">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/apps/_widget.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/models/ft_dao.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="44" selection-start="300" selection-end="300" vertical-scroll-proportion="-5.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/environments/development.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/schema.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="14" selection-start="841" selection-end="841" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/tasks_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="42" selection-start="101" selection-end="101" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/geo_task_generator.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="908" selection-end="908" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/units_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/geo_json.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="229" column="2" selection-start="6770" selection-end="6770" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/apps/show.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="95" selection-end="95" vertical-scroll-proportion="-0.625">
+        <state line="55" column="41" selection-start="2081" selection-end="2081" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/map_helper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="177" column="31" selection-start="6215" selection-end="6215" vertical-scroll-proportion="0.0">
+        <state line="93" column="24" selection-start="3740" selection-end="3740" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/apps/embeddable.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/task_generators_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="42" selection-start="2993" selection-end="2993" vertical-scroll-proportion="-6.0833335">
+        <state line="9" column="25" selection-start="167" selection-end="167" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
+    <entry file="file://$PROJECT_DIR$/app/models/geo_task_generator.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="682" selection-end="682" vertical-scroll-proportion="0.0">
+        <state line="25" column="0" selection-start="927" selection-end="927" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js">
+    <entry file="file://$PROJECT_DIR$/app/models/app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="61" selection-start="1380" selection-end="1380" vertical-scroll-proportion="0.0">
+        <state line="35" column="47" selection-start="948" selection-end="948" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ft_micro_task.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="8" selection-start="1003" selection-end="1003" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/task_generators/show.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="102" selection-start="342" selection-end="342" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/test_annotation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="96" column="36" selection-start="3079" selection-end="3079" vertical-scroll-proportion="0.8598131">
+        <state line="104" column="46" selection-start="0" selection-end="4094" vertical-scroll-proportion="-4.44">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/apps/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="52" selection-start="1917" selection-end="1917" vertical-scroll-proportion="-2.5">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="39" selection-start="120" selection-end="120" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/apps/embeddable.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="83" column="34" selection-start="3376" selection-end="3376" vertical-scroll-proportion="-1.9387755">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="43" selection-start="1154" selection-end="1154" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="2" selection-start="739" selection-end="739" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/tasks_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/units_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="42" selection-start="1024" selection-end="1024" vertical-scroll-proportion="0.5626741">
           <folding />
         </state>
       </provider>

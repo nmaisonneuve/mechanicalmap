@@ -1,5 +1,7 @@
 class App < ActiveRecord::Base
 
+  MAX_ANSWERS=10000 # demo mode
+
   has_many :tasks, :dependent => :destroy
   has_many :units, :through => :tasks
   belongs_to :user
@@ -19,6 +21,22 @@ class App < ActiveRecord::Base
     FtDao.instance.enqueue(self.output_ft, rows)
   end
 
+  def ft_import(redundancy)
+    i=0
+    Task.transaction do
+      FtDao.instance.import(self.input_ft, 10000) do |task_id|
+        task=Task.create(:input=>task_id, :app_id=>self.id)
+        # just one answer for the moment
+        redundancy.times do
+          task.units<<Unit.create!(:state=>Unit::AVAILABLE)
+          # demo mode .. only 10.000 max answer
+          i=i+1
+        end
+        task.save
+        break if ((i>1) && (1% MAX_ANSWERS==0))
+      end
+    end
+  end
 
 
   def ft_create(schema, user)
@@ -36,7 +54,6 @@ class App < ActiveRecord::Base
     return nil if (task.nil?)
     task.units.available.first
   end
-
 
 
 end

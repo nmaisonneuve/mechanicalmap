@@ -20,46 +20,46 @@ var AbstractMicroTask = Class.extend({
         this.initialize_ui();
     },
 
-    initialize_ui:function() {
+    initialize_ui:function(submit_id, skip_id) {
 
-        var micro_task = this;
-
+        var me = this;
         //bind ajax request to function load/save
-        $("#skip_task").click(function(event) {
+        $("#"+skip_id).click(function(event) {
             event.preventDefault();
-            micro_task.request_task(micro_task.task.id);
+            me.request_task(me.task.id);
         });
 
-        $("#submit_task").bind('ajax:before',
+        $("#"+submit_id).bind('ajax:before',
             function() {
-                micro_task.save();
+                me.save();
             }).bind('ajax:success',
             function(evt, data, status, xhr) {
-                if (data.submit_url) {
-                    micro_task.load(data);
-                } else
-                    micro_task.no_available_task();
-
+                me.request_task(me.task);
+                //if (data.submit_url) {
+                //    me.load(data);
+                //} else
+                //    me.no_available_task();
             }).bind('ajax:error', function(data, status, xhr) {
             });
-    }
-    ,
+    },
 
     request_task:function(from_task) {
-        var mt = this;
+        var me = this;
         var query = (from_task == undefined) ? ".js" : ".js?from_task=" + from_task;
 
         $.getJSON(this.scheduler_url + query,
             function(task) {
                 if (task.submit_url) {
-                    mt.load(task);
+                    me.load(task);
                 } else
-                    mt.no_task();
+                    me.no_task();
             })
             .error(function(data, status, xhr) {
-                console.log("error");
-                console.log(data);
-                console.log(status);
+                if (data.status == 404) {
+                    me.no_available_task();  // no task available
+                } else {
+                    console.log("error");
+                }
             })
     }
     ,
@@ -75,7 +75,8 @@ var AbstractMicroTask = Class.extend({
      Function called just before submitting data.
      The json format should reflect the structure of the (google fusion) table
      */
-    save: function () {
+    no_available_task: function () {
+        alert("no task available");
         //abstract function  to implement in the sub class
     }
 });

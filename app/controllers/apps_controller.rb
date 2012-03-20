@@ -10,11 +10,15 @@ class AppsController < ApplicationController
     end
   end
 
-  def scheduler
+  def workflow
     context={:from_task=>params[:from_task], :current_user=>current_or_guest_user}
     @task_unit=App.find(params[:id]).schedule(context)
+
     if @task_unit.nil?
-      redirect_to app_path(params[:id]), notice: 'Sorry no further task available!'
+      respond_to do |format|
+        format.html { redirect_to app_path(params[:id]), notice: 'Sorry no further task available!' }
+        format.js { render :json=>"", :status => 404 }
+      end
     else
       redirect_to app_task_unit_path(@task_unit.task.app, @task_unit.task, @task_unit, :format=>params[:format])
     end
@@ -33,6 +37,8 @@ class AppsController < ApplicationController
 
   def new
     @app = App.new
+    @app.input_ft=params[:input_ft] unless params[:input_ft].blank?
+    @app.input_ft=params[:output_ft] unless params[:output_ft].blank?
   end
 
 # GET /apps/1/edit
@@ -45,19 +51,13 @@ class AppsController < ApplicationController
 # POST /apps.json
   def create
 
-    # we get the schema and remove it from the persistant attribute
-
     @app = App.new(params[:app])
 
     respond_to do |format|
       if @app.save
 
-        gen_params=ActiveSupport::JSON.decode(params[:task_input])
 
-        GeoTaskGenerator.generate({:app_id=>@app.id,
-                                   :table_name=>"#{@app.name}_tasks",
-                                   :rectangle=>gen_params["rectangle"],
-                                   :resolution=>gen_params["resolution"]})
+        @app.ft_import(params[:app_redundancy].to_i)
 
         format.html { redirect_to @app, notice: 'app was successfully created.' }
         format.json { render json: @app, status: :created, location: @app }
@@ -87,7 +87,7 @@ class AppsController < ApplicationController
 # DELETE /apps/1
 # DELETE /apps/1.json
   def destroy
-    @app = app.find(params[:id])
+    @app = App.find(params[:id])
     @app.destroy
 
     respond_to do |format|

@@ -1,8 +1,7 @@
+<%= javascript_include_tag 'ft_micro_task' %>
+
 <%= form_for(@app, :html=>{:class=>'form-vertical', }) do |f| %>
     <input type="hidden" name="schema" id="app_schema" value=""/>
-    <input type="hidden" name="task_input" id="task_input" value=""/>
-
-
     <fieldset>
       <h3><%= controller.action_name.capitalize %>
         Project: <%= f.text_field :name, :placeholder=>"name of the app", :class=>"text-field" %></h3>
@@ -20,86 +19,52 @@
         <% end %>
       </div>
       <hr/>
-      <h3>Tasks generator
-        <small>(only 1 generator for the moment)</small>
-      </h3>
+
 
       <div class="row">
         <div class="span3">
-          <div class="alert alert-info" id='task_helper'>
-            Draw a rectangle on the map to define the area to analyze
-          </div>
+          <div class="control-group">
+            <h3>Input: micro-tasks </h3>
 
+            <p>Enter the ID of a <a href="http://www.google.com/fusiontables/public/tour/index.html">google fusion table</a> containing the tasks to process. you can generate this table yourself (by importing your xsl/csv).</p>
 
-          <div id="task_info" style="display:none">
-            <div class="control-group">
-              <div class="control-label">Area resolution per task (in Km)</div>
-              <%= text_field_tag "app_lat_res", "1", :class=>"input-mini", :size=>"3", :maxlength=>"10", :placeholder=>"1" %>
-              x
-              <%= text_field_tag "app_lng_res", "1", :class=>"input-mini", :size=>"3", :maxlength=>"10", :placeholder=>"0.5" %>
-            </div>
-
-            <div class="control-group">
-              <div class="control-label">Task redundancy</div>
-              <div class="controls">
-                <%= text_field_tag "app_redundancy", "3", :class=>"span1", :placeholder=>"3" %>
-              </div>
-            </div>
-            <div class="alert"><i class="icon-warning-sign"></i> Tasks generated:
-              <h3 id="nb_tasks" class=""></h3>
+              <p><span class="label label-info">note</span> for crowdmapping-related tasks, we propose you <a href="/demo_generator"><b>a crowdmapping task generator</b></a>
+</p>
+            <div class="controls">
+              <%= f.text_field :input_ft, :placeholder=>"fusion table id e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :class=>"text-field" %>
             </div>
           </div>
 
           <div class="control-group">
-            <div class="control-label">Add your own map (optional)
-              <a id="add_wms" href="http://sampleserver1.arcgisonline.com/arcgis/services/Specialty/ESRI_StatesCitiesRivers_USA/MapServer/WMSServer?REQUEST=GetMap&SERVICE=WMS&VERSION=1.3&BGCOLOR=0xFFFFFF&TRANSPARENT=TRUE&SRS=EPSG:4326&WIDTH=256&HEIGHT=256&Styles=default&FORMAT=image/jpeg&CRS=EPSG:4326&layers=0">example</a>
-            </div>
-            <div class="controls"><%= text_field_tag "app_wms_map", "", :class=>"text-field", :placeholder=>"URL of your WMS server" %>
-              <br/>
-              <button type="button" id="refresh_map" class="btn btn-small">refresh map <i class="icon-refresh"></i>
-              </button>
+            <h3>Redundancy</h3>
+
+            <div class="controls">
+              <%= text_field_tag "app_redundancy", "3", :class=>"span1", :placeholder=>"3" %>
             </div>
           </div>
+
         </div>
-
-
         <div class="span9">
-          <div id="map" style="width:100%;height: 400px"></div>
-        </div>
+          <h3>Task Interpreter Script</h3>
 
-      </div>
-      <hr/>
-      <div class="row">
-
-        <div class="span12">
-          <h3>Tasks Interpreter Script</h3>
-
-          <div id='script_error' class="alert alert-block alert-error hide fade in">
+          <div id='script_error' class="alert hide">
             <a class="close" data-dismiss="alert" href="#">×</a>
-            <h4 class="alert-heading">Oh snap! You got an script error!</h4>
-
-            <p id='script_error_text'></p>
+            <div id='script_error_text'>Coco</div>
           </div>
           <div class="control-group">
             <div class="control-label">
-              Paste your task interpreter script (<a href="https://gist.github.com/2029050">example</a>, todo doc)
+              Paste your task template script (<a href="https://gist.github.com/2029050">example</a>, todo doc)
             </div>
             <div class="controls">
-              <%= f.text_area :script, :class=>"span12", :size => "50x15", :placeholder=>"Paste your micro-task template here" %>
+              <%= f.text_area :script, :class=>"span9", :size => "50x15", :placeholder=>"Paste your micro-task template here" %>
             </div>
             <button class="btn btn-primary" id="check_script">Check script</button>
           </div>
-          <h3>UI template</h3>
+        </div>
 
-          <div class="control-group">
-            <div class="control-label">
-              Paste <a href="#">your UI template</a>
-            </div>
-            <div class="controls">
-              <%= f.text_area :ui_template, :class=>"span12", :size => "50x15", :placeholder=>"Paste your UI template here" %>
-            </div>
-          </div>
-
+      </div>
+      <div class="row">
+        <div class="span12">
           <div class="form-actions">
             <button class="btn btn-primary">Submit</button>
           </div>
@@ -107,157 +72,50 @@
       </div>
     </fieldset>
 <% end %>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=drawing,geometry"></script>
+
 <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
 
 
 <script type="text/javascript">
     // Global variables
-    var map;
-    var marker_sw;
-    var marker_ne;
-    var current_rectangle;
-    var G = google.maps;
-
-    function refresh_map() {
-        var wms_server = $("#app_wms_map").val();
-        add_wms_url(wms_server, "toto");
-    }
 
     function evaluate_script() {
 
         eval($("#app_script").val());
 
+        $("#script_error").removeClass("label-success");
+        $("#script_error").removeClass("label-error");
+
         if (typeof MicroTask == 'undefined') {
             $("#script_error_text").html("Parsing error. MicroTask Class required!");
+            $("#script_error").addClass("alert-error");
             $("#script_error").show();
             return;
         }
+
         var micro = new MicroTask("");
-        var schema = micro.schema();
-        console.log(schema);
+        var schema = micro.answers_schema();
+
         if (typeof(schema) == 'undefined') {
             $("#script_error_text").html("Parsing error. Table schema required (Method schema)");
+            $("#script_error").addClass("alert-error");
             $("#script_error").show();
             return;
         }
-        $("#app_schema").val(JSON.stringify(schema));
 
+        $("#script_error_text").html("MicroTask detected.Schema detected.");
+        $("#script_error").addClass("alert-success");
+        $("#script_error").show();
+
+        $("#app_schema").val(JSON.stringify(schema));
     }
 
-    /**
-     * Called on the initial page load.
-     */
-    function init() {
-        $('#new_app').bind('ajax:before', generate_task_input);
-        $("#app_lat_res").change(compute_nb_tasks);
-        $("#app_lng_res").change(compute_nb_tasks);
-        $("#app_redundancy").change(compute_nb_tasks);
-        $("#add_wms").click(function() {
-            event.preventDefault();
-            var wms = $(this).attr("href");
-            $("#app_wms_map").val(wms);
-            refresh_map();
-            map.setZoom(4);
-            map.setCenter(new google.maps.LatLng(40.8, -101.6));
-        });
 
-        $("#refresh_map").click(refresh_map);
+    // Register an event listener to fire when the page finishes loading.
+    $(function() {
         $("#check_script").click(function(event) {
             event.preventDefault();
             evaluate_script();
         });
-
-        map = new google.maps.Map(document.getElementById('map'), {
-            'zoom': 13,
-            'center': new google.maps.LatLng(48.8588, 2.336),
-            'mapTypeId': google.maps.MapTypeId.SATELLITE,
-            panControl: false,
-            zoomControl: true,
-            scaleControl: false,
-            streetViewControl: false,
-            overviewMapControl: false
-        });
-
-
-        var drawingManager = new G.drawing.DrawingManager({
-            drawingMode: G.drawing.OverlayType.RECTANGLE,
-            drawingControl: true,
-            drawingControlOptions: {
-                position: G.ControlPosition.TOP_CENTER,
-                drawingModes: [
-                    G.drawing.OverlayType.RECTANGLE
-                ]
-            },
-            rectangleOptions: {
-                zIndex: 1,
-                strokeColor: "#FF0000",
-                strokeOpacity: 0.8,
-                fillColor: "#949494",
-                fillOpacity: 0.1
-            }
-        });
-        drawingManager.setMap(map);
-
-        google.maps.event.addListener(drawingManager, 'rectanglecomplete', function(rectangle) {
-            if (current_rectangle != null) {
-                current_rectangle.setMap(null);
-            }
-            current_rectangle = rectangle;
-            marker_ne = rectangle.getBounds().getNorthEast();
-            marker_sw = rectangle.getBounds().getSouthWest();
-            enable_task_info();
-            generate_task_input();
-        });
-    }
-
-    function compute_nb_tasks() {
-
-        lng_distance = google.maps.geometry.spherical.computeDistanceBetween(marker_ne, new google.maps.LatLng(marker_ne.lat(), marker_sw.lng()));
-        lat_distance = google.maps.geometry.spherical.computeDistanceBetween(marker_ne, new google.maps.LatLng(marker_sw.lat(), marker_ne.lng()));
-
-        //resolution in degree
-        var nb_lat = Math.ceil(lat_distance / ($("#app_lat_res").val() * 1000));
-        var nb_lng = Math.ceil(lng_distance / ($("#app_lng_res").val() * 1000));
-
-        var redundancy = Math.round($("#app_redundancy").val());
-        var nb_tasks = nb_lat * nb_lng * redundancy;
-        $("#nb_tasks").html(nb_tasks);
-    }
-
-    function enable_task_info() {
-        $("#task_info").show();
-        $("#task_helper").hide();
-        compute_nb_tasks();
-
-    }
-    function generate_task_input() {
-
-        var rectangle = {
-            lat_ne:marker_ne.lat(),
-            lng_ne:marker_ne.lng(),
-            lat_sw:marker_sw.lat(),
-            lng_sw:marker_sw.lng()
-        };
-
-        var res = {
-            lat:$("#app_lat_res").val(),
-            lng:$("#app_lng_res").val()
-        };
-
-        var input = {rectangle:rectangle, resolution:res};
-
-        $("#task_input").val(JSON.stringify(input));
-    }
-
-    function disable_task_info() {
-        $("#task_info").hide();
-        $("#task_helper").show();
-        $("#submit").attr("disabled", "true");
-    }
-
-    // Register an event listener to fire when the page finishes loading.
-    $(function() {
-        init();
     });
 </script>

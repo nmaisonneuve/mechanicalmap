@@ -7,6 +7,19 @@ class TasksController < ApplicationController
 
 
   def show
+
+    #render json: @unit
+    @task=Task.find(params[:task_id])
+    @app=@task.app
+    @completed, @size=@task.completion
+    @editable=!(@task.done_by?(current_or_guest_user))
+    respond_to do |format|
+      format.html {}
+      format.js {
+        json_answer={:submit_url=>app_task_url(@app, @task), :task=>@task, :editable=>@editable}
+        render :json=> json_answer
+      }
+    end
   end
 
 

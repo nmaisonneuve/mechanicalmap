@@ -1,7 +1,7 @@
 <div class="container">
 <div class="row">
 <div class="span6">
-<h1>Projects</h1>
+<h1>Applications</h1>
 
 <table class="table table-striped">
 <thead>  
@@ -11,10 +11,10 @@
   </tr>
 </thead>
 <tbody>
-<% @projects.each do |project| %>
+<% @apps.each do |app| %>
   <tr>
-    <td><%= link_to project.name, project_path(project) %></td>
-    <td><%= link_to 'Destroy', project, confirm: 'Are you sure?', method: :delete, :class=>"btn btn-mini btn-danger" %></td>
+    <td><%= link_to app.name, app_path(app) %></td>
+    <td><%= link_to 'Destroy', app, confirm: 'Are you sure?', :remote=>true, method: :delete, :class=>"btn btn-mini btn-danger" %></td>
   </tr>
 <% end %>
 </tbody>
@@ -22,7 +22,7 @@
 
 <br />
 
-<%= link_to 'New Project', new_project_path, :class=>"btn  "  %>
+<%= link_to 'New Project', new_app_path, :class=>"btn  "  %>
 </div>
 </div>
 </div>
