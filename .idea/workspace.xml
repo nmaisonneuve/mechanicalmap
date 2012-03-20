@@ -77,10 +77,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="units_controller.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="units_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/units_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="42" selection-start="1024" selection-end="1024" vertical-scroll-proportion="0.5626741">
+            <state line="42" column="42" selection-start="1024" selection-end="1024" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ft_micro_task.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ft_micro_task.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="60" column="3" selection-start="2112" selection-end="2112" vertical-scroll-proportion="0.8699422">
               <folding />
             </state>
           </provider>
@@ -90,24 +99,6 @@
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/test_annotation.js">
           <provider selected="true" editor-type-id="text-editor">
             <state line="104" column="46" selection-start="0" selection-end="4094" vertical-scroll-proportion="-4.44">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ft_micro_task.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ft_micro_task.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="8" selection-start="1003" selection-end="1003" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="show.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/task_generators/show.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="102" selection-start="342" selection-end="342" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -136,7 +127,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/assets/javascripts/fusion_table.js" />
         <option value="$PROJECT_DIR$/app/views/task_generators/show.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/task_generators_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/task_generators/new.html.erb" />
@@ -144,7 +134,6 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/map_helper.js" />
         <option value="$PROJECT_DIR$/app/models/geo_task_generator.rb" />
         <option value="$PROJECT_DIR$/app/models/app.rb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/ft_micro_task.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/test_annotation.js" />
         <option value="$PROJECT_DIR$/app/views/apps/new.html.erb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
@@ -152,6 +141,8 @@
         <option value="$PROJECT_DIR$/app/views/apps/embeddable.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js" />
         <option value="$PROJECT_DIR$/app/controllers/units_controller.rb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/fusion_table.js" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/ft_micro_task.js" />
       </list>
     </option>
   </component>
@@ -361,6 +352,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mechanicalmap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mechanicalmap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javascripts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -771,13 +784,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/task_generators/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="170" column="8" selection-start="6188" selection-end="6188" vertical-scroll-proportion="5.25">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/ft_dao.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="55" column="41" selection-start="2081" selection-end="2081" vertical-scroll-proportion="0.0">
@@ -809,13 +815,6 @@
     <entry file="file://$PROJECT_DIR$/app/models/app.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="35" column="47" selection-start="948" selection-end="948" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ft_micro_task.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="8" selection-start="1003" selection-end="1003" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -878,7 +877,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/units_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="42" selection-start="1024" selection-end="1024" vertical-scroll-proportion="0.5626741">
+        <state line="42" column="42" selection-start="1024" selection-end="1024" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ft_micro_task.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="3" selection-start="2112" selection-end="2112" vertical-scroll-proportion="0.8699422">
           <folding />
         </state>
       </provider>

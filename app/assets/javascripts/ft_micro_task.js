@@ -19,17 +19,26 @@ var FTMicroTask = AbstractMicroTask.extend({
         this.columns = [];
     },
 
-    start
-        :
-        function() {
+    start:function() {
             var me = this;
             // once the structure of a task is known
             // we request a task
             this.load_schema(function() {
                 me.request_task();
             });
-        }
-    ,
+    },
+
+    ft_request:function(query, callback_fct) {
+        // Builds a Fusion Tables SQL query and hands the result to dataHandler()
+        var queryUrlHead = 'http://www.google.com/fusiontables/api/query?sql=';
+        var queryUrlTail = '&jsonCallback=?'; // ? could be a function name
+        // write your SQL as normal, then encode it
+        query = queryUrlHead + query + queryUrlTail;
+        var queryurl = encodeURI(query);
+        $.get(queryurl, function(data) {
+            callback_fct(data);
+        }, "jsonp");
+    },
 
     load:function(task, callback_fct) {
         this._super(task);
@@ -37,16 +46,16 @@ var FTMicroTask = AbstractMicroTask.extend({
         // request more info about the task to the google fusion table
         // and interpret the result to display it
         var query = "SELECT ROWID, " + this.columns.join(",") + " FROM " + this.ft_table + " WHERE task_id='" + this.task_id + "'";
-        ft_request(query, callback_fct);
+        this.ft_request(query, callback_fct);
     },
+
     load_schema:function(callback_fct) {
         var me = this;
-        ft_request("DESCRIBE " + this.ft_table, function(data) {
+        this.ft_request("DESCRIBE " + this.ft_table, function(data) {
             $.each(data.table.rows, function(i, row) {
                 me.columns.push(row[1]);
             });
             callback_fct();
         });
     }
-})
-    ;
+});
