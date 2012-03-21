@@ -1,10 +1,12 @@
 Mechanicalmap::Application.routes.draw do
 
 
+
   devise_for :users
 
   resources :apps do
     get 'workflow', :on => :member
+    get 'user_state', :on => :member
     resources :tasks do
       resources :units
     end

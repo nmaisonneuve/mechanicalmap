@@ -10,17 +10,27 @@ class AppsController < ApplicationController
     end
   end
 
+  def user_state
+    app=App.find(params[:id])
+    # strange but working
+    opened=app.tasks.available.size
+    opened=opened.keys.size
+    completed=current_or_guest_user.tasks.where("app_id=?",app.id).count
+    render json: [:opened=>opened, :completed=>completed]
+  end
+
   def workflow
     context={:from_task=>params[:from_task], :current_user=>current_or_guest_user}
-    @task_unit=App.find(params[:id]).schedule(context)
-
+    app=App.find(params[:id])
+    @task_unit=app.schedule(context)
     if @task_unit.nil?
       respond_to do |format|
-        format.html { redirect_to app_path(params[:id]), notice: 'Sorry no further task available!' }
+        format.html { redirect_to app/_path(app), notice: 'Sorry no further task available!' }
         format.js { render :json=>"", :status => 404 }
       end
     else
       redirect_to app_task_unit_path(@task_unit.task.app, @task_unit.task, @task_unit, :format=>params[:format])
+
     end
   end
 
@@ -31,7 +41,7 @@ class AppsController < ApplicationController
     if (params[:embeddable].blank?)
       render 'show.erb.html'
     else
-      render 'embeddable.erb.html'
+      render 'embeddable.erb.html' , :layout=>false
     end
   end
 
@@ -52,11 +62,8 @@ class AppsController < ApplicationController
   def create
 
     @app = App.new(params[:app])
-
     respond_to do |format|
       if @app.save
-
-
         @app.ft_import(params[:app_redundancy].to_i)
 
         format.html { redirect_to @app, notice: 'app was successfully created.' }

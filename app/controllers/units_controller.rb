@@ -35,17 +35,34 @@ class UnitsController < ApplicationController
 
     @unit=Unit.find(params[:id])
     @unit.user=current_or_guest_user
-    @unit.state=unit::PENDING
-    @unit.answer=params[:unit][:answer]
+    @unit.state=Unit::PENDING
+    @unit.answer=params[:task_answer]
 
     respond_to do |format|
       if (@unit.save)
-        format.html { redirect_to workflow_app_path(@unit.task.project), notice: 'Unit was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to workflow_app_path(@unit.task.app), notice: 'Unit was successfully updated.' }
+        format.json { head :no_content, status: :success }
       else
         format.html { render action: "show" }
         format.json { render json: @unit.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def show
+
+    #render json: @unit
+    @unit=Unit.find(params[:id])
+    @task=@unit.task
+    @app=@task.app
+    @completed, @size=@task.completion
+    @editable=!(@task.done_by?(current_or_guest_user))
+    respond_to do |format|
+      format.html {}
+      format.js {
+        json_answer={:submit_url=>app_task_unit_url(@app, @task, @unit), :task=>@task, :editable=>@editable}
+        render :json=> json_answer
+      }
     end
   end
 

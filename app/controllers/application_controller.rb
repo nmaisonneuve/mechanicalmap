@@ -28,24 +28,13 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_or_guest_user
 
-  layout :layout_by_resource
-
-
   protected
 
-  def layout_by_resource
-    if devise_controller?
-      "devise"
-    else
-      "application"
-    end
-  end
 
   # if user is logged in, return current_user, else return guest_user
   def current_or_guest_user
     if current_user
       if session[:guest_user_id]
-        logging_in
         guest_user.destroy
         session[:guest_user_id] = nil
       end
@@ -67,17 +56,6 @@ class ApplicationController < ActionController::Base
     u = User.create(:username => "guest_#{Time.now.to_i}#{rand(9)}", :email => "guest_#{Time.now.to_i}#{rand(99)}@email_address.com")
     u.save(:validate => false)
     u
-  end
-
-  def anonymous_sign_in
-    return if user_signed_in?
-    u = User.new()
-    temp_token = SecureRandom.base64(15).tr('+/=', 'xyz')
-    temp_token="toto"
-    u.email="#{temp_token}"
-    u.anonymous=true
-    u.save(:validate => false)
-    sign_in :user, u
   end
 
 end

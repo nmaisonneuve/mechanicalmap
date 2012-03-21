@@ -26,10 +26,14 @@
           <div class="control-group">
             <h3>Input: micro-tasks </h3>
 
-            <p>Enter the ID of a <a href="http://www.google.com/fusiontables/public/tour/index.html">google fusion table</a> containing the tasks to process. you can generate this table yourself (by importing your xsl/csv).</p>
+            <p>Enter the ID of a
+              <a href="http://www.google.com/fusiontables/public/tour/index.html">google fusion table</a> containing the
+              tasks to process. you can generate this table yourself (by importing your xsl/csv).</p>
 
-              <p><span class="label label-info">note</span> for crowdmapping-related tasks, we propose you <a href="/demo_generator"><b>a crowdmapping task generator</b></a>
-</p>
+            <p><span class="label label-info">note</span> for crowdmapping-related tasks, we propose you
+              <a href="/demo_generator"><b>a crowdmapping task generator</b></a>
+            </p>
+
             <div class="controls">
               <%= f.text_field :input_ft, :placeholder=>"fusion table id e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :class=>"text-field" %>
             </div>
@@ -49,16 +53,25 @@
 
           <div id='script_error' class="alert hide">
             <a class="close" data-dismiss="alert" href="#">×</a>
+
             <div id='script_error_text'>Coco</div>
           </div>
           <div class="control-group">
             <div class="control-label">
-              Paste your task template script (<a href="https://gist.github.com/2029050">example</a>, todo doc)
+              Paste your microtask script (<a href="https://gist.github.com/2029050">example</a>)
             </div>
             <div class="controls">
               <%= f.text_area :script, :class=>"span9", :size => "50x15", :placeholder=>"Paste your micro-task template here" %>
             </div>
-            <button class="btn btn-primary" id="check_script">Check script</button>
+          </div>
+          <h3>UI Template </h3>
+          <div class="control-group">
+            <div class="control-label">
+              Paste your HTML UI template
+            </div>
+            <div class="controls">
+              <%= f.text_area :ui_template, :class=>"span9", :size => "50x15", :placeholder=>"Paste your HTML UI template" %>
+            </div>
           </div>
         </div>
 

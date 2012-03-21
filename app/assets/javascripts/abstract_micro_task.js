@@ -12,41 +12,61 @@
 
 var AbstractMicroTask = Class.extend({
 
-    init:function(scheduler_url) {
+    init:function(options) {
 
-        //default parameters
-        this.scheduler_url = scheduler_url;
+
+        this.scheduler_url = options.scheduler_url;
+        this.user=options.user;
+
+        // current task
         this.task = null;
-        this.initialize_ui();
+
+        //project completeness
+        this.task_completed = 0;
+        this.task_done = 0;
+
+        //HTML element id
+        this.el_ids={
+            "task_done":"task_done",
+            "task_completed":"task_done",
+            "progress_bar_id":"progress_bar_id",
+            "skip_task":"skip_task",
+            "submit_task":"submit_task",
+            "task_answer":"task_answer",
+            "form_task":"form_task"
+        };
     },
 
-    initialize_ui:function(submit_id, skip_id) {
+    update_completeness_ui:function() {
+        $("#" + this.el_ids["task_done"]).html(this.task_done);
+        $("#" + this.el_ids["task_completed"]).html(this.task_completed);
+        $("#" + this.el_ids["progress_bar_id"]).css.width((this.task_done / this.task_completed) * 100 + "%");
+    },
+
+    initialize_ui:function() {
 
         var me = this;
         //bind ajax request to function load/save
-        $("#"+skip_id).click(function(event) {
+        $("#" + this.el_ids["skip_task"]).click(function(event) {
             event.preventDefault();
             me.request_task(me.task.id);
         });
 
-        $("#"+submit_id).bind('ajax:before',
+        $("#" + this.el_ids["form_task"]).bind('ajax:before',
             function() {
                 me.save();
             }).bind('ajax:success',
             function(evt, data, status, xhr) {
-                me.request_task(me.task);
-                //if (data.submit_url) {
-                //    me.load(data);
-                //} else
-                //    me.no_available_task();
+                me.request_task(me.task.id);
             }).bind('ajax:error', function(data, status, xhr) {
+                console.log(data);
+
             });
     },
 
     request_task:function(from_task) {
         var me = this;
         var query = (from_task == undefined) ? ".js" : ".js?from_task=" + from_task;
-
         $.getJSON(this.scheduler_url + query,
             function(task) {
                 if (task.submit_url) {
@@ -65,9 +85,8 @@ var AbstractMicroTask = Class.extend({
     ,
 
     load:function(unit) {
-        console.log(unit);
         this.task = unit.task;
-        $("#submit_task").attr("action", unit.submit_url);
+        $("#"+this.el_ids["form_task"]).attr("action", unit.submit_url);
     }
     ,
 

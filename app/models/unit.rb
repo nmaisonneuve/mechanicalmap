@@ -1,14 +1,14 @@
 class Unit < ActiveRecord::Base
 
   AVAILABLE=0
-  IN_PROGRESS=1
+  PENDING=1
   COMPLETED=2
 
   belongs_to :user
   belongs_to :task
 
   scope :available, where(:state=>AVAILABLE)
-  scope :pending, where(:state=> IN_PROGRESS)
+  scope :pending, where(:state=>PENDING)
   scope :completed, where(:state=>COMPLETED)
 
   #any kind of answer e.g string , json

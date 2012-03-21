@@ -14,7 +14,7 @@
 <% @apps.each do |app| %>
   <tr>
     <td><%= link_to app.name, app_path(app) %></td>
-    <td><%= link_to 'Destroy', app, confirm: 'Are you sure?', :remote=>true, method: :delete, :class=>"btn btn-mini btn-danger" %></td>
+    <!-- <td><%= link_to 'Destroy', app, confirm: 'Are you sure?', :remote=>true, method: :delete, :class=>"btn btn-mini btn-danger" %></td>-->
   </tr>
 <% end %>
 </tbody>

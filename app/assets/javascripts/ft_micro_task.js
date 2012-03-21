@@ -13,9 +13,9 @@
 
 var FTMicroTask = AbstractMicroTask.extend({
 
-    init: function(scheduler_url, ft_table) {
-        this._super(scheduler_url);
-        this.ft_table = ft_table;
+    init: function(options) {
+        this._super(options);
+        this.ft_table = options.ft_table;
         this.columns = [];
     },
 
@@ -45,7 +45,7 @@ var FTMicroTask = AbstractMicroTask.extend({
 
         // request more info about the task to the google fusion table
         // and interpret the result to display it
-        var query = "SELECT ROWID, " + this.columns.join(",") + " FROM " + this.ft_table + " WHERE task_id='" + this.task_id + "'";
+        var query = "SELECT ROWID, " + this.columns.join(",") + " FROM " + this.ft_table + " WHERE task_id='" + this.task.input + "'";
         this.ft_request(query, callback_fct);
     },
 

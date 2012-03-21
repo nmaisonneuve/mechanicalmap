@@ -11,15 +11,20 @@
  * ============================================================ */
 var MicroTask = FTMicroTask.extend({
 
-    init: function(scheduler_url, ft_table) {
-        this._super(scheduler_url, ft_table);
+    init: function(options) {
+        console.log(options);
+        this._super(options);
         this.markers = [];
-        this.map=null;
+        this.map = null;
         this.area = null;
     },
 
-    init_ui:function() {
-        this.map = new google.maps.Map(document.getElementById('map'), {
+    init_ui:function(element_ids) {
+        this.initialize_ui();
+
+        this.el_ids["map"] = "map";
+
+        this.map = new google.maps.Map(document.getElementById(this.el_ids['map']), {
             zoom: 3,
             center: new google.maps.LatLng(70, 0),
             mapTypeId: google.maps.MapTypeId.SATELLITE,
@@ -61,8 +66,7 @@ var MicroTask = FTMicroTask.extend({
 
     },
 
-    load:function(task) {
-
+    reset:function() {
         // clean map and the area
         for (var i = 0; i < this.markers.length; i++) {
             this.markers[i].setMap(null);
@@ -71,8 +75,19 @@ var MicroTask = FTMicroTask.extend({
         if (this.area != null) {
             this.area.setMap(null);
         }
+    },
+    load:function(task) {
 
+
+        var me = this;
+
+        this.reset();
         this._super(task, function(data) {
+
+            if (data.table.rows.length == 0) {
+                me.no_available_task();
+                return;
+            }
 
             // parse info to create a google map polygon
             var poly_js = data.table.rows[0][2];
@@ -108,14 +123,15 @@ var MicroTask = FTMicroTask.extend({
         var rows = [];
         if (this.markers.length > 0) {
             for (var i = 0; i < this.markers.length; i++) {
-                rows.push({ area_id:this.task.area.id,
-                    task_id: this.task.id,
+                rows.push({
+                    user_id :this.user.id,
+                    task_id: this.task.input,
                     annotation: this.markers[i].position.lat() + " " + this.markers[i].position.lng()});
             }
-        // no annotation
+            // no annotation
         } else {
-            rows.push({ area_id:this.task.area.id,task_id: this.task.id,annotation: " "});
+            rows.push({ user_id:this.user.id,task_id: this.task.input,annotation: " "});
         }
-        $("#task_answer").val(JSON.stringify(rows));
+        $("#" + this.el_ids["task_answer"]).val(JSON.stringify(rows));
     }
 });

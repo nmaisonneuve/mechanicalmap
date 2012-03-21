@@ -86,9 +86,9 @@ function map_get_title_url(current_wms, tile, zoom) {
 function add_wms_url(baseURL, layer_name) {
 
 
-    var tileHeight =  (baseURL.search(/=512/)==-1)? 256 : 512;
-    var tileWidth = (baseURL.search(/=512/)==-1)? 256 : 512;
-    var isPng = (baseURL.search(/png/)==-1);
+    var tileHeight = (baseURL.search(/=512/) == -1) ? 256 : 512;
+    var tileWidth = (baseURL.search(/=512/) == -1) ? 256 : 512;
+    var isPng = (baseURL.search(/png/) == -1);
     var minZoomLevel = 2;
     var maxZoomLevel = 28;
 
@@ -137,20 +137,6 @@ function add_wms_url(baseURL, layer_name) {
     map.setMapTypeId(layer_name);
 }
 
-
-function save_marker_to_json(markers) {
-    simple_markers = [];
-    // we simplify its representation
-    for (var i = 0; i < markers.length; i++) {
-        var marker = markers[i];
-        var markerData = {};
-        markerData.latitude = marker.getPosition().lat().toString();
-        markerData.longitude = marker.getPosition().lng().toString();
-        simple_markers.push(markerData);
-    }
-    return(simple_markers);
-}
-
 function add_tile_url(url, image_type, layer_name) {
 
     /*
@@ -175,8 +161,7 @@ function add_tile_url(url, image_type, layer_name) {
     map.mapTypes.set(layer_name, new google.maps.ImageMapType(options));
 }
 
-if (typeof(google) != undefined) {
-
+$(function() {
 
     if (!google.maps.Polygon.prototype.getBounds) {
 
@@ -230,4 +215,5 @@ if (typeof(google) != undefined) {
             return inPoly;
         }
     }
-}
+
+});

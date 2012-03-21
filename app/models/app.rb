@@ -3,7 +3,9 @@ class App < ActiveRecord::Base
   MAX_ANSWERS=10000 # demo mode
 
   has_many :tasks, :dependent => :destroy
+
   has_many :units, :through => :tasks
+
   belongs_to :user
 
   validates_presence_of :name, :script
@@ -46,7 +48,7 @@ class App < ActiveRecord::Base
   end
 
   def schedule(context)
-    tasks=self.tasks.opened.available_for(context[:current_user])
+    tasks=self.tasks.available.available_for(context[:current_user])
     unless (context[:from_task].blank?)
       tasks=tasks.where('tasks.id>?', context[:from_task])
     end
