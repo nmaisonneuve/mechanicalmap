@@ -1,12 +1,6 @@
 /* ============================================================
  * Abstract MicroTask class
  * NM
- * ============================================================
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
  * http://www.apache.org/licenses/LICENSE-2.0
  * ============================================================ */
 
@@ -14,9 +8,8 @@ var AbstractMicroTask = Class.extend({
 
     init:function(options) {
 
-
         this.scheduler_url = options.scheduler_url;
-        this.user=options.user;
+        this.user = options.user;
 
         // current task
         this.task = null;
@@ -26,7 +19,7 @@ var AbstractMicroTask = Class.extend({
         this.task_done = 0;
 
         //HTML element id
-        this.el_ids={
+        this.el_ids = {
             "task_done":"task_done",
             "task_completed":"task_done",
             "progress_bar_id":"progress_bar_id",
@@ -37,12 +30,12 @@ var AbstractMicroTask = Class.extend({
         };
     },
 
+
     update_completeness_ui:function() {
         $("#" + this.el_ids["task_done"]).html(this.task_done);
         $("#" + this.el_ids["task_completed"]).html(this.task_completed);
         $("#" + this.el_ids["progress_bar_id"]).css.width((this.task_done / this.task_completed) * 100 + "%");
     },
-
     initialize_ui:function() {
 
         var me = this;
@@ -86,14 +79,11 @@ var AbstractMicroTask = Class.extend({
 
     load:function(unit) {
         this.task = unit.task;
-        $("#"+this.el_ids["form_task"]).attr("action", unit.submit_url);
-    }
-    ,
+        console.log("loading "+unit.submit_url);
+        $("#" + this.el_ids["form_task"]).attr("action", unit.submit_url);
+    },
 
-    /*
-     Function called just before submitting data.
-     The json format should reflect the structure of the (google fusion) table
-     */
+
     no_available_task: function () {
         alert("no task available");
         //abstract function  to implement in the sub class

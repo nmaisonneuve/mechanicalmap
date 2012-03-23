@@ -1,5 +1,6 @@
 class AppsController < ApplicationController
 
+  before_filter :authenticate_user!, :only=>[:new]
   # GET /apps
   # GET /apps.json
   def index
@@ -37,6 +38,8 @@ class AppsController < ApplicationController
 
   def show
     @app = App.find(params[:id])
+
+
     #@available_tasks=@app.areas.not_annotated_by(current_or_guest_user).exists?
     if (params[:embeddable].blank?)
       render 'show.erb.html'
@@ -65,6 +68,15 @@ class AppsController < ApplicationController
     respond_to do |format|
       if @app.save
         @app.ft_import(params[:app_redundancy].to_i)
+
+        @app.create_output_ft(params[:schema])
+
+            #create an ft table table
+    table_id=FtDao.instance.create_table(options[:table_name], [
+        {:name=>"task_id", :type=>"number"},
+        {:name=>"area", :type=>"location"},
+        {:name=>"state", :type=>"number"}
+    ])
 
         format.html { redirect_to @app, notice: 'app was successfully created.' }
         format.json { render json: @app, status: :created, location: @app }

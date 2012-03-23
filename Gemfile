@@ -13,6 +13,7 @@ group :production do
   gem 'thin'
 end
 
+gem "useragent"
 
 #gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails'
 #gem "twitter-bootstrap-rails"

@@ -27,7 +27,7 @@ class Task < ActiveRecord::Base
   end
 
   def completion
-    completed=self.units.completed.count
+    completed=self.units.answered.count
     size=self.units.count
     [completed, size]
   end

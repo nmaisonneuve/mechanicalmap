@@ -1,5 +1,3 @@
-<%= javascript_include_tag 'ft_micro_task' %>
-
 <%= form_for(@app, :html=>{:class=>'form-vertical', }) do |f| %>
     <input type="hidden" name="schema" id="app_schema" value=""/>
     <fieldset>
@@ -28,14 +26,14 @@
 
             <p>Enter the ID of a
               <a href="http://www.google.com/fusiontables/public/tour/index.html">google fusion table</a> containing the
-              tasks to process. you can generate this table yourself (by importing your xsl/csv).</p>
+              tasks to index. </p>
 
-            <p><span class="label label-info">note</span> for crowdmapping-related tasks, we propose you
+            <p><span class="label label-info">note</span> You can generate this table yourself or we propose you
               <a href="/demo_generator"><b>a crowdmapping task generator</b></a>
             </p>
 
             <div class="controls">
-              <%= f.text_field :input_ft, :placeholder=>"fusion table id e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :class=>"text-field" %>
+              <%= f.text_field :input_ft, :placeholder=>"e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :class=>"text-field" %>
             </div>
           </div>
 
@@ -49,7 +47,7 @@
 
         </div>
         <div class="span9">
-          <h3>Task Interpreter Script</h3>
+          <h3>UI Task template</h3>
 
           <div id='script_error' class="alert hide">
             <a class="close" data-dismiss="alert" href="#">×</a>
@@ -63,15 +61,7 @@
             <div class="controls">
               <%= f.text_area :script, :class=>"span9", :size => "50x15", :placeholder=>"Paste your micro-task template here" %>
             </div>
-          </div>
-          <h3>UI Template </h3>
-          <div class="control-group">
-            <div class="control-label">
-              Paste your HTML UI template
-            </div>
-            <div class="controls">
-              <%= f.text_area :ui_template, :class=>"span9", :size => "50x15", :placeholder=>"Paste your HTML UI template" %>
-            </div>
+            <button class="btn" id="check_script">Check</button>
           </div>
         </div>
 
@@ -94,32 +84,25 @@
 
     function evaluate_script() {
 
-        eval($("#app_script").val());
+        var script = $("#app_script").val();
+        var schema = script.match(/<!--( )*schema=(.*)/);
+        if (schema!=null){
+            schema=eval(schema[2]);
+        }
 
         $("#script_error").removeClass("label-success");
         $("#script_error").removeClass("label-error");
 
-        if (typeof MicroTask == 'undefined') {
-            $("#script_error_text").html("Parsing error. MicroTask Class required!");
-            $("#script_error").addClass("alert-error");
-            $("#script_error").show();
-            return;
-        }
-
-        var micro = new MicroTask("");
-        var schema = micro.answers_schema();
-
-        if (typeof(schema) == 'undefined') {
+        if ((typeof(schema) == 'undefined') || (schema==null)) {
             $("#script_error_text").html("Parsing error. Table schema required (Method schema)");
             $("#script_error").addClass("alert-error");
             $("#script_error").show();
             return;
+        } else {
+            $("#script_error_text").html("Schema detected to generate the output fusion table.");
+            $("#script_error").addClass("alert-success");
+            $("#script_error").show();
         }
-
-        $("#script_error_text").html("MicroTask detected.Schema detected.");
-        $("#script_error").addClass("alert-success");
-        $("#script_error").show();
-
         $("#app_schema").val(JSON.stringify(schema));
     }
 

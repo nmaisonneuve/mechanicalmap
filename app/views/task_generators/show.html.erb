@@ -4,16 +4,21 @@
     <fieldset>
       <h3>Tasks Generator Helper for analyzing an area</h3>
 
-      <p>This is a (demo) helper to generate crowdmapping tasks. This helper will cut an area into an overlapping grid of smaller
-        areas according to a given resolution. The result will be a google fusion table ready to be used as input for
-        MicroTask.(next step: create your own instructions / task interpreter to process them) </p>
+  <p>
+        This is a (demo) helper to generate simple crowdmapping tasks. This helper will cut an area into a grid of smaller
+        areas having a given resolution.
+        The result will be a google fusion table ready to be used as input for any MicroTask application.
+        (next step: create your own instructions / task interpreter to process them)
+      </p>
 
       <hr/>
 
       <div class="row">
         <div class="span12">
           <h2> Fusion table generated !</h2>
-          <p>Table ID (to copy) <br/><h4 class="alert alert-info"><%= @table_id %></h4>
+          A google fusion table was generated and filled with a grid of areas to analyze.
+          <br/>Google sent you an email since we grant you as the owner of this table.
+          <p>Table ID <br/><h4 class="alert alert-info"><%= @table_id %></h4>
           </p>
           <a class="btn btn-primary btn-large" href="http://www.google.com/fusiontables/DataSource?docid=<%= @table_id %>">See
             the generated tasks</a>
@@ -25,7 +30,9 @@
       <div class="row">
         <div class="span12">
           <h2> Next step</h2>
-          <p>Create your own task interpreter to process these tasks
+
+          <p>Create the task you want to ask to  volunteers for each cell.
+            <br/>
             <a class="btn btn-primary btn-large" href="/apps/new?input_ft=<%= @table_id %>">Create app</a>
           </p>
         </div>

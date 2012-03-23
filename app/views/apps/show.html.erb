@@ -1,6 +1,8 @@
- <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-
+<link href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
 
 <script type="text/javascript">
 
@@ -13,17 +15,33 @@
       <p id="notice"><%= notice %></p>
 
       <h2><%= @app.name %></h2>
-
-
-      <b>project completeness:</b>
-
+      <%= @app.description %>
+      <h4>Activity</h4>
       <% completed, size=@app.completion %>
+      <%= completed %> answers / <%= size %> tasks units.
       <div class="progress progress-info  progress-striped">
         <div class="bar" style="width: <%= completed.to_f/size.to_f*100 %>%;"></div>
-
       </div>
-      <a class="btn btn-primary btn-large" href='<%= app_path(@app, :embeddable=>"1") %>'" <%= (@available_tasks) ? "" : "disabled" %>
-      >Participate</a>
+      <b> Last contributors</b>
+
+      <ul style="padding: 0px;margin: 0; margin-top: 3px;">
+        <li style="list-style-type: none;">
+          <img alt="Gravatar" src="http://gravatar.com/avatar/325d2a1fa0d79e8559f64ed0615afc9a?default=identicon&amp;size=20" title="Smith">
+          contributed 1min ago
+        </li>
+        <li style="list-style-type: none;">
+          <img alt="Gravatar" src="http://gravatar.com/avatar/8db6661a87a41950651a67bbcc0e671e?default=identicon&amp;size=20" title="Smith">
+          contributed 5 min ago
+        </li>
+        <li style="list-style-type: none;">
+          <img alt="Gravatar" src="http://gravatar.com/avatar/99b9779b7a2b79296ed0ac3c8bb7a9f8?default=identicon&amp;size=20" title="Smith">
+          contributed 10 min ago
+        </li>
+        <li style="list-style-type: none;">
+          <img alt="Gravatar" src="http://gravatar.com/avatar/583bde80d8142a65df6cbbe43b2dbeed?default=identicon&amp;size=20" title="Smith">
+          contributed 10 min ago
+        </li>
+      </ul>
       <hr/>
       <h4>Open data </h4>
 
@@ -31,17 +49,33 @@
         The raw answers are regularily updated and published on the google fusion table service. You can analyze and
         aggregate them yourself.
       </p>
-      <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"> >> Link to answers data</a>
-                            <hr/>
-       <h4>Embedded link</h4>
-      <p>Embed this project on your own web site/blog (or your partners') to increase its visibility.
-      <textarea width="100%" rows="4"><iframe width="100%" height="100%" frameborder="0" scrolling="no" src="/apps/30?embeddable=1"></iframe></textarea>
+      <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"> >> Link to answers
+        data</a>
+      <hr/>
+      <h4>Embedded link</h4>
+
+      <p>Embed this project on your own web site, blog or your friends' ones to increase its visibility.
+        <textarea width="100%" rows="4">
+          <iframe width="100%" height="100%" frameborder="0" scrolling="no" src="<%= app_url(@app, :embeddable=>1) %>"></iframe>
+        </textarea>
       </p>
     </div>
 
     <div class="span9">
-    <iframe width="100%" height="500" scrolling="no" frameborder="0" src="/apps/30?embeddable=1"></iframe>
+      <iframe width="100%" height="500" scrolling="no" frameborder="0" src="<%= app_url(@app, :embeddable=>1) %>"></iframe>
+      <h5><a href="#source" data-toggle="modal">Task Template Code Source</a></h5>
 
+      <div class="modal hide" id="source">
+        <div class="modal-header">
+          <a class="close" data-dismiss="modal">×</a>
+
+          <h3>Source code</h3>
+        </div>
+        <div class="modal-body">
+        <pre class=" pre-scrollable">
+          <%= h @app.script.chomp %></pre>
+        </div>
+      </div>
     </div>
 
   </div>

@@ -47,7 +47,7 @@
 
 <!-- BEGINNING OF The UI Task TEMPLATE
 ================================================== -->
-<!-- schema=[{name:"task_id", type:"number"},{name:"user_id", type:"number"},{name:"annotation", type:"location"}] -->
+<!-- schema=[{name:"task_id", type:number},{name:"user_id", type:number},{name:"annotation", type:number}] -->
 
 <div id="map" style="height: 300px"></div>
 <div id="menu" style="margin: 0;padding: 0;clear: both">
@@ -83,7 +83,7 @@
 
     <p>Your mission is to click on all the buildings/areas that look <b>salient or atypic</b> in the
       delimited aera.
-      <a href="#">More information and data access.</a>
+      <a href="<%= app_url(@app) %>">More information and data access.</a>
     </p>
 
     <div style="text-align: center">

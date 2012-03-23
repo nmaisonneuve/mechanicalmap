@@ -7,8 +7,9 @@
       <h3>Tasks Generator Helper for analyzing an area</h3>
 
       <p>
-        This is a (demo) helper to generate crowdmapping tasks. This helper will cut an area into a grid of smaller
-        areas according to a given resolution.
+        This is a (demo) helper to generate simple crowdmapping tasks. This helper will cut an area into a grid of
+        smaller
+        areas having a given resolution.
         The result will be a google fusion table ready to be used as input for any MicroTask application.
         (next step: create your own instructions / task interpreter to process them)
       </p>
@@ -85,6 +86,8 @@
      * Called on the initial page load.
      */
     function init() {
+
+
         //  $('#new_app').bind('ajax:before', generate_task_input);
         $("#app_lat_res").change(compute_nb_tasks);
         $("#app_lng_res").change(compute_nb_tasks);
@@ -110,6 +113,10 @@
             overviewMapControl: false
         });
 
+        if (navigator.geolocation)
+            var watchId = navigator.geolocation.watchPosition(function(position) {
+                map.panTo(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+            }, null, {enableHighAccuracy:true});
 
         var drawingManager = new G.drawing.DrawingManager({
             drawingMode: G.drawing.OverlayType.RECTANGLE,
@@ -162,6 +169,7 @@
         compute_nb_tasks();
 
     }
+
     function generate_task_input() {
 
         if ((marker_ne == null) || (marker_sw == null)) {

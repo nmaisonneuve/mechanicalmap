@@ -12,8 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require ./inheritance
-//= require ./abstract_micro_task
-//= require ./ft_micro_task
+//= require inheritance
+//= require abstract_micro_task
+//= require ft_micro_task3
+//= require geo_json
+//= require map_helper
 
+//dynamically resize the map
 

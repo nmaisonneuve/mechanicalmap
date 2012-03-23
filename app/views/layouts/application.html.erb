@@ -14,24 +14,25 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
+
       <a class="brand" href="/">Mechanical Maps</a>
 
       <div class="nav-collapse">
         <ul class="nav">
           <li><%= link_to "Browse Projects", apps_path %></li>
-          <li><a href="#">About</a></li>
         </ul>
       </div>
 
       <div class="nav pull-right" style="margin-right:0px;">
         <ul class="nav">
-          <li><a href="#">Sign in</a></li>
-          <li><a href="#" data-controls-modal="signup-choose-modal" data-backdrop="static">Sign up</a></li>
+          <% if user_signed_in? %>
+              <li><a href="#" style="color:white;font-weight: bold;"><%= current_user.username %></a></li>
+              <li>  <%= link_to "Sign out", destroy_user_session_path, :method => :delete  %> </li>
+          <% else %>
+              <li><a href="#" style="color:white;font-weight: bold;"><%= current_or_guest_user.username[0..10] %></a></li>
+              <li><%= link_to "Sign in", new_user_session_path  %> </li>
+          <% end %>
+
         </ul>
       </div>
     </div>

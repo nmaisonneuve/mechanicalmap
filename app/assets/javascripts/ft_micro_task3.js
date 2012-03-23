@@ -17,6 +17,9 @@ var FTMicroTask = AbstractMicroTask.extend({
         this._super(options);
         this.ft_table = options.ft_table;
         this.columns = [];
+        this.save=options.save;
+        this.load_internal=options.load;
+        this.initialize_ui();
     },
 
     start:function() {
@@ -42,7 +45,7 @@ var FTMicroTask = AbstractMicroTask.extend({
 
     load:function(task) {
         this._super(task);
-
+        console.log("loading ft table");
         // request more info about the task to the google fusion table
         // and interpret the result to display it
         var me=this;
@@ -51,7 +54,7 @@ var FTMicroTask = AbstractMicroTask.extend({
             if (ft_data.table.rows.length == 0) {
                 me.no_available_task();
             }else{
-                me._load(ft_data);
+                me.load_internal(ft_data);
             }
             });
     },

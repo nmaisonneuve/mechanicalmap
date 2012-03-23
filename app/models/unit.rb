@@ -8,8 +8,8 @@ class Unit < ActiveRecord::Base
   belongs_to :task
 
   scope :available, where(:state=>AVAILABLE)
-  scope :pending, where(:state=>PENDING)
-  scope :completed, where(:state=>COMPLETED)
+  scope :answered, where(:state=>PENDING)
+
 
   #any kind of answer e.g string , json
   # interpreted by the related aggregator
