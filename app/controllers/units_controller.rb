@@ -42,7 +42,7 @@ class UnitsController < ApplicationController
     respond_to do |format|
       if (@unit.save)
         format.html { redirect_to workflow_app_path(@unit.task.app), notice: 'Unit was successfully updated.' }
-        format.json { head :no_content, status: :success }
+        format.json { render :json=>"", status: :success }
       else
         format.html { render action: "show" }
         format.json { render json: @unit.errors, status: :unprocessable_entity }
