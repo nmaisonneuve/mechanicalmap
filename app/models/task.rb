@@ -6,10 +6,10 @@ class Task < ActiveRecord::Base
   serialize :input
 
   scope :available, lambda {
-    joins(:units).group("tasks.id").merge(Unit.available)
+    joins(:units).where("units.state=?", Unit::AVAILABLE)
   }
 
-  scope :available_for, lambda { |user|
+  scope :not_done_by, lambda { |user|
     # not optimized
     tasks_done_ids=Task.joins(:units).where("units.state!=?", Unit::AVAILABLE).where("units.user_id=?", user)
     unless (tasks_done_ids.empty?)

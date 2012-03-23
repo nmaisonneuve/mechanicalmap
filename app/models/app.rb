@@ -56,7 +56,7 @@ class App < ActiveRecord::Base
   end
 
   def schedule(context)
-    tasks=self.tasks.available.available_for(context[:current_user])
+    tasks=self.tasks.available.not_done_by(context[:current_user])
     unless (context[:from_task].blank?)
       tasks=tasks.where('tasks.id>?', context[:from_task])
     end
