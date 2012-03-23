@@ -19,11 +19,12 @@ class App < ActiveRecord::Base
     [completed, size]
   end
 
-  def ft_insert(rows)
+  def ft_insert_answer(rows)
     FtDao.instance.enqueue(self.output_ft, rows)
   end
 
-  def ft_import(redundancy)
+
+  def ft_index(redundancy)
     i=0
     Task.transaction do
       FtDao.instance.import(self.input_ft, 10000) do |task_id|
@@ -41,10 +42,17 @@ class App < ActiveRecord::Base
   end
 
 
-  def ft_create(schema, user)
+  def ft_create_output(schema, user)
     cols=ActiveSupport::JSON.decode(schema)
-    self.output_ft=FtDao.instance.create_table(self.name, cols)
-    FtDao.instance.set_permission("table:#{self.output_ft}", user.email)
+    p cols
+    self.output_ft=FtDao.instance.create_table("Answers of #{self.name}", cols)
+    self.save
+
+    # set permission exportable
+    FtDao.instance.set_exportable(self.output_ft)
+    unless (user[/@gmail/].nil?)
+      FtDao.instance.change_ownership(self.output_ft, user)
+    end
   end
 
   def schedule(context)

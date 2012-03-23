@@ -2,7 +2,7 @@ class Task < ActiveRecord::Base
 
   belongs_to :app
   has_many :units, :dependent => :destroy
-  attr_accessible :state, :input, :app_id
+  attr_accessible :state, :input, :app_id, :gold_answer
   serialize :input
 
   scope :available, lambda {

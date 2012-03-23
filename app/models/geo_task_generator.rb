@@ -7,9 +7,10 @@ module GeoTaskGenerator
 
     #create an ft table table
     table_id=FtDao.instance.create_table(options[:table_name], [
-        {:name=>"task_id", :type=>"number"},
-        {:name=>"area", :type=>"location"},
-        {:name=>"state", :type=>"number"}
+        {"name"=>"task_id", "type"=>"number"},
+        {"name"=>"area", "type"=>"location"},
+        {"name"=>"state", "type"=>"number"},
+        {"name"=>"gold_answer", "type"=>"string"}
     ])
 
     # set permission exportable
@@ -22,7 +23,7 @@ module GeoTaskGenerator
     i=0
     generate_cells(options[:rectangle], options[:resolution]) do |input|
       row="<Polygon><outerBoundaryIs><coordinates> #{input[:lng_ne]},#{input[:lat_sw]} #{input[:lng_ne]},#{input[:lat_ne]} #{input[:lng_sw]},#{input[:lat_ne]} #{input[:lng_sw]},#{input[:lat_sw]} #{input[:lng_ne]},#{input[:lat_sw]}</coordinates></outerBoundaryIs></Polygon>"
-      ft_rows<<{:task_id=>i, :area=>row, :state=>1}
+      ft_rows<<{:task_id=>i, :area=>row, :gold_answer=>nil, :state=>1}
       i=i+1
 
     end

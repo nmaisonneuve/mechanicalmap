@@ -2,10 +2,11 @@ set :default_environment, {
   'PATH' => "/home/newhouse/.rvm/gems/ruby-1.9.3-p125/bin:/home/newhouse/.rvm/bin:$PATH",
   'RUBY_VERSION' => 'ruby 1.9.3',
   'GEM_HOME'     => '/home/newhouse/.rvm/gems/ruby-1.9.3-p125',
-  'GEM_PATH'     => '/home/newhouse/.rvm/gems/ruby-1.9.3-p125/',
-  'BUNDLE_PATH'  => '/home/newhouse/.rvm/gems/ruby-1.9.3-p125/'  # If you are using bundler.
+  'GEM_PATH'     => '/home/newhouse/.rvm/gems/ruby-1.9.3-p125',
 }
-#require "rvm/capistrano"
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+
+Dir['lib/**/*.rb'].each { |recipe| require  File.basename(recipe, '.rb') }
 
 set :rvm_ruby_string, '1.9.3'
 set :rvm_type, :user
@@ -15,8 +16,6 @@ set :rvm_type, :user
 
 # bundler bootstrap
 require 'bundler/capistrano'
-
-set :bundle_flags, ""
 
 
 set :user, 'newhouse'

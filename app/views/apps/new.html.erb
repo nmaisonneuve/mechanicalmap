@@ -61,7 +61,6 @@
             <div class="controls">
               <%= f.text_area :script, :class=>"span9", :size => "50x15", :placeholder=>"Paste your micro-task template here" %>
             </div>
-            <button class="btn" id="check_script">Check</button>
           </div>
         </div>
 
@@ -84,34 +83,37 @@
 
     function evaluate_script() {
 
-        var script = $("#app_script").val();
-        var schema = script.match(/<!--( )*schema=(.*)/);
-        if (schema!=null){
-            schema=eval(schema[2]);
-        }
-
         $("#script_error").removeClass("label-success");
         $("#script_error").removeClass("label-error");
 
-        if ((typeof(schema) == 'undefined') || (schema==null)) {
-            $("#script_error_text").html("Parsing error. Table schema required (Method schema)");
-            $("#script_error").addClass("alert-error");
-            $("#script_error").show();
-            return;
-        } else {
-            $("#script_error_text").html("Schema detected to generate the output fusion table.");
-            $("#script_error").addClass("alert-success");
-            $("#script_error").show();
+
+        var script = $("#app_script").val();
+        var schema = script.match(/<!--( )*schema=(.*)-->/);
+        if (schema != null) {
+            try {
+                schema = eval(schema[2]);
+            } catch(err) {
+                $("#script_error_text").html("Parsing error. Schema required ");
+                $("#script_error").addClass("alert-error");
+                $("#script_error").show();
+                return false;
+            }
         }
+
+        $("#script_error_text").html("Schema detected.");
+        $("#script_error").addClass("alert-success");
+        $("#script_error").show();
+
         $("#app_schema").val(JSON.stringify(schema));
+
+        return true;
     }
 
 
     // Register an event listener to fire when the page finishes loading.
     $(function() {
-        $("#check_script").click(function(event) {
-            event.preventDefault();
-            evaluate_script();
+        $("#new_app").submit(function() {
+            return (evaluate_script());
         });
     });
 </script>

@@ -35,7 +35,8 @@ class UnitsController < ApplicationController
 
     @unit=Unit.find(params[:id])
     @unit.user=current_or_guest_user
-    @unit.state=Unit::PENDING
+    @unit.state=Unit::COMPLETED
+    @unit.ft_sync=FALSE
     @unit.answer=params[:task_answer]
 
     respond_to do |format|

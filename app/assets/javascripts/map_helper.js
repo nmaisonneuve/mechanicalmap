@@ -162,7 +162,7 @@ function add_tile_url(url, image_type, layer_name) {
 }
 
 $(function() {
-
+   if (typeof(google)!="undefined")
     if (!google.maps.Polygon.prototype.getBounds) {
 
 

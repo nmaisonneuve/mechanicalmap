@@ -16,7 +16,7 @@ class AppsController < ApplicationController
     # strange but working
     opened=app.tasks.available.size
     opened=opened.keys.size
-    completed=current_or_guest_user.tasks.where("app_id=?",app.id).count
+    completed=current_or_guest_user.tasks.where("app_id=?", app.id).count
     render json: [:opened=>opened, :completed=>completed]
   end
 
@@ -44,7 +44,7 @@ class AppsController < ApplicationController
     if (params[:embeddable].blank?)
       render 'show.erb.html'
     else
-      render 'embeddable.erb.html' , :layout=>false
+      render 'embeddable.erb.html', :layout=>false
     end
   end
 
@@ -64,19 +64,12 @@ class AppsController < ApplicationController
 # POST /apps.json
   def create
 
-    @app = App.new(params[:app])
+    @app = App.create(params[:app])
+
     respond_to do |format|
-      if @app.save
-        @app.ft_import(params[:app_redundancy].to_i)
-
-        @app.create_output_ft(params[:schema])
-
-            #create an ft table table
-    table_id=FtDao.instance.create_table(options[:table_name], [
-        {:name=>"task_id", :type=>"number"},
-        {:name=>"area", :type=>"location"},
-        {:name=>"state", :type=>"number"}
-    ])
+    if @app.save
+        @app.ft_create_output(params[:schema], current_user)
+        @app.ft_index(params[:app_redundancy].to_i)
 
         format.html { redirect_to @app, notice: 'app was successfully created.' }
         format.json { render json: @app, status: :created, location: @app }

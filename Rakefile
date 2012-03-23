@@ -7,13 +7,12 @@ require 'rake/dsl_definition'
 
 Mechanicalmap::Application.load_tasks
 
-desc "test fusion table"
-task :ft=>:environment do
+desc "synch answers"
+task :sync=>:environment do
 
-	dao=FtDao.instance
-
-	attributes=[{:name=>"toto", :type=>"string"}]
-
-	table=dao.create_table("toto",attributes)
-	p table
+  Unit.all.completed.where(:sync_ft=>false).each { |answer|
+      FtDao.instance.enqueue
+      answer.synch_ft=true
+      answer.save
+  }
 end
