@@ -5,7 +5,7 @@ set :default_environment, {
   'GEM_PATH'     => '/home/newhouse/.rvm/gems/ruby-1.9.3-p125/',
   'BUNDLE_PATH'  => '/home/newhouse/.rvm/gems/ruby-1.9.3-p125/'  # If you are using bundler.
 }
-require "rvm/capistrano"
+#require "rvm/capistrano"
 
 set :rvm_ruby_string, '1.9.3'
 set :rvm_type, :user
