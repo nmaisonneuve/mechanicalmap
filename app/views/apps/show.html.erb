@@ -3,6 +3,8 @@
 <link href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
 <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
+
 
 
 <div class="container">
@@ -13,33 +15,42 @@
       <h2><%= @app.name %></h2>
 
       <%= @app.description %>
-      <h4>Activity</h4>
-      <% completed, size=@app.completion %>
-      <%= completed %> answers / <%= size %> tasks units.
-      <div class="progress progress-info  progress-striped">
-        <div class="bar" style="width: <%= completed.to_f/size.to_f*100 %>%;"></div>
-      </div>
-      <b> Last contributors</b>
-
-      <ul style="padding: 0px;margin: 0; margin-top: 3px;">
-         <% @app.contributors.order('users.updated_at desc').limit(5).each { |u| %>
-            <li style="list-style-type: none;">
-              <%= gravatar_image_tag(u.email, :title => u.username, :gravatar => {:default=> :identicon, :size => 20}) %>
-              contributed <%= time_ago_in_words(u.updated_at) %> ago
-            </li>
-        <% } %>
-      </ul>
       <hr/>
-      <h4>Open data & code </h4>
+      <ul id="tab" class="nav nav-tabs">
+        <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
+        <li class=""><a href="#data" data-toggle="tab">Open data</a></li>
+      </ul>
 
-      <p>
-        The raw answers are regularly updated on the google fusion table. You can analyze and
-        aggregate them yourself.
-      </p>
-      <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"> >> Task data</a>
-     <br/> <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>"> >> Answers data</a>
-     <br/> <a href="#source" data-toggle="modal">>> Task template Code</a>
+      <div class="tab-content">
+        <div class="tab-pane active" id="activity">
+          <% completed, size=@app.completion %>
+          <%= completed %> answers / <%= size %> tasks units.
+          <div class="progress progress-info  progress-striped">
+            <div class="bar" style="width: <%= completed.to_f/size.to_f*100 %>%;"></div>
+          </div>
+          <b> Last contributors</b>
 
+          <ul style="padding: 0px;margin: 0; margin-top: 3px;">
+            <% @app.contributors.order('users.updated_at desc').limit(5).each { |u| %>
+                <li style="list-style-type: none;">
+                  <%= gravatar_image_tag(u.email, :title => u.username, :gravatar => {:default=> :identicon, :size => 20}) %>
+                  contributed <%= time_ago_in_words(u.updated_at) %> ago
+                </li>
+            <% } %>
+          </ul>
+        </div>
+
+        <div class="tab-pane" id="data">
+          <p>
+                  The raw answers are regularly updated on the google fusion table. You can analyze and
+                  aggregate them yourself.
+                </p>
+                <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"> >> Task data</a>
+                <br/> <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>"> >> Answers data</a>
+                <br/> <a href="#source" data-toggle="modal">>> Task template Code</a>
+
+        </div>
+      </div>
       <hr/>
       <h4>Embedded link</h4>
 
@@ -65,10 +76,15 @@
           <%= h @app.script.chomp %></pre>
         </div>
         <div class="modal-footer">
-        you can copy and transform this code to create your own micro-tasking project.
+          you can copy and transform this code to create your own micro-tasking project.
         </div>
       </div>
     </div>
 
   </div>
 </div>
+<script>
+    $(function () {
+        $('.tabs a:last').tab('show');
+    })
+</script>
