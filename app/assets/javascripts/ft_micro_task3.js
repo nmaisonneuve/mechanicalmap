@@ -17,19 +17,22 @@ var FTMicroTask = AbstractMicroTask.extend({
         this._super(options);
         this.ft_table = options.ft_table;
         this.columns = [];
-        this.save=options.save;
-        this.load_internal=options.load;
+        this.save = options.save;
+        this.load_internal = options.load;
         this.initialize_ui();
+        this.task_done=0;
+        this.task_total=1;
     },
 
     start:function() {
         var me = this;
         // once the structure of a task is known
         // we request a task
+        $("#task_user_id").html(user.name);
         this.load_schema(function() {
             me.request_task();
         });
-        this.load_completness();
+        this.load_completeness();
     },
 
     ft_request:function(query, callback_fct) {
@@ -46,21 +49,32 @@ var FTMicroTask = AbstractMicroTask.extend({
 
     load:function(task) {
         this._super(task);
+        this.task_done++;
+        this.update_progress_bar();
         console.log("loading ft table");
         // request more info about the task to the google fusion table
         // and interpret the result to display it
-        var me=this;
+        var me = this;
         var query = "SELECT ROWID, " + this.columns.join(",") + " FROM " + this.ft_table + " WHERE task_id='" + this.task.input + "'";
         this.ft_request(query, function (ft_data) {
             if (ft_data.table.rows.length == 0) {
                 me.no_available_task();
-            }else{
+            } else {
                 me.load_internal(ft_data);
             }
-            });
+        });
     },
-    load_completness:function(){
-
+    update_progress_bar:function() {
+        var ratio = (this.task_done / this.task_total) * 100;
+        $("#progress_bar").width(ratio + "%");
+    },
+    load_completeness:function() {
+        var me=this;
+        $.get(application_url + "/user_state.js", function(data) {
+            me.task_done= data.completed;
+            me.task_total=me.task_done+data.opened;
+            me.update_progress_bar();
+        });
     },
     load_schema:function(callback_fct) {
         var me = this;

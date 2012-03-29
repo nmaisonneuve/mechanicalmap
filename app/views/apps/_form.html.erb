@@ -49,20 +49,18 @@
 
           <div class="control-group">
             <label class="control-label"><h3>Redundancy</h3></label>
-
             <div class="controls">
               <p class="help-block">How many volunteers should do the same task?</p>
               <%= text_field_tag "app_redundancy", "3", :disabled=>@disable_redundancy, :class=>"span1", :placeholder=>"3" %>
             </div>
           </div>
-
           <div class="control-group">
             <label class="control-label"><h3>UI Task template code</h3>
             </label>
 
             <div class="controls">
               <p class="help-block">Paste your micro-task template here (
-                <strong><a href="https://gist.github.com/2029050">example</a></strong>)</p>
+                <strong><a href="https://gist.github.com/2029050">example of template for crowdmapping tasks</a></strong>)</p>
 
               <div id='script_error' class="alert hide">
                 <a class="close" data-dismiss="alert" href="#">×</a>

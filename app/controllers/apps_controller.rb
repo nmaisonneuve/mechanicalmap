@@ -33,7 +33,7 @@ class AppsController < ApplicationController
     # strange but working
     opened=app.tasks.not_done_by(current_or_guest_user).size
     completed=current_or_guest_user.tasks.where("app_id=?", app.id).count
-    render json: [:opened=>opened, :completed=>completed]
+    render json: {:opened=>opened, :completed=>completed}
   end
 
   def workflow

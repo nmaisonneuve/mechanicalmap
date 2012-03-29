@@ -53,7 +53,11 @@ class ApplicationController < ActionController::Base
   private
 
   def create_guest_user
-    u = User.create(:username => "guest_#{Time.now.to_i}#{rand(6)}", :email => "guest_#{Time.now.to_i}#{rand(6)}@emailguest.com")
+
+    o=  [(0..9),('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
+    random=(0..6).map{ o[rand(o.length)]  }.join
+
+    u = User.create(:username => "guest_#{random}", :email => "guest_#{random}@emailguest.com")
     u.save(:validate => false)
     u
   end
