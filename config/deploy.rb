@@ -1,9 +1,3 @@
-set :default_environment, {
-  'PATH' => "/home/newhouse/.rvm/gems/ruby-1.9.3-p125/bin:/home/newhouse/.rvm/bin:$PATH",
-  'RUBY_VERSION' => 'ruby 1.9.3',
-  'GEM_HOME'     => '/home/newhouse/.rvm/gems/ruby-1.9.3-p125',
-  'GEM_PATH'     => '/home/newhouse/.rvm/gems/ruby-1.9.3-p125',
-}
 $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 
 Dir['lib/**/*.rb'].each { |recipe| require  File.basename(recipe, '.rb') }

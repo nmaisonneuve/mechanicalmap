@@ -16,7 +16,8 @@ class AppsController < ApplicationController
     if (params[:embeddable].blank?)
       render 'show.erb.html'
     else
-      render 'embeddable.erb.html', :layout=>false
+      #render 'embeddable.erb.html', :layout=>false
+      render 'debug.erb.html', :layout=>false
     end
   end
 
@@ -30,8 +31,7 @@ class AppsController < ApplicationController
   def user_state
     app=App.find(params[:id])
     # strange but working
-    opened=app.tasks.available.size
-    opened=opened.keys.size
+    opened=app.tasks.not_done_by(current_or_guest_user).size
     completed=current_or_guest_user.tasks.where("app_id=?", app.id).count
     render json: [:opened=>opened, :completed=>completed]
   end

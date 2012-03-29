@@ -29,6 +29,7 @@ var FTMicroTask = AbstractMicroTask.extend({
         this.load_schema(function() {
             me.request_task();
         });
+        this.load_completness();
     },
 
     ft_request:function(query, callback_fct) {
@@ -58,7 +59,9 @@ var FTMicroTask = AbstractMicroTask.extend({
             }
             });
     },
+    load_completness:function(){
 
+    },
     load_schema:function(callback_fct) {
         var me = this;
         this.ft_request("DESCRIBE " + this.ft_table, function(data) {

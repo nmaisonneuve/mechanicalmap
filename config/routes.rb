@@ -1,7 +1,5 @@
 Mechanicalmap::Application.routes.draw do
 
-
-
   devise_for :users
 
   resources :apps do
@@ -11,7 +9,6 @@ Mechanicalmap::Application.routes.draw do
       resources :units
     end
   end
-
 
   root :to => "home#index"
 
