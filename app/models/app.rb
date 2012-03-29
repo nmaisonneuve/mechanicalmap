@@ -7,8 +7,8 @@ class App < ActiveRecord::Base
   has_many :contributors, :through => :units, :source=>:user, :uniq=>true
 
   belongs_to :user
-
   validates_presence_of :name, :script
+  validates_presence_of :input_ft, :message=>"The ID of the input fusion table can't be blank"
   attr_accessible :name, :description, :output_ft, :input_ft, :script, :script_url, :ui_template
 
 

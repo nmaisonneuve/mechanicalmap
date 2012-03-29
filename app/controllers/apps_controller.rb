@@ -65,8 +65,9 @@ class AppsController < ApplicationController
     @app.user=current_user
     respond_to do |format|
       if @app.save
-        @app.ft_create_output(params[:schema], current_user)
         @app.ft_index_tasks(params[:app_redundancy].to_i)
+        @app.ft_create_output(params[:schema], current_user)
+
 
         format.html { redirect_to @app, notice: 'app was successfully created.' }
         format.json { render json: @app, status: :created, location: @app }
