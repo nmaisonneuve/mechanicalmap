@@ -18,13 +18,14 @@
       <hr/>
       <ul id="tab" class="nav nav-tabs">
         <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
-        <li class=""><a href="#data" data-toggle="tab">Open data & code</a></li>
+        <li class=""><a href="#data" data-toggle="tab">Data</a></li>
+        <li class=""><a href="#spread" data-toggle="tab">Share</a></li>
       </ul>
 
       <div class="tab-content">
         <div class="tab-pane active" id="activity">
           <% completed, size=@app.completion %>
-          <%= completed %> answers / <%= size %> tasks units.
+          <%= completed %> answers / <%= size %> task units.
           <div class="progress progress-info  progress-striped">
             <div class="bar" style="width: <%= completed.to_f/size.to_f*100 %>%;"></div>
           </div>
@@ -42,23 +43,24 @@
 
         <div class="tab-pane" id="data">
           <p>
-                  The raw answers are regularly updated on the google fusion table. You can analyze and
-                  aggregate them yourself.
-                </p>
-                <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"> >> Task data</a>
-                <br/> <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>"> >> Answers data</a>
-                <br/> <a href="#source" data-toggle="modal">>> Task template Code</a>
+            The raw answers are regularly updated on the google fusion table. You can analyze and
+            aggregate them yourself.
+          </p>
+          <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"> >> Task data</a>
+          <br/> <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>"> >> Answers data</a>
+          <br/> <a href="#source" data-toggle="modal">>> Task template Code</a>
 
+        </div>
+        <div class="tab-pane" id="spread">
+          <p>Embed this project on your own web site, blog or your friends' ones to increase its visibility.
+            <textarea width="100%" rows="4">
+              <iframe width="100%" height="100%" frameborder="0" scrolling="no" src="<%= app_url(@app, :embeddable=>1) %>"></iframe>
+            </textarea>
+          </p>
         </div>
       </div>
       <hr/>
-      <h4>Embedded link</h4>
 
-      <p>Embed this project on your own web site, blog or your friends' ones to increase its visibility.
-        <textarea width="100%" rows="4">
-          <iframe width="100%" height="100%" frameborder="0" scrolling="no" src="<%= app_url(@app, :embeddable=>1) %>"></iframe>
-        </textarea>
-      </p>
     </div>
 
     <div class="span9">
