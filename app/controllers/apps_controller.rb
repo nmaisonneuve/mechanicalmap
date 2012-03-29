@@ -54,6 +54,11 @@ class AppsController < ApplicationController
 # GET /apps/1/edit
   def edit
     @app = App.find(params[:id])
+    if current_user!=@app.user
+      redirect_to root_url
+    else
+
+    end
   end
 
 
@@ -81,15 +86,19 @@ class AppsController < ApplicationController
 # PUT /apps/1
 # PUT /apps/1.json
   def update
-    @app = App.find(params[:id])
 
-    respond_to do |format|
-      if @app.update_attributes(params[:app])
-        format.html { redirect_to @app, notice: 'app was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @app.errors, status: :unprocessable_entity }
+    @app = App.find(params[:id])
+    if current_user!=@app.user
+      redirect_to root_url
+    else
+      respond_to do |format|
+        if @app.update_attributes(params[:app])
+          format.html { redirect_to @app, notice: 'app was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @app.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -101,12 +110,12 @@ class AppsController < ApplicationController
     if current_user==@app.user
       @app.destroy
       respond_to do |format|
-        format.html { redirect_to apps_url, notice: 'app was successfully deleted.'  }
+        format.html { redirect_to apps_url, notice: 'app was successfully deleted.' }
         format.json { head :no_content }
       end
     else
       respond_to do |format|
-        format.html { redirect_to apps_url,notice: 'you are not allowed to delete this application' }
+        format.html { redirect_to apps_url, notice: 'you are not allowed to delete this application' }
         format.json { render json: "" }
       end
     end
