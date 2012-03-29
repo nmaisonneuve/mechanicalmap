@@ -4,10 +4,6 @@
 <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
 <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
 
-<script type="text/javascript">
-
-
-</script>
 
 <div class="container">
   <div class="row">
@@ -15,6 +11,7 @@
       <p id="notice"><%= notice %></p>
 
       <h2><%= @app.name %></h2>
+
       <%= @app.description %>
       <h4>Activity</h4>
       <% completed, size=@app.completion %>
@@ -25,32 +22,24 @@
       <b> Last contributors</b>
 
       <ul style="padding: 0px;margin: 0; margin-top: 3px;">
-        <li style="list-style-type: none;">
-          <img alt="Gravatar" src="http://gravatar.com/avatar/325d2a1fa0d79e8559f64ed0615afc9a?default=identicon&amp;size=20" title="Smith">
-          contributed 1min ago
-        </li>
-        <li style="list-style-type: none;">
-          <img alt="Gravatar" src="http://gravatar.com/avatar/8db6661a87a41950651a67bbcc0e671e?default=identicon&amp;size=20" title="Smith">
-          contributed 5 min ago
-        </li>
-        <li style="list-style-type: none;">
-          <img alt="Gravatar" src="http://gravatar.com/avatar/99b9779b7a2b79296ed0ac3c8bb7a9f8?default=identicon&amp;size=20" title="Smith">
-          contributed 10 min ago
-        </li>
-        <li style="list-style-type: none;">
-          <img alt="Gravatar" src="http://gravatar.com/avatar/583bde80d8142a65df6cbbe43b2dbeed?default=identicon&amp;size=20" title="Smith">
-          contributed 10 min ago
-        </li>
+         <% @app.contributors.order('users.updated_at desc').limit(5).each { |u| %>
+            <li style="list-style-type: none;">
+              <%= gravatar_image_tag(u.email, :title => u.username, :gravatar => {:default=> :identicon, :size => 20}) %>
+              contributed <%= time_ago_in_words(u.updated_at) %> ago
+            </li>
+        <% } %>
       </ul>
       <hr/>
-      <h4>Open data </h4>
+      <h4>Open data & code </h4>
 
       <p>
-        The raw answers are regularily updated and published on the google fusion table service. You can analyze and
+        The raw answers are regularly updated on the google fusion table. You can analyze and
         aggregate them yourself.
       </p>
-      <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"> >> Link to answers
-        data</a>
+      <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"> >> Task data</a>
+     <br/> <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>"> >> Answers data</a>
+     <br/> <a href="#source" data-toggle="modal">>> Task template Code</a>
+
       <hr/>
       <h4>Embedded link</h4>
 
@@ -63,7 +52,7 @@
 
     <div class="span9">
       <iframe width="100%" height="500" scrolling="no" frameborder="0" src="<%= app_url(@app, :embeddable=>1) %>"></iframe>
-      <h5><a href="#source" data-toggle="modal">Task Template Code Source</a></h5>
+
 
       <div class="modal hide" id="source">
         <div class="modal-header">
@@ -74,6 +63,9 @@
         <div class="modal-body">
         <pre class=" pre-scrollable">
           <%= h @app.script.chomp %></pre>
+        </div>
+        <div class="modal-footer">
+        you can copy and transform this code to create your own micro-tasking project.
         </div>
       </div>
     </div>

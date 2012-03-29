@@ -3,13 +3,12 @@ class App < ActiveRecord::Base
   MAX_ANSWERS=10000 # demo mode
 
   has_many :tasks, :dependent => :destroy
-
   has_many :units, :through => :tasks
+  has_many :contributors, :through => :units, :source=>:user, :uniq=>true
 
   belongs_to :user
 
   validates_presence_of :name, :script
-
   attr_accessible :name, :description, :output_ft, :input_ft, :script, :script_url, :ui_template
 
 
@@ -24,7 +23,7 @@ class App < ActiveRecord::Base
   end
 
 
-  def ft_index(redundancy)
+  def ft_index_tasks(redundancy)
     i=0
     Task.transaction do
       FtDao.instance.import(self.input_ft, 10000) do |task_id|
@@ -53,6 +52,10 @@ class App < ActiveRecord::Base
     unless (user[/@gmail/].nil?)
       FtDao.instance.change_ownership(self.output_ft, user)
     end
+  end
+
+  def last_contributor
+    self.units.where("units.user_id!= null").order("units.updated_at desc").limit(5)
   end
 
   def schedule(context)

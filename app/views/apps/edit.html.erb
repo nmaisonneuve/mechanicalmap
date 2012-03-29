@@ -1,6 +1,138 @@
-<h1>Editing project</h1>
+<div class="row">
+  <% if @app.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@app.errors.count, "error") %> prohibited this app from being saved:</h2>
+        <ul>
+          <% @app.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+</div>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="span12">
+    <%= form_for(@app, :html=>{:class=>'form-inline', }) do |f| %>
+        <input type="hidden" name="schema" id="app_schema" value=""/>
+        <fieldset>
+          <legend>Edit Project</legend>
+          <div class="control-group">
+            <label class="control-label"><h3>Project Name</h3></label>
 
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+            <div class="controls">
+              <%= f.text_field :name, :placeholder=>"name of the app", :class=>"text-field span4" %>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label"><h3>Description</h3></label>
+
+            <div class="controls">
+              <%= f.text_area :description, :rows => 5, :placeholder=>"short description of the crowdsourcing project", :class=>"text-field span4" %>
+            </div>
+          </div>
+
+
+          <h3>Tasks to process</h3>
+
+          <p> Enter the ID of a
+            <a href="http://www.google.com/fusiontables/public/tour/index.html">google fusion table</a> containing
+            the
+            tasks to index. </p>
+
+          <p><span class="label label-info">note</span> You can generate this table yourself but we also
+            propose you a set of generators e.g. <a href="/demo_generator"><b>a crowdmapping task generator</b></a>
+          </p>
+
+          <div class="control-group">
+            <div class="controls">
+              <%= f.text_field :input_ft, :disabled=>true, :placeholder=>"e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :class=>"text-field span4" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label"><h3>Redundancy</h3></label>
+
+            <div class="controls">
+              <%= text_field_tag "app_redundancy", "3", :disabled=>true, :class=>"span1", :placeholder=>"3" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label"><h3>UI Task template code</h3></label>
+
+            <div class="controls">
+              <div id='script_error' class="alert hide">
+                <a class="close" data-dismiss="alert" href="#">×</a>
+
+                <div id='script_error_text'></div>
+              </div>
+              <div class="control-group">
+                <div class="control-label">
+                  Paste your microtask script (<a href="https://gist.github.com/2029050">example</a>)
+                </div>
+                <div class="controls">
+                  <%= f.text_area :script, :class=>"span12", :size => "50x15", :placeholder=>"Paste your micro-task template here" %>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="span12">
+                <div class="form-actions">
+                  <button class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </div>
+        </fieldset>
+    <% end %>
+
+    <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
+
+
+    <script type="text/javascript">
+        // Global variables
+
+        function evaluate_script() {
+
+            $("#script_error").removeClass("label-success");
+            $("#script_error").removeClass("label-error");
+
+
+            var script = $("#app_script").val();
+            var schema = script.match(/<!--( )*schema=(.*)-->/);
+            if (schema != null) {
+                try {
+                    schema = eval(schema[2]);
+                } catch(err) {
+                    $("#script_error_text").html("Parsing error. Schema required ");
+                    $("#script_error").addClass("alert-error");
+                    $("#script_error").show();
+                    return false;
+                }
+            }
+
+            $("#script_error_text").html("Schema detected.");
+            $("#script_error").addClass("alert-success");
+            $("#script_error").show();
+
+            $("#app_schema").val(JSON.stringify(schema));
+
+            return true;
+        }
+
+
+        // Register an event listener to fire when the page finishes loading.
+        $(function() {
+            $("#new_app").submit(function() {
+                return (evaluate_script());
+            });
+        });
+    </script>
+
+
+    <%= link_to 'Show', @app %> |
+    <%= link_to 'Back', apps_path %>
+  </div>
+</div>

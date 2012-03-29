@@ -8,8 +8,10 @@ class Unit < ActiveRecord::Base
   belongs_to :task
 
   scope :available, where(:state=>AVAILABLE)
-  scope :answered, where("state!=?",AVAILABLE)
+  scope :not_available, where("state!=?",AVAILABLE)
+  scope :answered, where(:state=>COMPLETED)
 
+  serialize :answer
 
   #any kind of answer e.g string , json
   # interpreted by the related aggregator

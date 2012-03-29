@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120323144556) do
+ActiveRecord::Schema.define(:version => 20120328160641) do
 
   create_table "apps", :force => true do |t|
     t.string   "name",        :null => false
@@ -28,25 +28,6 @@ ActiveRecord::Schema.define(:version => 20120323144556) do
   end
 
   add_index "apps", ["user_id"], :name => "index_apps_on_user_id"
-
-  create_table "projects", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.float    "lat_sw"
-    t.float    "lng_sw"
-    t.float    "lat_ne"
-    t.float    "lng_ne"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.string   "wms_map"
-    t.float    "lat_res",     :default => 1.0
-    t.float    "lng_res",     :default => 1.0
-    t.integer  "redundancy",  :default => 3
-    t.string   "ft_id"
-    t.text     "script"
-    t.string   "script_url"
-    t.text     "ui_template"
-  end
 
   create_table "tasks", :force => true do |t|
     t.integer  "app_id"

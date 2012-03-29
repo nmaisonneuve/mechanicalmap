@@ -13,12 +13,9 @@ group :production do
   gem 'thin'
 end
 
-gem "useragent"
 
-#gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails'
-#gem "twitter-bootstrap-rails"
-#gem 'sass-rails', '~> 3.1'
-#gem 'less-rails-bootstrap'
+gem 'gravatar_image_tag'
+
 gem 'devise'
 gem 'color'
 gem "RedCloth"

@@ -11,6 +11,22 @@ class AppsController < ApplicationController
     end
   end
 
+  def show
+    @app = App.find(params[:id])
+    if (params[:embeddable].blank?)
+      render 'show.erb.html'
+    else
+      render 'embeddable.erb.html', :layout=>false
+    end
+  end
+
+
+  def new
+    @app = App.new
+    @app.input_ft=params[:input_ft] unless params[:input_ft].blank?
+    @app.output_ft=params[:output_ft] unless params[:output_ft].blank?
+  end
+
   def user_state
     app=App.find(params[:id])
     # strange but working
@@ -21,38 +37,19 @@ class AppsController < ApplicationController
   end
 
   def workflow
-    context={:from_task=>params[:from_task], :current_user=>current_or_guest_user}
     app=App.find(params[:id])
-    @task_unit=app.schedule(context)
-    if @task_unit.nil?
+    context={:from_task=>params[:from_task], :current_user=>current_or_guest_user}
+    task_unit=app.schedule(context)
+    if task_unit.nil?
       respond_to do |format|
-        format.html { redirect_to app/_path(app), notice: 'Sorry no further task available!' }
+        format.html { redirect_to app_path(app), notice: 'Sorry no further task available!' }
         format.js { render :json=>"", :status => 404 }
       end
     else
-      redirect_to app_task_unit_path(@task_unit.task.app, @task_unit.task, @task_unit, :format=>params[:format])
-
+      redirect_to app_task_unit_path(task_unit.task.app, task_unit.task, task_unit, :format=>params[:format])
     end
   end
 
-
-  def show
-    @app = App.find(params[:id])
-
-
-    #@available_tasks=@app.areas.not_annotated_by(current_or_guest_user).exists?
-    if (params[:embeddable].blank?)
-      render 'show.erb.html'
-    else
-      render 'embeddable.erb.html', :layout=>false
-    end
-  end
-
-  def new
-    @app = App.new
-    @app.input_ft=params[:input_ft] unless params[:input_ft].blank?
-    @app.input_ft=params[:output_ft] unless params[:output_ft].blank?
-  end
 
 # GET /apps/1/edit
   def edit
@@ -65,11 +62,11 @@ class AppsController < ApplicationController
   def create
 
     @app = App.create(params[:app])
-
+    @app.user=current_user
     respond_to do |format|
-    if @app.save
+      if @app.save
         @app.ft_create_output(params[:schema], current_user)
-        @app.ft_index(params[:app_redundancy].to_i)
+        @app.ft_index_tasks(params[:app_redundancy].to_i)
 
         format.html { redirect_to @app, notice: 'app was successfully created.' }
         format.json { render json: @app, status: :created, location: @app }
@@ -83,7 +80,7 @@ class AppsController < ApplicationController
 # PUT /apps/1
 # PUT /apps/1.json
   def update
-    @app = app.find(params[:id])
+    @app = App.find(params[:id])
 
     respond_to do |format|
       if @app.update_attributes(params[:app])
@@ -100,12 +97,19 @@ class AppsController < ApplicationController
 # DELETE /apps/1.json
   def destroy
     @app = App.find(params[:id])
-    @app.destroy
-
-    respond_to do |format|
-      format.html { redirect_to apps_url }
-      format.json { head :no_content }
+    if current_user==@app.user
+      @app.destroy
+      respond_to do |format|
+        format.html { redirect_to apps_url, notice: 'app was successfully deleted.'  }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to apps_url,notice: 'you are not allowed to delete this application' }
+        format.json { render json: "" }
+      end
     end
+
   end
 
   private

@@ -36,8 +36,12 @@ class UnitsController < ApplicationController
     @unit=Unit.find(params[:id])
     @unit.user=current_or_guest_user
     @unit.state=Unit::COMPLETED
-    @unit.ft_sync=FALSE
-    @unit.answer=params[:task_answer]
+    @unit.answer=ActiveSupport::JSON.decode(params[:task_answer])
+    @unit.ft_sync=false
+
+    if (params[:sync]=="1")
+      FtDao.instance.sync_answers([@unit])
+    end
 
     respond_to do |format|
       if (@unit.save)

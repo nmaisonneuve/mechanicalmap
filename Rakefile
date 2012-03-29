@@ -10,9 +10,8 @@ Mechanicalmap::Application.load_tasks
 desc "synch answers"
 task :sync=>:environment do
 
-  Unit.all.completed.where(:sync_ft=>false).each { |answer|
-      FtDao.instance.enqueue
-      answer.synch_ft=true
-      answer.save
-  }
+  units=Unit.answered.where(:ft_sync=>false)
+  puts "#{units.size} answers to synchronize"
+  FtDao.instance.sync_answers(units)
+
 end

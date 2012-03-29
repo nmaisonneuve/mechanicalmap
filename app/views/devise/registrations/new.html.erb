@@ -1,4 +1,6 @@
-<h2>Sign up</h2>
+<h2>Create an account / <small><%- if controller_name != 'sessions' %>
+  <%= link_to "Sign in", new_session_path(resource_name), :class=>"btn" %><br />
+<% end -%></small></h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html=>{:class=>"form-vertical"}) do |f| %>
     <%= devise_error_messages! %>
@@ -29,4 +31,4 @@
     <div><%= f.submit "Sign up" %></div>
 <% end %>
 
-<%= render :partial => "devise/shared/links" %>
+

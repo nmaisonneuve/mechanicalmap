@@ -62,6 +62,61 @@ class FtDao
     }
   end
 
+  def sync_answers(units)
+
+    i=0
+    queries=[]
+    to_process=false
+    units_to_process=[]
+    units.each { |unit|
+
+      table_id=unit.task.app.output_ft
+
+      #correct bugs if string not decoded
+      if (unit.answer.is_a? String)
+        unit.answer= ActiveSupport::JSON.decode(unit.answer)
+        unit.save
+      end
+
+      if (unit.answer.is_a? Array)
+        unit.answer.each { |row|
+
+          queries<<"INSERT INTO #{table_id} (#{row.keys.join(",")}) VALUES (#{row.values.map { |value| "'#{value}'" }.join(",")});"
+          #we're batching
+          if ((i>0) && (i % (MAXIMUM_INSERT)==0))
+            @ft.execute queries.join("")
+            queries=[]
+
+            # We can now update their states
+            units_to_process.each { |unit_processed|
+              unit_processed.ft_sync=true
+              unit_processed.save
+            }
+            units_to_process=[]
+
+            to_process=false
+          else
+            to_process=true
+          end
+          i=i+1
+        }
+        units_to_process<<unit
+      else
+        raise Exception.new("answer not handled :#{unit.answer}")
+      end
+    }
+
+    if (to_process)
+      @ft.execute queries.join("")
+      # We can now update their states
+      units_to_process.each { |unit|
+        unit.ft_sync=true
+        unit.save
+      }
+    end
+
+  end
+
   def enqueue(table_id, rows)
     queries=[]
     to_process=false

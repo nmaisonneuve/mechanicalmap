@@ -44,8 +44,10 @@ default_run_options[:pty] = true  # Must be set for the password prompt from git
 ssh_options[:forward_agent] = true
 
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
+
 
 
 # If you are using Passenger mod_rails uncomment this:
