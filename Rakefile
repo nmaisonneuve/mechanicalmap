@@ -9,9 +9,11 @@ Mechanicalmap::Application.load_tasks
 
 desc "synch answers"
 task :sync=>:environment do
-
-  units=Unit.answered.where(:ft_sync=>false)
-  puts "#{units.size} answers to synchronize"
-  FtDao.instance.sync_answers(units)
-
+  App.all.each { |app|
+  units=app.units.answered.where(:ft_sync=>false)
+  if (units.size>0)
+    puts "#{units.size} answers to synchronize"
+    FtDao.instance.sync_answers(units)
+  end
+  }
 end

@@ -26,20 +26,7 @@
                 </div>
 
                 <center><%= link_to "Participate", app_path(app), :class=>"btn btn-primary" %></center>
-                <!--
-                <hr/>
-                <p>
-                  <small>admin:
-                    <% if current_or_guest_user==app.user %>
-                        <%= link_to 'Delete', app, confirm: 'Are you sure?', method: :delete, :class=>"btn btn-mini btn-danger" %>
-                        <%= link_to 'Modify', edit_app_path(app), :class=>"btn btn-mini btn-primary" %>
-                    <% else %>
-                        <button class="btn btn-mini disabled">Delete</button>
-                        <button class="btn btn-mini disabled">Modify</button>
-                    <% end %>
-                  </small>
-                </p>
-                -->
+
               </div>
             </li>
         <% end %>

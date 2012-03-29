@@ -59,8 +59,12 @@
           </p>
         </div>
       </div>
-      <hr/>
-
+      <% if @app.user==current_or_guest_user %>
+          <hr/>
+          <h4>Admin</h4>
+          <%= link_to 'Delete', @app, confirm: 'Are you sure?', method: :delete, :class=>"btn btn-mini btn-danger" %>
+          <%= link_to 'Modify', edit_app_path(@app), :class=>"btn btn-mini btn-primary" %>
+      <% end %>
     </div>
 
     <div class="span9">
