@@ -16,8 +16,8 @@ class AppsController < ApplicationController
     if (params[:embeddable].blank?)
       render 'show.erb.html'
     else
-      #render 'embeddable.erb.html', :layout=>false
-      render 'debug.erb.html', :layout=>false
+      render 'embeddable.erb.html', :layout=>false
+      #render 'debug.erb.html', :layout=>false
     end
   end
 

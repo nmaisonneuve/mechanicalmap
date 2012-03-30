@@ -50,10 +50,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="apps_controller.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="apps_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="7" selection-start="405" selection-end="405" vertical-scroll-proportion="0.0">
+            <state line="19" column="7" selection-start="456" selection-end="456" vertical-scroll-proportion="0.6136919">
               <folding />
             </state>
           </provider>
@@ -104,10 +104,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="74" selection-start="2398" selection-end="2398" vertical-scroll-proportion="0.4935065">
+            <state line="59" column="74" selection-start="2398" selection-end="2398" vertical-scroll-proportion="-7.9166665">
               <folding />
             </state>
           </provider>
@@ -146,10 +146,10 @@
         <option value="$PROJECT_DIR$/config/deploy.rb" />
         <option value="$PROJECT_DIR$/app/views/apps/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/views/apps/debug.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/apps_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/ft_micro_task3.js" />
         <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/home/index.html" />
+        <option value="$PROJECT_DIR$/app/controllers/apps_controller.rb" />
       </list>
     </option>
   </component>
@@ -825,13 +825,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="7" selection-start="405" selection-end="405" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ft_micro_task3.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="37" selection-start="979" selection-end="979" vertical-scroll-proportion="0.0">
@@ -855,7 +848,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="74" selection-start="2398" selection-end="2398" vertical-scroll-proportion="0.4935065">
+        <state line="59" column="74" selection-start="2398" selection-end="2398" vertical-scroll-proportion="-7.9166665">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="7" selection-start="456" selection-end="456" vertical-scroll-proportion="0.6136919">
           <folding />
         </state>
       </provider>
