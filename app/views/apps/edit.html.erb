@@ -4,5 +4,6 @@
 %>
 <%= render 'form' %>
 
+<%= link_to 'Delete', @app, confirm: 'Are you sure?', method: :delete, :class=>"btn btn-mini btn-danger" %>
 <%= link_to 'Show', @app %> |
 <%= link_to 'Back', apps_path %>
