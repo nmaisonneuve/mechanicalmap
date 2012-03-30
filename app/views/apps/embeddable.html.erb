@@ -18,7 +18,7 @@
   <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
 
   <script type="text/javascript">
-      var user = {id:<%= current_or_guest_user.id %>, name:"<%= current_or_guest_user.username %>"};
+  var user = {id:<%= current_or_guest_user.id %>, name:"<%= current_or_guest_user.username %>"};
       var scheduler_url = "<%= workflow_app_url(@app) %>";
       var application_url = "<%= app_url(@app) %>";
       var ft_table = "<%= @app.input_ft %>";
