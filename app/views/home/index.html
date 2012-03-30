@@ -137,7 +137,9 @@
                                                               style="max-width: 200px"/></a>
 
                     <p>
-                        <small>Generated Tasks input table with each row representing a task = a region to analyze (1/2)</small>
+                        <small>Generated Tasks input table with each row representing a task = a region to analyze
+                            (1/2)
+                        </small>
                     </p>
                 </li>
                 <li class="thumbnail span3">
@@ -178,6 +180,14 @@
         <div class="span5">
             <h3>Images classification</h3>
 
+            <p>Another common example is to classify a large amount of photos.
+                In this example we assume you have csv or xsl spreadsheets with all the url of the image to classify.
+                Each row is a task with for instance the url of image to classify.
+                And each row needs to have a task_id column with an unique identify of the task.
+
+                Once this table imported on a google fusiont table (you can also have a programm filling/updating the
+                fusion table to add new tasks/images), you just need to add the ID of the google fusion and
+                create the UI script Template to generate the web widget and the output table. </p>
         </div>
         <div class="span7">
             <ul class="thumbnails">
@@ -193,7 +203,8 @@
                 </li>
                 <li class="thumbnail span3">
                     <a href="/assets/web_widget_image.jpg"><img src="/assets/web_widget_image.jpg"
-                                                               style="max-width: 200px"/></a>
+                                                                style="max-width: 200px"/></a>
+
                     <p>
                         <small>
                             Generated web widget to classify images.
@@ -207,10 +218,23 @@
         <div class="span5">
             <h3>Images annotation</h3>
 
+            <p>A similar example is to annotate images (tag galaxies) is to classify a large amount of photos.
+                In this case the tasks input table is the same as classifying images. Only the instructions and tools to
+                do the task change.
+                So only the UI template needs to be updated.
+            </p>
+
         </div>
         <div class="span7">
 
         </div>
+    </div>
+
+    <h2> Architecture and design constraints</h2>
+    <div class="row">
+         <div class="span12">
+             ...
+         </div>
     </div>
 </div>
 </div>
