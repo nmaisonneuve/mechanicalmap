@@ -37,206 +37,245 @@
 </div>
 <hr class="soften">
 <div class="marketing">
-    <h2> Background</h2>
+<h2> Background</h2>
 
-    <div class="row">
-        <div class="span12">
+<div class="row">
+    <div class="span12">
 
 
-            This cloud toolkit is an attempt to democratize the development and experimentation of microtasking
-            projects to anyone
-            having some basic
-            knowledge about html/javascript. It is based on two main principles.
-            <ul>
-                <li><h3>Zero server</h3>
+        This cloud toolkit is an attempt to democratize the development and experimentation of microtasking
+        projects to anyone
+        having some basic
+        knowledge about html/javascript. It is based on two main principles.
+        <ul>
+            <li><h3>Zero installation</h3>
 
-                    <p>We live in the age of cloud computing so no need to set up your own server and a database.
-                        Our goal is also *not* to host projects since we generate web widgets you can embed in your
-                        website. Actually we are like a search engine
-                        maintaining an index of tasks for volunteers. We index your tasks via <a
-                                href="http://www.google.com/fusiontables/public/tour/index.html">a google fusion
-                            table</a> used a stream of input tasks. We manage the allocation of tasks and send the
-                        results
-                        to another fusion table (output) we generated.
-
-                    <p>
-                        You are only in charge of the user interface to
-                        collect
-                        the data via a HTML/javascript template. Some helpers/libraries are available. From this
-                        script, we generate a web widget <!-- (and the output fusion table)--> you can embed on your
-                        web page
-                        like a youtube video. (you can also used it as a 'captcha with purpose', or as new kind of
-                        banner replacing advertising on your partners' web sites
-                        ).</p>
-                    </p></li>
-
-                <li>
-
-                    <h3>Openess: toward a micro-tasking ecosystem</h3>
-
-                    <p>
-                        We think that what is valuable is not only the data but also the mechanism you used to
-                        collect them.
-                        So if you
-                        generate a
-                        project via this platform your html/script template will be automatically shared with the
-                        community
-                        so other
-                        people can transform or combine it. We think such openess will facilitate the emergence of
-                        best practices in micro tasking, and leverage more quickly a potential community.
-                    </p>
+                <p>We live in the age of cloud computing so no need to set up your own server and a database.
+                    Our goal is also *not* to host  crowdsourcing projects since we generate web widgets you can embed in your
+                    own website. Actually we are like a search engine
+                    maintaining an index of available tasks for volunteers. We index your tasks via <a
+                            href="http://www.google.com/fusiontables/public/tour/index.html">a google fusion
+                        table</a> used as a stream of input tasks. We manage the allocation of tasks and send the
+                    results
+                    to another fusion table (output) we generated.
+                    You are only in charge of the user interface to
+                    collect
+                    the data via a HTML/javascript template. Some helpers/libraries are available. We will use this
+                    template to generate the web widget <!-- (and the output fusion table)-->. embeddable
+                    like a youtube video. You can also use it as a 'captcha with purpose', or as new kind of
+                    banner 'with a purpose'  you can distribute to your partners' website instead of advertising.</p>
                 </li>
 
-            </ul>
-            -NM
+            <li>
 
-        </div>
+                <h3>Openess: toward a micro-tasking ecosystem</h3>
+
+                <p>
+                    We think that what is valuable is not only the data but also the mechanism you used to
+                    collect them.
+                    So if you
+                    generate a
+                    project via this platform your html/script template will be automatically shared with the
+                    community
+                    so other
+                    people can transform or combine it. We think such openess will facilitate the emergence of
+                    best practices in micro tasking, and leverage more quickly a potential community.
+                </p>
+            </li>
+
+        </ul>
+        -NM
 
     </div>
-    <hr class="soften">
 
-    <h2> Examples</h2>
+</div>
+<hr class="soften">
+
+<h2>Demo of web widgets</h2>
+<br/>
+
+<div class="row">
+    <div class="span4">
+        <h4>Classifying lots of images</h4>
+
+        <hr/>
 
 
-    <div class="row">
-        <div class="span5">
-            <h3>Crowdmapping</h3>
-            Let assume you want to create quickly a crowdmapping project asking to volunteers to identify
-            objects in a large area.
-            <ul>
-                <li>To achieve that , we propose you a task generator to cut your own map into a grid of smaller
-                    areas, easier to analyze individually. The result is a google fusion table
-                </li>
-                <li>Create a new project and add the ID of this fusion table so the system will index the tasks
-                    (without understanding that is about mapping).
-                </li>
-                <li>As you are responsible of the interpretation of the task e.g the UI and the information you
-                    want to collect, you must add a script template (that you can copy and transform from
-                    another project).
-                    This will generate a web widget and also an output fusion table to store the answers of
-                    volunteers.
-                </li>
-                <li>Finally publish/embed the web widget in your website and add more information (tutorial) if
-                    required.
-                </li>
-                <li>Analyze the answers by playing the google fusion table tools or export the data.</li>
-            </ul>
-        </div>
+    </div>
+    <div class="span8">
+        <h4> Analyzing a large area</h4>
 
-        <div class="span7   ">
-            <ul class="thumbnails">
-                <li class="thumbnail span3" style="height: 160px">
-                    <a href="/assets/generator.jpg"><img src="/assets/generator.jpg" style="max-width: 200px"/></a>
+        <p>
+            <small><a href="#">more information (data and code source)</a></small>
+        </p>
+        <hr/>
 
-                    <p>
-                        <small>Task generator helping you to divide the analysis of a large area</small>
-                    </p>
-                </li>
-                <li class="thumbnail span3" style="height: 160px">
-                    <a href="/assets/ft_input_table.jpg"><img src="/assets/ft_input_table.jpg"
-                                                              style="max-width: 200px"/></a>
+    </div>
+</div>
 
-                    <p>
-                        <small>Generated Tasks input table with each row representing a task = a region to analyze
-                            (1/2)
-                        </small>
-                    </p>
-                </li>
-                <li class="thumbnail span3">
-                    <a href="/assets/ft_input.jpg"><img src="/assets/ft_input.jpg" style="max-width: 200px"/></a>
 
-                    <p>
-                        <small>Visualisation of the tasks inputs. (2/2)</small>
-                    </p>
-                </li>
-                <li class="thumbnail span3">
-                    <a href="/assets/newproject.jpg"><img src="/assets/newproject.jpg"
+<h2> Demo of web widgets</h2>
+
+
+<div class="row">
+    <div class="span5">
+        <h3>Analyzing a large area</h3>
+        Let assume you want to create quickly a crowdmapping project asking to volunteers to identify
+        objects inside a large area.
+        <ul>
+            <li>First you need to create a fusion table representing the micro-tasks to process. You can generate this
+                table yourself For crowdmapping projects, we propose you a task generator cutting your map into a grid
+                of smaller
+                areas, easier to analyze individually. The result is sent to a google fusion table.
+            </li>
+            <li>>Then you need to create a project. you need to add the encrypted ID of the fusion table containing the
+                task so the system could index the tasks. You need to set up the permission of the fusion table so it is
+                public
+                (without understanding that is about mapping).
+            </li>
+            <li>As you are responsible of the interpretation of the tasks e.g the UI and the information you
+                want to collect, you also must add a script template. This template can be copied and modified from
+                other projects.
+                This will generate a web widget and another fusion table to store the answers of
+                volunteers.
+            </li>
+            <li>Finally you can embed the web widget in your website and add further information (e.g. tutorial) if
+                required.
+            </li>
+            <li>At any time you have visualize and export the answers via the google fusion.</li>
+        </ul>
+    </div>
+
+    <div class="span7   ">
+        <ul class="thumbnails">
+            <li class="thumbnail span3" style="height: 160px">
+                <a href="/assets/generator.jpg"><img src="/assets/generator.jpg" style="max-width: 200px"/></a>
+
+                <p>
+                    <small>Task generator helping you to divide the analysis of a large area</small>
+                </p>
+            </li>
+            <!--    <li class="thumbnail span3" style="height: 160px">
+                <a href="/assets/ft_input_table.jpg"><img src="/assets/ft_input_table.jpg"
                                                           style="max-width: 200px"/></a>
 
-                    <p>
-                        <small>To create a new project, add the ID of the fusion table and a script template</small>
-                    </p>
-                </li>
-                <li class="thumbnail span3">
-                    <a href="/assets/web_widget_map.jpg"><img src="/assets/web_widget_map.jpg"
-                                                              style="max-width: 200px"/></a>
+                <p>
+                    <small>Generated Tasks input table with each row representing a task = a region to analyze
+                        (1/2)
+                    </small>
+                </p>
+            </li>-->
+            <li class="thumbnail span3">
+                <a href="/assets/ft_input.jpg"><img src="/assets/ft_input.jpg" style="max-width: 200px"/></a>
 
-                    <p>
-                        <small>Generated web widget you can embed on your web site</small>
-                    </p>
-                </li>
-                <li class="thumbnail span3">
-                    <a href="/assets/ft_output_map.jpg"><img src="/assets/ft_output_map.jpg"
-                                                             style="max-width: 200px"/></a>
+                <p>
+                    <small>GeoVisualisation (using the google fusion tools) of the generated input google fusion table
+                        with a lots of small areas
+                    </small>
+                </p>
+            </li>
+            <!--         <li class="thumbnail span3">
+                <a href="/assets/newproject.jpg"><img src="/assets/newproject.jpg"
+                                                      style="max-width: 200px"/></a>
 
-                    <p>
-                        <small>Generated output fusion table to store the answers</small>
-                    </p>
-                </li>
-            </ul>
-        </div>
+                <p>
+                    <small>To create a new project, add the ID of the fusion table and a script template</small>
+                </p>
+            </li>-->
+            <li class="thumbnail span3">
+                <a href="/assets/web_widget_map.jpg"><img src="/assets/web_widget_map.jpg"
+                                                          style="max-width: 200px"/></a>
+
+                <p>
+                    <small>Generated web widget you can embed on your web site</small>
+                </p>
+            </li>
+            <li class="thumbnail span3">
+                <a href="/assets/ft_output_map2.jpg"><img src="/assets/ft_output_map2.jpg"
+                                                          style="max-width: 200px"/></a>
+
+                <p>
+                    <small>GeoVisualization (using the google fusion tools) of the Generated output fusion table storing
+                        the answers
+                    </small>
+                </p>
+            </li>
+        </ul>
     </div>
-    <hr/>
-    <div class="row">
-        <div class="span5">
-            <h3>Images classification</h3>
+</div>
+<div class="row">
+    <div class="span12">
 
-            <p>Another common example is to classify a large amount of photos.
-                In this example we assume you have csv or xsl spreadsheets with all the url of the image to classify.
-                Each row is a task with for instance the url of image to classify.
-                And each row needs to have a task_id column with an unique identify of the task.
-
-                Once this table imported on a google fusiont table (you can also have a programm filling/updating the
-                fusion table to add new tasks/images), you just need to add the ID of the google fusion and
-                create the UI script Template to generate the web widget and the output table. </p>
-        </div>
-        <div class="span7">
-            <ul class="thumbnails">
-                <li class="thumbnail span3">
-                    <a href="/assets/ft_input_images.jpg"><img src="/assets/ft_input_images.jpg"
-                                                               style="max-width: 200px"/></a>
-
-                    <p>
-                        <small>
-                            Tasks input table with a list of images and other contextual information
-                        </small>
-                    </p>
-                </li>
-                <li class="thumbnail span3">
-                    <a href="/assets/web_widget_image.jpg"><img src="/assets/web_widget_image.jpg"
-                                                                style="max-width: 200px"/></a>
-
-                    <p>
-                        <small>
-                            Generated web widget to classify images.
-                        </small>
-                    </p>
-                </li>
-            </ul>
-        </div>
+        <p>  generated web widget
+            <small><a href="#">more information (data and code source)</a></small>
+        </p>
+        <iframe width="100%" height="400" frameborder="0" scrolling="no"
+                src="http://mechanicalmap.dev.fabelier.org/apps/3?embeddable=1"></iframe>
     </div>
-    <hr/>
-    <div class="row">
-        <div class="span5">
-            <h3>Images annotation</h3>
+</div>
+<hr/>
+<div class="row">
+    <div class="span7">
+        <h3>Images classification</h3>
 
-            <p>A similar example is to annotate large amount of images (tag galaxies).
-                In this case the tasks input table is the same as classifying images. Only the instructions and tools to
-                do the task change.
-                So only the UI template needs to be updated.
-            </p>
+        <p>Another common example is to classify a large amount of photos.
+            In this example we assume you have csv or xsl spreadsheets with all the url of the images to classify.
+            Each row is a task with for instance the url of the image to classify.
 
-        </div>
-        <div class="span7">
+            Once this table imported on a google fusion table (you can also have a programm filling/updating the
+            fusion table to add new tasks/images), you need to add the ID of the google fusion and
+            create the UI Template to generate the web widget and the output table. </p>
+        <ul class="thumbnails">
+            <li class="thumbnail span3">
+                <a href="/assets/ft_input_images.jpg"><img src="/assets/ft_input_images.jpg"
+                                                           style="max-width: 200px"/></a>
 
-        </div>
+                <p>
+                    <small>
+                        Tasks input table with a list of images and other contextual information
+                    </small>
+                </p>
+            </li>
+            <li class="thumbnail span3">
+                <a href="/assets/web_widget_image.jpg"><img src="/assets/web_widget_image.jpg"
+                                                            style="max-width: 200px"/></a>
+
+                <p>
+                    <small>
+                        Generated web widget to classify images.
+                    </small>
+                </p>
+            </li>
+        </ul>
     </div>
+    <div class="span5">
+        <iframe width="100%" height="320px" frameborder="0" scrolling="no"
+                src="http://localhost:3000/apps/1?embeddable=1"></iframe>
 
-    <h2> Architecture and design constraints</h2>
-    <div class="row">
-         <div class="span12">
-             <img src="/assets/architecture.jpg" width="100%"/>
-         </div>
     </div>
+</div>
+<hr/>
+<div class="row">
+    <div class="span5">
+        <h3>Tagging Images</h3>
+
+        <p>A similar example is to annotate large amount of images (tag galaxies).
+            In this case the tasks input table is the same as classifying images. Only the instructions and tools to
+            do the task change.
+            So only the UI template needs to be updated.
+        </p>
+
+    </div>
+    <div class="span7">
+
+    </div>
+</div>
+<h2> Architecture</h2>
+
+<div class="row">
+    <div class="span12">
+        <img src="/assets/architecture.jpg" width="100%"/>
+    </div>
+</div>
 </div>
 </div>

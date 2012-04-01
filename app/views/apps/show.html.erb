@@ -9,7 +9,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="span3">
+    <div class="span4">
       <p id="notice"><%= notice %></p>
 
       <h2><%= @app.name %></h2>
@@ -18,7 +18,7 @@
       <hr/>
       <ul id="tab" class="nav nav-tabs">
         <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
-        <li class=""><a href="#data" data-toggle="tab">Data</a></li>
+        <li class=""><a href="#data" data-toggle="tab">Data & Code</a></li>
         <li class=""><a href="#spread" data-toggle="tab">Share</a></li>
       </ul>
 
@@ -53,8 +53,7 @@
         </div>
         <div class="tab-pane" id="spread">
           <p>Embed this project on your own web site, blog or your friends' ones to increase its visibility.
-            <textarea width="100%" rows="4">
-              <iframe width="100%" height="100%" frameborder="0" scrolling="no" src="<%= app_url(@app, :embeddable=>1) %>"></iframe>
+            <textarea width="100%" rows="4" class="span4"><iframe width="100%" height="100%" frameborder="0" scrolling="no" src="<%= app_url(@app, :embeddable=>1) %>"></iframe>
             </textarea>
           </p>
         </div>
@@ -67,7 +66,7 @@
       <% end %>
     </div>
 
-    <div class="span9">
+    <div class="span8">
       <iframe width="100%" height="400" scrolling="no" frameborder="0" src="<%= app_url(@app, :embeddable=>1) %>"></iframe>
 
 
