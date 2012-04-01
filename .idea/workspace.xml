@@ -22,15 +22,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="apps_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="7" selection-start="456" selection-end="456" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="_form.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/apps/_form.html.erb">
           <provider selected="true" editor-type-id="text-editor">
@@ -67,10 +58,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="275" column="9" selection-start="11376" selection-end="11376" vertical-scroll-proportion="0.9221968">
+            <state line="275" column="9" selection-start="11376" selection-end="11376" vertical-scroll-proportion="-15.5">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="schedule.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/schedule.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="26" selection-start="215" selection-end="215" vertical-scroll-proportion="0.25">
               <folding />
             </state>
           </provider>
@@ -126,7 +126,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/db/migrate/20120328160641_remove_project.rb" />
         <option value="$PROJECT_DIR$/app/models/app.rb" />
         <option value="$PROJECT_DIR$/app/views/apps/new.html.erb" />
         <option value="$PROJECT_DIR$/Rakefile" />
@@ -142,6 +141,7 @@
         <option value="$PROJECT_DIR$/app/views/apps/_form.html.erb" />
         <option value="$PROJECT_DIR$/config/deploy.rb" />
         <option value="$PROJECT_DIR$/app/views/home/index.html" />
+        <option value="$PROJECT_DIR$/config/schedule.rb" />
       </list>
     </option>
   </component>
@@ -841,11 +841,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/schedule.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/routes.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="0" selection-start="42" selection-end="42" vertical-scroll-proportion="0.0" />
@@ -928,7 +923,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="275" column="9" selection-start="11376" selection-end="11376" vertical-scroll-proportion="0.9221968">
+        <state line="275" column="9" selection-start="11376" selection-end="11376" vertical-scroll-proportion="-15.5">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/schedule.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="26" selection-start="215" selection-end="215" vertical-scroll-proportion="0.25">
           <folding />
         </state>
       </provider>
