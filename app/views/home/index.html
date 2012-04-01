@@ -46,25 +46,25 @@
         This cloud toolkit is an attempt to democratize the development and experimentation of microtasking
         projects to anyone
         having some basic
-        knowledge about html/javascript. It is based on two main principles.
+        knowledge in html/javascript. It is based on two main principles.
         <ul>
-            <li><h3>Zero installation</h3>
+            <li><h3>You host the project via a web widget</h3>
 
-                <p>We live in the age of cloud computing so no need to set up your own server and a database.
-                    Our goal is also *not* to host  crowdsourcing projects since we generate web widgets you can embed in your
-                    own website. Actually we are like a search engine
-                    maintaining an index of available tasks for volunteers. We index your tasks via <a
+                <p>MechanicalTask avoids the need to deploy a server and a database to launch a crowdsourcing project.
+                    Our goal is also not to host projects. Actually we generate web widgets you can embed in your
+                    own website. so you host the project (and the required tutorials etc) without hosting its
+                    infrastructure. <br/> MechanicalTask is a distributed infrastructure with a kind of search engine
+                    maintaining an index of available tasks for volunteers  via <a
                             href="http://www.google.com/fusiontables/public/tour/index.html">a google fusion
-                        table</a> used as a stream of input tasks. We manage the allocation of tasks and send the
+                        table</a> used as a stream of micro-tasks to process. MechanicalTask manages the allocation of tasks and send the
                     results
                     to another fusion table (output) we generated.
                     You are only in charge of the user interface to
                     collect
                     the data via a HTML/javascript template. Some helpers/libraries are available. We will use this
-                    template to generate the web widget <!-- (and the output fusion table)-->. embeddable
-                    like a youtube video. You can also use it as a 'captcha with purpose', or as new kind of
-                    banner 'with a purpose'  you can distribute to your partners' website instead of advertising.</p>
-                </li>
+                    template to generate the web widget <!-- (and the output fusion table)--> .You can be creative and generate small web widgets that you can used as a captcha for your website or as new kind of
+                    banner 'with a purpose' you can distribute to your partners' websites instead of advertising.</p>
+            </li>
 
             <li>
 
@@ -91,32 +91,53 @@
 </div>
 <hr class="soften">
 
-<h2>Demo of web widgets</h2>
-<br/>
-
-<div class="row">
-    <div class="span4">
-        <h4>Classifying lots of images</h4>
-
-        <hr/>
-
-
-    </div>
-    <div class="span8">
-        <h4> Analyzing a large area</h4>
-
-        <p>
-            <small><a href="#">more information (data and code source)</a></small>
-        </p>
-        <hr/>
-
-    </div>
-</div>
-
 
 <h2> Demo of web widgets</h2>
 
+<div class="row">
+    <div class="span7">
+        <h3>Images classification</h3>
 
+        <p>Another common example is to classify a large amount of photos.
+            In this example we assume you have csv or xsl spreadsheets with all the url of the images to classify.
+            Each row is a task with for instance the url of the image to classify.
+
+            Once this table imported on a google fusion table (you can also have a programm filling/updating the
+            fusion table to add new tasks/images), you need to add the ID of the google fusion and
+            create the UI Template to generate the web widget and the output table. </p>
+        <ul class="thumbnails">
+            <li class="thumbnail span3">
+                <a href="/assets/ft_input_images.jpg"><img src="/assets/ft_input_images.jpg"
+                                                           style="max-width: 200px"/></a>
+
+                <p>
+                    <small>
+                        Tasks input table with a list of images and other contextual information
+                    </small>
+                </p>
+            </li>
+            <li class="thumbnail span3">
+                <a href="/assets/web_widget_image.jpg"><img src="/assets/web_widget_image.jpg"
+                                                            style="max-width: 200px"/></a>
+
+                <p>
+                    <small>
+                        Generated web widget to classify images.
+                    </small>
+                </p>
+            </li>
+        </ul>
+    </div>
+    <div class="span5">
+        <p><strong> Play with the web widget!</strong>
+            <small><a href="#">more information (data and code source)</a></small>
+        </p>
+        <iframe width="100%" height="320px" frameborder="0" scrolling="no"
+                src="http://localhost:3000/apps/1?embeddable=1"></iframe>
+
+    </div>
+</div>
+<hr/>
 <div class="row">
     <div class="span5">
         <h3>Analyzing a large area</h3>
@@ -206,7 +227,7 @@
 <div class="row">
     <div class="span12">
 
-        <p>  generated web widget
+        <p><strong> Play with the web widget!</strong>
             <small><a href="#">more information (data and code source)</a></small>
         </p>
         <iframe width="100%" height="400" frameborder="0" scrolling="no"
@@ -214,46 +235,7 @@
     </div>
 </div>
 <hr/>
-<div class="row">
-    <div class="span7">
-        <h3>Images classification</h3>
 
-        <p>Another common example is to classify a large amount of photos.
-            In this example we assume you have csv or xsl spreadsheets with all the url of the images to classify.
-            Each row is a task with for instance the url of the image to classify.
-
-            Once this table imported on a google fusion table (you can also have a programm filling/updating the
-            fusion table to add new tasks/images), you need to add the ID of the google fusion and
-            create the UI Template to generate the web widget and the output table. </p>
-        <ul class="thumbnails">
-            <li class="thumbnail span3">
-                <a href="/assets/ft_input_images.jpg"><img src="/assets/ft_input_images.jpg"
-                                                           style="max-width: 200px"/></a>
-
-                <p>
-                    <small>
-                        Tasks input table with a list of images and other contextual information
-                    </small>
-                </p>
-            </li>
-            <li class="thumbnail span3">
-                <a href="/assets/web_widget_image.jpg"><img src="/assets/web_widget_image.jpg"
-                                                            style="max-width: 200px"/></a>
-
-                <p>
-                    <small>
-                        Generated web widget to classify images.
-                    </small>
-                </p>
-            </li>
-        </ul>
-    </div>
-    <div class="span5">
-        <iframe width="100%" height="320px" frameborder="0" scrolling="no"
-                src="http://localhost:3000/apps/1?embeddable=1"></iframe>
-
-    </div>
-</div>
 <hr/>
 <div class="row">
     <div class="span5">
