@@ -12,7 +12,7 @@ require 'bundler/capistrano'
 
 
 set :user, 'newhouse'
-set :domain, 'mechanicalmap.dev.fabelier.org'
+set :domain, 'mechanicaltask.dev.fabelier.org'
 set :application, "mechanicalmap"
 set :applicationdir, "~/mechanicalmap"
 
