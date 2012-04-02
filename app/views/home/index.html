@@ -3,7 +3,7 @@
     <div class="span12">
         <h1>MechanicalTask
             <br/>
-            <small>Platform for experimentating crowdsourcing projects using a micro-task driven approach.
+            <small>Cloud Toolkit for experimentating crowdsourcing projects using a micro(stupid)-task driven approach.
             </small>
         </h1>
 
@@ -48,22 +48,17 @@
         having some basic
         knowledge in html/javascript. It is based on two main principles.
         <ul>
-            <li><h3>You host the project not its infrastructure</h3>
+            <li><h3>Beyond monolithic/standalone projects: embeddable micro-tasks</h3>
 
-                <p>MechanicalTask avoids the need to deploy a server and a database to launch a crowdsourcing project.
-                    But MechanicalTask is also not a platform to host projects. Actually it generates web widgets you can embed in your
-                    own website. so you host the project on your website (with further tutorials etc) without hosting its
-                    infrastructure. <br/> MechanicalTask is a distributed infrastructure with a kind of search engine
-                    maintaining an index of available tasks for volunteers  via <a
-                            href="http://www.google.com/fusiontables/public/tour/index.html">a google fusion
-                        table</a> used as a stream of micro-tasks to process. MechanicalTask manages the allocation of tasks and send the
-                    results
-                    to another fusion table (output) we generated.
-                    You are only in charge of the user interface to
-                    collect
-                    the data via a HTML/javascript template. Some helpers/libraries are available. We will use this
-                    template to generate the web widget <!-- (and the output fusion table)--> .You can be creative and generate small web widgets that you can used as a captcha for your website or as new kind of
-                    banner 'with a purpose' you can distribute to your partners' websites instead of advertising.</p>
+                <p>MechanicalTask avoids the need to deploy a server and a database to prototype a crowdsourcing
+                    project.
+                    But MechanicalTask is also not a platform to host projects. Actually it generates web widgets you
+                    can embed in your
+                    own website like a youtube video. So you host the project on your website (with further tutorials etc) without hosting
+                    its
+                    infrastructure. You can be creative and generate small web widgets used as a captcha
+                    for your website, or as an 'active' banner you can distribute to your partners'
+                    websites instead of advertising. You can also more easily create facebook apps</p>
             </li>
 
             <li>
@@ -72,7 +67,7 @@
 
                 <p>
                     We think that what is valuable is not only the data but also the mechanism you used to
-                    collect them.
+                    collect them, engage people.
                     So if you
                     generate a
                     project via this platform your html/script template will be automatically shared with the
@@ -90,15 +85,32 @@
 
 </div>
 <hr class="soften">
+<h2>How does it work?</h2>
+MechanicalTask is a distributed infrastructure using <a
+        href="http://www.google.com/fusiontables/public/tour/index.html"> google fusion
+    tables</a> to store your tasks and the answers of volunteers. we use google fusion and not our database because it easily enables third parties to
+view, export, visualize or event insert data via a user interface or an API. MechanicalTask maintains an index of available
+tasks
+for volunteers via a first fusion table used as a stream of micro-tasks to process.
+You are only in charge of the user interface to
+collect
+the data via a HTML/javascript template. Some helpers/libraries are available. We will use this
+template to generate the web widget ready to start.
+Once embedded on a website, people can start play and complete some tasks.
+MechanicalTask manages the allocation of tasks  (with a given redundancy) to the pool of users and send the results to another fusion table (output) we generated.
+
+<span class="">Note</span> .
 
 
+<img src="/assets/architecture.jpg" width="100%"/>
+<hr/>
 <h2> Demo of web widgets</h2>
 
 <div class="row">
     <div class="span7">
         <h3>Images classification</h3>
 
-        <p>Another common example is to classify a large amount of photos.
+        <p>A common toy example is to classify a large amount of photos.
             In this example we assume you have csv or xsl spreadsheets with all the url of the images to classify.
             Each row is a task with for instance the url of the image to classify.
 
@@ -130,10 +142,28 @@
     </div>
     <div class="span5">
         <p><strong> Play with the web widget!</strong>
-            <small><a href="#">more information (data and code source)</a></small>
+
         </p>
-        <iframe width="100%" height="320px" frameborder="0" scrolling="no"
-                src="http://mechanicaltask.dev.fabelier.org/apps/5?embeddable=1"></iframe>
+        <iframe width="100%" height="360px" frameborder="0" scrolling="no"
+                src="http://mechanicaltask.dev.fabelier.org/apps/5?embeddable=1" style="border: 1px solid #000000"></iframe>
+        Copy & paste this code to embed it on your website
+        <textarea rows="3" class="span5"><iframe width="100%" height="320px" frameborder="0" scrolling="no" src="http://mechanicaltask.dev.fabelier.org/apps/5?embeddable=1"></iframe>
+    </textarea> <p> <small><a href="#">more information (data and template code source)</a></small></p>
+    </div>
+</div>
+<hr/>
+<div class="row">
+    <div class="span5">
+        <h3>Tagging Images</h3>
+
+        <p>A similar example is about annotating large amount of images e.g. tagging galaxies like GalaxyZoo.
+            In this case the input table is the same as for the previous example about classifying images.
+            Only the instructions , and tools to process the task change. So only the UI template needs to be updated.
+
+        </p>
+
+    </div>
+    <div class="span7">
 
     </div>
 </div>
@@ -236,29 +266,16 @@
 </div>
 <hr/>
 
+
+<h2>Task composition: from micro to macro tasks</h2>
+
+TODO fun example with a "human cellular automaton"
+                                  <img src="http://www.economicsnetwork.ac.uk/cheer/ch17/hand1.gif" />
 <hr/>
-<div class="row">
-    <div class="span5">
-        <h3>Tagging Images</h3>
+<h2>Credits</h2>
+<a href="mailto:n.maisonneuve@gmail.com">NM</a>
 
-        <p>A similar example is to annotate large amount of images (tag galaxies).
-            In this case the tasks input table is the same as classifying images. Only the instructions and tools to
-            do the task change.
-            So only the UI template needs to be updated.
-        </p>
 
-    </div>
-    <div class="span7">
-
-    </div>
-</div>
-<h2> Architecture</h2>
-
-<div class="row">
-    <div class="span12">
-        <img src="/assets/architecture.jpg" width="100%"/>
-    </div>
-</div>
 </div>
 </div>
 <script type="text/javascript">
@@ -267,10 +284,13 @@
     _gaq.push(['_setAccount', 'UA-30505488-1']);
     _gaq.push(['_trackPageview']);
 
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
     })();
 
 </script>
