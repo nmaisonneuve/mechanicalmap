@@ -5,9 +5,10 @@
 
 # Example:
 #
+env :PATH, ENV['PATH']
 set :output, "/home/newhouse/mechanicalmap/current/log/cron.log"
 #
-every 2.minutes do
+every 1.minutes do
 #   command "/usr/bin/some_great_command"
 #   runner "MyModel.some_method"
   rake "sync"
