@@ -4,11 +4,16 @@
 # http://en.wikipedia.org/wiki/Cron
 
 # Example:
+# 'source /home/newhouse/.rvm/scripts/rvm && rvm use 1.9.3 &&
 #
 env :PATH, ENV['PATH']
+
+
+job_type :rake,    "source /home/newhouse/.rvm/scripts/rvm && rvm use 1.9.3 && cd :path && RAILS_ENV=:environment bundle exec rake :task --silent :output"
+
 set :output, "/home/newhouse/mechanicalmap/current/log/cron.log"
 #
-every 1.minutes do
+every 2.minutes do
 #   command "/usr/bin/some_great_command"
 #   runner "MyModel.some_method"
   rake "sync"
