@@ -54,7 +54,8 @@
                     project.
                     But MechanicalTask is also not a platform to host projects. Actually it generates web widgets you
                     can embed in your
-                    own website like a youtube video. So you host the project on your website (with further tutorials etc) without hosting
+                    own website like a youtube video. So you host the project on your website (with further tutorials
+                    etc) without hosting
                     its
                     infrastructure. You can be creative and generate small web widgets used as a captcha
                     for your website, or as an 'active' banner you can distribute to your partners'
@@ -88,18 +89,18 @@
 <h2>How does it work?</h2>
 MechanicalTask is a distributed infrastructure using <a
         href="http://www.google.com/fusiontables/public/tour/index.html"> google fusion
-    tables</a> to store your tasks and the answers of volunteers. we use google fusion and not our database because it easily enables third parties to
-view, export, visualize or event insert data via a user interface or an API. MechanicalTask maintains an index of available
-tasks
-for volunteers via a first fusion table used as a stream of micro-tasks to process.
-You are only in charge of the user interface to
+    tables</a> to store your tasks and the answers of volunteers. We use google fusion and not an internal database
+because it easily enables third parties to
+view, export, visualize or event insert dynamicall new tasks via a user interface or an API. MechanicalTask index a first fusion table
+used as a stream of micro-tasks to process, manages the allocation of tasks (with a given redundancy) to a pool of users and send the results to
+another fusion table (output) we generated. You are only in charge of the user interface to
 collect
 the data via a HTML/javascript template. Some helpers/libraries are available. We will use this
-template to generate the web widget ready to start.
-Once embedded on a website, people can start play and complete some tasks.
-MechanicalTask manages the allocation of tasks  (with a given redundancy) to the pool of users and send the results to another fusion table (output) we generated.
+template to generate the web widget.
+Once embedded on a website, visitors can start playing and completing some tasks.
 
-<span class="">Note</span> .
+
+<span class="label label-warning">Note</span> Google fusion has <a href="https://developers.google.com/fusiontables/docs/developers_guide#Constraints">some constraints</a> you need to be aware.
 
 
 <img src="/assets/architecture.jpg" width="100%"/>
@@ -145,10 +146,17 @@ MechanicalTask manages the allocation of tasks  (with a given redundancy) to the
 
         </p>
         <iframe width="100%" height="360px" frameborder="0" scrolling="no"
-                src="http://mechanicaltask.dev.fabelier.org/apps/5?embeddable=1" style="border: 1px solid #000000"></iframe>
+                src="http://mechanicaltask.dev.fabelier.org/apps/5?embeddable=1"
+                style="border: 1px solid #000000"></iframe>
         Copy & paste this code to embed it on your website
-        <textarea rows="3" class="span5"><iframe width="100%" height="320px" frameborder="0" scrolling="no" src="http://mechanicaltask.dev.fabelier.org/apps/5?embeddable=1"></iframe>
-    </textarea> <p> <small><a href="#">more information (data and template code source)</a></small></p>
+        <textarea rows="3" class="span5">
+            <iframe width="100%" height="320px" frameborder="0" scrolling="no"
+                    src="http://mechanicaltask.dev.fabelier.org/apps/5?embeddable=1"></iframe>
+        </textarea>
+
+        <p>
+            <small><a href="#">more information (data and template code source)</a></small>
+        </p>
     </div>
 </div>
 <hr/>
@@ -270,7 +278,7 @@ MechanicalTask manages the allocation of tasks  (with a given redundancy) to the
 <h2>Task composition: from micro to macro tasks</h2>
 
 TODO fun example with a "human cellular automaton"
-                                  <img src="http://www.economicsnetwork.ac.uk/cheer/ch17/hand1.gif" />
+<img src="http://www.economicsnetwork.ac.uk/cheer/ch17/hand1.gif"/>
 <hr/>
 <h2>Credits</h2>
 <a href="mailto:n.maisonneuve@gmail.com">NM</a>

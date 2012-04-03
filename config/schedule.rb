@@ -8,7 +8,7 @@
 #
 env :PATH, ENV['PATH']
 
-
+# issue/fix for RVM
 job_type :rake,    "source /home/newhouse/.rvm/scripts/rvm && rvm use 1.9.3 && cd :path && RAILS_ENV=:environment bundle exec rake :task --silent :output"
 
 set :output, "/home/newhouse/mechanicalmap/current/log/cron.log"
