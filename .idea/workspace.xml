@@ -31,10 +31,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="104" column="0" selection-start="4228" selection-end="4228" vertical-scroll-proportion="-11.923077">
+            <state line="205" column="58" selection-start="8756" selection-end="8756" vertical-scroll-proportion="0.9225513">
               <folding />
             </state>
           </provider>
@@ -85,10 +85,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/apps/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="83" selection-start="484" selection-end="484" vertical-scroll-proportion="0.15044248">
+            <state line="15" column="83" selection-start="484" selection-end="484" vertical-scroll-proportion="-2.6153846">
               <folding />
             </state>
           </provider>
@@ -140,8 +140,8 @@
         <option value="$PROJECT_DIR$/config/deploy.rb" />
         <option value="$PROJECT_DIR$/Rakefile" />
         <option value="$PROJECT_DIR$/config/schedule.rb" />
-        <option value="$PROJECT_DIR$/app/views/home/index.html" />
         <option value="$PROJECT_DIR$/app/views/apps/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/home/index.html" />
       </list>
     </option>
   </component>
@@ -908,13 +908,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="104" column="0" selection-start="4228" selection-end="4228" vertical-scroll-proportion="-11.923077">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/apps/show.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="37" column="30" selection-start="1825" selection-end="1867" vertical-scroll-proportion="-8.884615">
@@ -924,7 +917,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/apps/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="83" selection-start="484" selection-end="484" vertical-scroll-proportion="0.15044248">
+        <state line="15" column="83" selection-start="484" selection-end="484" vertical-scroll-proportion="-2.6153846">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="205" column="58" selection-start="8756" selection-end="8756" vertical-scroll-proportion="0.9225513">
           <folding />
         </state>
       </provider>
