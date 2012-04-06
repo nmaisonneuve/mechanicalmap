@@ -9,6 +9,18 @@ class Task < ActiveRecord::Base
     joins(:units).where("units.state=?", Unit::AVAILABLE)
   }
 
+  scope :done_by_username, lambda { |username|
+    joins(:units=>:user).where("units.state!=?", Unit::AVAILABLE).where("users.username=?", username)
+  }
+
+  scope :not_done_by_username, lambda { |username|
+    # not optimized
+    tasks_done_ids=Task.joins(:units=>:user).where("units.state!=?", Unit::AVAILABLE).where("users.username=?", username)
+    unless (tasks_done_ids.empty?)
+      where("#{self.table_name}.id not in (?)", tasks_done_ids)
+    end
+  }
+
   scope :not_done_by, lambda { |user|
     # not optimized
     tasks_done_ids=Task.joins(:units).where("units.state!=?", Unit::AVAILABLE).where("units.user_id=?", user)

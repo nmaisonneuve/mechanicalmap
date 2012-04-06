@@ -13,34 +13,13 @@
   -->
 
   <%= javascript_include_tag "application" %>
-  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=drawing"></script>
-  <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
-  <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
+
 
   <script type="text/javascript">
-  var user = {id:<%= current_or_guest_user.id %>, name:"<%= current_or_guest_user.username %>"};
+  var user = {name:"<%= current_or_guest_username %>"};
       var scheduler_url = "<%= workflow_app_url(@app) %>";
       var application_url = "<%= app_url(@app) %>";
       var ft_table = "<%= @app.input_ft %>";
-      //dynamically resize the map
-      function resize_widget() {
-          // calculate new size and apply it
-          var max_h = $(window).height();
-          var max_w = $(window).width();
-          var m_h = $("#menu").height();
-          if (map != null) {
-              $("#map").height(max_h - m_h);
-              G.event.trigger(map, "resize");
-          }
-          $("#about_info").width(300);
-          var w = $("#about_info").width();
-          var h = $("#about_info").height();
-      <% if  request.user_agent =~ /Chrome/ %>
-          $("#about_info").offset({ top: max_h / 2 + 100, left: max_w / 2 + 150 });
-      <% else %>
-          $("#about_info").offset({ top: max_h / 2 - 150, left: max_w / 2 - 150 });
-      <% end %>
-      }
   </script>
 </head>
 

@@ -56,7 +56,7 @@ class App < ActiveRecord::Base
   end
 
   def schedule(context)
-    tasks=self.tasks.available.not_done_by(context[:current_user])
+    tasks=self.tasks.available.not_done_by_username(context[:current_username])
 
     # if random order
     if (context[:random])

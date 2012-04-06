@@ -15,9 +15,8 @@ module GeoTaskGenerator
 
     # set permission exportable
     FtDao.instance.set_exportable(table_id)
-    unless (options[:owner][/@gmail/].nil?)
-      FtDao.instance.change_ownership(table_id, options[:owner])
-    end
+    FtDao.instance.change_ownership(table_id, options[:owner])
+
     # generate tasks
     ft_rows=[]
     i=0

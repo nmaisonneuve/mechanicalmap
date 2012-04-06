@@ -52,7 +52,6 @@ var FTMicroTask = AbstractMicroTask.extend({
         this._super(task);
         this.task_done++;
         this.update_progress_bar();
-        console.log("loading ft table");
         // request more info about the task to the google fusion table
         // and interpret the result to display it
         var me = this;

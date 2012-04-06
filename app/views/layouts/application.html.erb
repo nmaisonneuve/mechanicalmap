@@ -30,7 +30,7 @@
               <li><a href="#" style="color:white;font-weight: bold;"><%= current_user.username %></a></li>
               <li>  <%= link_to "Sign out", destroy_user_session_path, :method => :delete  %> </li>
           <% else %>
-              <li><a href="#" style="color:white;font-weight: bold;"><%= current_or_guest_user.username[0..10] %></a></li>
+              <li><a href="#" style="color:white;font-weight: bold;"><%= current_or_guest_username %></a></li>
               <li><%= link_to "Sign in", new_user_session_path  %> </li>
           <% end %>
 

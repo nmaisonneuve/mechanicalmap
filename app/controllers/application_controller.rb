@@ -1,65 +1,53 @@
 class ApplicationController < ActionController::Base
-
-  before_filter :cors_preflight_check
-  after_filter :cors_set_access_control_headers
-
-  def cors_set_access_control_headers
-    headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
-    headers['Access-Control-Max-Age'] = "1728000"
-  end
-
-  def cors_preflight_check
-    if request.method == :options
-      headers['Access-Control-Allow-Origin'] = '*'
-      headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
-      headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version'
-      headers['Access-Control-Max-Age'] = '1728000'
-      render :text => '', :content_type => 'text/plain'
-    end
-  end
-
-  def set_access_control_headers
-    headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Request-Method'] = '*'
-  end
-
   #protect_from_forgery
-
-  helper_method :current_or_guest_user
+  helper_method :current_or_guest_username
 
   protected
-
 
   # if user is logged in, return current_user, else return guest_user
   def current_or_guest_user
     if current_user
-      if session[:guest_user_id]
-        guest_user.destroy
-        session[:guest_user_id] = nil
-      end
       current_user
     else
       guest_user
     end
   end
 
-  # find guest_user object associated with the current session,
+  def current_or_guest_username
+    if current_user
+      if cookies[:guest_user]
+        cookies[:guest_user]=""
+      end
+      current_user.username
+    else
+      guest_username
+    end
+  end
+
+  #use only the cookie to store the current user
+  def guest_username
+    if cookies[:guest_user].blank?
+      o= [(0..9), ('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+      random=(0..6).map { o[rand(o.length)] }.join
+      cookies[:guest_user]="guest_#{random}"
+    end
+    cookies[:guest_user]
+  end
+
+  # find guest_user
   # creating one as needed
   def guest_user
-    User.find(session[:guest_user_id].nil? ? session[:guest_user_id] = create_guest_user.id : session[:guest_user_id])
+    user=User.find_by_username(guest_username)
+    if (user.nil?)
+      user=create_guest_user(guest_username)
+    end
+    user
   end
 
   private
 
-  def create_guest_user
-
-    o=  [(0..9),('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
-    random=(0..6).map{ o[rand(o.length)]  }.join
-
-    u = User.create(:username => "guest_#{random}", :email => "guest_#{random}@emailguest.com")
-    u.save(:validate => false)
-    u
+  def create_guest_user(username)
+    User.new(:username => username, :email => "#{username}@emailguest.com")
   end
 
 end

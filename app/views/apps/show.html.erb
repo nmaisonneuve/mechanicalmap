@@ -1,12 +1,4 @@
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<link href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" type="text/css" rel="stylesheet"/>
-<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
-
-
-
 <div class="container">
   <div class="row">
     <div class="span4">
@@ -16,14 +8,9 @@
 
       <%= @app.description %>
       <hr/>
-      <ul id="tab" class="nav nav-tabs">
-        <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
-        <li class=""><a href="#data" data-toggle="tab">Data & Code</a></li>
-        <li class=""><a href="#spread" data-toggle="tab">Share</a></li>
-      </ul>
 
-      <div class="tab-content">
-        <div class="tab-pane active" id="activity">
+
+
           <% completed, size=@app.completion %>
           <%= completed %> answers / <%= size %> task units.
           <div class="progress progress-info  progress-striped">
@@ -39,9 +26,8 @@
                 </li>
             <% } %>
           </ul>
-        </div>
-
-        <div class="tab-pane" id="data">
+      <hr/>
+          <h4>Data & Source code</h4>
           <p>
             The raw answers are regularly updated on the google fusion table. You can analyze and
             aggregate them yourself.
@@ -50,15 +36,9 @@
           <br/> <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>"> >> Answers data</a>
           <br/> <a href="#source" data-toggle="modal">>> Task template Code</a>
 
-        </div>
-        <div class="tab-pane" id="spread">
-          <p>Embed this project on your own web site, blog or your friends' ones to increase its visibility.
-            <textarea width="100%" rows="4" class="span4"><iframe width="100%" height="100%" frameborder="0" scrolling="no" src="<%= app_url(@app, :embeddable=>1) %>"></iframe>
-            </textarea>
-          </p>
-        </div>
-      </div>
-      <% if @app.user==current_or_guest_user %>
+
+
+      <% if user_signed_in? && (@app.user==current_user) %>
           <hr/>
           <h4>Admin</h4>
           <%= link_to 'Delete', @app, confirm: 'Are you sure?', method: :delete, :class=>"btn btn-mini btn-danger" %>
@@ -68,7 +48,10 @@
 
     <div class="span8">
       <iframe width="100%" height="400" scrolling="no" frameborder="0" src="<%= app_url(@app, :embeddable=>1) %>"></iframe>
-
+      <p>copy & paste this code to embed this micro-apps in your own web site, blog.
+        <textarea width="100%" rows="4" class="span8"><iframe width="100%" height="100%" frameborder="0" scrolling="no" src="<%= app_url(@app, :embeddable=>1) %>"></iframe>
+        </textarea>
+      </p>
 
       <div class="modal hide" id="source">
         <div class="modal-header">
@@ -88,8 +71,3 @@
 
   </div>
 </div>
-<script>
-    $(function () {
-        $('.tabs a:last').tab('show');
-    })
-</script>

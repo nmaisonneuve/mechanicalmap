@@ -36,8 +36,13 @@ class UnitsController < ApplicationController
     @unit=Unit.find(params[:id])
     @unit.user=current_or_guest_user
     @unit.state=Unit::COMPLETED
-    @unit.answer=ActiveSupport::JSON.decode(params[:task_answer])
-    @unit.ft_sync=false
+    answer=ActiveSupport::JSON.decode(params[:task_answer])
+    answer.each { |row|
+      row["task_id"]=@unit.task.id
+      row["user_id"]=@unit.user.id
+    }
+    @unit.answer=answer
+        @unit.ft_sync=false
 
     if (params[:sync]=="1")
       FtDao.instance.sync_answers([@unit])
@@ -61,7 +66,7 @@ class UnitsController < ApplicationController
     @task=@unit.task
     @app=@task.app
     @completed, @size=@task.completion
-    @editable=!(@task.done_by?(current_or_guest_user))
+    @editable=true #!(@task.done_by?(current_or_guest_username))
     respond_to do |format|
       format.html {}
       format.js {

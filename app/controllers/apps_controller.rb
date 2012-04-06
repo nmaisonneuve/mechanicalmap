@@ -31,14 +31,14 @@ class AppsController < ApplicationController
   def user_state
     app=App.find(params[:id])
     # strange but working
-    opened=app.tasks.not_done_by(current_or_guest_user).size
-    completed=current_or_guest_user.tasks.where("app_id=?", app.id).count
+    opened=app.tasks.not_done_by_username(current_or_guest_username).count
+    completed=app.tasks.done_by_username(current_or_guest_username).count
     render json: {:opened=>opened, :completed=>completed}
   end
 
   def workflow
     app=App.find(params[:id])
-    context={:from_task=>params[:from_task], :current_user=>current_or_guest_user}
+    context={:from_task=>params[:from_task], :current_user=>current_or_guest_username}
     task_unit=app.schedule(context)
     if task_unit.nil?
       respond_to do |format|
