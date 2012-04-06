@@ -19,6 +19,7 @@ var FTMicroTask = AbstractMicroTask.extend({
         this.columns = [];
         this.save = options.save;
         this.load_internal = options.load;
+        this.loading = options.loading || function(){};
         this.initialize_ui();
         this.task_done=0;
         this.task_total=1;
@@ -56,6 +57,7 @@ var FTMicroTask = AbstractMicroTask.extend({
         // and interpret the result to display it
         var me = this;
         var query = "SELECT ROWID, " + this.columns.join(",") + " FROM " + this.ft_table + " WHERE task_id='" + this.task.input + "'";
+        this.loading();
         this.ft_request(query, function (ft_data) {
             if (ft_data.table.rows.length == 0) {
                 me.no_available_task();
