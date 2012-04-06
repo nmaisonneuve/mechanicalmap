@@ -71,7 +71,7 @@ class AppsController < ApplicationController
     respond_to do |format|
       if @app.save
         @app.ft_index_tasks(params[:app_redundancy].to_i)
-        @app.ft_create_output(params[:schema], current_user)
+        @app.ft_create_output(params[:schema], current_user.email)
 
 
         format.html { redirect_to @app, notice: 'app was successfully created.' }

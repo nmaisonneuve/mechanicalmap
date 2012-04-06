@@ -31,27 +31,24 @@ class App < ActiveRecord::Base
         # just one answer for the moment
         redundancy.times do
           task.units<<Unit.create!(:state => Unit::AVAILABLE)
-          # demo mode .. only 10.000 max answer
           i=i+1
         end
         task.save
-        break if ((i>1) && (1% MAX_ANSWERS==0))
+        break if (i> MAX_ANSWERS)
       end
     end
   end
 
 
-  def ft_create_output(schema, user)
+  def ft_create_output(schema, user_email)
     cols=ActiveSupport::JSON.decode(schema)
-    p cols
+
     self.output_ft=FtDao.instance.create_table("Answers of #{self.name}", cols)
     self.save
 
     # set permission exportable
     FtDao.instance.set_exportable(self.output_ft)
-    unless (user[/@gmail/].nil?)
-      FtDao.instance.change_ownership(self.output_ft, user)
-    end
+    FtDao.instance.change_ownership(self.output_ft, user_email)
   end
 
   def last_contributor

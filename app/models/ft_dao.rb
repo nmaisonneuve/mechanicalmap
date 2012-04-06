@@ -28,12 +28,13 @@ class FtDao
 # Connect to service
   def change_ownership(table_id, email_owner)
 
+    role= (email[/@gmail/].nil?)? "writer" : "owner"
     #generate queries for changing permission
     acl_entry_owner = <<-EOF
 <entry xmlns="http://www.w3.org/2005/Atom" xmlns:gAcl='http://schemas.google.com/acl/2007'>
   <category scheme='http://schemas.google.com/g/2005#kind'
     term='http://schemas.google.com/acl/2007#accessRule'/>
-  <gAcl:role value='owner'/>
+  <gAcl:role value='#{role}'/>
   <gAcl:scope type='user' value='#{email_owner}'/>
 </entry>
     EOF
