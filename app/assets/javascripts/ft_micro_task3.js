@@ -74,6 +74,7 @@ var FTMicroTask = AbstractMicroTask.extend({
         $.get(application_url + "/user_state.js", function(data) {
             me.task_done= data.completed;
             me.task_total=me.task_done+data.opened;
+            me.task_done--; //loading the current task
             me.update_progress_bar();
         });
     },

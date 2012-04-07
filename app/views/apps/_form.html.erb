@@ -1,3 +1,15 @@
+
+<style type="text/css" media="screen">
+
+
+    #editor {
+        position: relative;
+        height: 500px;
+        width: 100%;
+    }
+</style>
+
+
 <% if @app.errors.any? %>
     <div class="alert alert-error">
       <a class="close" data-dismiss="alert">×</a>
@@ -12,7 +24,7 @@
 
 <div class="row">
   <div class="span12">
-    <%= form_for(@app, :html=>{:class=>'form-horizontal', }) do |f| %>
+    <%= form_for(@app, :html => {:class => 'form-horizontal', }) do |f| %>
         <input type="hidden" name="schema" id="app_schema" value=""/>
         <fieldset>
           <legend><%= controller.action_name.capitalize %> Project</legend>
@@ -20,14 +32,14 @@
             <label class="control-label"><h3>Project Name</h3></label>
 
             <div class="controls">
-              <%= f.text_field :name, :placeholder=>"name of the app", :class=>"text-field span4" %>
+              <%= f.text_field :name, :placeholder => "name of the app", :class => "text-field span4" %>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label"><h3>Description</h3></label>
 
             <div class="controls">
-              <%= f.text_area :description, :rows => 5, :placeholder=>"short description of the crowdsourcing project", :class=>"text-field span4" %>
+              <%= f.text_area :description, :rows => 5, :placeholder => "short description of the crowdsourcing project", :class => "text-field span4" %>
             </div>
           </div>
 
@@ -43,15 +55,16 @@
                 tasks to index. <br/>You can generate this table yourself. <br/>We also propose you a set of generators
                 e.g. <a href="/demo_generator"><b>a crowdmapping task generator</b></a></p>
 
-              <%= f.text_field :input_ft, :placeholder=>"e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :disabled=>@disable_ft,:class=>"text-field span4" %>
+              <%= f.text_field :input_ft, :placeholder => "e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :disabled => @disable_ft, :class => "text-field span4" %>
             </div>
           </div>
 
           <div class="control-group">
             <label class="control-label"><h3>Redundancy</h3></label>
+
             <div class="controls">
               <p class="help-block">How many volunteers should do the same task?</p>
-              <%= text_field_tag "app_redundancy", "3", :disabled=>@disable_redundancy, :class=>"span1", :placeholder=>"3" %>
+              <%= text_field_tag "app_redundancy", "3", :disabled => @disable_redundancy, :class => "span1", :placeholder => "3" %>
             </div>
           </div>
           <div class="control-group">
@@ -60,7 +73,13 @@
 
             <div class="controls">
               <p class="help-block">Paste your micro-task template here (
-                <strong><a target="_blank" href="https://gist.github.com/2029050">example of template for crowdmapping tasks</a></strong>)</p>
+                <strong><a target="_blank" href="https://gist.github.com/2029050">example of template for crowdmapping
+                  tasks</a></strong>)</p>
+
+              <div id="editor"><%=  @app.script %></div>
+
+              <!-- <script src="/assets/mode-javascript.js" type="text/javascript" charset="utf-8"></script> -->
+
 
               <div id='script_error' class="alert hide">
                 <a class="close" data-dismiss="alert" href="#">×</a>
@@ -68,7 +87,7 @@
                 <div id='script_error_text'></div>
               </div>
 
-              <%= f.text_area :script, :class=>"span10", :size => "50x15", :placeholder=>"" %>
+             <!-- <%= f.text_area :script, :class => "span10", :size => "50x15", :placeholder => "" %> -->
 
             </div>
           </div>
@@ -85,7 +104,10 @@
     <% end %>
 
     <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
-
+    <script src="/assets/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/assets/ace/theme-cobalt.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/assets/ace/theme-chrome.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/assets/ace/mode-html.js" type="text/javascript" charset="utf-8"></script>
 
     <script type="text/javascript">
         // Global variables
@@ -101,7 +123,7 @@
             if (schema != null) {
                 try {
                     schema = eval(schema[2]);
-                } catch(err) {
+                } catch (err) {
                     $("#script_error_text").html("Parsing error. Schema required ");
                     $("#script_error").addClass("alert-error");
                     $("#script_error").show();
@@ -120,10 +142,14 @@
 
 
         // Register an event listener to fire when the page finishes loading.
-        $(function() {
-            $("#new_app").submit(function() {
+        $(function () {
+            $("#new_app").submit(function () {
                 return (evaluate_script());
             });
+            var editor = ace.edit("editor");
+            editor.setTheme("ace/theme/chrome");
+            var mode = require("ace/mode/html").Mode;
+            editor.getSession().setMode(new mode());
         });
     </script>
 

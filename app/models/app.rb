@@ -26,7 +26,7 @@ class App < ActiveRecord::Base
   def ft_index_tasks(redundancy)
     i=0
     Task.transaction do
-      FtDao.instance.import(self.input_ft, 10000) do |task_id|
+      FtDao.instance.import(self.input_ft, 100000) do |task_id|
         task=Task.create(:input => task_id, :app_id => self.id)
         # just one answer for the moment
         redundancy.times do
@@ -56,7 +56,7 @@ class App < ActiveRecord::Base
   end
 
   def schedule(context)
-    tasks=self.tasks.available.not_done_by_username(context[:current_username])
+    tasks=self.tasks.available.not_done_by_username(context[:current_user])
 
     # if random order
     if (context[:random])
