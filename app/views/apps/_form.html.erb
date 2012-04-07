@@ -24,8 +24,9 @@
 
 <div class="row">
   <div class="span12">
-    <%= form_for(@app, :html => {:class => 'form-horizontal', }) do |f| %>
+    <%= form_for(@app, :html => {:class => 'form-horizontal', :id=>"form_app" }) do |f| %>
         <input type="hidden" name="schema" id="app_schema" value=""/>
+        <input type="hidden" name="app[script]" id="app_script" value=""/>
         <fieldset>
           <legend><%= controller.action_name.capitalize %> Project</legend>
           <div class="control-group">
@@ -111,8 +112,12 @@
 
     <script type="text/javascript">
         // Global variables
+        var editor;
 
         function evaluate_script() {
+            var text=editor.getSession().getValue()
+                console.log(text);
+            $("#app_script").val(text);
 
             $("#script_error").removeClass("label-success");
             $("#script_error").removeClass("label-error");
@@ -143,10 +148,10 @@
 
         // Register an event listener to fire when the page finishes loading.
         $(function () {
-            $("#new_app").submit(function () {
+            $("#form_app").submit(function () {
                 return (evaluate_script());
             });
-            var editor = ace.edit("editor");
+            editor = ace.edit("editor");
             editor.setTheme("ace/theme/chrome");
             var mode = require("ace/mode/html").Mode;
             editor.getSession().setMode(new mode());
