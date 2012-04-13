@@ -1,14 +1,14 @@
-<style type="text/css">
+<style type="text/css" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
     #main {
-        margin:0 auto;
-        float:none;
+        margin: 0 auto;
+        float: none;
     }
 </style>
 <div class="container">
 <div class="row">
     <div class="span12" style="text-align: center">
         <h1>MechanicalTask <br/>
-            <small>Cloud Toolkit for building micro-task applications</small>
+            <small>Cloud Toolkit for building micro-contribution applications</small>
         </h1>
 
     </div>
@@ -17,6 +17,7 @@
 <div class="row">
     <div class="span5" id="main">
         <img style="width:100%" src="/assets/assembly-line2.jpg"/>
+
         <p>No need to deploy a server or a database to create your own micro-task
             application. Build your project
             by creating or remixing existing <a href="#">micro-Task template</a> code (html/javascript) and
@@ -24,7 +25,7 @@
 
         <p>
             <br/>
-            <a href="/apps" class="btn  btn-large" style="float:right">Explore & fork existing micro-apps</a>
+            <a href="/apps" class="btn  btn-large" style="float:right">Explore existing micro-apps</a>
             <a href="/apps/new" class="btn btn-primary btn-large">Build your micro-app</a>
 
 
@@ -38,62 +39,84 @@
 <div class="row">
     <div class="span12">
 
+        <p>Micro-contributions are contributions of any kind that someone could quickly make remotely (or not) within a
+        small amount of time.
+        A micro-application manages micro-contributions.
+        If we think about the diversity of contributions in participatory projects as a long tail with few core people and a large majority of volatile
+        users,the goal of this application is to tap into this segment assuming that the sum of these
+        micro-contributions could leverage a subtantial work.
+        </p>
 
-        This cloud toolkit is an attempt to democratize the development and experimentation of microtasking
-        projects to anyone
-        having some basic
-        knowledge in html/javascript. 
+        <p><b>What kind of micro-contributions?</b> e.g. analyzing a large flow of tweets, classifying one image from a large volume,
+            analyzing a small area from a large map,segmenting very quickly a long video collaboratively, write a small
+            sentence to generate a large story, or any kind of big data hardely processable/generable by the machine but cutable in smaller parts.
+        </p>
+
+        <p>
+            This <b>cloud toolkit</b> is an attempt to democratize the development of applications for crowdsourcing
+            micro-tasks
+            to anyone having some basic knowledge in html/javascript.
         <ul>
             <li><h4>Embeddable micro-tasks</h4>
+
                 <p>
-                MechanicalTask is not a platform to host projects.
-                It is a cloud toolkit to generate micro-applications  you can embed on your website like a youtube video without hosting directly  its infrastructure. So no need to deploy a server to setup a basic crowdsourcing project.
+                    MechanicalTask is not a platform hosting basic crowdsourcing projects.
+                    It is a cloud toolkit generating micro-applications embeddable on your website like a youtube video
+                    or used for mobile phones without hosting directly its infrastructure. So no need to deploy a server
+                    to setup a basic crowdsourcing project.
+                    You can build web captcha
+                    for your website, or active banner you can distribute to your partners'
+                    websites instead of advertising.
                 </p>
             </li>
-          <!--  <li><b>be creative</b>
-                You can build web captcha
-                for your website, or  active banner you can distribute to your partners'
-                websites instead of advertising.
-            </li>-->
-            <li> <h4>data openess</h4>
+            <li><h4>White box and data openess</h4>
+
                 <p>
-                MechanicalTask is a distributed infrastructure using <a
+                    MechanicalTask is a distributed infrastructure using <a
                         href="http://www.google.com/fusiontables/public/tour/index.html"> google fusion
-                    tables</a> to store your tasks and the answers of volunteers. We use google fusion and not an internal database
-                because it enables any third party to
-                view, export, analyze, visualize the raw answers or event insert dynamically new tasks via a user interface or an API.
+                    tables</a> as database to store your tasks and the answers of volunteers. We use google fusion and
+                    not an internal database
+                    because it enables any third party to
+                    view, export, analyze, visualize the raw answers or event insert dynamically new tasks via a user
+                    interface or an API in a more transparent way.
+                    MechanicalTask is a kind of search engine indexing a
+                    first fusion table
+                    representing the stream of your micro-tasks to process, manages the allocation of tasks (with a
+                    given redundancy) to a pool of users
+                    and send the results to
+                    another fusion table (output).At any time everyone can see the raw data.
                 </p>
             </li>
 
-            <li><h4>Micro-task template</h4>
+            <li><h4>Code in the cloud</h4>
+
                 <p>
-                MechanicalTask indexes a
-                first fusion table
-                used as a stream of micro-tasks to process, manages the allocation of tasks (with a given redundancy) to a pool of users
-                and send the results to
-                another fusion table (output) we generated. You are only in charge of the user interface to
-                collect
-                the data via a HTML/javascript template. Some helpers/libraries are available. We will use this
-                template to generate the web widget.
-                Once embedded on a website, visitors can start playing and completing some tasks.
-                You can easily modify your application on the fly with an online editor.
-                No need to update your code locally and deploy it on a server.</p>
+                    You are only in charge of the user interface to
+                    collect
+                    the data via a HTML/javascript template. Some helpers/libraries are available. We will use this
+                    template to generate the web widget.
+                    Once embedded on a website, visitors can start completing some tasks.
+                    You can modify your application on the fly with an online editor.
+                    No need to update your code locally and deploy it on a server.</p>
             </li>
             <li>
-                <h4>Code openess</h4>
+                <h4>Remix culture and code openess</h4>
+
                 <p>
-                What is valuable is not only the data but also the mechanism you used to
+                    What is valuable is not only the data but also the mechanism you used to
                     collect them, engage people.
                     So if you
                     generate a
                     project via this platform your micro-app template will be publicly accessible with the
                     community
                     so other
-                    people can modify it, improve it to build their own micro-apps. Such openess will facilitate the emergence of
+                    people can modify it, improve it to build their own micro-apps. Such openess will facilitate the
+                    emergence of
                     eco-system with best practices in micro-tasking, and leverage more quickly a potential community.
                 </p>
             </li>
         </ul>
+        </p>
         -NM
 
     </div>
@@ -101,7 +124,6 @@
 </div>
 <hr class="soften">
 <h2>How does it work?</h2>
-
 
 
 <span class="label label-warning">Note</span> Google fusion has <a
