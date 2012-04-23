@@ -3,8 +3,8 @@ class App < ActiveRecord::Base
   MAX_ANSWERS=10000 # demo mode
 
   has_many :tasks, :dependent => :destroy
-  has_many :units, :through => :tasks
-  has_many :contributors, :through => :units, :source => :user, :uniq => true
+  has_many :answers, :through => :tasks
+  has_many :contributors, :through => :answers, :source => :user, :uniq => true
 
   belongs_to :user
   validates_presence_of :name, :script
@@ -13,8 +13,8 @@ class App < ActiveRecord::Base
 
 
   def completion
-    completed=self.units.answered.count
-    size=self.units.count
+    completed=self.answers.answered.count
+    size=self.answers.count
     [completed, size]
   end
 
@@ -30,7 +30,7 @@ class App < ActiveRecord::Base
         task=Task.create(:input => task_id, :app_id => self.id)
         # just one answer for the moment
         redundancy.times do
-          task.units<<Unit.create!(:state => Unit::AVAILABLE)
+          task.answers<<Answer.create!(:state => Answer::AVAILABLE)
           i=i+1
         end
         task.save
@@ -52,7 +52,7 @@ class App < ActiveRecord::Base
   end
 
   def last_contributor
-    self.units.where("units.user_id!= null").order("units.updated_at desc").limit(5)
+    self.answers.where("answers.user_id!= null").order("answers.updated_at desc").limit(5)
   end
 
   def schedule(context)
@@ -71,7 +71,7 @@ class App < ActiveRecord::Base
       task=tasks.order('tasks.id asc').limit(1).first
     end
     return nil if (task.nil?)
-    task.units.available.first
+    task.answers.available.first
   end
 
 

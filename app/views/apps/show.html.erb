@@ -14,7 +14,7 @@
 
 
           <% completed, size=@app.completion %>
-          <%= completed %> answers / <%= size %> task units.
+          <%= completed %> / <%= size %> answers.
           <div class="progress progress-info  progress-striped">
             <div class="bar" style="width: <%= completed.to_f/size.to_f*100 %>%;"></div>
           </div>

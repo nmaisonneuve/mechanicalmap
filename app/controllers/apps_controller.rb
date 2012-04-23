@@ -39,14 +39,14 @@ class AppsController < ApplicationController
   def workflow
     app=App.find(params[:id])
     context={:from_task=>params[:from_task], :current_user=>current_or_guest_username}
-    task_unit=app.schedule(context)
-    if task_unit.nil?
+    assignment=app.schedule(context)
+    if assignment.nil?
       respond_to do |format|
         format.html { redirect_to app_path(app), notice: 'Sorry no further task available!' }
         format.js { render :json=>"", :status => 404 }
       end
     else
-      redirect_to app_task_unit_path(task_unit.task.app, task_unit.task, task_unit, :format=>params[:format])
+      redirect_to app_task_answer_path(assignment.task.app, assignment.task, assignment, :format=>params[:format])
     end
   end
 
@@ -72,8 +72,6 @@ class AppsController < ApplicationController
       if @app.save
         @app.ft_index_tasks(params[:app_redundancy].to_i)
         @app.ft_create_output(params[:schema], current_user.email)
-
-
         format.html { redirect_to @app, notice: 'app was successfully created.' }
         format.json { render json: @app, status: :created, location: @app }
       else
@@ -124,24 +122,5 @@ class AppsController < ApplicationController
 
   private
 
-  def show_task(task)
-    @task=task
-    @area=@task.area
-    @app=@area.app
-    @completed, @size=@area.completion
-    @editable=!(@area.annotated_by?(current_or_guest_user))
-    respond_to do |format|
-      format.html {}
-      format.js {
-        json_answer={:id=>@task.id, :submit_url=>app_area_task_url(@app, @area, @task), :area=>@area, :editable=>@editable}
-        render :json=> json_answer
-      }
-      format.json {
-        json_answer={:id=>@task.id, :submit_url=>app_area_task_url(@app, @area, @task), :area=>@area, :editable=>@editable}
-        render :json=> json_answer
-      }
-    end
-
-  end
 
 end

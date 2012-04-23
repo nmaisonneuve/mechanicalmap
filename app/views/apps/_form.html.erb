@@ -46,7 +46,7 @@
 
           <div class="control-group">
             <label class="control-label">
-              <h3>Input Tasks </h3></label>
+              <h3>Tasks <small>(input)</small> </h3></label>
 
             <div class="controls">
               <p class="help-block">
@@ -59,6 +59,15 @@
               <%= f.text_field :input_ft, :placeholder => "e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :disabled => @disable_ft, :class => "text-field span4" %>
             </div>
           </div>
+          <div class="control-group">
+            <label class="control-label">
+              <h3>Answers  <small>(output)</small></h3></label>
+
+            <div class="controls">
+              <p class="help-block">
+                A google fusion table will be generated for you
+            </div>
+          </div>
 
           <div class="control-group">
             <label class="control-label"><h3>Redundancy</h3></label>
@@ -69,13 +78,13 @@
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label"><h3>UI Task template code</h3>
+            <label class="control-label"><h3>UI template code</h3>
             </label>
 
             <div class="controls">
-              <p class="help-block">Paste your micro-task template here (
-                <strong><a target="_blank" href="https://gist.github.com/2029050">example of template for crowdmapping
-                  tasks</a></strong>)</p>
+              <p class="help-block">Paste your micro-task template here.
+                <br/>(you can copy and modify the template code of <a target="_blank" href="/apps">existing apps</a>)
+                </p>
 
               <div id="editor"><%=  @app.script %></div>
 

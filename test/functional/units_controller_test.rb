@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UnitsControllerTest < ActionController::TestCase
   setup do
-    @unit = units(:one)
+    @answer = units(:one)
   end
 
   test "should get index" do
@@ -18,30 +18,30 @@ class UnitsControllerTest < ActionController::TestCase
 
   test "should create unit" do
     assert_difference('Unit.count') do
-      post :create, unit: @unit.attributes
+      post :create, answer: @answer.attributes
     end
 
-    assert_redirected_to unit_path(assigns(:unit))
+    assert_redirected_to unit_path(assigns(:answer))
   end
 
   test "should show unit" do
-    get :show, id: @unit
+    get :show, id: @answer
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @unit
+    get :edit, id: @answer
     assert_response :success
   end
 
   test "should update unit" do
-    put :update, id: @unit, unit: @unit.attributes
-    assert_redirected_to unit_path(assigns(:unit))
+    put :update, id: @answer, answer: @answer.attributes
+    assert_redirected_to unit_path(assigns(:answer))
   end
 
   test "should destroy unit" do
     assert_difference('Unit.count', -1) do
-      delete :destroy, id: @unit
+      delete :destroy, id: @answer
     end
 
     assert_redirected_to units_path

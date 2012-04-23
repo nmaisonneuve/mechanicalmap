@@ -63,24 +63,24 @@ class FtDao
     }
   end
 
-  def sync_answers(units)
+  def sync_answers(answers)
 
     i=0
     queries=[]
     to_process=false
-    units_to_process=[]
-    units.each { |unit|
+    answers_to_process=[]
+    answers.each { |answer|
 
-      table_id=unit.task.app.output_ft
+      table_id=answer.task.app.output_ft
 
       #correct bugs if string not decoded
-      if (unit.answer.is_a? String)
-        unit.answer= ActiveSupport::JSON.decode(unit.answer)
-        unit.save
+      if (answer.answer.is_a? String)
+        answer.answer= ActiveSupport::JSON.decode(answer.answer)
+        answer.save
       end
 
-      if (unit.answer.is_a? Array)
-        unit.answer.each { |row|
+      if (answer.answer.is_a? Array)
+        answer.answer.each { |row|
 
           queries<<"INSERT INTO #{table_id} (#{row.keys.join(",")}) VALUES (#{row.values.map { |value| "'#{value}'" }.join(",")});"
           #we're batching
@@ -89,11 +89,11 @@ class FtDao
             queries=[]
 
             # We can now update their states
-            units_to_process.each { |unit_processed|
-              unit_processed.ft_sync=true
-              unit_processed.save
+            answers_to_process.each { |answer_processed|
+              answer_processed.ft_sync=true
+              answer_processed.save
             }
-            units_to_process=[]
+            answers_to_process=[]
 
             to_process=false
           else
@@ -101,18 +101,18 @@ class FtDao
           end
           i=i+1
         }
-        units_to_process<<unit
+        answers_to_process<<answer
       else
-        raise Exception.new("answer not handled :#{unit.answer}")
+        raise Exception.new("answer not handled :#{answer.answer}")
       end
     }
 
     if (to_process)
       @ft.execute queries.join("")
       # We can now update their states
-      units_to_process.each { |unit|
-        unit.ft_sync=true
-        unit.save
+      answers_to_process.each { |answer|
+        answer.ft_sync=true
+        answer.save
       }
     end
 

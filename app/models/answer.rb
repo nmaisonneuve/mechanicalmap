@@ -1,4 +1,4 @@
-class Unit < ActiveRecord::Base
+class Answer < ActiveRecord::Base
 
   AVAILABLE=0
   PENDING=1
@@ -11,11 +11,11 @@ class Unit < ActiveRecord::Base
   scope :not_available, where("state!=?",AVAILABLE)
   scope :answered, where(:state=>COMPLETED)
 
-  serialize :answer
+  serialize :content
 
   #any kind of answer e.g string , json
   # interpreted by the related aggregator
-  attr_accessible :state, :answer, :user, :ft_sync
+  attr_accessible :state, :content, :user, :ft_sync
 
   def done_by?(user)
     self.user!=user
