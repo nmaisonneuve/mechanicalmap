@@ -20,7 +20,7 @@ class AnswersController < ApplicationController
     @answer.save
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to @answer, notice: 'Unit was successfully created.' }
+        format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
         format.json { render json: @answer, status: :created, location: @answer }
       else
         format.html { render action: "new" }
@@ -51,7 +51,7 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       if (@answer.save)
-        format.html { redirect_to workflow_app_path(@answer.task.app), notice: 'Unit was successfully updated.' }
+        format.html { redirect_to workflow_app_path(@answer.task.app), notice: 'Answer was successfully updated.' }
         format.json { render json: @answer }
       else
         format.html { render action: "show" }
@@ -71,7 +71,7 @@ class AnswersController < ApplicationController
     respond_to do |format|
       format.html {}
       format.js {
-        json_answer={:submit_url => app_task_unit_url(@app, @task, @answer), :task => @task, :editable => @editable}
+        json_answer={:submit_url => app_task_answer_url(@app, @task, @answer), :task => @task, :editable => @editable}
         render :json => json_answer
       }
     end
