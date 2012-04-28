@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d6ad8450-30bb-4e34-983c-de221ba7f1f7" name="Default" comment="">
       <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\test_annotation.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/answers_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/answers_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/index.html" afterPath="$PROJECT_DIR$/app/views/home/index.html" />
     </list>
     <ignored path="mechanicalmap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,19 +62,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="113" column="115" selection-start="5357" selection-end="5357" vertical-scroll-proportion="-9.653846">
+            <state line="337" column="0" selection-start="14910" selection-end="14910" vertical-scroll-proportion="0.56491226">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="answers_controller.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="answers_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/answers_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="23" selection-start="1762" selection-end="1766" vertical-scroll-proportion="0.33211678">
+            <state line="64" column="23" selection-start="1762" selection-end="1766" vertical-scroll-proportion="-1.82">
               <folding />
             </state>
           </provider>
@@ -132,8 +132,8 @@
         <option value="$PROJECT_DIR$/model.js" />
         <option value="$PROJECT_DIR$/stopwords.js" />
         <option value="$PROJECT_DIR$/html5.html" />
-        <option value="$PROJECT_DIR$/app/views/home/index.html" />
         <option value="$PROJECT_DIR$/app/controllers/answers_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/home/index.html" />
       </list>
     </option>
   </component>
@@ -256,6 +256,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mechanicalmap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mechanicalmap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -836,16 +858,16 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
+    <entry file="file://$PROJECT_DIR$/app/controllers/answers_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="115" selection-start="5357" selection-end="5357" vertical-scroll-proportion="-9.653846">
+        <state line="64" column="23" selection-start="1762" selection-end="1766" vertical-scroll-proportion="-1.82">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/answers_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="23" selection-start="1762" selection-end="1766" vertical-scroll-proportion="0.33211678">
+        <state line="337" column="0" selection-start="14910" selection-end="14910" vertical-scroll-proportion="0.56491226">
           <folding />
         </state>
       </provider>
