@@ -1,17 +1,3 @@
 MechanicalTask  service
-(totally experimental, for fun)
+(experimental,in dev,  mechanicaltask.dev.fabelier.org)
 
-
-** Features ** 
-
-- Embed your micro-app like a youtube video
-MechanicalTask is not a platform hosting crowdsourcing projects. It is a cloud toolkit generating micro-applications embeddable on your website like a youtube video or used for mobile phones without hosting directly its infrastructure. So no need to deploy a server to setup a basic crowdsourcing project. You can build web captcha for your website, or active banner you can distribute to your partners' websites instead of advertising.
-
--White box and data openess
-MechanicalTask is a distributed infrastructure using google fusion tables as database to store your tasks and the answers of volunteers. We use google fusion and not an internal database because it enables any third party to view, export, analyze, visualize the raw answers or event insert dynamically new tasks via a user interface or an API in a more transparent way. MechanicalTask is a kind of search engine indexing a first fusion table representing the stream of your micro-tasks to process, manages the allocation of tasks (with a given redundancy) to a pool of users and send the results to another fusion table (output).At any time everyone can see the raw data.
-
--Coding in the cloud
-You are only in charge of the user interface to collect the data via a HTML/javascript template. Some helpers/libraries are available. We will use this template to generate the web widget. Once embedded on a website, visitors can start completing some tasks. You can modify your application on the fly with an online editor. No need to update your code locally and deploy it on a server.
-
--Remix culture and code openess
-What is valuable is not only the data but also the mechanism you used to collect them, engage people. So if you generate a project via this platform your micro-app template will be publicly accessible with the community so other people can modify it, improve it to build their own micro-apps. Such openess will facilitate the emergence of eco-system with best practices in micro-tasking, and leverage more quickly a potential community.
