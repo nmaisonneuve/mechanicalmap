@@ -46,17 +46,19 @@
 
           <div class="control-group">
             <label class="control-label">
-              <h3>Tasks <small>(input)</small> </h3></label>
+              <h3>Tasks to process </h3></label>
 
             <div class="controls">
               <p class="help-block">
-                Enter the ID of a
+                Enter the crypted ID of a
                 <a href="http://www.google.com/fusiontables/public/tour/index.html">google fusion table</a> containing
-                the
-                tasks to index. <br/>You can generate this table yourself. <br/>We also propose you a set of generators
-                e.g. <a href="/demo_generator"><b>a crowdmapping task generator</b></a></p>
-
+                the list of
+                tasks. <br/>This table should have at least a column <i>task_id</i> containing the ID of the task .
+                <br/><small> (for GIS tasks, check
+                <a href="/demo_generator">this crowdmapping task generator</a> to generate a Google fusion table) </small>   )
+              </p>
               <%= f.text_field :input_ft, :placeholder => "e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :disabled => @disable_ft, :class => "text-field span4" %>
+
             </div>
           </div>
           <div class="control-group">
@@ -70,7 +72,7 @@
           </div>
 
           <div class="control-group">
-            <label class="control-label"><h3>Redundancy</h3></label>
+            <label class="control-label"><h3># of answers / task</h3></label>
 
             <div class="controls">
               <p class="help-block">How many volunteers should do the same task?</p>

@@ -1,4 +1,4 @@
-/* ============================================================
+ /* ============================================================
  * Abstract MicroTask class
  * NM
  * http://www.apache.org/licenses/LICENSE-2.0
@@ -10,6 +10,8 @@ var AbstractMicroTask = Class.extend({
 
         this.scheduler_url = options.scheduler_url;
         this.user = options.user;
+
+        this.options=options;
 
         // current task
         this.task = null;
@@ -29,7 +31,6 @@ var AbstractMicroTask = Class.extend({
             "form_task":"form_task"
         };
     },
-
 
     update_completeness_ui:function() {
         $("#" + this.el_ids["task_done"]).html(this.task_done);
@@ -53,36 +54,46 @@ var AbstractMicroTask = Class.extend({
                 me.request_task(me.task.id);
             }).bind('ajax:error', function(data, status, xhr) {
                 console.log(data);
-
             });
     },
 
+    caching:function(current_task){
+        var from_task=current_task;
+        this.request_task(current_task);
+    },
+
     request_task:function(from_task) {
+        // debug mode
+        if (this.options.debug_mode== true){
+            this.options.debug_request_task(from_task);
+        }else {
+
         var me = this;
         var query = (from_task == undefined) ? ".js" : ".js?from_task=" + from_task;
+          console.log("pre info loaded."+this.scheduler_url+""+query);
         $.getJSON(this.scheduler_url + query,
             function(task) {
+
                 if (task.submit_url) {
                     me.load(task);
                 } else
-                    me.no_task();
+                    me.no_available_task();
             })
             .error(function(data, status, xhr) {
                 if (data.status == 404) {
                     me.no_available_task();  // no task available
                 } else {
-                    console.log("error");
+                    console.log(data);
                 }
             })
-    }
-    ,
+        }
+    },
 
     load:function(unit) {
         this.task = unit.task;
         console.log("loading "+unit.submit_url);
         $("#" + this.el_ids["form_task"]).attr("action", unit.submit_url);
     },
-
 
     no_available_task: function () {
         alert("no task available");

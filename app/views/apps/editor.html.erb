@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mechanical Task Editor</title>
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+  <![endif]-->
+  <%= stylesheet_link_tag "application", :media => "all" %>
+
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style type="text/css" media="screen">
+
+
+      body{
+          padding-top: 40px;
+      }
+
+      #editor {
+
+          height: 93%;
+          width: 100%;
+      }
+  </style>
+</head>
+
+<body><%= form_for(@app, :url => { :action => "editor_update" }, :html => { :id=>"form_app" }, :remote=>true) do |f| %>
+<input type="hidden" name="app[script]" id="app_script" value=""/>
+ <div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+
+      <a class="brand" href="/">MechanicalTask</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li><%= link_to "Apps ", apps_path %></li>
+          <li class="divider-vertical"></li>
+          <li>  <%= link_to "#{@app.name}", app_path(@app) %></li>
+          <li class="divider-vertical"></li>
+          <li class="active"> <a href="#"> Code Editor</a>  </li>
+          <li><button class="btn btn-primary" data-disable-with="Saving..."
+                      name="relevant">update code </button></li>
+
+        </ul>
+
+      </div>
+
+      <div class="nav pull-right" style="margin-right:0px;">
+        <ul class="nav">
+          <% if user_signed_in? %>
+              <li><a href="#" style="color:white;font-weight: bold;"><%= current_user.username %></a></li>
+              <li>  <%= link_to "Sign out", destroy_user_session_path, :method => :delete  %> </li>
+          <% else %>
+              <li><a href="#" style="color:white;font-weight: bold;"><%= current_or_guest_username %></a></li>
+              <li><%= link_to "Sign in", new_user_session_path  %> </li>
+          <% end %>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</div><div id="editor"><%=  @app.script %></div><% end %>
+
+    <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
+    <script src="/assets/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/assets/ace/theme-cobalt.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/assets/ace/theme-chrome.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/assets/ace/mode-html.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        // Global variables
+        var editor;
+
+
+
+        // Register an event listener to fire when the page finishes loading.
+        $(function () {
+            $("#form_app").submit(function () {
+                var text=editor.getSession().getValue();
+
+                $("#app_script").val(text);
+                return true;
+
+            });
+            editor = ace.edit("editor");
+            editor.setTheme("ace/theme/chrome");
+            var mode = require("ace/mode/html").Mode;
+            editor.getSession().setMode(new mode());
+        });
+    </script>
+</body>
+</html>
+

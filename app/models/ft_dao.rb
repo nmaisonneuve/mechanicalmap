@@ -1,5 +1,6 @@
 require 'fusion_tables'
 require 'open-uri'
+require 'singleton'
 
 class FtDao
 
@@ -28,7 +29,7 @@ class FtDao
 # Connect to service
   def change_ownership(table_id, email_owner)
 
-    role= (email_owner[/@gmail/].nil?)? "writer" : "owner"
+    role= (email_owner[/@gmail/].nil?) ? "writer" : "owner"
     #generate queries for changing permission
     acl_entry_owner = <<-EOF
 <entry xmlns="http://www.w3.org/2005/Atom" xmlns:gAcl='http://schemas.google.com/acl/2007'>
@@ -72,15 +73,9 @@ class FtDao
     answers.each { |answer|
 
       table_id=answer.task.app.output_ft
-
-      #correct bugs if string not decoded
-      if (answer.answer.is_a? String)
-        answer.answer= ActiveSupport::JSON.decode(answer.answer)
-        answer.save
-      end
-
-      if (answer.answer.is_a? Array)
-        answer.answer.each { |row|
+      answer_rows=ActiveSupport::JSON.decode(answer.answer)
+      if (answer_rows.is_a? Array)
+        answer_rows.each { |row|
 
           queries<<"INSERT INTO #{table_id} (#{row.keys.join(",")}) VALUES (#{row.values.map { |value| "'#{value}'" }.join(",")});"
           #we're batching
@@ -103,7 +98,7 @@ class FtDao
         }
         answers_to_process<<answer
       else
-        raise Exception.new("answer not handled :#{answer.answer}")
+        raise Exception.new("answer not handled :#{answer_rows}")
       end
     }
 

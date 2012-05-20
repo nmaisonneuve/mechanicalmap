@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.2'
 
@@ -13,6 +13,7 @@ group :production do
   gem 'thin'
 end
 
+gem "sidekiq"
 
 gem 'gravatar_image_tag'
 

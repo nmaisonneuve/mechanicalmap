@@ -11,8 +11,6 @@ class Answer < ActiveRecord::Base
   scope :not_available, where("state!=?",AVAILABLE)
   scope :answered, where(:state=>COMPLETED)
 
-  serialize :content
-
   #any kind of answer e.g string , json
   # interpreted by the related aggregator
   attr_accessible :state, :content, :user, :ft_sync

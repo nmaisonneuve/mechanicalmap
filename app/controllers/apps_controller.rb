@@ -11,6 +11,7 @@ class AppsController < ApplicationController
     end
   end
 
+
   def show
     @app = App.find(params[:id])
     if (params[:embeddable].blank?)
@@ -50,6 +51,33 @@ class AppsController < ApplicationController
     end
   end
 
+
+  def editor
+    @app = App.find(params[:id])
+    if current_user!=@app.user
+      redirect_to root_url
+    else
+      render :layout => false
+    end
+  end
+
+
+  def editor_update
+    @app = App.find(params[:id])
+    if current_user!=@app.user
+      redirect_to root_url
+    else
+      respond_to do |format|
+        if @app.update_attributes(params[:app])
+          format.html { render action: "editor" , notice: 'app was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { render action: "editor" }
+          format.json { render json: @app.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+  end
 
 # GET /apps/1/edit
   def edit
