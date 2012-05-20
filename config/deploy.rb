@@ -6,18 +6,20 @@ set :rvm_type, :user
 
 #load 'deploy/assets'
 
+#require 'sidekiq/capistrano'
+#set :sidekiq_role, :sidekiq
+#role :sidekiq, 'worker-1.acmecorp.com', 'worker-2.acmecorp.com'
+
 
 # bundler bootstrap
 require 'bundler/capistrano'
-require 'sidekiq/capistrano'
+
 
 set :user, 'newhouse'
 set :domain, 'mechanicaltask.dev.fabelier.org'
 set :application, "mechanicalmap"
 set :applicationdir, "~/mechanicalmap"
 
-set :sidekiq_role, :sidekiq
-role :sidekiq, 'worker-1.acmecorp.com', 'worker-2.acmecorp.com'
 
 set :repository, "git://github.com/nmaisonneuve/mechanicalmap.git"  # Your clone URL
 set :scm, "git"
