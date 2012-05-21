@@ -27,7 +27,8 @@ class App < ActiveRecord::Base
     i=0
     Task.transaction do
       FtDao.instance.import(self.input_ft, 100000) do |task_id|
-        task=Task.find_or_create(:input => task_id, :app_id => self.id)
+
+        task=Task.find_or_create_by_input_and_app_id(:input => task_id, :app_id => self.id)
         # just one answer for the moment
         redundancy.times do
           task.answers<<Answer.create!(:state => Answer::AVAILABLE)

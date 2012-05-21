@@ -29,21 +29,32 @@ end
 
 
 rows=[]
+puts "Requesting data from FT"
 $ft=GData::Client::FusionTables.new
 $ft.clientlogin("citizencyberscience", "noisetube") # I know you know...
 #sql = "SELECT personID,COUNT() FROM 3942022 group by personID order by COUNT()  asc LIMIT 1000"
-sql = "SELECT ClusterID,COUNT() FROM 3950961 where ClusterState=-1 group by ClusterID  LIMIT 1000"
+sql = "SELECT ClusterID,Count()  FROM 3950961 where ClusterState=-1 group by ClusterID LIMIT 1000"
 
 sql="sql=" + CGI::escape(sql) #encrypted table id
 resp = $ft.post(SERVICE_URL, sql)
 idx=1
+puts "Transforming data"
 resp.body.split("\n").each { |row|
   cells=row.split(",")
   if (!!(cells[0] =~ /^[-+]?[0-9]+$/))
-    rows<<{"task_id" => idx, "clusterID" => cells[0], "freq" => cells[1]}
+    rows<<{"task_id" => idx, "clusterID" => cells[0], "freq" => cells[1].to_i}
     idx=idx+1
   end
 }
+puts "Reindexing task by freq"
+idx=1
+rows=rows.sort{ |a,b| a["freq"]<=>b["freq"]}
+rows.each { |row|
+    row["task_id"]=idx
+    idx=idx+1
+}
+
+puts "Storing data into FT"
 enqueue("3953510", rows)
 
 
