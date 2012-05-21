@@ -1,14 +1,14 @@
-class FTIndexer
+class FtIndexer
 
   MAX_ANSWERS=10000
 
   include Sidekiq::Worker
 
-  def perform(ft_id,redundancy=1)
+  def perform(app,redundancy=1)
     i=0
     Task.transaction do
       FtDao.instance.import(ft_id, 100000) do |task_id|
-        task=Task.create(:input => task_id, :app_id => self.id)
+        task=Task.create(:input => task_id, :app_id => app.id)
         # just one answer for the moment
         redundancy.times do
           task.answers<<Answer.create!(:state => Answer::AVAILABLE)
