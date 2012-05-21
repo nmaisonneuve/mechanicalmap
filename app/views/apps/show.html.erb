@@ -4,9 +4,16 @@
 <div class="container">
   <div class="row">
     <div class="span4">
+
       <p id="notice"><%= notice %></p>
 
+
+
       <h2><%= @app.name %></h2>
+      <div>    <%= link_to 'Editor', editor_app_path(@app), :class=>"btn btn-primary" %>
+        <%= link_to 'Delete', @app, confirm: 'Are you sure?', method: :delete, :class=>"btn btn-danger" %>
+        <%= link_to 'General Modify', edit_app_path(@app), :class=>"btn " %>
+      </div>
 
       <%= @app.description %>
       <hr/>
@@ -43,9 +50,8 @@
       <% if user_signed_in? && (@app.user==current_user) %>
           <hr/>
           <h4>Admin</h4>
-          <%= link_to 'Delete', @app, confirm: 'Are you sure?', method: :delete, :class=>"btn btn-mini btn-danger" %>
-          <%= link_to 'Modify', edit_app_path(@app), :class=>"btn btn-mini btn-primary" %>
-      <% end %>
+
+    <% end %>
     </div>
 
     <div class="span8">

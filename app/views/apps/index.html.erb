@@ -1,6 +1,11 @@
+<link type="text/css" href="/assets/jquery-ui-1.8.16.custom.css" />
+<link type="text/css" href="/assets/bootstrap.css" />
+
 <div class="container">
   <div class="row">
     <div class="span12">
+      <div id="slider"></div>
+
       <ul class="thumbnails">
 
         <% @apps.each do |app|
@@ -22,7 +27,14 @@
                   <div class="bar" style="width:<%= (completed.to_f/size.to_f)*100  %>%;"></div>
                 </div>
 
-                <center><%= link_to "View", app_path(app), :class=>"btn btn-primary" %></center>
+                <div style="text-align: center">
+                  <%= link_to "View", app_path(app), :class=>"btn btn-primary" %>
+                  <% p current_or_guest_username
+                     if app.user == current_user %>
+                    <%= link_to "Code Editor", editor_app_path(app), :class=>"btn btn " %>
+                  <% end %>
+                </div>
+
 
               </div>
             </li>
@@ -31,3 +43,13 @@
     </div>
   </div>
 </div>
+<script type="text/javascript" src="/assets/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+
+    $('#slider').slider({
+        range: true,
+        values: [17, 67]
+    });
+  });
+</script>

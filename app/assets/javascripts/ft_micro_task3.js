@@ -17,12 +17,6 @@ var FTMicroTask = AbstractMicroTask.extend({
         this._super(options);
         this.ft_table = options.ft_table;
         this.columns = [];
-
-
-
-        this.task_done = 0;
-        this.task_total = 1;
-
     },
 
     start:function () {
@@ -34,7 +28,6 @@ var FTMicroTask = AbstractMicroTask.extend({
             me.next_cached_task(function(task) {
                 me.load(task);
             });
-
         });
         this.load_completeness();
     },
@@ -53,11 +46,9 @@ var FTMicroTask = AbstractMicroTask.extend({
 
     request_task:function (from_task, success_callback) {
         var me = this;
-
         this._super(from_task, function (task) {
 
-            //this.task_done++;
-            //this.update_progress_bar();
+            //
             // request more info about the task to the google fusion table
             // and interpret the result to display it
             var query = "SELECT ROWID, " + me.columns.join(",") + " FROM " + me.ft_table + " WHERE task_id='" + task.task.input + "'";
@@ -72,19 +63,8 @@ var FTMicroTask = AbstractMicroTask.extend({
         });
     },
 
-    update_progress_bar:function () {
-        var ratio = (this.task_done / this.task_total) * 100;
-        $("#progress_bar").width(ratio + "%");
-    },
-    load_completeness:function () {
-        var me = this;
-        $.get(application_url + "/user_state.js", function (data) {
-            me.task_done = data.completed;
-            me.task_total = me.task_done + data.opened;
-            me.task_done--; //loading the current task
-            me.update_progress_bar();
-        });
-    },
+
+
     load_schema:function (callback_fct) {
         var me = this;
         this.ft_request("DESCRIBE " + this.ft_table, function (data) {
