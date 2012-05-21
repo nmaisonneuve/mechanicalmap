@@ -101,8 +101,12 @@ class AppsController < ApplicationController
       if @app.save
 
         FtIndexer.perform_async(@app.input_ft, params[:app_redundancy].to_i)
+        schema=[{"name"=>"task_id", "type"=>"number"},
+                    {"name"=>"user_id", "type"=>"string"},
+                    {"name"=>"created_at", "type"=>"datetime"}]
 
-        schema=ActiveSupport::JSON.decode(params[:schema])
+        schema=ActiveSupport::JSON.decode(params[:schema]) unless  params[:schema].blank?
+
         FtGenerator.perform_aysnc(schema, current_user.email)
 
         format.html { redirect_to @app, notice: 'app was successfully created.' }
