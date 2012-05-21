@@ -219,12 +219,7 @@
 
                     },
                     load:function (ft_data) {
-                        console.log(ft_data);
-                        documents=[];
-                        table_data.removeRows(0, table_data.getNumberOfRows());
-                        // parse specific task info
-                        var clusterID = ft_data.table.rows[0][2];
-                        lookup_documents(clusterID);
+
                     },
                     save:function () {
                         var rows = [];

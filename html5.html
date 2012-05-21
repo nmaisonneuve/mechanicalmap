@@ -1,271 +1,38 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title></title>
-    <script src='http://code.jquery.com/jquery-1.7.2.min.js'></script>
-    <script src='inheritance.js'></script>
-    <script src='model.js'></script>
-    <script src='http://borismoore.github.com/jsrender/jsrender.js'></script>
-    <script src='stopwords.js'></script>
-    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
-    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
-    <script src='http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js'></script>
-    <script src='http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js'></script>
-    <script src='http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js'></script>
+﻿
 
+request_task:function(from_task,callback){
+ // abstract
+}
 
-    <style type="text/css">
-        #analyzed_text {
-            background: white;
-            padding: 1em 1em;
-            color: #444;
-            font: 14px/0.1 Garamond, "Baskerville", "Times New-Roman", Times, serif;
-            line-height: 1.2em;
-        }
+request_task:function(from_task,callback){
+// abstract
+// FT
+}
 
-        .sentence a {
-            color: #000000;
-            font-size: 14px;
-        }
+request_task:function(from_task,callback){
+// FT
+// personal
 
-        .sentence a:hover {
-            border-right: 2px solid #eee;
-            border-bottom: 2px solid #eee;
-        }
+}
 
-        @font-face {
-            font-family: 'Square';
-            src: url('square.ttf') format('truetype');
-        }
-    </style>
-</head>
-<body>
-<script type="text/javascript">
-    var sentences = [];
-    var match_sentences = [];
-    var urls = {};
-
-
-    write_result = function (sentence) {
-        var idx = sentence.idx
-        var score = sentence.best_score;
-        var color = (score == -1) ? "#777" : "hsl(" + (100 - (score * 100 - 20) * 100 / 80) + ", 70%, 80%)"
-        $("#sentence_" + idx).css('background', color);
-        $("#sentence_" + idx).mouseover(function(){
-            score = Math.round(score * 100) + "%";
-            var sources = sentence.sources.slice(0, Math.min(5, sentence.sources.length));
-            var content = $("#sentenceInfoTemplate").render({best_sources:sources});
-            $("#text_info").html(content);
-            $("#text_info").show();
-        });
-
-
-        //$("#sentence_" + idx).popover({html:true, placement:'bottom', content:content});
-    }
-
-    process_result = function (data, sentence) {
-        //console.log("------------ new sentence: "+sentence.content);
-        // compute each sentence in each result
-        $.each(data, function (i, result) {
-            var content = result.content.replace(/(\.\.\.) ([A-Z])/g, ". $2").replace("...", "").replace(/<b>|<\/b>/, ""); // clean a bit if required
-            var source = {score:0, content:"", url:result.url};
-
-            content.parseSentences(function (i, text, words) {
-                var score = sentence.compute_similarity_with(words);
-                if (score > source.score) {
-                    source.score = score;
-                    source.content = text;
-                }
-            });
-            console.log("-- new source " + source.url + " : " + source.content + "(" + source.score + ")");
-            //console.log(source);
-            // add source on the sentence
-            sentence.add_source(source);
-
-            // add influence on the url
-            var url = urls[source.url];
-            if (typeof(url) == 'undefined') {
-                url = new Url(source.url);
-                urls[source.url] = url;
-            }
-            url.add_influence(sentence);
-        });
-
-        sentence.sort_sources();
-        write_result(sentence);
-    }
-
-
-    compute_global_metrics = function () {
-        var url_influences = [];
-        $.each(urls, function (url, url_o) {
-            url_o.compute_influence();
-            url_o.score = Math.round((url_o.score / sentences.length) * 100);
-            console.log(url_o.score);
-            url_influences.push({url:url, score:url_o.score, sentences:url_o.sentences });
-        });
-        url_influences.sort(function (a, b) {
-            if (a.score > b.score) return -1;
-            if (a.score < b.score) return 1;
-            return 0;
-        });
-
-        var top_influences = url_influences.slice(0, Math.min(10, url_influences.length));
-        $.each(top_influences, function (i, influence) {
-            influence.idx = i + 1;
-        });
-        $("#list_sources").html($("#sourceTemplate2").render(top_influences));
-    }
-
-    display_info = function (idx) {
-        $("#info_" + idx).toggle();
-    }
-
-    new_text = function () {
-        $("#text_container").show();
-        $("#analysis_container").hide();
-    }
-    reset = function () {
-        $("#analyzed_text").html("");
-        $("#list_sources").html("");
-        sentences = [];
-        urls = {};
-        match_sentences = [];
-    }
-
-    analyze_text = function () {
-
-        $("#text_container").hide();
-        $("#analysis_container").show();
-
-        reset();
-
-        // cut text in sentences
-        $("#text").val().parseSentences(function (i, raw_string, words) {
-            var sentence = new Sentence(raw_string, words);
-            sentence.idx = i;
-            sentences.push(sentence);
-        });
-
-        // display the number of sentences
-        $("#message").html(sentences.length + " sentence(s) .");
-
-        var processed_sentences = 0.0;
-        $.each(sentences, function (i, sentence) {
-
-            //display the sentence
-            $("#analyzed_text").append("<a class='sentence' id='sentence_" + i + "' style='background: #DDD;margin:5px'  href='#'  rel='popover' data-original-title='potential sources'>" + sentence.content + "</a>");
-
-
-            //process the sentence= seek copies on the web
-            sentence.find_copies(function (results) {
-
-                process_result(results, sentence);
-                processed_sentences++;
-                $("#message").html(sentences.length + " sentences (" + Math.round((processed_sentences / sentences.length) * 100) + "% analyzed)");
-                // once finished , we compute global metrics
-                if (processed_sentences == sentences.length) {
-                    compute_global_metrics();
-                }
-            });
-        });
-    }
-
-    $(function () {
-
-        $(".sentence").live("mouseover", function () {
-            var results = match_sentences[$(this).data('id')];
-            //console.log(results);
-            //$.each(results, function (i, results) {
-            //});
-        });
-
-
+caching_tasks(callback){
+    cache.
+    this.request_task(from_task,function(task){
+                cache.push(from_task,task);
+        callback();
     });
-</script>
-</body>
-<div class="container">
-    <div class="row">
-        <div class="span12" style="margin-top:20px;text-align: center">
-            <h1>Copy & Paste Killer</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="span12">
-            <div id="text_container" class="span6" style="margin:0 auto;float:none;">
-                <textarea rows="10" class="span6" id="text"> Beethoven wrote his own early compositions in the
-                    shadow of Mozart, and Joseph Haydn wrote that posterity will not see such a talent again in 100
-                    years.
-                </textarea>
-                <br/>
-                <button class="btn btn-primary" onclick="analyze_text()">Analyze text</button>
-                <hr/>
-                <p>
-                    This app uses search engine to check each sentence and compute a copy score at a sentence and text level.
-                    <img src="">
-                </p>
-            </div>
-        </div>
-    </div>
+}
+get_task(from_task,callback){
+if cache null
+    caching_task(from_task,function(
 
-    <div class="row" id="analysis_container" style="display: none">
-        <div class="span9">
-            <button class="btn btn-primary btn-small" onclick="new_text()">New text</button>
-            <span id="message" style="margin-left:30px;"></span>
+));
+}
 
-            <div id="analyzed_text" style="margin-top:10px;width:100%;padding:5px" class="well"></div>
-        </div>
-        <div class="span3">
-            <div style="display: none" id="text_info">
-            </div>
+}
+ return data;
+})
 
-            <h3>Top text sources</h3>
-            <div class="accordion" id="list_sources"></div>
-        </div>
-    </div>
-</div>
+get_task(from_task,function(data){
 
-
-<script id="sourceTemplate2" type="text/x-jsrender">
-    <div class="accordion-group">
-        <div class="accordion-heading">
-
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse_{{:idx}}"
-               title="{{:url}}">
-                Source {{:idx}} ({{:score}}%)
-            </a>
-        </div>
-        <div id="collapse_{{:idx}}" class="accordion-body collapse" style="height: 0px; ">
-            <div class="accordion-inner">
-                <a href="{{:url}}" target="_blank">Go to the source</a>
-                <br/><b>{{:sentences.length}} matching sentence(s):</b>
-                <ul class="unstyled">
-                    {{for sentences}}
-                    <li><a title="{{:sentence}}" href="#">original sentence</a> vs. <a href="#"
-                                                                                       title="{{:content}}">found</a>
-                        ({{:score*100}}%)
-                    </li>
-                    {{/for}}
-                </ul>
-            </div>
-        </div>
-    </div>
-</script>
-
-<script id="sentenceInfoTemplate" type="text/x-jsrender">
-    <h3>Top sentence sources</h3>
-    <ul class="unstyled">
-        {{for best_sources}}
-        <li>
-            <p><a href="{{:url}}">Source ({{:score*100}}%)</a>
-                <br/>
-                <small>{{:content}}</small>
-            </p>
-        </li>
-        {{/for}}
-    </ul>
-</script>
-
-
-</html>
+})
