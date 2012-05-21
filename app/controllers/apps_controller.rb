@@ -100,10 +100,10 @@ class AppsController < ApplicationController
 
       if @app.save
 
-        FtWorker.index_task_async(@app.input_ft, params[:app_redundancy].to_i)
+        FtIndexer.perform_async(@app.input_ft, params[:app_redundancy].to_i)
 
         schema=ActiveSupport::JSON.decode(params[:schema])
-        FtWorker.generate_output_aysnc(schema, current_user.email)
+        FtGenerator.perform_aysnc(schema, current_user.email)
 
         format.html { redirect_to @app, notice: 'app was successfully created.' }
         format.json { render json: @app, status: :created, location: @app }
