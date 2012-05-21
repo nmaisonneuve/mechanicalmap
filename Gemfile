@@ -13,7 +13,7 @@ group :production do
   gem 'thin'
 end
 
-#gem "sidekiq"
+gem "sidekiq"
 
 gem 'gravatar_image_tag'
 

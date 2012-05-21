@@ -1,13 +1,13 @@
 class App < ActiveRecord::Base
 
-  MAX_ANSWERS=10000 # demo mode
+  # demo mode
 
   has_many :tasks, :dependent => :destroy
   has_many :answers, :through => :tasks
   has_many :contributors, :through => :answers, :source => :user, :uniq => true
 
   belongs_to :user
-  validates_presence_of :name, :script
+ # validates_presence_of :name, :script
   validates_presence_of :input_ft, :message => "The ID of the input fusion table can't be blank"
   attr_accessible :name, :description, :output_ft, :input_ft, :script, :script_url, :ui_template
 

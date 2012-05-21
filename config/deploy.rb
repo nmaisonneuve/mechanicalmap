@@ -6,8 +6,8 @@ set :rvm_type, :user
 
 #load 'deploy/assets'
 
-#require 'sidekiq/capistrano'
-#set :sidekiq_role, :sidekiq
+require 'sidekiq/capistrano'
+set :sidekiq_role, :sidekiq
 #role :sidekiq, 'worker-1.acmecorp.com', 'worker-2.acmecorp.com'
 
 
