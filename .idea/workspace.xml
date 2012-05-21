@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6ad8450-30bb-4e34-983c-de221ba7f1f7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/app.rb" afterPath="$PROJECT_DIR$/app/models/app.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
     </list>
     <ignored path="mechanicalmap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,10 +26,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="app.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="29" selection-start="258" selection-end="258" vertical-scroll-proportion="0.21640736">
+            <state line="9" column="29" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -78,10 +80,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Gemfile" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="23" selection-start="237" selection-end="237" vertical-scroll-proportion="0.0">
+            <state line="30" column="18" selection-start="500" selection-end="500" vertical-scroll-proportion="0.7213578">
               <folding />
             </state>
           </provider>
@@ -138,7 +140,6 @@
         <option value="$PROJECT_DIR$/app/views/apps/index.html.erb" />
         <option value="$PROJECT_DIR$/app/workers/gist_updater.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/bootstrap.min.css" />
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/workers/task_indexer.rb" />
         <option value="$PROJECT_DIR$/config/deploy.rb" />
         <option value="$PROJECT_DIR$/app/workers/ft_worker.rb" />
@@ -147,6 +148,7 @@
         <option value="$PROJECT_DIR$/app/workers/ft_indexer.rb" />
         <option value="$PROJECT_DIR$/app/controllers/apps_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/app.rb" />
+        <option value="$PROJECT_DIR$/Gemfile" />
       </list>
     </option>
   </component>
@@ -888,13 +890,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="23" selection-start="237" selection-end="237" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/deploy.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="0" selection-start="235" selection-end="235" vertical-scroll-proportion="0.0">
@@ -937,6 +932,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/app.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="29" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="100" column="40" selection-start="2469" selection-end="2469" vertical-scroll-proportion="0.0">
@@ -944,9 +946,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/app.rb">
+    <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="29" selection-start="258" selection-end="258" vertical-scroll-proportion="0.21640736">
+        <state line="30" column="18" selection-start="500" selection-end="500" vertical-scroll-proportion="0.7213578">
           <folding />
         </state>
       </provider>

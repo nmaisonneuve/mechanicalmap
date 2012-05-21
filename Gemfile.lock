@@ -162,7 +162,7 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   capistrano
-  coffee-rails (~> 3.2.1)
+  coffee-rails
   color
   devise
   fusion_tables
@@ -170,10 +170,10 @@ DEPENDENCIES
   jquery-rails
   nofxx-georuby
   pg
-  rails (= 3.2.2)
-  sass-rails (~> 3.2.3)
+  rails
+  sass-rails
   sidekiq
   sqlite3
   thin
-  uglifier (>= 1.0.3)
+  uglifier
   whenever
