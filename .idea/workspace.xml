@@ -2,244 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6ad8450-30bb-4e34-983c-de221ba7f1f7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-crimson_editor-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-crimson_editor-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-crimson_editor-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-crimson_editor.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-dawn-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-dawn-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-dawn-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-dawn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-dreamweaver-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-dreamweaver-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-dreamweaver-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-dreamweaver.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-eclipse-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-eclipse-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-eclipse-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-eclipse.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-idle_fingers-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-idle_fingers-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-idle_fingers-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-idle_fingers.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-kr_theme-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-kr_theme-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-kr_theme-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-kr_theme.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-merbivore-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-merbivore-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-merbivore-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-merbivore.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-merbivore_soft-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-merbivore_soft-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-merbivore_soft-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-merbivore_soft.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-mono_industrial-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-mono_industrial-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-mono_industrial-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-mono_industrial.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-monokai-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-monokai-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-monokai-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-monokai.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-pastel_on_dark-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-pastel_on_dark-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-pastel_on_dark-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-pastel_on_dark.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-solarized_dark-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-solarized_dark-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-solarized_dark-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-solarized_dark.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-solarized_light-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-solarized_light-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-solarized_light-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-solarized_light.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow_night-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow_night-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow_night-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow_night.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow_night_blue-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow_night_blue-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow_night_blue-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow_night_blue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow_night_bright-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow_night_bright-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow_night_bright-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow_night_bright.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow_night_eighties-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow_night_eighties-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow_night_eighties-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-tomorrow_night_eighties.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-twilight-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-twilight-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-twilight-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-twilight.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-vibrant_ink-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-vibrant_ink-uncompressed-noconflict.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-vibrant_ink-uncompressed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-vibrant_ink.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/name_game.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/saving_name_game.html" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-c_cpp-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-c_cpp-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-c_cpp-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-c_cpp.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-clojure-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-clojure-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-clojure-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-clojure.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-coffee-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-coffee-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-coffee-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-coffee.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-coldfusion-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-coldfusion-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-coldfusion-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-coldfusion.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-csharp-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-csharp-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-csharp-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-csharp.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-css-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-css-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-css-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-css.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-groovy-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-groovy-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-groovy-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-groovy.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-haxe-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-haxe-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-haxe-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-haxe.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-latex-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-latex-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-latex-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-latex.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-liquid-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-liquid-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-liquid-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-liquid.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-lua-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-lua-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-lua-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-lua.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-markdown-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-markdown-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-markdown-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-markdown.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-ocaml-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-ocaml-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-ocaml-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-ocaml.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-perl-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-perl-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-perl-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-perl.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-pgsql-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-pgsql-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-pgsql-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-pgsql.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-php-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-php-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-php-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-php.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-powershell-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-powershell-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-powershell-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-powershell.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-python-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-python-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-python-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-python.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-ruby-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-ruby-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-ruby-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-ruby.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-scad-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-scad-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-scad-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-scad.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-scala-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-scala-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-scala-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-scala.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-scss-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-scss-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-scss-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-scss.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-sh-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-sh-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-sh-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-sh.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-sql-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-sql-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-sql-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-sql.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-svg-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-svg-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-svg-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-svg.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-textile-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-textile-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-textile-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-textile.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-xml-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-xml-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-xml-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-xml.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-xquery-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-xquery-uncompressed-noconflict.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-xquery-uncompressed.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-xquery.js" afterPath="" />
-      <change type="MOVED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-text-noconflict.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-textmate-noconflict.js" />
-      <change type="MOVED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-text-uncompressed-noconflict.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-textmate-uncompressed-noconflict.js" />
-      <change type="MOVED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-text-uncompressed.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-textmate-uncompressed.js" />
-      <change type="MOVED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-text.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-textmate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/ace-noconflict.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/ace-noconflict.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/ace-uncompressed-noconflict.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/ace-uncompressed-noconflict.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/ace-uncompressed.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/ace-uncompressed.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/ace.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/ace.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-html-noconflict.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-html-noconflict.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-html-uncompressed-noconflict.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-html-uncompressed-noconflict.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-html-uncompressed.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-html-uncompressed.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-html.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-html.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-java-noconflict.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-java-noconflict.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-java-uncompressed-noconflict.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-java-uncompressed-noconflict.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-java-uncompressed.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-java-uncompressed.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-java.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-java.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-javascript-noconflict.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-javascript-noconflict.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-javascript-uncompressed-noconflict.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-javascript-uncompressed-noconflict.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-javascript-uncompressed.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-javascript-uncompressed.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-javascript.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-javascript.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-json-uncompressed-noconflict.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-json-uncompressed-noconflict.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-json-uncompressed.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-json-uncompressed.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds-noconflict.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds-noconflict.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds-uncompressed-noconflict.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds-uncompressed-noconflict.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds-uncompressed.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds-uncompressed.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds_midnight-noconflict.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds_midnight-noconflict.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds_midnight-uncompressed-noconflict.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds_midnight-uncompressed-noconflict.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds_midnight-uncompressed.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds_midnight-uncompressed.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds_midnight.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds_midnight.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-cobalt-noconflict.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-cobalt-noconflict.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-cobalt-uncompressed-noconflict.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-cobalt-uncompressed-noconflict.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-cobalt-uncompressed.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-cobalt-uncompressed.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-cobalt.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-cobalt.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/worker-coffee.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/worker-coffee.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/worker-css.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/worker-css.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/worker-javascript.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/worker-javascript.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/worker-json.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/worker-json.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ft_micro_task3.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ft_micro_task3.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/apps/editor.html.erb" afterPath="$PROJECT_DIR$/app/views/apps/editor.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html5.html" afterPath="$PROJECT_DIR$/html5.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/namegame.html" afterPath="$PROJECT_DIR$/namegame.html" />
     </list>
     <ignored path="mechanicalmap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -261,10 +26,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="abstract_micro_task.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="abstract_micro_task.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="43" selection-start="1413" selection-end="1413" vertical-scroll-proportion="0.0">
+            <state line="79" column="15" selection-start="2607" selection-end="2607" vertical-scroll-proportion="2.0767543">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -284,7 +49,7 @@
       <file leaf-file-name="ft_micro_task3.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ft_micro_task3.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="32" selection-start="915" selection-end="915" vertical-scroll-proportion="0.0">
+            <state line="33" column="12" selection-start="946" selection-end="966" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -292,10 +57,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="editor.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="editor.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/apps/editor.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="91" column="41" selection-start="2916" selection-end="2916" vertical-scroll-proportion="0.6139535">
+            <state line="31" column="1" selection-start="649" selection-end="649" vertical-scroll-proportion="-4.8461537">
               <folding />
             </state>
           </provider>
@@ -377,10 +142,10 @@
         <option value="$PROJECT_DIR$/namegame.html" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/name_game.js" />
         <option value="$PROJECT_DIR$/saving_name_game.html" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/ft_micro_task3.js" />
         <option value="$PROJECT_DIR$/../ace/build/editor.html" />
         <option value="$PROJECT_DIR$/app/views/apps/editor.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/ft_micro_task3.js" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js" />
       </list>
     </option>
   </component>
@@ -1215,24 +980,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="43" selection-start="1413" selection-end="1413" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ft_micro_task3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="32" selection-start="915" selection-end="915" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ace/worker-json.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -1249,8 +996,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/apps/editor.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="41" selection-start="2916" selection-end="2916" vertical-scroll-proportion="0.6139535">
+        <state line="31" column="1" selection-start="649" selection-end="649" vertical-scroll-proportion="-4.8461537">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ft_micro_task3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="12" selection-start="946" selection-end="966" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="79" column="15" selection-start="2607" selection-end="2607" vertical-scroll-proportion="2.0767543">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

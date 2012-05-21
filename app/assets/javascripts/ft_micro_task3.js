@@ -30,8 +30,11 @@ var FTMicroTask = AbstractMicroTask.extend({
         // once the structure of a task is known
         // we request a task
         this.load_schema(function () {
-            me.request_task(null);
-            //me.request_task_from_cache(null,me.load);
+            //me.request_task(null,function(task){
+            me.next_cached_task(function(task) {
+                me.load(task);
+            });
+
         });
         this.load_completeness();
     },

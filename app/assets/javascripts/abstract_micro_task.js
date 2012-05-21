@@ -20,7 +20,7 @@ var AbstractMicroTask = Class.extend({
         this.task_completed = 0;
         this.task_done = 0;
 
-        this.cache=[];
+        this.cache = [];
 
         //HTML element id
         this.el_ids = {
@@ -40,7 +40,7 @@ var AbstractMicroTask = Class.extend({
         $("#" + this.el_ids["task_completed"]).html(this.task_completed);
         $("#" + this.el_ids["progress_bar_id"]).css.width((this.task_done / this.task_completed) * 100 + "%");
     },
-    loading:function(){
+    loading:function () {
         console.log("loading");
     },
 
@@ -52,7 +52,7 @@ var AbstractMicroTask = Class.extend({
         $("#" + this.el_ids["skip_task"]).click(function (event) {
             event.preventDefault();
             //me.request_task(me.task.id);
-            me.request_task_from_cache(me.task.id,me.load);
+            me.next_cached_task(function(data){me.load(data);});
         });
 
         $("#" + this.el_ids["form_task"]).bind('ajax:before',
@@ -61,30 +61,47 @@ var AbstractMicroTask = Class.extend({
             }).bind('ajax:success',
             function (evt, data, status, xhr) {
                 //me.request_task(me.task.id);
-                me.request_task_from_cache(me.task.id,me.load);
+                me.next_cached_task(function(data){me.load(data);});
             }).bind('ajax:error', function (data, status, xhr) {
+                console.log("error saving");
                 console.log(data);
             });
     },
 
+    caching_task:function (callback) {
+        var me = this;
 
-    request_task_from_cache:function (from_task, callback) {
-        consumed = false;
-        var me=this;
-        console.log("caching data 1");
+        var from_task = (me.cache.length == 0) ? null : me.cache[me.cache.length - 1].task.id;
+        console.log("caching new task  (from task " + from_task + ") - cache size "+me.cache.length);
 
-        if (me.cache.length < 2) {
-            this.request_task(from_task, function (data) {
-                me.cache.push(data);
-                console.log("caching data");
-                if (!consumed) callback(me.cache.pop());
-                me.request_task_from_cache(data.task.id);
+        this.request_task(from_task, function (data) {
+            me.cache.push(data);
+            if (me.cache.length < 2) me.caching_task(function () {
+            });
+            callback();
+
+
+        });
+    },
+
+    next_cached_task:function (callback) {
+
+
+        console.log("request cached task");
+        var me = this;
+        // if cache empty we wait
+        if (this.cache.length == 0) {
+            this.caching_task(function () {
+                callback(me.cache.shift());
+            });
+        } else {
+            // else we consume directly
+            callback(this.cache.shift());
+            //and cache asynchronously
+            this.caching_task(function () {
             });
         }
-        if ((me.cache.length > 0) && (callback !== null)) {
-            consumed = true;
-            callback(me.cache.pop());
-        }
+
     },
 
     request_task:function (from_task, success_callback) {
