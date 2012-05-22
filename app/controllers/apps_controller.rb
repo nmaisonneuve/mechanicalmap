@@ -107,7 +107,7 @@ class AppsController < ApplicationController
 
         schema=ActiveSupport::JSON.decode(params[:schema]) unless  params[:schema].blank?
 
-        FtGenerator.perform_async(app_id,schema, current_user.email)
+        FtGenerator.perform_async(@app.id,schema, current_user.email)
 
         format.html { redirect_to @app, notice: 'app was successfully created.' }
         format.json { render json: @app, status: :created, location: @app }

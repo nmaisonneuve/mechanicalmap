@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d6ad8450-30bb-4e34-983c-de221ba7f1f7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/apps_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/apps_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/workers/ft_generator.rb" afterPath="$PROJECT_DIR$/app/workers/ft_generator.rb" />
     </list>
     <ignored path="mechanicalmap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -73,7 +72,7 @@
       <file leaf-file-name="apps_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="109" column="41" selection-start="2853" selection-end="2853" vertical-scroll-proportion="0.47949082">
+            <state line="109" column="35" selection-start="2847" selection-end="2847" vertical-scroll-proportion="0.47949082">
               <folding />
             </state>
           </provider>
@@ -907,7 +906,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="41" selection-start="2853" selection-end="2853" vertical-scroll-proportion="0.47949082">
+        <state line="109" column="35" selection-start="2847" selection-end="2847" vertical-scroll-proportion="0.47949082">
           <folding />
         </state>
       </provider>
