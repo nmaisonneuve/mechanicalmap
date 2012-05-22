@@ -43,10 +43,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ft_indexer.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ft_indexer.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/workers/ft_indexer.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="37" selection-start="407" selection-end="407" vertical-scroll-proportion="0.33663365">
+            <state line="8" column="8" selection-start="116" selection-end="116" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -70,10 +70,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="apps_controller.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="apps_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="102" column="36" selection-start="2507" selection-end="2507" vertical-scroll-proportion="0.0">
+            <state line="102" column="39" selection-start="2510" selection-end="2510" vertical-scroll-proportion="0.31117398">
               <folding />
             </state>
           </provider>
@@ -898,16 +898,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/workers/ft_indexer.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="36" selection-start="2507" selection-end="2507" vertical-scroll-proportion="0.0">
+        <state line="8" column="8" selection-start="116" selection-end="116" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/workers/ft_indexer.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="37" selection-start="407" selection-end="407" vertical-scroll-proportion="0.33663365">
+        <state line="102" column="39" selection-start="2510" selection-end="2510" vertical-scroll-proportion="0.31117398">
           <folding />
         </state>
       </provider>

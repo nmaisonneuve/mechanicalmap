@@ -4,8 +4,9 @@ class FtIndexer
 
   include Sidekiq::Worker
 
-  def perform(app,redundancy=1)
+  def perform(app_id,redundancy=1)
     i=0
+    app=App.find(app_id)
     Task.transaction do
       FtDao.instance.import(app.input_ft, 100000) do |task_id|
         task=Task.create(:input => task_id, :app_id => app.id)

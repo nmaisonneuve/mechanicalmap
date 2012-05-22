@@ -100,7 +100,7 @@ class AppsController < ApplicationController
 
       if @app.save
 
-        FtIndexer.perform_async(@app, params[:app_redundancy].to_i)
+        FtIndexer.perform_async(@app.id, params[:app_redundancy].to_i)
         schema=[{"name"=>"task_id", "type"=>"number"},
                     {"name"=>"user_id", "type"=>"string"},
                     {"name"=>"created_at", "type"=>"datetime"}]
