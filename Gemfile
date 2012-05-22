@@ -14,6 +14,8 @@ group :production do
 end
 
 gem "sidekiq"
+gem "slim"
+gem "sinatra"
 
 gem 'gravatar_image_tag'
 
