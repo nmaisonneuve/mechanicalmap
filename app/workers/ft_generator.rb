@@ -3,7 +3,7 @@ class FtGenerator
   include Sidekiq::Worker
 
   def perform(app_id, schema, user_email)
-     app=App.find(add_id)
+     app=App.find(app_id)
      app.output_ft=FtDao.instance.create_table("Answers of #{app.name}", schema)
      app.save
 
