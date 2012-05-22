@@ -7,7 +7,7 @@ class FtIndexer
   def perform(app,redundancy=1)
     i=0
     Task.transaction do
-      FtDao.instance.import(ft_id, 100000) do |task_id|
+      FtDao.instance.import(app.input_ft, 100000) do |task_id|
         task=Task.create(:input => task_id, :app_id => app.id)
         # just one answer for the moment
         redundancy.times do
