@@ -36,12 +36,12 @@ class AnswersController < ApplicationController
     @answer=Answer.find(params[:id])
     @answer.user=current_or_guest_user
     @answer.state=Answer::COMPLETED
-    p params[:task_answer]
+
 
     answer=ActiveSupport::JSON.decode(params[:task_answer])
     answer.each { |row|
       row["task_id"]=@answer.task.id if row["task_id"].blank?
-      row["user_id"]=@answer.user.id if row["user_id"].blank?
+      row["user_id"]=@answer.user.username if row["user_id"].blank?
       row["created_at"]=Time.now if row["created_at"].blank?
     }
 
