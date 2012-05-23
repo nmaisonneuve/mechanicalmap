@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20120417133000) do
     t.integer  "app_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.text     "input"
+    t.integer  "input"
     t.boolean  "gold_answer"
   end
 

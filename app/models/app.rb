@@ -1,5 +1,6 @@
 class App < ActiveRecord::Base
 
+  MAX_ANSWERS=10000
   # demo mode
 
   has_many :tasks, :dependent => :destroy
@@ -42,9 +43,8 @@ class App < ActiveRecord::Base
 
 
   def ft_create_output(schema, user_email)
-    cols=ActiveSupport::JSON.decode(schema)
 
-    self.output_ft=FtDao.instance.create_table("Answers of #{self.name}", cols)
+    self.output_ft=FtDao.instance.create_table("Answers of #{self.name}", schema)
     self.save
 
     # set permission exportable

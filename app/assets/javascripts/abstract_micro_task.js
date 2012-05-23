@@ -48,10 +48,13 @@ var AbstractMicroTask = Class.extend({
 
     update_completeness_ui:function () {
         var ratio = (this.task_done / this.task_total) * 100;
-        $("#progress_bar").width(ratio + "%");
-        $("#" + this.el_ids["task_done"]).html(this.task_done);
-        $("#" + this.el_ids["task_completed"]).html(this.task_completed);
-        $("#" + this.el_ids["progress_bar_id"]).css.width((this.task_done / this.task_completed) * 100 + "%");
+        if ($("#progress_bar").length > 0)
+            $("#progress_bar").width(ratio + "%");
+        if ($("#" + this.el_ids["task_done"]).length > 0)
+            $("#" + this.el_ids["task_done"]).html(this.task_done);
+        if ($("#" + this.el_ids["task_completed"]).length > 0)
+            $("#" + this.el_ids["task_completed"]).html(this.task_completed);
+       // $("#" + this.el_ids["progress_bar_id"]).css.width((this.task_done / this.task_completed) * 100 + "%");
     },
 
     loading:function () {
@@ -111,7 +114,7 @@ var AbstractMicroTask = Class.extend({
         var me = this;
         this.loading();
         this.task_done++;
-        this.update_completeness_ui();
+       // this.update_completeness_ui();
         // if cache empty we wait
         if (this.cache.length == 0) {
             this.caching_task(function () {

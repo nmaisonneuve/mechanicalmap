@@ -100,15 +100,20 @@ class AppsController < ApplicationController
 
       if @app.save
 
-        FtIndexer.perform_async(@app.id, params[:app_redundancy].to_i)
         schema=[{"name"=>"task_id", "type"=>"number"},
-                    {"name"=>"user_id", "type"=>"string"},
-                    {"name"=>"created_at", "type"=>"datetime"}]
+                {"name"=>"user_id", "type"=>"string"},
+                {"name"=>"created_at", "type"=>"datetime"}]
 
         schema=ActiveSupport::JSON.decode(params[:schema]) unless  params[:schema].blank?
 
+        # we postpone in production
+        if (Rails.env=="production")
+        FtIndexer.perform_async(@app.id, params[:app_redundancy].to_i)
         FtGenerator.perform_async(@app.id, schema, current_user.email)
-
+        else
+        #  @app.ft_index_tasks(params[:app_redundancy].to_i)
+          @app.ft_create_output(schema, current_user.email)
+        end
         format.html { redirect_to @app, notice: 'app was successfully created.' }
         format.json { render json: @app, status: :created, location: @app }
       else
