@@ -13,10 +13,10 @@ job_type :rake,    "source /home/newhouse/.rvm/scripts/rvm && rvm use 1.9.3 && c
 
 set :output, "/home/newhouse/mechanicalmap/current/log/cron.log"
 #
-every 2.minutes do
+every 5.minutes do
 #   command "/usr/bin/some_great_command"
-#   runner "MyModel.some_method"
-  rake "sync"
+   runner "FtSyncAnswers.perform_async"
+#  rake "sync"
 end
 #
 # every 4.days do

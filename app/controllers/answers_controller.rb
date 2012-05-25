@@ -46,16 +46,13 @@ class AnswersController < ApplicationController
     }
 
     @answer.answer=answer.to_json
-    p @answer.answer
-
     @answer.ft_sync=false
 
-       respond_to do |format|
+    respond_to do |format|
       if (@answer.save)
-        @answer=Answer.find(params[:id])
-        p @answer.answer
+
         if (params[:sync]=="1")
-          FtDao.instance.sync_answers([@answer])
+          FtSyncAnswers.perform_async([@answer])
         end
 
         format.html { redirect_to workflow_app_path(@answer.task.app), notice: 'Answer was successfully updated.' }
