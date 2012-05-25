@@ -10,10 +10,10 @@ env :PATH, ENV['PATH']
 
 # issue/fix for RVM
 job_type :rake,    "source /home/newhouse/.rvm/scripts/rvm && rvm use 1.9.3 && cd :path && RAILS_ENV=:environment bundle exec rake :task --silent :output"
-
+job_type :runnerak, "source /home/newhouse/.rvm/scripts/rvm && rvm use 1.9.3 && cd :path && script/rails runner -e :environment ':task' :output"
 set :output, "/home/newhouse/mechanicalmap/current/log/cron.log"
 #
-every 5.minutes do
+every 2.minutes do
 #   command "/usr/bin/some_great_command"
    runner "FtSyncAnswers.perform_async"
 #  rake "sync"
