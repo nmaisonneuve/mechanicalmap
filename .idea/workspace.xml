@@ -4,9 +4,7 @@
     <list default="true" id="d6ad8450-30bb-4e34-983c-de221ba7f1f7" name="Default" comment="">
       <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\test_annotation.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/apps_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/apps_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/apps/index.html.erb" afterPath="$PROJECT_DIR$/app/views/apps/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/apps/new.html.erb" afterPath="$PROJECT_DIR$/app/views/apps/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/home_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/home_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/apps/show.html.erb" afterPath="$PROJECT_DIR$/app/views/apps/show.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/index.html" afterPath="$PROJECT_DIR$/app/views/home/index.html" />
     </list>
@@ -42,7 +40,7 @@
       <file leaf-file-name="apps_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="111" column="55" selection-start="3018" selection-end="3018" vertical-scroll-proportion="0.0">
+            <state line="6" column="4" selection-start="146" selection-end="161" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -60,25 +58,25 @@
       <file leaf-file-name="show.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/apps/show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="104" selection-start="2000" selection-end="2000" vertical-scroll-proportion="-9.153846">
+            <state line="58" column="157" selection-start="2048" selection-end="2346" vertical-scroll-proportion="-13.230769">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/apps/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="0" selection-start="674" selection-end="674" vertical-scroll-proportion="0.2238806">
+            <state line="22" column="0" selection-start="674" selection-end="674" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home_controller.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="home_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="4" selection-start="50" selection-end="50" vertical-scroll-proportion="0.0">
+            <state line="4" column="26" selection-start="135" selection-end="135" vertical-scroll-proportion="0.11826087">
               <folding />
             </state>
           </provider>
@@ -87,7 +85,7 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="128" column="38" selection-start="6453" selection-end="6453" vertical-scroll-proportion="0.0">
+            <state line="49" column="12" selection-start="2404" selection-end="2404" vertical-scroll-proportion="-18.307692">
               <folding />
             </state>
           </provider>
@@ -110,7 +108,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/workers/ft_generator.rb" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/db/migrate/20120521160447_change_input.rb" />
@@ -121,11 +118,12 @@
         <option value="$PROJECT_DIR$/app/controllers/answers_controller.rb" />
         <option value="$PROJECT_DIR$/config/schedule.rb" />
         <option value="$PROJECT_DIR$/app/views/apps/editor.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/home/index.html" />
         <option value="$PROJECT_DIR$/app/controllers/apps_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/apps/new.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/apps/show.html.erb" />
         <option value="$PROJECT_DIR$/app/views/apps/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/apps/show.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/home/index.html" />
+        <option value="$PROJECT_DIR$/app/controllers/home_controller.rb" />
       </list>
     </option>
   </component>
@@ -174,6 +172,16 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="mechanicalmap" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -254,112 +262,6 @@
               <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppsController" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ControllerClassNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mechanicalmap" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mechanicalmap" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppsController" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ControllerClassNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="show" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ActionNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mechanicalmap" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mechanicalmap" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppsController" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ControllerClassNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="new" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ActionNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mechanicalmap" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mechanicalmap" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppsController" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ControllerClassNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="index" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ActionNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mechanicalmap" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mechanicalmap" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppsController" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ControllerClassNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="edit" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ActionNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mechanicalmap" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mechanicalmap" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Application" />
               <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ApplicationFolderNode" />
             </PATH_ELEMENT>
@@ -370,30 +272,20 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Favorites" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="preferences.general" />
     <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="preferences.general" />
     <property name="RakeTaksPopup.undocumentedIncluded" value="false" />
-    <property name="DefaultHtmlFileTemplate" value="Html" />
     <property name="RailsGeneratorsPopup.hiddenIncluded" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="DefaultHtmlFileTemplate" value="Html" />
     <property name="Ruby.ViewRefParam.DefaultExtension" value="html.erb" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -782,7 +674,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39681336" sideWeight="0.0" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40364188" sideWeight="0.0" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36968085" sideWeight="0.5158046" order="7" side_tool="true" content_ui="tabs" />
@@ -901,12 +793,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/apps/editor.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="0" selection-start="1424" selection-end="1424" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="55" selection-start="3018" selection-end="3018" vertical-scroll-proportion="0.0" />
+        <state line="49" column="0" selection-start="1424" selection-end="1424" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/apps/new.html.erb">
@@ -916,26 +805,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/apps/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="4" selection-start="50" selection-end="50" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="128" column="38" selection-start="6453" selection-end="6453" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/apps/show.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="104" selection-start="2000" selection-end="2000" vertical-scroll-proportion="-9.153846">
+        <state line="22" column="0" selection-start="674" selection-end="674" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/apps/index.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="674" selection-end="674" vertical-scroll-proportion="0.2238806">
+        <state line="6" column="4" selection-start="146" selection-end="161" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/apps/show.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="157" selection-start="2048" selection-end="2346" vertical-scroll-proportion="-13.230769">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="12" selection-start="2404" selection-end="2404" vertical-scroll-proportion="-18.307692">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="26" selection-start="135" selection-end="135" vertical-scroll-proportion="0.11826087">
           <folding />
         </state>
       </provider>

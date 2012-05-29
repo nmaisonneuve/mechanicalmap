@@ -5,41 +5,51 @@
     }
 </style>
 <div class="container">
-<div class="page-header">
 
-	<h1>MechanicalTask <small>- Democratizing the building of spreadable,tranparent and remixable micro-apps </small></h1>
+<div class="page-header">
+    <h1>MechanicalTask
+        <small>- Democratizing the building of spreadable,tranparent and remixable micro-apps</small>
+    </h1>
 </div>
 
 <div class="row">
-    <div class="span4" >
+    <div class="span5">
 
-	<img style="width:100%" src="/assets/assembly-line2.jpg"/>
-	<br/><br/>
-	<p class="well">No need to deploy a server or a database to create your own micro-contribution
+        <img style="width:100%" src="/assets/assembly-line2.jpg"/>
+        <br/><br/>
+
+        <p class="well">No need to deploy a server or a database to create your own micro-contribution
             app. Build your own micro-contribution project
             by creating or remixing existing micro-task template codes (html/javascript) and
-	    embed it on your own web page on the fly.
-	    <br/>
-	    <br/>
+            embed it on your own web page on the fly.
+            <br/>
+            <br/>
             <a href="/apps" class="btn  btn" style="float:right">Explore apps</a>
             <a href="/apps/new" class="btn btn-primary btn">Build a micro-app</a>
-	    </p>
-       
+        </p>
+
     </div>
 
-    <%
-    app=App.find(4)
-    %>
     <div class="span7">
-	<h3>DEMO: Play with this random micro-app, <small><a href="/apps">see other examples</a></small></h3>
-<iframe width="100%" height="300px"  style="border: 1px solid #AAA" scrolling="no" src="http://mechanicaltask.dev.fabelier.org/apps/7?embeddable=1"></iframe>
+        <h3>DEMO <small>(<a href="/apps">see other examples</a>)</small>
+        </h3>
+        <p> Play with this micro app you can embed in your web page like a youtube video.
+        <h4><a href="<%= app_url(@app) %>"><%= @app.name %></a></h4>
+        <iframe width="100%" height="300px" style="border: 1px solid #AAA" scrolling="no"
+                src="<%= app_url(@app) %>?embeddable=1"></iframe>
 
-<a href="#" class="btn btn-small btn-danger" style="float:left;margin:5px">Spread / Embed it</a>
- <a href="/7/editor" class="btn btn-small btn-success" style="float:left;margin:5px">source code</a>
- <a href="/7" class="btn btn-small btn-primary" style="float:left;margin:5px">Data (raw answers + tasks)</a>
-        </p>
+        <a rel="div" href="#toto" class="btn btn-small btn-danger" style="float:left;margin:5px">Spread / Embed it</a>
+        <a href="<%= editor_app_url(@app) %>" class="btn btn-small btn-success" style="float:left;margin:5px">source code</a>
+        <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>" class="btn btn-small btn-primary" style="float:left;margin:5px">Task Data</a>
+        <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>" class="btn btn-small btn-primary" style="float:left;margin:5px">Answer Data</a>
+        <a href="<%= app_url(@app) %>?embeddable=1" class="btn btn-small " style="float:left;margin:5px">Fullscreen</a>
+
         <!-- <h3>Features for a remix culture</h3> -->
-
+        <div id="toto" class="input" style="display:none; clear:both">
+            copy & paste this code to your web site to support further contributions from your visitors.
+            <textarea class="span7"><iframe width="100%" height="300px" style="border: 1px solid #AAA" scrolling="no" src="<%= app_url(@app) %>?embeddable=1"></iframe></textarea>
+        </div>
+        </p>
     </div>
 </div>
 
@@ -48,105 +58,117 @@
 <h2> Background</h2>
 
 <div class="row">
-    <div class="span12">
-<p><img src="https://docs.google.com/drawings/pub?id=1tK4GCgnKeRYK1JG-0vl6JtjiHsvL49F5l5H9id2tTxg&amp;w=344&amp;h=230" style="float:left;margin:5px"><b>What is a micro-contribution?</b><br/> Micro-contributions are contributions of any kind that someone
-            could quickly make remotely (or not) within a
-            small amount of time.
-         
-            If we think about the diversity of contributions in participatory projects as a long tail with few core
-            people and a large majority of volatile
-            users,the goal of these micro-applications is to tap into the latter segment assuming that the sum of these
-            micro-contributions could leverage a subtantial work.
+<div class="span12">
+<p><img src="https://docs.google.com/drawings/pub?id=1tK4GCgnKeRYK1JG-0vl6JtjiHsvL49F5l5H9id2tTxg&amp;w=344&amp;h=230"
+        style="float:left;margin:5px"><b>What is a micro-contribution?</b><br/> Micro-contributions are contributions of
+    any kind that someone
+    could quickly make remotely (or not) within a
+    small amount of time.
 
-        </p>
+    If we think about the diversity of contributions in participatory projects as a long tail with few core
+    people and a large majority of volatile
+    users,the goal of these micro-applications is to tap into the latter segment assuming that the sum of these
+    micro-contributions could leverage a subtantial work.
 
-        <p><b>What kind of micro-contributions?</b> <br/>e.g. analyzing a large flow of individual tweets, classifying a
-            large volume of images,
-            analyzing a large area on a map, segmenting very quickly a long video collaboratively, generating stories
-            via the writing of individual sentences
-            , or any kind of big data processable/generable more easily by volatile participants than the machine.
-        </p>
+</p>
 
-        <p><b>What is MechanicalTask?</b><br/>
-	<!-- In the long tail theory, <i>niche</i> projects drives the largest amount of contributions. -->
-	MechanicalTask is a <b>toolkit</b> to democratize the launch of projects enabling micro-contributions from web users, using basic knowledge in html/javascript.</p>
+<p><b>What kind of micro-contributions?</b> <br/>e.g. analyzing a large flow of individual tweets, classifying a
+    large volume of images,
+    analyzing a large area on a map, segmenting very quickly a long video collaboratively, generating stories
+    via the writing of individual sentences
+    , or any kind of big data processable/generable more easily by volatile participants than the machine.
+</p>
+
+<p><b>What is MechanicalTask?</b><br/>
+    <!-- In the long tail theory, <i>niche</i> projects drives the largest amount of contributions. -->
+    MechanicalTask is a <b>toolkit</b> to democratize the launch of projects enabling micro-contributions from web
+    users, using basic knowledge in html/javascript.</p>
 <hr class="soften">
-	<section>
-	<h2>Features </h2>
-        <ul class="unstyled">
-            <li>
-                <div class="row">
-                    <div class="span1" ><img
-                            src="/assets/embedIcon.png" width="45" style="padding-top: 20px;padding-left: 20px">
-                    </div>
-                    <div class="span11"><h4>Embed your micro-app like a youtube video</h4>
+<h2>Features </h2>
+<ul class="unstyled">
+    <li>
+        <div class="row">
+            <div class="span1"><img
+                    src="/assets/embedIcon.png" width="45" style="padding-top: 20px;padding-left: 20px">
+            </div>
+            <div class="span11"><h4>Embed your micro-app like a youtube video</h4>
 
-                        <p>
-                            MechanicalTask is <!--neither a platform hosting crowdsourcing projects or a framework
+                <p>
+                    MechanicalTask is <!--neither a platform hosting crowdsourcing projects or a framework
                             for coding applications.
                             It's -->a web service generating micro-applications embeddable on your website like a
-                            youtube
-                            video or for mobile phones. No need to deploy a server to setup an basic micro-app. Once
-                            embedded on a website, users/visitors can start contributing to some tasks.
-                            (note: you are responsible to host any required tutorials/doc on your website).
-                            <!-- be creative, you can build custom captcha 'with a purpose'
-                        for your website, or active banner you can distribute to your partners'
-                        websites instead of advertising. -->
-                        </p>
-                </div>
-            </li>
-            <li>
-                <div class="row">
-                    <div class="span1" ><img
-                            src="/assets/icon-EMM.png"
-                            width="45" style="padding-top: 20px;padding-left: 20px"></div>
-                    <div class="span11"><h4>store and share easily your data in the cloud </h4>
-			<p>
-                            MechanicalTask is a distributed infrastructure using <a
-                                href="http://www.google.com/fusiontables/public/tour/index.html"> google fusion
-                            tables</a> as database to store your tasks and the answers of volunteers. We use google
-                            fusion and
-                            not an internal database
-                            because it enables any third party to simply
-                            view, export, analyze, visualize the raw answers or event insert new tasks in a
-                            more
-                            transparent way.
+                    youtube
+                    video or for mobile phones. No need to deploy a server to setup an basic micro-app. Once
+                    embedded on a website, users/visitors can start contributing to some tasks.
+                    (note: you are responsible to host any required tutorials/doc on your website).
+                    <!-- be creative, you can build custom captcha 'with a purpose'
+                for your website, or active banner you can distribute to your partners'
+                websites instead of advertising. -->
+                </p>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="row">
+            <div class="span1"><img
+                    src="/assets/icon-EMM.png"
+                    width="45" style="padding-top: 20px;padding-left: 20px"></div>
+            <div class="span11"><h4>store and share easily your data in the cloud </h4>
 
-                            <!-- MechanicalTask is a kind of search engine indexing a
-                        first fusion table
-                        representing the stream of your micro-tasks to process, manages the allocation of tasks
-                        (with a
-                        given redundancy) according to your users and send the results to
-                        another fusion table (output) -->
-                        </p>
-                </div>
-            </li>
+                <p>
+                    MechanicalTask is a distributed infrastructure using <a
+                        href="http://www.google.com/fusiontables/public/tour/index.html"> google fusion
+                    tables</a> as database to store your tasks and the answers of volunteers. We use google
+                    fusion and
+                    not an internal database
+                    because it enables any third party to simply
+                    view, export, analyze, visualize the raw answers or event insert new tasks in a
+                    more
+                    transparent way.
 
-            <li>
-                <div class="row">
-                    <div class="span1" ><img
-                            src="/assets/media-shuffle.png" width="45" style="padding-top: 20px;padding-left: 20px"></div>
-                    <div class="span11"><h4>Copy & remix apps: toward an ecosystem</h4>
-			
-                        <p>
-                            You are in charge to code the UI/client-side to collect the data via an HTML/javascript
-                            template. But no need to code locally and deploy it on a server, or to install something
-                            </p>
-                        <p>
-                            MechanicalTask shortcuts the launch of an app by using the <a href="https://gist.github.com">Gist platform</a> as a first place to host or directly edit online your code
-                            via their online editor</i>. Give the URL of your Gist snippet of code and MechanicalTask will generate or update the app on the fly when changes are detected.
-                           </p>
-                        <p>
-                             By using Gist , we integrate its social coding features in the building of micro-apps e.g. (public code, easy remix/fork, code comments) and facilitate the
-                            emergence of
-                            eco-system with best practices in micro-tasking. For instance newcomers can easily fork/remix existing micro-apps in few minutes.
+                    <!-- MechanicalTask is a kind of search engine indexing a
+                first fusion table
+                representing the stream of your micro-tasks to process, manages the allocation of tasks
+                (with a
+                given redundancy) according to your users and send the results to
+                another fusion table (output) -->
+                </p>
+            </div>
+        </div>
+    </li>
 
-                        </p>
-                    
-                </div>
-            </li>
-        </ul>
-</section>
+    <li>
+        <div class="row">
+            <div class="span1"><img
+                    src="/assets/media-shuffle.png" width="45" style="padding-top: 20px;padding-left: 20px"></div>
+            <div class="span11"><h4>Copy & remix apps: toward an ecosystem</h4>
+
+                <p>
+                    You are in charge to code the UI/client-side to collect the data via an HTML/javascript
+                    template. But no need to code locally and deploy it on a server, or to install something
+                </p>
+
+                <p>
+                    MechanicalTask shortcuts the launch of an app by using the <a href="https://gist.github.com">Gist
+                    platform</a> as a first place to host or directly edit online your code
+                    via their online editor</i>. Give the URL of your Gist snippet of code and MechanicalTask will
+                    generate or update the app on the fly when changes are detected.
+                </p>
+
+                <p>
+                    By using Gist , we integrate its social coding features in the building of micro-apps e.g.
+                    (public code, easy remix/fork, code comments) and facilitate the
+                    emergence of
+                    eco-system with best practices in micro-tasking. For instance newcomers can easily fork/remix
+                    existing micro-apps in few minutes.
+
+                </p>
+
+            </div>
+        </div>
+    </li>
+</ul>
+
 <hr class="soften">
 <h2>How does it work?</h2>
 
@@ -196,14 +218,19 @@ need to be aware.
         </ul>
     </div>
     <div class="span5">
-    
+
         <iframe width="380px" height="360px" frameborder="0" scrolling="no"
                 src="http://mechanicaltask.dev.fabelier.org/apps/5?embeddable=1"
                 style="border: 1px solid #000000"></iframe>
-       <br/> Copy & paste this code to embed it on your website
-        <textarea rows="3" class="span5"><iframe width="100%" height="320px" frameborder="0" scrolling="no" src="http://mechanicaltask.dev.fabelier.org/apps/5?embeddable=1"></iframe>      </textarea>
+        <br/> Copy & paste this code to embed it on your website
+        <textarea rows="3" class="span5">
+            <iframe width="100%" height="320px" frameborder="0" scrolling="no"
+                    src="http://mechanicaltask.dev.fabelier.org/apps/5?embeddable=1"></iframe>
+        </textarea>
 
-        <p>            <small><a href="http://mechanicaltask.dev.fabelier.org/apps/5">more information (data and template code source)</a></small>
+        <p>
+            <small><a href="http://mechanicaltask.dev.fabelier.org/apps/5">more information (data and template code
+                source)</a></small>
         </p>
     </div>
 </div>
@@ -314,9 +341,14 @@ need to be aware.
         <iframe width="100%" height="550" frameborder="0" scrolling="no"
                 src="http://mechanicaltask.dev.fabelier.org/apps/6?embeddable=1"></iframe>
         <br/> Copy & paste this code to embed it on your website
-        <textarea rows="3" class="span6"><iframe width="100%" height="550" frameborder="0" scrolling="no" src="http://mechanicaltask.dev.fabelier.org/apps/6?embeddable=1"></iframe></textarea>
+        <textarea rows="3" class="span6">
+            <iframe width="100%" height="550" frameborder="0" scrolling="no"
+                    src="http://mechanicaltask.dev.fabelier.org/apps/6?embeddable=1"></iframe>
+        </textarea>
 
-        <p>            <small><a href="http://mechanicaltask.dev.fabelier.org/apps/6">more information (data and template code source)</a></small>
+        <p>
+            <small><a href="http://mechanicaltask.dev.fabelier.org/apps/6">more information (data and template code
+                source)</a></small>
         </p>
     </div>
 </div>
@@ -333,6 +365,14 @@ TODO fun example with a "human cellular automaton"
 <a href="http://nico.maisonneuve.free.fr">NM - march 2012</a>
 </div>
 </div>
+<script type="text/javascript">
+    $(function () {
+        $("a[rel=div]").click(function (e) {
+            e.preventDefault();
+            $($(this).attr("href")).toggle();
+        });
+    });
+</script>
 <script type="text/javascript">
 
     var _gaq = _gaq || [];
