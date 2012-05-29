@@ -17,9 +17,16 @@ class AnswersController < ApplicationController
   def create
     @answer = Answer.new
     @answer.task=Task.find(params[:task_id])
-    @answer.save
+    @answer.user=current_or_guest_user
+    @answer.state=Answer::COMPLETED
+    @answer.input_from_form(params[:task_answer])
+    @answer.ft_sync=false
     respond_to do |format|
       if @answer.save
+
+        if (params[:sync]=="1")
+          FtSyncAnswers.perform_async([@answer])
+        end
         format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
         format.json { render json: @answer, status: :created, location: @answer }
       else
@@ -36,16 +43,7 @@ class AnswersController < ApplicationController
     @answer=Answer.find(params[:id])
     @answer.user=current_or_guest_user
     @answer.state=Answer::COMPLETED
-
-
-    answer=ActiveSupport::JSON.decode(params[:task_answer])
-    answer.each { |row|
-      row["task_id"]=@answer.task.id if row["task_id"].blank?
-      row["user_id"]=@answer.user.username if row["user_id"].blank?
-      row["created_at"]=Time.now if row["created_at"].blank?
-    }
-
-    @answer.answer=answer.to_json
+    @answer.input_from_form(params[:task_answer])
     @answer.ft_sync=false
 
     respond_to do |format|

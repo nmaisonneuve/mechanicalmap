@@ -4,367 +4,207 @@
         float: none;
     }
 </style>
-<div class="container">
+<div class="container-fluid">
 
-<div class="page-header">
-    <h1>MechanicalTask
-        <small>- Democratizing the building of spreadable,tranparent and remixable micro-apps</small>
-    </h1>
-</div>
-
-<div class="row">
-    <div class="span5">
-
-        <img style="width:100%" src="/assets/assembly-line2.jpg"/>
-        <br/><br/>
-
-        <p class="well">No need to deploy a server or a database to create your own micro-contribution
-            app. Build your own micro-contribution project
-            by creating or remixing existing micro-task template codes (html/javascript) and
-            embed it on your own web page on the fly.
-            <br/>
-            <br/>
-            <a href="/apps" class="btn  btn" style="float:right">Explore apps</a>
-            <a href="/apps/new" class="btn btn-primary btn">Build a micro-app</a>
-        </p>
-
+    <div class="page-header">
+        <h1>MechanicalTask
+            <small>- Democratizing the building of spreadable,tranparent and remixable micro-apps</small>
+        </h1>
     </div>
 
-    <div class="span7">
-        <h3>DEMO <small>(<a href="/apps">see other examples</a>)</small>
-        </h3>
-        <p> Play with this micro app you can embed in your web page like a youtube video.
-        <h4><a href="<%= app_url(@app) %>"><%= @app.name %></a></h4>
-        <iframe width="100%" height="300px" style="border: 1px solid #AAA" scrolling="no"
-                src="<%= app_url(@app) %>?embeddable=1"></iframe>
+    <div class="row">
+        <div class="span4">
 
-        <a rel="div" href="#toto" class="btn btn-small btn-danger" style="float:left;margin:5px">Spread / Embed it</a>
-        <a href="<%= editor_app_url(@app) %>" class="btn btn-small btn-success" style="float:left;margin:5px">source code</a>
-        <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>" class="btn btn-small btn-primary" style="float:left;margin:5px">Task Data</a>
-        <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>" class="btn btn-small btn-primary" style="float:left;margin:5px">Answer Data</a>
-        <a href="<%= app_url(@app) %>?embeddable=1" class="btn btn-small " style="float:left;margin:5px">Fullscreen</a>
+            <img style="width:100%" src="/assets/assembly-line2.jpg"/>
+            <br/><br/>
 
-        <!-- <h3>Features for a remix culture</h3> -->
-        <div id="toto" class="input" style="display:none; clear:both">
-            copy & paste this code to your web site to support further contributions from your visitors.
-            <textarea class="span7"><iframe width="100%" height="300px" style="border: 1px solid #AAA" scrolling="no" src="<%= app_url(@app) %>?embeddable=1"></iframe></textarea>
+            <p class="well">No need to deploy a server or a database to create your own micro-contribution
+                app. Build your own micro-contribution project
+                by creating or remixing existing micro-task template codes (html/javascript) and
+                embed it on your own web page on the fly.
+                <br/>
+                <br/>
+                <a href="/apps" class="btn  btn" style="float:right">Explore apps</a>
+                <a href="/apps/new" class="btn btn-primary btn">Build a micro-app</a>
+            </p>
+
         </div>
-        </p>
-    </div>
-</div>
 
-<hr class="soften">
-<div class="marketing">
-<h2> Background</h2>
+        <div class="span8">
+            <h3>DEMO
+                <small>(<a href="/apps">see other examples</a>)</small>
+            </h3>
+            <p> Play with this micro app you can embed in your web page like a youtube video.
+            <h4><a href="<%= app_url(@app) %>"><%= @app.name %></a></h4>
+            <iframe width="100%" height="300px" style="border: 1px solid #AAA" scrolling="no"
+                    src="<%= app_url(@app) %>?embeddable=1"></iframe>
 
-<div class="row">
-<div class="span12">
-<p><img src="https://docs.google.com/drawings/pub?id=1tK4GCgnKeRYK1JG-0vl6JtjiHsvL49F5l5H9id2tTxg&amp;w=344&amp;h=230"
-        style="float:left;margin:5px"><b>What is a micro-contribution?</b><br/> Micro-contributions are contributions of
-    any kind that someone
-    could quickly make remotely (or not) within a
-    small amount of time.
+            <a rel="div" href="#toto" class="btn btn-small btn-danger" style="float:left;margin:5px">Spread / Embed
+                it</a>
+            <a href="<%= editor_app_url(@app) %>" class="btn btn-small btn-success" style="float:left;margin:5px">source
+                code</a>
+            <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"
+               class="btn btn-small btn-primary" style="float:left;margin:5px">Task Data</a>
+            <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>"
+               class="btn btn-small btn-primary" style="float:left;margin:5px">Answer Data</a>
+            <a href="<%= app_url(@app) %>?embeddable=1" class="btn btn-small "
+               style="float:left;margin:5px">Fullscreen</a>
 
-    If we think about the diversity of contributions in participatory projects as a long tail with few core
-    people and a large majority of volatile
-    users,the goal of these micro-applications is to tap into the latter segment assuming that the sum of these
-    micro-contributions could leverage a subtantial work.
-
-</p>
-
-<p><b>What kind of micro-contributions?</b> <br/>e.g. analyzing a large flow of individual tweets, classifying a
-    large volume of images,
-    analyzing a large area on a map, segmenting very quickly a long video collaboratively, generating stories
-    via the writing of individual sentences
-    , or any kind of big data processable/generable more easily by volatile participants than the machine.
-</p>
-
-<p><b>What is MechanicalTask?</b><br/>
-    <!-- In the long tail theory, <i>niche</i> projects drives the largest amount of contributions. -->
-    MechanicalTask is a <b>toolkit</b> to democratize the launch of projects enabling micro-contributions from web
-    users, using basic knowledge in html/javascript.</p>
-<hr class="soften">
-<h2>Features </h2>
-<ul class="unstyled">
-    <li>
-        <div class="row">
-            <div class="span1"><img
-                    src="/assets/embedIcon.png" width="45" style="padding-top: 20px;padding-left: 20px">
+            <!-- <h3>Features for a remix culture</h3> -->
+            <div id="toto" class="input" style="display:none; clear:both">
+                copy & paste this code to your web site to support further contributions from your visitors.
+                <textarea class="span7">
+                    <iframe width="100%" height="300px" style="border: 1px solid #AAA" scrolling="no"
+                            src="<%= app_url(@app) %>?embeddable=1"></iframe>
+                </textarea>
             </div>
-            <div class="span11"><h4>Embed your micro-app like a youtube video</h4>
+            </p>
+        </div>
+    </div>
 
+    <hr class="soften">
+    <div class="marketing">
+        <h2> Background</h2>
+
+        <div class="row">
+            <div class="span12">
                 <p>
-                    MechanicalTask is <!--neither a platform hosting crowdsourcing projects or a framework
+                    <img src="https://docs.google.com/drawings/pub?id=1tK4GCgnKeRYK1JG-0vl6JtjiHsvL49F5l5H9id2tTxg&amp;w=344&amp;h=230"
+                         style="float:left;margin:5px"><b>What is a micro-contribution?</b><br/> Micro-contributions are
+                    contributions of
+                    any kind that someone
+                    could quickly make remotely (or not) within a
+                    small amount of time.
+
+                    If we think about the diversity of contributions in participatory projects as a long tail with few
+                    core
+                    people and a large majority of volatile
+                    users,the goal of these micro-applications is to tap into the latter segment assuming that the sum
+                    of these
+                    micro-contributions could leverage a subtantial work.
+
+                </p>
+
+                <p><b>What kind of micro-contributions?</b> <br/>e.g. analyzing a large flow of individual tweets,
+                    classifying a
+                    large volume of images,
+                    analyzing a large area on a map, segmenting very quickly a long video collaboratively, generating
+                    stories
+                    via the writing of individual sentences
+                    , or any kind of big data processable/generable more easily by volatile participants than the
+                    machine.
+                </p>
+
+                <p><b>What is MechanicalTask?</b><br/>
+                    <!-- In the long tail theory, <i>niche</i> projects drives the largest amount of contributions. -->
+                    MechanicalTask is a <b>toolkit</b> to democratize the launch of projects enabling
+                    micro-contributions from web
+                    users, using basic knowledge in html/javascript.</p>
+                <hr class="soften">
+                <h2>Features </h2>
+                <ul class="unstyled">
+                    <li>
+                        <div class="row">
+                            <div class="span1"><img
+                                    src="/assets/embedIcon.png" width="45" style="padding-top: 20px;padding-left: 20px">
+                            </div>
+                            <div class="span11"><h4>Embed your micro-app like a youtube video</h4>
+
+                                <p>
+                                    MechanicalTask is <!--neither a platform hosting crowdsourcing projects or a framework
                             for coding applications.
                             It's -->a web service generating micro-applications embeddable on your website like a
-                    youtube
-                    video or for mobile phones. No need to deploy a server to setup an basic micro-app. Once
-                    embedded on a website, users/visitors can start contributing to some tasks.
-                    (note: you are responsible to host any required tutorials/doc on your website).
-                    <!-- be creative, you can build custom captcha 'with a purpose'
-                for your website, or active banner you can distribute to your partners'
-                websites instead of advertising. -->
-                </p>
+                                    youtube
+                                    video or for mobile phones. No need to deploy a server to setup an basic micro-app.
+                                    Once
+                                    embedded on a website, users/visitors can start contributing to some tasks.
+                                    (note: you are responsible to host any required tutorials/doc on your website).
+                                    <!-- be creative, you can build custom captcha 'with a purpose'
+                                for your website, or active banner you can distribute to your partners'
+                                websites instead of advertising. -->
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="span1"><img
+                                    src="/assets/icon-EMM.png"
+                                    width="45" style="padding-top: 20px;padding-left: 20px"></div>
+                            <div class="span11"><h4>store and share easily your data in the cloud </h4>
+
+                                <p>
+                                    MechanicalTask is a distributed infrastructure using <a
+                                        href="http://www.google.com/fusiontables/public/tour/index.html"> google fusion
+                                    tables</a> as database to store your tasks and the answers of volunteers. We use
+                                    google
+                                    fusion and
+                                    not an internal database
+                                    because it enables any third party to simply
+                                    view, export, analyze, visualize the raw answers or event insert new tasks in a
+                                    more
+                                    transparent way.
+
+                                    <!-- MechanicalTask is a kind of search engine indexing a
+                                first fusion table
+                                representing the stream of your micro-tasks to process, manages the allocation of tasks
+                                (with a
+                                given redundancy) according to your users and send the results to
+                                another fusion table (output) -->
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="row">
+                            <div class="span1"><img
+                                    src="/assets/media-shuffle.png" width="45"
+                                    style="padding-top: 20px;padding-left: 20px"></div>
+                            <div class="span11"><h4>Copy & remix apps: toward an ecosystem</h4>
+
+                                <p>
+                                    You are in charge to code the UI/client-side to collect the data via an
+                                    HTML/javascript
+                                    template. But no need to code locally and deploy it on a server, or to install
+                                    something
+                                </p>
+
+                                <p>
+                                    MechanicalTask shortcuts the launch of an app by using the <a
+                                        href="https://gist.github.com">Gist
+                                    platform</a> as a first place to host or directly edit online your code
+                                    via their online editor</i>. Give the URL of your Gist snippet of code and
+                                    MechanicalTask will
+                                    generate or update the app on the fly when changes are detected.
+                                </p>
+
+                                <p>
+                                    By using Gist , we integrate its social coding features in the building of
+                                    micro-apps e.g.
+                                    (public code, easy remix/fork, code comments) and facilitate the
+                                    emergence of
+                                    eco-system with best practices in micro-tasking. For instance newcomers can easily
+                                    fork/remix
+                                    existing micro-apps in few minutes.
+
+                                </p>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <a href="/more" class="btn btn-primary">More info (How does it work & tutorial)</a>
+
             </div>
         </div>
-    </li>
-    <li>
-        <div class="row">
-            <div class="span1"><img
-                    src="/assets/icon-EMM.png"
-                    width="45" style="padding-top: 20px;padding-left: 20px"></div>
-            <div class="span11"><h4>store and share easily your data in the cloud </h4>
-
-                <p>
-                    MechanicalTask is a distributed infrastructure using <a
-                        href="http://www.google.com/fusiontables/public/tour/index.html"> google fusion
-                    tables</a> as database to store your tasks and the answers of volunteers. We use google
-                    fusion and
-                    not an internal database
-                    because it enables any third party to simply
-                    view, export, analyze, visualize the raw answers or event insert new tasks in a
-                    more
-                    transparent way.
-
-                    <!-- MechanicalTask is a kind of search engine indexing a
-                first fusion table
-                representing the stream of your micro-tasks to process, manages the allocation of tasks
-                (with a
-                given redundancy) according to your users and send the results to
-                another fusion table (output) -->
-                </p>
-            </div>
-        </div>
-    </li>
-
-    <li>
-        <div class="row">
-            <div class="span1"><img
-                    src="/assets/media-shuffle.png" width="45" style="padding-top: 20px;padding-left: 20px"></div>
-            <div class="span11"><h4>Copy & remix apps: toward an ecosystem</h4>
-
-                <p>
-                    You are in charge to code the UI/client-side to collect the data via an HTML/javascript
-                    template. But no need to code locally and deploy it on a server, or to install something
-                </p>
-
-                <p>
-                    MechanicalTask shortcuts the launch of an app by using the <a href="https://gist.github.com">Gist
-                    platform</a> as a first place to host or directly edit online your code
-                    via their online editor</i>. Give the URL of your Gist snippet of code and MechanicalTask will
-                    generate or update the app on the fly when changes are detected.
-                </p>
-
-                <p>
-                    By using Gist , we integrate its social coding features in the building of micro-apps e.g.
-                    (public code, easy remix/fork, code comments) and facilitate the
-                    emergence of
-                    eco-system with best practices in micro-tasking. For instance newcomers can easily fork/remix
-                    existing micro-apps in few minutes.
-
-                </p>
-
-            </div>
-        </div>
-    </li>
-</ul>
-
-<hr class="soften">
-<h2>How does it work?</h2>
-
-<span class="label label-warning">Note</span> Google fusion has <a
-        href="https://developers.google.com/fusiontables/docs/developers_guide#Constraints">some constraints</a> you
-need to be aware.
-
-
-<img src="https://docs.google.com/drawings/pub?id=1fvbDL2pcMHqWn9B8o1D33EPAdF3vK7-UozXpEbn8XyQ&amp;w=800">
-
-<!-- <img src="/assets/architecture.jpg" width="100%"/> -->
-<hr/>
-<h2> Demo of web widgets</h2>
-
-<div class="row">
-    <div class="span7">
-        <h3>Images classification</h3>
-
-        <p>A common toy example is to classify a large amount of photos.
-            In this example we assume you have csv or xsl spreadsheets with all the url of the images to classify.
-            Each row is a task with for instance the url of the image to classify.
-
-            Once this table imported on a google fusion table (you can also have a programm filling/updating the
-            fusion table to add new tasks/images), you need to add the ID of the google fusion and
-            create the UI Template to generate the web widget and the output table. </p>
-        <ul class="thumbnails">
-            <li class="thumbnail span3">
-                <a href="/assets/ft_input_images.jpg"><img src="/assets/ft_input_images.jpg"
-                                                           style="max-width: 200px"/></a>
-
-                <p>
-                    <small>
-                        Tasks input table with a list of images and other contextual information
-                    </small>
-                </p>
-            </li>
-            <li class="thumbnail span3">
-                <a href="/assets/web_widget_image.jpg"><img src="/assets/web_widget_image.jpg"
-                                                            style="max-width: 200px"/></a>
-
-                <p>
-                    <small>
-                        Generated web widget to classify images.
-                    </small>
-                </p>
-            </li>
-        </ul>
-    </div>
-    <div class="span5">
-
-        <iframe width="380px" height="360px" frameborder="0" scrolling="no"
-                src="http://mechanicaltask.dev.fabelier.org/apps/5?embeddable=1"
-                style="border: 1px solid #000000"></iframe>
-        <br/> Copy & paste this code to embed it on your website
-        <textarea rows="3" class="span5">
-            <iframe width="100%" height="320px" frameborder="0" scrolling="no"
-                    src="http://mechanicaltask.dev.fabelier.org/apps/5?embeddable=1"></iframe>
-        </textarea>
-
-        <p>
-            <small><a href="http://mechanicaltask.dev.fabelier.org/apps/5">more information (data and template code
-                source)</a></small>
-        </p>
     </div>
 </div>
-<hr/>
-<div class="row">
-    <div class="span6">
-        <h3>Tagging Images</h3>
+<footer>
+    <p> Credits - <a href="http://nico.maisonneuve.free.fr" rel="author">n.maisonneuve </a> - march 2012</p>
 
-        <p>A similar example is about annotating large amount of images e.g. tagging galaxies like GalaxyZoo.
-            In this case the input table is the same as for the previous example about classifying images.
-            Only the instructions , and tools to process the task change. So only the UI template needs to be updated.
+</footer>
 
-        </p>
-
-    </div>
-    <div class="span6">
-
-    </div>
-</div>
-<hr/>
-<div class="row">
-    <div class="span6">
-        <h3>Analyzing a large area</h3>
-        Let assume you want to create quickly a crowdmapping project asking to volunteers to identify
-        objects inside a large area.
-        <ul>
-            <li>First you need to create a fusion table representing the micro-tasks to process. You can generate this
-                table yourself. we also propose you a task generator cutting your map into a grid
-                of smaller
-                areas, easier to analyze individually. The result is sent to a google fusion table.
-                You need to set up the permission of the fusion table so it is
-                publicly visible if it is not already done.
-            </li>
-            <li>>Then you need create a crowdsourcing project. first add the encrypted ID of the fusion table
-                so MechanicalTask can index the table (without understanding that is about mapping).
-            </li>
-            <li>As you are responsible of the interpretation of the tasks e.g the UI and the information you
-                want to collect, you also must add a script template. This template can be copied and modified from
-                other projects.
-                This will generate a web widget and another fusion table to store the answers of
-                volunteers.
-            </li>
-            <li>Finally you can embed the web widget in your website and add further information (e.g. tutorial) if
-                required.
-            </li>
-            <li>At any time you have visualize and export the answers via the google fusion.</li>
-        </ul>
-        <ul class="thumbnails">
-            <li class="thumbnail span3" style="height: 160px">
-                <a href="/assets/generator.jpg"><img src="/assets/generator.jpg" style="max-width: 200px"/></a>
-
-                <p>
-                    <small>Task generator helping you to divide the analysis of a large area</small>
-                </p>
-            </li>
-            <!--    <li class="thumbnail span3" style="height: 160px">
-                <a href="/assets/ft_input_table.jpg"><img src="/assets/ft_input_table.jpg"
-                                                          style="max-width: 200px"/></a>
-
-                <p>
-                    <small>Generated Tasks input table with each row representing a task = a region to analyze
-                        (1/2)
-                    </small>
-                </p>
-            </li>-->
-            <li class="thumbnail span3">
-                <a href="/assets/ft_input.jpg"><img src="/assets/ft_input.jpg" style="max-width: 200px"/></a>
-
-                <p>
-                    <small>GeoVisualisation (using the google fusion tools) of the generated input google fusion table
-                        with a lots of small areas
-                    </small>
-                </p>
-            </li>
-            <!--         <li class="thumbnail span3">
-                <a href="/assets/newproject.jpg"><img src="/assets/newproject.jpg"
-                                                      style="max-width: 200px"/></a>
-
-                <p>
-                    <small>To create a new project, add the ID of the fusion table and a script template</small>
-                </p>
-            </li>-->
-            <li class="thumbnail span3">
-                <a href="/assets/web_widget_map.jpg"><img src="/assets/web_widget_map.jpg"
-                                                          style="max-width: 200px"/></a>
-
-                <p>
-                    <small>Generated web widget you can embed on your web site</small>
-                </p>
-            </li>
-            <li class="thumbnail span3">
-                <a href="/assets/ft_output_map2.jpg"><img src="/assets/ft_output_map2.jpg"
-                                                          style="max-width: 200px"/></a>
-
-                <p>
-                    <small>GeoVisualization (using the google fusion tools) of the Generated output fusion table storing
-                        the answers
-                    </small>
-                </p>
-            </li>
-        </ul>
-    </div>
-
-    <div class="span6">
-        <p><strong> Play with the web widget!</strong>
-            <small><a href="#">more information (data and code source)</a></small>
-        </p>
-        <iframe width="100%" height="550" frameborder="0" scrolling="no"
-                src="http://mechanicaltask.dev.fabelier.org/apps/6?embeddable=1"></iframe>
-        <br/> Copy & paste this code to embed it on your website
-        <textarea rows="3" class="span6">
-            <iframe width="100%" height="550" frameborder="0" scrolling="no"
-                    src="http://mechanicaltask.dev.fabelier.org/apps/6?embeddable=1"></iframe>
-        </textarea>
-
-        <p>
-            <small><a href="http://mechanicaltask.dev.fabelier.org/apps/6">more information (data and template code
-                source)</a></small>
-        </p>
-    </div>
-</div>
-
-<hr/>
-
-
-<h2>Task composition: from micro to macro tasks</h2>
-
-TODO fun example with a "human cellular automaton"
-<img src="http://www.economicsnetwork.ac.uk/cheer/ch17/hand1.gif"/>
-<hr/>
-<h2>Credits</h2>
-<a href="http://nico.maisonneuve.free.fr">NM - march 2012</a>
-</div>
-</div>
 <script type="text/javascript">
     $(function () {
         $("a[rel=div]").click(function (e) {
