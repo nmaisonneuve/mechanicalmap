@@ -56,7 +56,7 @@ var AbstractMicroTask = Class.extend({
     },
 
     loading:function () {
-        console.log("loading");
+
     },
 
     initialize_ui:function () {
@@ -101,6 +101,7 @@ var AbstractMicroTask = Class.extend({
     // abstract function
     loading:function(){},
     loaded:function(){},
+
     no_available_task:function () {
         alert("no task available");
         //abstract function  to implement in the sub class
@@ -117,13 +118,15 @@ var AbstractMicroTask = Class.extend({
         if (this.cache.length == 0) {
             this.caching_task(function () {
                 callback(me.cache.shift());
+                this.loaded();
             });
         } else {
             // else we consume directly
-            this.loaded();
+
             callback(this.cache.shift());
             //and cache asynchronously
             this.caching_task(function () {
+                this.loaded();
             });
         }
 
