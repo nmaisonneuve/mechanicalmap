@@ -11,15 +11,14 @@
       <h2><%= @app.name %></h2>
       <% if @app.user==current_user %>
           <div>
-            <%= link_to 'Code Editor', editor_app_path(@app), :class => "btn btn-primary" %>
-             <%= link_to 'Setting', edit_app_path(@app), :class => "btn " %>
-            <%= link_to 'Delete', @app, confirm: 'Are you sure?', method: :delete, :class=>"btn btn-danger" %>
+            <%= link_to 'Setting', edit_app_path(@app), :class => "btn " %>
+            <%= link_to 'Delete', @app, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %>
           </div>
       <% end %>
 
       <%= @app.description %>
       <hr/>
-
+      <h4>Activity</h4>
 
 
       <% completed, size=@app.completion %>
@@ -27,7 +26,7 @@
       <div class="progress progress-info  progress-striped">
         <div class="bar" style="width: <%= completed.to_f/size.to_f*100 %>%;"></div>
       </div>
-      <b> Last contributors</b>
+      Last contributors
 
       <ul style="padding: 0px;margin: 0; margin-top: 3px;">
         <% @app.contributors.order('users.updated_at desc').limit(5).each { |u| %>
@@ -38,16 +37,34 @@
         <% } %>
       </ul>
       <hr/>
-      <h4>Data & Source code</h4>
 
-      <p>
-        The raw answers are regularly updated on the google fusion table. You can analyze and
-        aggregate them yourself.
-      </p>
-      <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"> >> Task data</a>
-      <br/> <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>"> >> Answers data</a>
-      <br/> <a href="#source" data-toggle="modal">>> Task template Code</a>
+      <h3>Data & Source code</h3>
+      <br/>
+      <ul class="unstyled">
+        <li>
+          <p><%= link_to 'Code Source Editor', editor_app_path(@app), :class => "btn btn-primary" %>
+            <br/>
+            <small>Edit on the fly the source code if you are its creator,  see & copy it for
+              the others.
+            </small>
+          </p>
+        </li>
 
+
+        <li>
+          <p><%= link_to 'Answers data', "http://www.google.com/fusiontables/DataSource?docid=#{@app.output_ft}", :class => "btn btn-success" %>
+            <br/>
+            <small>Analyze yourself the raw answers regularly updated to the google fusion table.</small>
+          </p>
+        </li>
+
+        <li>
+          <p><%= link_to 'Task data', "http://www.google.com/fusiontables/DataSource?docid=#{@app.input_ft}", :class => "btn btn-failure" %>
+            <br/>
+            <small>See the list of tasks from the google fusion table.</small>
+          </p>
+        </li>
+      </ul>
 
 
       <% if user_signed_in? && (@app.user==current_user) %>
@@ -65,20 +82,7 @@
         </textarea>
       </p>
 
-      <div class="modal hide" id="source">
-        <div class="modal-header">
-          <a class="close" data-dismiss="modal">×</a>
 
-          <h3>Source code</h3>
-        </div>
-        <div class="modal-body">
-        <pre class=" pre-scrollable">
-          <%= h @app.script.chomp %></pre>
-        </div>
-        <div class="modal-footer">
-          you can copy and transform this code to create your own micro-tasking project.
-        </div>
-      </div>
     </div>
 
   </div>

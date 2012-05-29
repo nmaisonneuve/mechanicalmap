@@ -7,33 +7,74 @@
 <div class="container">
 <div class="row">
     <div class="span12" style=";margin-bottom: 20px">
-        <h1>MechanicalTask <small>Democratizing the building of micro-contribution based apps</small></h1>
+	<h1>MechanicalTask <small>- Democratizing the building of spreadable,tranparent and remixable micro-apps </small></h1>
     </div>
 </div>
 
 <div class="row">
     <div class="span4" >
 
-        <h3>Embeddable,Transparent, Remixable </h3>
-        <p class="well">No need to deploy a server or a database to create your own micro-task
-            application. Build your own micro-contribution project
+	<img style="width:100%" src="/assets/assembly-line2.jpg"/>
+	<br/><br/>
+	<p class="well">No need to deploy a server or a database to create your own micro-contribution
+            app. Build your own micro-contribution project
             by creating or remixing existing micro-task template codes (html/javascript) and
-            embed it on your own web page.</p>
-        <img style="width:100%" src="/assets/assembly-line2.jpg"/>
-        <p>
-            <br/>
-            <a href="/apps" class="btn  btn" style="float:right">Explore</a>
+	    embed it on your own web page on the fly.
+	    <br/>
+	    <br/>
+            <a href="/apps" class="btn  btn" style="float:right">Explore apps</a>
             <a href="/apps/new" class="btn btn-primary btn">Build a micro-app</a>
-
-
-        </p>
+	    </p>
+       
     </div>
 
+    <%
+    app=App.find(4)
+    %>
     <div class="span7">
-
-
+	<h3>DEMO: Play with this random micro-app, <small><a href="/apps">see other examples</a></small></h3>
+<iframe width="100%" height="300px"  style="border: 1px solid #AAA" scrolling="no" src="http://mechanicaltask.dev.fabelier.org/apps/7?embeddable=1"></iframe>
+</p>
+<ul>
+    <li><b>Spread / Embed </b> <a href="#<%= app.input_ft %>">it on your website</a></li>
+ <li><b>Open source code:</b> see the <a href="#<%= app.input_ft %> ">micro task template</a></li>
+<li><b>Open data</b>: see <a href="# <%= app.output_ft %>">the tasks</a> or <a href="#">the answers</a> from google fusion tables</li>
+</ul>
         <!-- <h3>Features for a remix culture</h3> -->
 
+    </div>
+</div>
+
+<hr class="soften">
+<div class="marketing">
+<h2> Background</h2>
+
+<div class="row">
+    <div class="span12">
+<p><img src="https://docs.google.com/drawings/pub?id=1tK4GCgnKeRYK1JG-0vl6JtjiHsvL49F5l5H9id2tTxg&amp;w=344&amp;h=230" style="float:left;margin:5px"><b>What is a micro-contribution?</b><br/> Micro-contributions are contributions of any kind that someone
+            could quickly make remotely (or not) within a
+            small amount of time.
+         
+            If we think about the diversity of contributions in participatory projects as a long tail with few core
+            people and a large majority of volatile
+            users,the goal of these micro-applications is to tap into the latter segment assuming that the sum of these
+            micro-contributions could leverage a subtantial work.
+
+        </p>
+
+        <p><b>What kind of micro-contributions?</b> <br/>e.g. analyzing a large flow of individual tweets, classifying a
+            large volume of images,
+            analyzing a large area on a map, segmenting very quickly a long video collaboratively, generating stories
+            via the writing of individual sentences
+            , or any kind of big data processable/generable more easily by volatile participants than the machine.
+        </p>
+
+        <p><b>What is MechanicalTask?</b><br/>
+	<!-- In the long tail theory, <i>niche</i> projects drives the largest amount of contributions. -->
+	MechanicalTask is a <b>toolkit</b> to democratize the launch of projects enabling micro-contributions from web users, using basic knowledge in html/javascript.</p>
+<hr class="soften">
+	<section>
+	<h2>Features </h2>
         <ul class="unstyled">
             <li>
                 <div class="row">
@@ -53,7 +94,7 @@
                             <!-- be creative, you can build custom captcha 'with a purpose'
                         for your website, or active banner you can distribute to your partners'
                         websites instead of advertising. -->
-                        </p></div>
+                        </p>
                 </div>
             </li>
             <li>
@@ -61,9 +102,8 @@
                     <div class="span1" ><img
                             src="/assets/icon-EMM.png"
                             width="45" style="padding-top: 20px;padding-left: 20px"></div>
-                    <div class="span6"><h4>no black box database: store your data in the cloud </h4>
-
-                        <p>
+                    <div class="span6"><h4>store and share easily your data in the cloud </h4>
+			<p>
                             MechanicalTask is a distributed infrastructure using <a
                                 href="http://www.google.com/fusiontables/public/tour/index.html"> google fusion
                             tables</a> as database to store your tasks and the answers of volunteers. We use google
@@ -80,7 +120,7 @@
                         (with a
                         given redundancy) according to your users and send the results to
                         another fusion table (output) -->
-                        </p></div>
+                        </p>
                 </div>
             </li>
 
@@ -88,15 +128,15 @@
                 <div class="row">
                     <div class="span1" ><img
                             src="/assets/media-shuffle.png" width="45" style="padding-top: 20px;padding-left: 20px"></div>
-                    <div class="span6"><h4>Code & remix apps in the cloud</h4>
-
+                    <div class="span6"><h4>Copy & remix apps: toward an ecosystem</h4>
+			
                         <p>
-                            You are in charge of the user interface to collect the data via an HTML/javascript
+                            You are in charge to code the UI/client-side to collect the data via an HTML/javascript
                             template. But no need to code locally and deploy it on a server, or to install something
                             </p>
                         <p>
-                            MechanicalTask shortcuts the traditional deployment process by using the <a href="https://gist.github.com">Gist platform</a> as a first place to host or directly edit online your code
-                            via their editor</i>. Give the URL of your Gist snippet of code and MechanicalTask will generate or update the app on the fly when changes are detected.
+                            MechanicalTask shortcuts the launch of an app by using the <a href="https://gist.github.com">Gist platform</a> as a first place to host or directly edit online your code
+                            via their online editor</i>. Give the URL of your Gist snippet of code and MechanicalTask will generate or update the app on the fly when changes are detected.
                            </p>
                         <p>
                              By using Gist , we integrate its social coding features in the building of micro-apps e.g. (public code, easy remix/fork, code comments) and facilitate the
@@ -104,44 +144,11 @@
                             eco-system with best practices in micro-tasking. For instance newcomers can easily fork/remix existing micro-apps in few minutes.
 
                         </p>
-                    </div>
+                    
                 </div>
             </li>
         </ul>
-    </div>
-</div>
-
-<hr class="soften">
-<div class="marketing">
-<h2> Overview</h2>
-
-<div class="row">
-    <div class="span12">
-
-        <p><b>What is a micro-contribution?</b><br/> Micro-contributions are contributions of any kind that someone
-            could quickly make remotely (or not) within a
-            small amount of time.
-            A micro-application manages micro-contributions.
-            If we think about the diversity of contributions in participatory projects as a long tail with few core
-            people and a large majority of volatile
-            users,the goal of these micro-applications is to tap into this segment assuming that the sum of these
-            micro-contributions could leverage a subtantial work.
-
-        </p>
-
-        <p><b>What kind of micro-contributions?</b> <br/>e.g. analyzing a large flow of individual tweets, classifying a
-            large volume of images,
-            analyzing a large area on a map, segmenting very quickly a long video collaboratively, generating stories
-            via the writing of individual sentences
-            , or any kind of big data difficulty processable/generable by the machine but cutable in smaller parts and
-            processable by volatile participants.
-        </p>
-
-        <p><b>What is MechanicalTask?</b><br/>
-            MechanicalTask is a <b>cloud toolkit</b>, an attempt to democratize the development of crowdsourcing
-            projects
-            to anyone having some basic knowledge in html/javascript.</p>
-
+</section>
 <hr class="soften">
 <h2>How does it work?</h2>
 
@@ -191,9 +198,7 @@ need to be aware.
         </ul>
     </div>
     <div class="span5">
-        <p><strong> Play with the web widget!</strong>
-<iframe width="100%" height="100%" frameborder="0" scrolling="no" src="http://mechanicaltask.dev.fabelier.org/apps/7?embeddable=1"></iframe>
-        </p>
+    
         <iframe width="380px" height="360px" frameborder="0" scrolling="no"
                 src="http://mechanicaltask.dev.fabelier.org/apps/5?embeddable=1"
                 style="border: 1px solid #000000"></iframe>

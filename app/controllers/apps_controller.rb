@@ -54,11 +54,7 @@ class AppsController < ApplicationController
 
   def editor
     @app = App.find(params[:id])
-    if current_user!=@app.user
-      redirect_to root_url
-    else
       render :layout => false
-    end
   end
 
 
