@@ -1,4 +1,5 @@
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
+
 
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <div class="container">
@@ -9,81 +10,91 @@
 
 
       <h2><%= @app.name %></h2>
-      <% if @app.user==current_user %>
-          <div>
-            <%= link_to 'Setting', edit_app_path(@app), :class => "btn " %>
-            <%= link_to 'Delete', @app, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %>
+
+      <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+          <a href="#info" data-toggle="tab">Info</a>
+        </li>
+        <li >
+          <a href="#activity" data-toggle="tab">Activity</a>
+        </li>
+      </ul>
+
+
+      <div class="tab-content">
+        <div class="tab-pane" id="activity">
+          <h4>Activity</h4>
+          <% completed, size=@app.completion %>
+          <%= completed %> / <%= size %> answers.
+          <div class="progress progress-info  progress-striped">
+            <div class="bar" style="width: <%= completed.to_f/size.to_f*100 %>%;"></div>
           </div>
-      <% end %>
+          Last contributors
 
-      <%= @app.description %>
-      <hr/>
-      <h4>Activity</h4>
+          <ul style="padding: 0px;margin: 0; margin-top: 3px;">
+            <% @app.contributors.order('users.updated_at desc').limit(5).each { |u| %>
+                <li style="list-style-type: none;">
+                  <%= gravatar_image_tag(u.email, :title => u.username, :gravatar => {:default => :identicon, :size => 20}) %>
+                  contributed <%= time_ago_in_words(u.updated_at) %> ago
+                </li>
+            <% } %>
+          </ul>
+        </div>
 
+        <div id="info" class="tab-pane fade in active">
+          <%= @app.description %>
 
-      <% completed, size=@app.completion %>
-      <%= completed %> / <%= size %> answers.
-      <div class="progress progress-info  progress-striped">
-        <div class="bar" style="width: <%= completed.to_f/size.to_f*100 %>%;"></div>
-      </div>
-      Last contributors
-
-      <ul style="padding: 0px;margin: 0; margin-top: 3px;">
-        <% @app.contributors.order('users.updated_at desc').limit(5).each { |u| %>
-            <li style="list-style-type: none;">
-              <%= gravatar_image_tag(u.email, :title => u.username, :gravatar => {:default => :identicon, :size => 20}) %>
-              contributed <%= time_ago_in_words(u.updated_at) %> ago
+          <br/>
+          <ul class="unstyled">
+            <li>
+              <p><small>
+                Edit on the fly the source code if you are its creator, see & copy it for
+                  the others.</small><br/>                <%= link_to 'Code Source', editor_app_path(@app), :class => "btn btn-success btn-small" %>
+              </p>
             </li>
-        <% } %>
-      </ul>
-      <hr/>
+            <li>
+              <p><small>Analyze yourself the raw answers (the Google fusion table is updated every 5mins).</small>
+                <br/>
+                <%= link_to 'Answers data', "http://www.google.com/fusiontables/DataSource?docid=#{@app.output_ft}", :class => "btn btn-primary btn-small" %>
+                <%= link_to 'Tasks data', "http://www.google.com/fusiontables/DataSource?docid=#{@app.input_ft}", :class => "btn btn-primary btn-small" %>
 
-      <h3>Data & Source code</h3>
-      <br/>
-      <ul class="unstyled">
-        <li>
-          <p><%= link_to 'Code Source Editor', editor_app_path(@app), :class => "btn btn-primary" %>
-            <br/>
-            <small>Edit on the fly the source code if you are its creator,  see & copy it for
-              the others.
-            </small>
-          </p>
-        </li>
+              </p>
+            </li>
 
+            <li>
+              <p><small>Copy & paste this code to embed it in your facebook wall/blog.</small>
+                <textarea rows="4" class="span4"><iframe width="100%" height="100%" frameborder="0" scrolling="no" src="<%= app_url(@app, :embeddable => 1) %>"></iframe>
+                </textarea>
+              </p>
+            </li>
+          </ul>
 
-        <li>
-          <p><%= link_to 'Answers data', "http://www.google.com/fusiontables/DataSource?docid=#{@app.output_ft}", :class => "btn btn-success" %>
-            <br/>
-            <small>Analyze yourself the raw answers regularly updated to the google fusion table.</small>
-          </p>
-        </li>
+          <% if @app.user==current_user %>
+              <div>
+                <%= link_to 'Setting', edit_app_path(@app), :class => "btn btn-small" %>
+                <%= link_to 'Delete App', @app, confirm: 'Are you sure?', method: :delete, :class => "btn btn-small btn-danger" %>
+              </div>
+          <% end %>
 
-        <li>
-          <p><%= link_to 'Task data', "http://www.google.com/fusiontables/DataSource?docid=#{@app.input_ft}", :class => "btn btn-failure" %>
-            <br/>
-            <small>See the list of tasks from the google fusion table.</small>
-          </p>
-        </li>
-      </ul>
-
-
-      <% if user_signed_in? && (@app.user==current_user) %>
-          <hr/>
-          <h4>Admin</h4>
-
-      <% end %>
+        </div>
+      </div>
     </div>
 
     <div class="span8">
       <iframe width="100%" height="400" scrolling="no" frameborder="0" src="<%= app_url(@app, :embeddable => 1) %>"></iframe>
-      <p>copy & paste this code to embed this micro-app in your own web site, blog.
-        <textarea width="100%" rows="4" class="span8">
-          <iframe width="100%" height="100%" frameborder="0" scrolling="no" src="<%= app_url(@app, :embeddable => 1) %>"></iframe>
-        </textarea>
-      </p>
+
 
 
     </div>
 
   </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#myTab a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        })
+    });
+</script>

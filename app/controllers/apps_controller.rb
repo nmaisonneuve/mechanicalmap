@@ -110,7 +110,7 @@ class AppsController < ApplicationController
         #  @app.ft_index_tasks(params[:app_redundancy].to_i)
           @app.ft_create_output(schema, current_user.email)
         end
-        format.html { redirect_to @app, notice: 'app was successfully created.' }
+        format.html { redirect_to editor_app_path(@app), notice: 'app was successfully created.' }
         format.json { render json: @app, status: :created, location: @app }
       else
         format.html { render action: "new" }

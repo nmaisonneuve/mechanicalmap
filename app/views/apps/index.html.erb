@@ -20,18 +20,16 @@
                       <small> Created <%= time_ago_in_words(app.created_at) %> ago </small>
                     </p>
                 <% end %>
-                <p>
-                  <%= app.description %></p>
 
                 <div class="progress progress-info  progress-striped">
                   <div class="bar" style="width:<%= (completed.to_f/size.to_f)*100  %>%;"></div>
                 </div>
 
                 <div style="text-align: center">
-                  <%= link_to "View", app_path(app), :class=>"btn btn-primary" %>
+                  <%= link_to "View", app_path(app), :class=>"btn btn-primary btn-small" %>
                   <% p current_or_guest_username
                      if app.user == current_user %>
-                    <%= link_to "Code Editor", editor_app_path(app), :class=>"btn btn " %>
+                    <%= link_to "Soure code", editor_app_path(app), :class=>"btn btn-success btn-small" %>
                   <% end %>
                 </div>
 
