@@ -118,7 +118,7 @@ var AbstractMicroTask = Class.extend({
         if (this.cache.length == 0) {
             this.caching_task(function () {
                 callback(me.cache.shift());
-                this.loaded();
+                me.loaded();
             });
         } else {
             // else we consume directly
@@ -126,7 +126,7 @@ var AbstractMicroTask = Class.extend({
             callback(this.cache.shift());
             //and cache asynchronously
             this.caching_task(function () {
-                this.loaded();
+                me.loaded();
             });
         }
 

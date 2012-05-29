@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d6ad8450-30bb-4e34-983c-de221ba7f1f7" name="Default" comment="">
       <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\test_annotation.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js" />
     </list>
     <ignored path="mechanicalmap.iws" />
@@ -112,7 +111,7 @@
       <file leaf-file-name="abstract_micro_task.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="128" column="30" selection-start="3854" selection-end="3854" vertical-scroll-proportion="0.93950176">
+            <state line="128" column="18" selection-start="3840" selection-end="3840" vertical-scroll-proportion="0.93950176">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -846,7 +845,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="128" column="30" selection-start="3854" selection-end="3854" vertical-scroll-proportion="0.93950176">
+        <state line="128" column="18" selection-start="3840" selection-end="3840" vertical-scroll-proportion="0.93950176">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
