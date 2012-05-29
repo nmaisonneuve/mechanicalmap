@@ -1,53 +1,47 @@
-<link type="text/css" href="/assets/jquery-ui-1.8.16.custom.css" />
-<link type="text/css" href="/assets/bootstrap.css" />
+<link type="text/css" href="/assets/jquery-ui-1.8.16.custom.css"/>
+<link type="text/css" href="/assets/bootstrap.css"/>
 
 <div class="container">
-  <div class="row">
-    <div class="span12">
-      <div id="slider"></div>
+<h1> Apps </h1>
 
-      <ul class="thumbnails">
+  <% @apps.each do |app|
+    completed, size=app.completion
+    u=app.user
+  %>
+      <hr/>
+      <div class="row">
+        <div class="span4">
 
-        <% @apps.each do |app|
-            completed,size=app.completion
-            u=app.user
-        %>
-            <li class="span3">
-              <div class="thumbnail">
-                <h3><%= app.name %></h3>
-                <% unless u.nil? %>
-                    <p>
-                      <small> Created <%= time_ago_in_words(app.created_at) %> ago </small>
-                    </p>
-                <% end %>
-
-                <div class="progress progress-info  progress-striped">
-                  <div class="bar" style="width:<%= (completed.to_f/size.to_f)*100  %>%;"></div>
-                </div>
-
-                <div style="text-align: center">
-                  <%= link_to "View", app_path(app), :class=>"btn btn-primary btn-small" %>
-                  <% p current_or_guest_username
-                     if app.user == current_user %>
-                    <%= link_to "Soure code", editor_app_path(app), :class=>"btn btn-success btn-small" %>
-                  <% end %>
-                </div>
+          <h3><%= app.name %> <% unless u.nil? %>
 
 
-              </div>
-            </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
+
+            <% end %></h3>
+          <p><small> created <%= time_ago_in_words(app.created_at) %> ago</small></p>
+          </div><div class="span4">
+          <div class="progress progress-info  progress-striped">
+            <div class="bar" style="width:<%= (completed.to_f/size.to_f)*100  %>%;"></div>
+          </div>
+        </div>
+        <div class="span4" style="text-align: center">
+          <%= link_to "View", app_path(app), :class => "btn btn-primary btn-small" %>
+          <% p current_or_guest_username
+             if app.user == current_user %>
+              <%= link_to "Soure code", editor_app_path(app), :class => "btn btn-success btn-small" %>
+          <% end %>
+        </div>
+      </div>
+  <% end %>
+
 </div>
+
 <script type="text/javascript" src="/assets/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript">
-  $(function(){
+    $(function () {
 
-    $('#slider').slider({
-        range: true,
-        values: [17, 67]
+        $('#slider').slider({
+            range:true,
+            values:[17, 67]
+        });
     });
-  });
 </script>
