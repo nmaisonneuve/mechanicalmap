@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d6ad8450-30bb-4e34-983c-de221ba7f1f7" name="Default" comment="">
       <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\test_annotation.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/index.html" afterPath="$PROJECT_DIR$/app/views/home/index.html" />
     </list>
     <ignored path="mechanicalmap.iws" />
@@ -74,7 +73,7 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="207" column="79" selection-start="9723" selection-end="9723" vertical-scroll-proportion="0.7779851">
+            <state line="40" column="39" selection-start="1451" selection-end="1451" vertical-scroll-proportion="0.44962686">
               <folding />
             </state>
           </provider>
@@ -882,7 +881,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="207" column="79" selection-start="9723" selection-end="9723" vertical-scroll-proportion="0.7779851">
+        <state line="40" column="39" selection-start="1451" selection-end="1451" vertical-scroll-proportion="0.44962686">
           <folding />
         </state>
       </provider>
