@@ -5,22 +5,27 @@ Mechanicalmap::Application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
-  resources :apps do
-    get 'workflow', :on => :member
-    get 'editor', :on => :member
-    put 'editor_update', :on => :member
-    get 'user_state', :on => :member
-    resources :tasks do
-      resources :answers
+ # scope :constraints => { :protocol => Rails.env.production? ? 'https'  : 'http' } do
+
+    resources :apps do
+      get 'workflow', :on => :member
+      get 'editor', :on => :member
+      put 'editor_update', :on => :member
+      get 'user_state', :on => :member
+      resources :tasks do
+        resources :answers
+      end
     end
-  end
+
+  #end
+
 
   root :to => "home#index"
 
   #
-  match "/demo_generator" => "task_generators#new", :via=>"get"
-  match "/demo_generator" => "task_generators#create", :via=>"post"
-  match "/more" =>"home#more"
+  match "/demo_generator" => "task_generators#new", :via => "get"
+  match "/demo_generator" => "task_generators#create", :via => "post"
+  match "/more" => "home#more"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
