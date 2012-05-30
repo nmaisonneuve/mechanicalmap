@@ -45,14 +45,14 @@
               <li>  <%= link_to "#{@app.name}", app_path(@app) %></li>
               <li class="divider-vertical"></li>
               <li class="active"><a href="#"> Code Editor</a></li>
-              <% if @app.user==current_user %>
+
               <li>
 
                 <button class="btn btn-primary" data-disable-with="Saving..."
-                        name="relevant">update code
+                        name="relevant"  <% if @app.user!=current_user %> disabled="true"   <% end  %>>Update code
                 </button>
               </li>
-                  <% end  %>
+
 
             </ul>
 
