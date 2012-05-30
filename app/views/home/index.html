@@ -41,7 +41,7 @@
         <iframe width="100%" height="340px" style="border: 1px solid #AAA" scrolling="no"
                 src="<%= app_url(@app) %>?embeddable=1"></iframe>
 
-        <a rel="div" href="#toto" class="btn btn-small btn-danger" style="float:left;margin:5px">Spread / Embed
+        <a rel="div" href="#embed" class="btn btn-small btn-danger" style="float:left;margin:5px">Spread / Embed
             it</a>
         <a href="<%= editor_app_url(@app) %>" class="btn btn-small btn-success" style="float:left;margin:5px">source
             code</a>
@@ -53,7 +53,7 @@
            style="float:left;margin:5px">Fullscreen</a>
 
         <!-- <h3>Features for a remix culture</h3> -->
-        <div id="toto" class="input" style="display:none; clear:both">
+        <div id="embed" class="input" style="display:none; clear:both">
             copy & paste this code to your web site to support further contributions from your visitors.
             <textarea class="span7">
                 <iframe width="100%" height="300px" style="border: 1px solid #AAA" scrolling="no"
@@ -222,7 +222,6 @@
             e.preventDefault();
             $($(this).attr("href")).toggle();
         });
-        $('.carousel').carousel();
     });
 </script>
 <script type="text/javascript">

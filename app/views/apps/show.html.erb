@@ -4,90 +4,67 @@
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <div class="container">
   <div class="row">
-    <div class="span4">
+    <div class="span3">
 
       <p id="notice"><%= notice %></p>
 
 
       <h2><%= @app.name %></h2>
 
-      <ul id="myTab" class="nav nav-tabs">
-        <li class="active">
-          <a href="#info" data-toggle="tab">Info</a>
-        </li>
-        <li >
-          <a href="#activity" data-toggle="tab">Activity</a>
-        </li>
+      <%= @app.description %>
+      <hr>
+
+      <h4>Activity</h4>
+      <% completed, size=@app.completion %>
+      <%= completed %> / <%= size %> answers.
+      <div class="progress progress-info  progress-striped">
+        <div class="bar" style="width: <%= completed.to_f/size.to_f*100 %>%;"></div>
+      </div>
+      Last contributors
+
+      <ul style="padding: 0px;margin: 0; margin-top: 3px;">
+        <% @app.contributors.order('users.updated_at desc').limit(5).each { |u| %>
+            <li style="list-style-type: none;">
+              <%= gravatar_image_tag(u.email, :title => u.username, :gravatar => {:default => :identicon, :size => 20}) %>
+              contributed <%= time_ago_in_words(u.updated_at) %> ago
+            </li>
+        <% } %>
       </ul>
 
-
-      <div class="tab-content">
-        <div class="tab-pane" id="activity">
-          <h4>Activity</h4>
-          <% completed, size=@app.completion %>
-          <%= completed %> / <%= size %> answers.
-          <div class="progress progress-info  progress-striped">
-            <div class="bar" style="width: <%= completed.to_f/size.to_f*100 %>%;"></div>
-          </div>
-          Last contributors
-
-          <ul style="padding: 0px;margin: 0; margin-top: 3px;">
-            <% @app.contributors.order('users.updated_at desc').limit(5).each { |u| %>
-                <li style="list-style-type: none;">
-                  <%= gravatar_image_tag(u.email, :title => u.username, :gravatar => {:default => :identicon, :size => 20}) %>
-                  contributed <%= time_ago_in_words(u.updated_at) %> ago
-                </li>
-            <% } %>
-          </ul>
+    <% if @app.user==current_user %>
+        <div>
+          <%= link_to 'Setting', edit_app_path(@app), :class => "btn btn-small" %>
+          <%= link_to 'Delete App', @app, confirm: 'Are you sure?', method: :delete, :class => "btn btn-small btn-danger" %>
         </div>
-
-        <div id="info" class="tab-pane fade in active">
-          <%= @app.description %>
-           <hr/>
-
-          <ul class="unstyled">
-            <li>
-              <p><small>
-                Edit on the fly the source code if you are its creator, see & copy it for
-                  the others.</small><br/>                <%= link_to 'Code Source', editor_app_path(@app), :class => "btn btn-success btn-small" %>
-              </p>
-            </li>
-            <li>
-              <p><small>Analyze yourself the raw answers (the Google fusion table is updated every 5mins).</small>
-                <br/>
-                <%= link_to 'Answers data', "http://www.google.com/fusiontables/DataSource?docid=#{@app.output_ft}", :class => "btn btn-primary btn-small" %>
-                <%= link_to 'Tasks data', "http://www.google.com/fusiontables/DataSource?docid=#{@app.input_ft}", :class => "btn btn-primary btn-small" %>
-
-              </p>
-            </li>
-
-            <li>
-              <p><small>Copy & paste this code to embed it in your facebook wall/blog.</small>
-                <textarea rows="4" class="span4"><iframe width="100%" height="100%" frameborder="0" scrolling="no" src="<%= app_url(@app, :embeddable => 1) %>"></iframe>
-                </textarea>
-              </p>
-            </li>
-          </ul>
-
-          <% if @app.user==current_user %>
-              <div>
-                <%= link_to 'Setting', edit_app_path(@app), :class => "btn btn-small" %>
-                <%= link_to 'Delete App', @app, confirm: 'Are you sure?', method: :delete, :class => "btn btn-small btn-danger" %>
-              </div>
-          <% end %>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="span8">
-      <iframe width="100%" height="400" scrolling="no" frameborder="0" src="<%= app_url(@app, :embeddable => 1) %>"></iframe>
-
-
-
-    </div>
+    <% end %>
 
   </div>
+
+
+<div class="span9">
+  <a rel="div" href="#embed" class="btn btn-small btn-danger" style="float:left;margin:5px">Spread / Embed
+    it</a>
+  <a href="<%= editor_app_url(@app) %>" class="btn btn-small btn-success" style="float:left;margin:5px">source
+    code</a>
+  <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"
+     class="btn btn-small btn-primary" style="float:left;margin:5px">Task Data</a>
+  <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>"
+     class="btn btn-small btn-primary" style="float:left;margin:5px">Answer Data</a>
+  <a href="<%= app_url(@app) %>?embeddable=1" class="btn btn-small "
+     style="float:left;margin:5px">Fullscreen</a>
+
+  <div id="embed" class="input" style="display:none; clear:both">
+    copy & paste this code to your web site to support further contributions from your visitors.
+    <textarea class="span7">
+      <iframe width="100%" height="300px" style="border: 1px solid #AAA" scrolling="no"
+              src="<%= app_url(@app) %>?embeddable=1"></iframe>
+    </textarea>
+  </div>
+  <iframe width="100%" height="400" scrolling="no" frameborder="0" src="<%= app_url(@app, :embeddable => 1) %>"></iframe>
+
+</div>
+
+</div>
 </div>
 
 <script type="text/javascript">
@@ -95,6 +72,11 @@
         $('#myTab a').click(function (e) {
             e.preventDefault();
             $(this).tab('show');
-        })
+        });
+
+        $("a[rel=div]").click(function (e) {
+            e.preventDefault();
+            $($(this).attr("href")).toggle();
+        });
     });
 </script>
