@@ -73,7 +73,9 @@ class FtDao
     answers.each { |answer|
 
       table_id=answer.task.app.output_ft
+
       answer_rows=ActiveSupport::JSON.decode(answer.answer)
+      answer_rows=YAML::load(answer.answer) if (answer_rows.is_a? Array)
       if (answer_rows.is_a? Array)
         answer_rows.each { |row|
 
@@ -98,8 +100,11 @@ class FtDao
         }
         answers_to_process<<answer
       else
+        answer.ft_sync=true
+        answer.save
         raise Exception.new("answer not handled :#{answer_rows}")
       end
+
     }
 
     if (to_process)

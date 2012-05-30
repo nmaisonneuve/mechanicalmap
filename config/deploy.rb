@@ -45,6 +45,12 @@ set :whenever_command, "bundle exec whenever"
 require "whenever/capistrano"
 
 
+desc "Fix permission"
+task :fix_permissions, :roles => [ :app, :db, :web ] do
+  run "#{try_sudo} chmod 777 -R #{current_path}/script"
+end
+
+after "deploy:create_symlink", :fix_permissions
 
 # If you are using Passenger mod_rails uncomment this:
  namespace :deploy do
