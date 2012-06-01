@@ -10,7 +10,7 @@
 
       <h2><%= @app.name %></h2>
 
-      <%= @app.description %>
+      <%=  RedCloth.new(@app.description).to_html.html_safe %>
       <hr>
 
       <h4>Activity</h4>
