@@ -28,14 +28,24 @@
         <input type="hidden" name="schema" id="app_schema" value=""/>
         <input type="hidden" name="app[script]" id="app_script" value=""/>
         <fieldset>
-          <legend><%= controller.action_name.capitalize %> Project</legend>
+          <legend><%= controller.action_name.capitalize %> App</legend>
           <div class="control-group">
-            <label class="control-label"><h3>Project Name</h3></label>
+            <label class="control-label"><h3>Name</h3></label>
 
             <div class="controls">
               <%= f.text_field :name, :placeholder => "name of the app", :class => "text-field span4" %>
             </div>
           </div>
+
+          <div class="control-group">
+            <label class="control-label"><h3>Iframe size </h3></label>
+
+            <div class="controls">
+              Width= <%= f.text_field :iframe_width, :placeholder => "100%", :class => "text-field span1", :default=>"100%" %>
+              x Height= <%= f.text_field :iframe_height, :placeholder => "100%", :class => "text-field span1", :default=>"100%" %>
+            </div>
+          </div>
+
           <div class="control-group">
             <label class="control-label"><h3>Description</h3></label>
 

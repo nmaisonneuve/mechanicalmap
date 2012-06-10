@@ -53,11 +53,11 @@
       <div id="embed" class="input" style="display:none; clear:both">
         copy & paste this code to your web site to support further contributions from your visitors.
         <textarea class="span7">
-          <iframe width="500px" height="200px"  scrolling="no"
+          <iframe width="<%= @app.iframe_width %>" height="<%= @app.iframe_height %>"  scrolling="no"
                   src="<%= app_url(@app) %>?embeddable=1"></iframe>
         </textarea>
       </div>
-      <iframe width="100%" height="400" style="border: 1px solid #AAA" scrolling="no" frameborder="0" src="<%= app_url(@app, :embeddable => 1) %>"></iframe>
+      <iframe width="<%= @app.iframe_width %>" height="<%= @app.iframe_height %>" style="border: 1px solid #AAA" scrolling="no" frameborder="0" src="<%= app_url(@app, :embeddable => 1) %>"></iframe>
 
     </div>
 

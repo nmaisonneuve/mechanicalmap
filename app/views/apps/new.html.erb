@@ -35,11 +35,22 @@
               <%= f.text_field :name, :placeholder => "name of the app", :class => "text-field span4" %>
             </div>
           </div>
+
+
           <div class="control-group">
             <label class="control-label"><h3>Description<small><br/>(in html)</small></h3></label>
 
             <div class="controls">
               <%= f.text_area :description, :rows => 5, :placeholder => "short description of the crowdsourcing project", :class => "text-field span4" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label"><h3>Embedded iframe</h3></label>
+
+            <div class="controls">
+              Width= <%= f.text_field :iframe_width, :placeholder => "100%", :class => "text-field span1", :default=>"100%" %>
+              <br/>Height= <%= f.text_field :iframe_height, :placeholder => "100%", :class => "text-field span1", :default=>"100%" %>
             </div>
           </div>
 
@@ -50,7 +61,7 @@
                 the list of
                 tasks to index by MechanicalTask. <br/>This table should have at least a column <i>task_id</i> containing the ID of the
                 task (= each row is a task).' data-original-title="Info">
-              </a>Tasks (Input) *</h3></label>
+              </a>Tasks <br/>(Input) *</h3></label>
 
             <div class="controls">
               <p class="help-block">
