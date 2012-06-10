@@ -27,7 +27,7 @@
         <input type="hidden" name="schema" id="app_schema" value=""/>
         <input type="hidden" name="app[script]" id="app_script" value=""/>
         <fieldset>
-          <legend><%= controller.action_name.capitalize %> App (* = required field)</legend>
+          <legend><%= controller.action_name.capitalize %> App <small>(* = required field)</small></legend>
           <div class="control-group">
             <label class="control-label"><h3>Name *</h3></label>
 
@@ -36,7 +36,7 @@
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label"><h3>Description</h3></label>
+            <label class="control-label"><h3>Description<small><br/>(in html)</small></h3></label>
 
             <div class="controls">
               <%= f.text_area :description, :rows => 5, :placeholder => "short description of the crowdsourcing project", :class => "text-field span4" %>
