@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d6ad8450-30bb-4e34-983c-de221ba7f1f7" name="Default" comment="">
       <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\test_annotation.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20120521160447_change_input.rb" afterPath="$PROJECT_DIR$/db/migrate/20120521160447_change_input.rb" />
     </list>
     <ignored path="mechanicalmap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -82,7 +81,7 @@
       <file leaf-file-name="20120521160447_change_input.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/migrate/20120521160447_change_input.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="3" selection-start="56" selection-end="56" vertical-scroll-proportion="0.063079774">
+            <state line="8" column="34" selection-start="126" selection-end="126" vertical-scroll-proportion="0.2523191">
               <folding />
             </state>
           </provider>
@@ -895,7 +894,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20120521160447_change_input.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="3" selection-start="56" selection-end="56" vertical-scroll-proportion="0.063079774">
+        <state line="8" column="34" selection-start="126" selection-end="126" vertical-scroll-proportion="0.2523191">
           <folding />
         </state>
       </provider>
