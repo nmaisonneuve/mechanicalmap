@@ -40,7 +40,7 @@ class AppsController < ApplicationController
   def reindex
     app=App.find(params[:id])
     app.reindex_tasks
-    render :json=> "requested.."
+    redirect_to app_path(app), notice: 'Reindexing tasks'
   end
 
   def workflow
