@@ -9,7 +9,8 @@
 
       <h2><%= @app.name %></h2>
 
-      <%= RedCloth.new(@app.description).to_html.html_safe %>
+      <!--<%= RedCloth.new(@app.description).to_html.html_safe %> -->
+      <%= @app.description.html_safe %>
       <hr>
 
       <h4>Activity</h4>
