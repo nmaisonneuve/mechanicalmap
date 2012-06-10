@@ -6,11 +6,12 @@ class App < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
   has_many :answers, :through => :tasks
   has_many :contributors, :through => :answers, :source => :user, :uniq => true
-
   belongs_to :user
+
   validates_presence_of :name
   validates_presence_of :input_ft, :message => "The ID of the input fusion table can't be blank"
-  attr_accessible :name, :description, :output_ft, :input_ft, :script, :script_url, :ui_template
+
+  attr_accessible :name, :description, :output_ft, :input_ft, :script, :script_url, :redundancy
 
 
   def completion
@@ -19,41 +20,16 @@ class App < ActiveRecord::Base
     [completed, size]
   end
 
+  def last_contributor
+    self.answers.where("answers.user_id!= null").order("answers.updated_at desc").limit(5)
+  end
+
   def ft_insert_answer(rows)
     FtDao.instance.enqueue(self.output_ft, rows)
   end
 
-
-  def ft_index_tasks(redundancy)
-    i=0
-    Task.transaction do
-      FtDao.instance.import(self.input_ft, 100000) do |task_id|
-
-        task=Task.find_or_create_by_input_and_app_id(:input => task_id, :app_id => self.id)
-        # just one answer for the moment
-        redundancy.times do
-          task.answers<<Answer.create!(:state => Answer::AVAILABLE)
-          i=i+1
-        end
-        task.save
-        break if (i> MAX_ANSWERS)
-      end
-    end
-  end
-
-
-  def ft_create_output(schema, user_email)
-
-    self.output_ft=FtDao.instance.create_table("Answers of #{self.name}", schema)
-    self.save
-
-    # set permission exportable
-    FtDao.instance.set_exportable(self.output_ft)
-    FtDao.instance.change_ownership(self.output_ft, user_email)
-  end
-
-  def last_contributor
-    self.answers.where("answers.user_id!= null").order("answers.updated_at desc").limit(5)
+  def reindex_tasks
+    FtIndexer.perform_async(self.id, self.redundancy)
   end
 
   def schedule(context)
@@ -74,6 +50,5 @@ class App < ActiveRecord::Base
     return nil if (task.nil?)
     task.answers.available.first
   end
-
 
 end

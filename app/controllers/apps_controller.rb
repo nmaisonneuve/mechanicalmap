@@ -37,6 +37,12 @@ class AppsController < ApplicationController
     render json: {:opened=>opened, :completed=>completed}
   end
 
+  def reindex
+    app=App.find(params[:id])
+    app.reindex_tasks
+    render :json=> "requested.."
+  end
+
   def workflow
     app=App.find(params[:id])
     context={:from_task=>params[:from_task], :current_user=>current_or_guest_username}

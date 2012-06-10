@@ -10,6 +10,7 @@ Mechanicalmap::Application.routes.draw do
     resources :apps do
       get 'workflow', :on => :member
       get 'editor', :on => :member
+      get 'reindex', :on => :member
       put 'editor_update', :on => :member
       get 'user_state', :on => :member
       resources :tasks do

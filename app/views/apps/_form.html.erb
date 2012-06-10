@@ -76,7 +76,7 @@
 
             <div class="controls">
               <p class="help-block">How many volunteers should do the same task?</p>
-              <%= text_field_tag "app_redundancy", "3", :disabled => @disable_redundancy, :class => "span1", :placeholder => "3" %>
+              <%= f.text_field :redundancy, :placeholder => "", :disabled => @disable_ft, :class => "text-field span1" %>
             </div>
           </div>
           <div class="control-group">
