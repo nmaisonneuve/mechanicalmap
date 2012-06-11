@@ -11,7 +11,7 @@ class App < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :input_ft, :message => "The ID of the input fusion table can't be blank"
 
-  attr_accessible :name, :description, :output_ft, :input_ft, :script, :script_url, :redundancy
+  attr_accessible :name, :description, :output_ft, :input_ft, :script, :script_url, :redundancy, :iframe_width, :iframe_height
 
 
   def completion
