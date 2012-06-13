@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-fixed-top active">
   <div class="navbar-inner">
     <div class="container">
 
@@ -20,7 +20,7 @@
 
       <div class="nav-collapse">
         <ul class="nav">
-          <li><%= link_to "Browse micro-apps", apps_path %></li>
+          <li><%= link_to "Browse Micro-apps", apps_path %></li>
         </ul>
       </div>
 
@@ -28,13 +28,13 @@
         <ul class="nav">
           <% if user_signed_in? %>
               <li><a href="#" style="color:white;font-weight: bold;"><%= current_user.username %></a></li>
-              <li>  <%= link_to "Sign out", destroy_user_session_path, :method => :delete  %> </li>
+              </ul>
+             <%= link_to "Sign out", destroy_user_session_path, :method => :delete , :class=>"btn btn-small btn-primary" %>
           <% else %>
-              <li><a href="#" style="color:white;font-weight: bold;"><%= current_or_guest_username %></a></li>
-              <li><%= link_to "Sign in", new_user_session_path  %> </li>
+              <li><a href="#" style="color:white;"><%= current_or_guest_username %></a>  </li>
+              </ul>
+              <%= link_to "Sign in", new_user_session_path, :class=>"btn btn-small btn-primary"  %>
           <% end %>
-
-        </ul>
       </div>
     </div>
   </div>
