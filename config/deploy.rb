@@ -1,4 +1,4 @@
-$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+#$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 Dir['lib/**/*.rb'].each { |recipe| require  File.basename(recipe, '.rb') }
 
 set :rvm_ruby_string, '1.9.3'
