@@ -14,7 +14,7 @@
   <div class="span12">
     <%= form_for(@app, :html => {:class => 'form-horizontal', :id => "form_app"}) do |f| %>
         <input type="hidden" name="schema" id="app_schema" value=""/>
-        <input type="hidden" name="app[script]" id="app_script" value=""/>
+        <%= f.hidden_field :script %>
         <fieldset>
           <legend><%= controller.action_name.capitalize %> Micro-app <small>(* = required field)</small></legend>
           <div class="control-group">

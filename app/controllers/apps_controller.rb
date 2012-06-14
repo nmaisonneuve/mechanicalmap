@@ -25,8 +25,14 @@ class AppsController < ApplicationController
 
   def new
     @app = App.new
-    @app.input_ft=params[:input_ft] unless params[:input_ft].blank?
-    @app.output_ft=params[:output_ft] unless params[:output_ft].blank?
+
+    unless params[:copyof].blank?
+    original_app=App.find(params[:copyof].to_i)
+    @app.name="copy of #{original_app.name}"
+    @app.description="copy of #{original_app.description} <br/>copied from <a href='#{app_path(original_app)}'>#{original_app.name}</a>"
+    @app.input_ft=original_app.input_ft
+    @app.script=original_app.script
+    end
   end
 
   def user_state
