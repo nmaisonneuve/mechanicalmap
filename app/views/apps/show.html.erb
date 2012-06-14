@@ -40,9 +40,9 @@
     <div class="span9">
       <a href="<%= app_url(@app) %>?embeddable=1" class="btn btn-small "
          style="float:left;margin:5px">Fullscreen</a>
-      <a rel="div" href="#embed" class="btn btn-small btn-danger" style="float:left;margin:5px">Spread / Embed
+      <a rel="div" href="#embed" class="btn btn-small btn-danger" style="float:left;margin:5px">Spread
         it</a>
-      <a href="/apps/new?copyof=<%=@app %>"
+      <a href="/apps/new?copyof=<%=@app.id %>"
          class="btn btn-small btn-info" style="float:left;margin:5px">Clone it</a>
       <a href="<%= editor_app_url(@app) %>" class="btn btn-small btn-success" style="float:left;margin:5px">source
         code</a>
