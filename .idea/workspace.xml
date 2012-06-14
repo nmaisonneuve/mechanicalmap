@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6ad8450-30bb-4e34-983c-de221ba7f1f7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/apps/show.html.erb" afterPath="$PROJECT_DIR$/app/views/apps/show.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/index.html" afterPath="$PROJECT_DIR$/app/views/home/index.html" />
     </list>
     <ignored path="mechanicalmap.iws" />
@@ -82,7 +81,7 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="0" selection-start="1595" selection-end="1595" vertical-scroll-proportion="0.36658356">
+            <state line="48" column="10" selection-start="1906" selection-end="1906" vertical-scroll-proportion="0.6557789">
               <folding />
             </state>
           </provider>
@@ -952,7 +951,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="0" selection-start="1595" selection-end="1595" vertical-scroll-proportion="0.36658356">
+        <state line="48" column="10" selection-start="1906" selection-end="1906" vertical-scroll-proportion="0.6557789">
           <folding />
         </state>
       </provider>
