@@ -28,6 +28,22 @@ class App < ActiveRecord::Base
     FtDao.instance.enqueue(self.output_ft, rows)
   end
 
+  def schema
+    FtDao.instance.get_schema(self.output_ft)
+  end
+
+  def clone
+    clone= App.new
+    clone.name="copy of #{self.name}"
+    clone.description="copy of #{self.description}"
+    clone.input_ft=self.input_ft
+    clone.script=self.script
+    clone.redundancy=self.redundancy
+    clone.iframe_width=self.iframe_width
+    clone.iframe_height= self.iframe_height
+    return clone
+  end
+
   def reindex_tasks
     FtIndexer.perform_async(self.id, self.redundancy)
   end

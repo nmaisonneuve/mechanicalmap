@@ -1,6 +1,7 @@
 class AppsController < ApplicationController
 
   before_filter :authenticate_user!, :only=>[:new]
+
   # GET /apps
   # GET /apps.json
   def index
@@ -10,7 +11,6 @@ class AppsController < ApplicationController
       format.json { render json: @apps }
     end
   end
-
 
   def show
     @app = App.find(params[:id])
@@ -22,18 +22,19 @@ class AppsController < ApplicationController
     end
   end
 
-
   def new
-    @app = App.new
-
     unless params[:copyof].blank?
-    original_app=App.find(params[:copyof].to_i)
-    @app.name="copy of #{original_app.name}"
-    @app.description="copy of #{original_app.description} <br/>copied from <a href='#{app_path(original_app)}'>#{original_app.name}</a>"
-    @app.input_ft=original_app.input_ft
-    @app.script=original_app.script
+      original=App.find(params[:copyof])
+      @app=original.clone
+      @schema=FtDao.instance.get_schema(original.output_ft)
+      @schema=@schema.to_json.to_s     #to json string
+    else
+      @app = App.new
+      @schema=""
     end
+
   end
+
 
   def user_state
     app=App.find(params[:id])
@@ -107,21 +108,19 @@ class AppsController < ApplicationController
     respond_to do |format|
 
       if @app.save
-
+        @app.output_ft
         schema=[{"name"=>"task_id", "type"=>"number"},
                 {"name"=>"user_id", "type"=>"string"},
                 {"name"=>"created_at", "type"=>"datetime"}]
 
         schema=ActiveSupport::JSON.decode(params[:schema]) unless  params[:schema].blank?
+                     p schema
 
-        # we postpone in production
-        if (Rails.env=="production")
+        # we postpone the indexation of task + the generation of answer task
         FtIndexer.perform_async(@app.id, params[:app_redundancy].to_i)
         FtGenerator.perform_async(@app.id, schema, current_user.email)
-        else
-        #  @app.ft_index_tasks(params[:app_redundancy].to_i)
-          @app.ft_create_output(schema, current_user.email)
-        end
+
+
         format.html { redirect_to editor_app_path(@app), notice: 'app was successfully created.' }
         format.json { render json: @app, status: :created, location: @app }
       else

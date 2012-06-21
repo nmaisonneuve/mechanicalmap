@@ -1,25 +1,21 @@
 #$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 Dir['lib/**/*.rb'].each { |recipe| require  File.basename(recipe, '.rb') }
 
-set :rvm_ruby_string, '1.9.3'
 set :rvm_type, :user
+set :rvm_ruby_string, :local
 
 #load 'deploy/assets'
+require "rvm/capistrano"
 
 require 'sidekiq/capistrano'
 
-
-
 # bundler bootstrap
 require 'bundler/capistrano'
-
 
 set :user, 'newhouse'
 set :domain, 'mechanicaltask.dev.fabelier.org'
 set :application, "mechanicalmap"
 set :applicationdir, "~/mechanicalmap"
-
-
 set :repository, "git://github.com/nmaisonneuve/mechanicalmap.git"  # Your clone URL
 set :scm, "git"
 set :scm_verbose, true

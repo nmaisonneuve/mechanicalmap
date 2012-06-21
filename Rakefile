@@ -18,6 +18,17 @@ task :sync => :environment do
   }
 end
 
+desc "synch answers"
+task :sync => :environment do
+  App.all.each { |app|
+    answers=app.answers.answered.where(:ft_sync => false)
+    if (answers.size>0)
+      puts "#{answers.size} answers to synchronize"
+      FtDao.instance.sync_answers(answers)
+    end
+  }
+end
+
 desc "reindex answer"
 task :answers_gen => :environment do
   App.first.tasks.each { |task|

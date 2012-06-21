@@ -26,6 +26,20 @@ class FtDao
   end
 
 
+  def get_schema(table_id)
+    sql = "DESCRIBE #{table_id}"
+    sql="sql=" + CGI::escape(sql)
+    resp=@ft.post(SERVICE_URL,sql)
+    columns=[]
+
+    resp.body.split("\n")[1..-1].each{|col|
+      col=col.split(",")
+
+      columns<<{"name"=>col[1], "type"=>col[2]}
+    }
+    return columns
+  end
+
 # Connect to service
   def change_ownership(table_id, email_owner)
 
