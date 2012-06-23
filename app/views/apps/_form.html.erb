@@ -1,4 +1,3 @@
-
 <style type="text/css" media="screen">
 
 
@@ -24,7 +23,7 @@
 
 <div class="row">
   <div class="span12">
-    <%= form_for(@app, :html => {:class => 'form-horizontal', :id=>"form_app" }) do |f| %>
+    <%= form_for(@app, :html => {:class => 'form-horizontal', :id => "form_app"}) do |f| %>
         <input type="hidden" name="schema" id="app_schema" value=""/>
         <input type="hidden" name="app[script]" id="app_script" value=""/>
         <fieldset>
@@ -41,8 +40,9 @@
             <label class="control-label"><h3>Iframe size </h3></label>
 
             <div class="controls">
-              Width= <%= f.text_field :iframe_width, :placeholder => "100%", :class => "text-field span1", :default=>"100%" %>
-              x Height= <%= f.text_field :iframe_height, :placeholder => "100%", :class => "text-field span1", :default=>"100%" %>
+              Width= <%= f.text_field :iframe_width, :placeholder => "100%", :class => "text-field span1", :default => "100%" %>
+              x
+              Height= <%= f.text_field :iframe_height, :placeholder => "100%", :class => "text-field span1", :default => "100%" %>
             </div>
           </div>
 
@@ -64,56 +64,41 @@
                 <a href="http://www.google.com/fusiontables/public/tour/index.html">google fusion table</a> containing
                 the list of
                 tasks. <br/>This table should have at least a column <i>task_id</i> containing the ID of the task .
-                <br/><small> (for GIS tasks, check
-                <a href="/demo_generator">this crowdmapping task generator</a> to generate a Google fusion table) </small>   )
+                <br/>
+                <small> (for GIS tasks, check
+                  <a href="/demo_generator">this crowdmapping task generator</a> to generate a Google fusion table)
+                </small>
+                )
               </p>
               <%= f.text_field :input_ft, :placeholder => "e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :disabled => @disable_ft, :class => "text-field span4" %>
-
+              <% unless @app.input_ft.blank? %>
+                  <%= link_to reindex_app(@app), "Reindex tasks", :class => "btn" %>
+              <% end %>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">
-              <h3>Answers  <small>(output)</small></h3></label>
+              <h3>Answers
+                <small>(output)</small>
+              </h3>
+            </label>
 
             <div class="controls">
               <p class="help-block">
                 A google fusion table will be generated for you
+                <%= f.text_field :output_ft, :placeholder => "e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :disabled => @disable_ft, :class => "text-field span4" %>
+
             </div>
           </div>
 
           <div class="control-group">
-            <label class="control-label"><h3># of answers / task</h3></label>
+            <label class="control-label"><h3>Quality</h3></label>
 
             <div class="controls">
               <p class="help-block">How many volunteers should do the same task?</p>
               <%= f.text_field :redundancy, :placeholder => "", :disabled => @disable_ft, :class => "text-field span1" %>
             </div>
           </div>
-          <div class="control-group">
-            <label class="control-label"><h3>UI template code</h3>
-            </label>
-
-            <div class="controls">
-              <p class="help-block">Paste your micro-task template here.
-                <br/>(you can copy and modify the template code of <a target="_blank" href="/apps">existing apps</a>)
-                </p>
-
-              <div id="editor"><%=  @app.script %></div>
-
-              <!-- <script src="/assets/mode-javascript.js" type="text/javascript" charset="utf-8"></script> -->
-
-
-              <div id='script_error' class="alert hide">
-                <a class="close" data-dismiss="alert" href="#">×</a>
-
-                <div id='script_error_text'></div>
-              </div>
-
-             <!-- <%= f.text_area :script, :class => "span10", :size => "50x15", :placeholder => "" %> -->
-
-            </div>
-          </div>
-
 
           <div class="row">
             <div class="span12">
@@ -136,8 +121,8 @@
         var editor;
 
         function evaluate_script() {
-            var text=editor.getSession().getValue()
-                console.log(text);
+            var text = editor.getSession().getValue()
+            console.log(text);
             $("#app_script").val(text);
 
             $("#script_error").removeClass("label-success");

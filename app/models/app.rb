@@ -1,6 +1,7 @@
 class App < ActiveRecord::Base
 
   MAX_ANSWERS=10000
+  MAX_TASKS=10000
   # demo mode
 
   has_many :tasks, :dependent => :destroy
@@ -13,7 +14,6 @@ class App < ActiveRecord::Base
 
   attr_accessible :name, :description, :output_ft, :input_ft, :script, :script_url, :redundancy, :iframe_width, :iframe_height
 
-
   def completion
     completed=self.answers.answered.count
     size=self.answers.count
@@ -22,10 +22,6 @@ class App < ActiveRecord::Base
 
   def last_contributor
     self.answers.where("answers.user_id!= null").order("answers.updated_at desc").limit(5)
-  end
-
-  def ft_insert_answer(rows)
-    FtDao.instance.enqueue(self.output_ft, rows)
   end
 
   def schema
@@ -45,7 +41,28 @@ class App < ActiveRecord::Base
   end
 
   def reindex_tasks
-    FtIndexer.perform_async(self.id, self.redundancy)
+    FtIndexer.perform_async(self.id)
+  end
+
+  def synch_answers
+    to_synch=answers.answered.where(:ft_sync => false)
+    if (to_synch.size>0)
+      puts "#{to_synch.size} answers to synchronize"
+      FtDao.instance.sync_answers(to_synch)
+    end
+  end
+
+  def index_tasks
+    Task.transaction do
+      FtDao.instance.import(self.input_ft, MAX_TASKS) do |task_id|
+        task=Task.create(:input => task_id, :app_id => self.id)
+        self.redundancy.times do
+          task.answers<<Answer.create!(:state => Answer::AVAILABLE)
+        end
+        task.save
+        break if (i> MAX_ANSWERS)
+      end
+    end
   end
 
   def schedule(context)

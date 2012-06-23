@@ -48,7 +48,7 @@ class AppsController < ApplicationController
 
   def reindex
     app=App.find(params[:id])
-    app.reindex_tasks
+    app.reindex_tasks(params[:syn] || false )
     redirect_to app_path(app), notice: 'Reindexing tasks'
   end
 

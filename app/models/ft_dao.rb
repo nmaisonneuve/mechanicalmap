@@ -9,6 +9,7 @@ class FtDao
   SERVICE_URL = "https://tables.googlelabs.com/api/query"
   MAXIMUM_INSERT=499 #maximum insert queries according to https://developers.google.com/fusiontables/docs/developers_guide
 
+
   def initialize()
     @ft=GData::Client::FusionTables.new
     @ft.clientlogin("citizencyberscience", "noisetube") # I know you know...
@@ -29,13 +30,13 @@ class FtDao
   def get_schema(table_id)
     sql = "DESCRIBE #{table_id}"
     sql="sql=" + CGI::escape(sql)
-    resp=@ft.post(SERVICE_URL,sql)
+    resp=@ft.post(SERVICE_URL, sql)
     columns=[]
 
-    resp.body.split("\n")[1..-1].each{|col|
+    resp.body.split("\n")[1..-1].each { |col|
       col=col.split(",")
 
-      columns<<{"name"=>col[1], "type"=>col[2]}
+      columns<<{"name" => col[1], "type" => col[2]}
     }
     return columns
   end
@@ -71,8 +72,11 @@ class FtDao
     response = @doclist.post("https://docs.google.com/feeds/default/private/full/#{table_id}/acl", acl_entry_visibility).to_xml
   end
 
+
+
   def import(table_id, limit=10)
     tasks_ids=@ft.execute "SELECT task_id, count() FROM #{table_id} group by task_id  LIMIT #{limit}"
+    puts " #{tasks_ids.size} tasks to index"
     tasks_ids.each { |task|
       yield(task[:task_id].to_i)
     }

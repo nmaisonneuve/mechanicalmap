@@ -16,6 +16,14 @@ class Task < ActiveRecord::Base
     joins(:answers=>:user).where("answers.state!=?", Answer::AVAILABLE).where("users.username=?", username)
   }
 
+  scope :not_done_by, lambda { |user|
+    # not optimized
+    tasks_done_ids=Task.joins(:answers).where("answers.state!=?", Answer::AVAILABLE).where("answers.user_id=?", user)
+    unless (tasks_done_ids.empty?)
+      where("#{self.table_name}.id not in (?)", tasks_done_ids)
+    end
+  }
+
   scope :not_done_by_username, lambda { |username|
     # not optimized
     tasks_done_ids=Task.joins(:answers=>:user).where("answers.state!=?", Answer::AVAILABLE).where("users.username=?", username)
@@ -24,13 +32,7 @@ class Task < ActiveRecord::Base
     end
   }
 
-  scope :not_done_by, lambda { |user|
-    # not optimized
-    tasks_done_ids=Task.joins(:answers).where("answers.state!=?", Answer::AVAILABLE).where("answers.user_id=?", user)
-    unless (tasks_done_ids.empty?)
-      where("#{self.table_name}.id not in (?)", tasks_done_ids)
-    end
-  }
+
 
   def done_by?(user)
     self.answers.where("answers.user_id=?",user).count!=0

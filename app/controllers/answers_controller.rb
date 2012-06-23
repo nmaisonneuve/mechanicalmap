@@ -25,7 +25,7 @@ class AnswersController < ApplicationController
       if @answer.save
 
         if (params[:sync]=="1")
-          FtSyncAnswers.perform_async([@answer])
+          FtSyncAnswers.perform_async()
         end
         format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
         format.json { render json: @answer, status: :created, location: @answer }
