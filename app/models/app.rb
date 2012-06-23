@@ -55,7 +55,7 @@ class App < ActiveRecord::Base
   def index_tasks
     Task.transaction do
       FtDao.instance.import(self.input_ft, MAX_TASKS) do |task_id|
-        task=Task.create(:input => task_id, :app_id => self.id)
+        task=Task.create(:input => task_id.to_i, :app_id => self.id)
         self.redundancy.times do
           task.answers<<Answer.create!(:state => Answer::AVAILABLE)
         end

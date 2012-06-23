@@ -21,12 +21,10 @@ class AnswersController < ApplicationController
     @answer.state=Answer::COMPLETED
     @answer.input_from_form(params[:task_answer])
     @answer.ft_sync=false
+
     respond_to do |format|
       if @answer.save
-
-        if (params[:sync]=="1")
-          FtSyncAnswers.perform_async()
-        end
+        FtSyncAnswers.perform_async()  if (params[:sync]=="1")
         format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
         format.json { render json: @answer, status: :created, location: @answer }
       else
