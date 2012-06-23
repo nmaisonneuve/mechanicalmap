@@ -20,6 +20,8 @@ gem "sinatra"
 gem 'gravatar_image_tag'
 
 gem 'devise'
+gem 'omniauth-facebook'
+
 gem 'color'
 gem "RedCloth"
 gem "fusion_tables"

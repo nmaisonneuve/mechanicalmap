@@ -5,6 +5,9 @@ Mechanicalmap::Application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
+  match '/auth/:provider/callback', :to => 'sessions#create'
+  match '/auth/failure', :to => 'sessions#failure'
+
  # scope :constraints => { :protocol => Rails.env.production? ? 'https'  : 'http' } do
 
     resources :apps do

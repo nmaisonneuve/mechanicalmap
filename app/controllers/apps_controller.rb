@@ -28,9 +28,11 @@ class AppsController < ApplicationController
       @app=original.clone
       @schema=FtDao.instance.get_schema(original.output_ft)
       @schema=@schema.to_json.to_s     #to json string
+      @cloned=true
     else
       @app = App.new
       @schema=""
+      @cloned=false
     end
 
   end
