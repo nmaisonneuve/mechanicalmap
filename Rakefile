@@ -22,9 +22,11 @@ namespace :app do
   end
 
   desc "reindex tasks: input table id "
-  task :reindex_tasks do
-    p ENV["table"]
-    FtDao.instance.import(table_id)
+  task :reindex_tasks => :environment do
+    #require "app/models/ft_dao.r"
+    FtDao.instance.import(ENV["table"]) { |task|
+            p task
+    }
   end
 
   desc "reindex required answers"

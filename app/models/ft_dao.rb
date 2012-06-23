@@ -74,8 +74,8 @@ class FtDao
 
 
 
-  def import(table_id, limit=10)
-    tasks_ids=@ft.execute "SELECT task_id, count() FROM #{table_id} group by task_id  LIMIT #{limit}"
+  def import(table_id)
+    tasks_ids=@ft.execute "SELECT task_id, count() FROM #{table_id} group by task_id "
     puts " #{tasks_ids.size} tasks to index"
     tasks_ids.each { |task|
       yield(task[:task_id].to_i)
