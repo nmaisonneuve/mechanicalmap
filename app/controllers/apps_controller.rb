@@ -15,7 +15,10 @@ class AppsController < ApplicationController
   def show
     @app = App.find(params[:id])
     if (params[:embeddable].blank?)
-      render 'show.erb.html'
+      respond_to do |format|
+        format.html {render 'show.erb.html'}
+        format.png { render :qrcode => app_url(@app, :embeddable=>1), :size => 5 }
+      end
     else
       render 'embeddable.erb.html', :layout=>false
       #render 'debug.erb.html', :layout=>false
@@ -60,6 +63,7 @@ class AppsController < ApplicationController
       respond_to do |format|
         format.html { redirect_to app_path(app), notice: 'Sorry no further task available!' }
         format.js { render :json=>"", :status => 404 }
+
       end
     else
       redirect_to app_task_answer_path(assignment.task.app, assignment.task, assignment, :format=>params[:format])
