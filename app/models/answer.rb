@@ -18,8 +18,8 @@ class Answer < ActiveRecord::Base
     self.user!=user
   end
 
-  # we enriched the answer by common info
   # if they are not present
+  # we enriched the answer by common info
   def input_from_form(form_input)
     answer=ActiveSupport::JSON.decode(form_input)
     answer.each { |row|

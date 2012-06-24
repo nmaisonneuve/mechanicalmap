@@ -55,7 +55,7 @@ class AppsController < ApplicationController
   def workflow
     app=App.find(params[:id])
     context={:from_task=>params[:from_task], :current_user=>current_or_guest_username}
-    assignment=app.schedule(context)
+    assignment=app.next_task(context)
     if assignment.nil?
       respond_to do |format|
         format.html { redirect_to app_path(app), notice: 'Sorry no further task available!' }

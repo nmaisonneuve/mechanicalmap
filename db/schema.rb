@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120610190920) do
+ActiveRecord::Schema.define(:version => 20120623212603) do
 
   create_table "answers", :force => true do |t|
     t.integer  "task_id"
@@ -26,11 +26,11 @@ ActiveRecord::Schema.define(:version => 20120610190920) do
   add_index "answers", ["task_id"], :name => "index_units_on_task_id"
 
   create_table "apps", :force => true do |t|
-    t.string   "name",                                             :null => false
+    t.string   "name",                                                :null => false
     t.string   "shortname"
     t.text     "description",   :limit => 255
-    t.datetime "created_at",                                       :null => false
-    t.datetime "updated_at",                                       :null => false
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
     t.string   "output_ft"
     t.string   "input_ft"
     t.text     "script"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(:version => 20120610190920) do
     t.integer  "redundancy",                   :default => 3
     t.string   "iframe_width",                 :default => "100%"
     t.string   "iframe_height",                :default => "100%"
+    t.integer  "status",                       :default => 0
+    t.string   "task_column",                  :default => "task_id"
   end
 
   add_index "apps", ["user_id"], :name => "index_apps_on_user_id"

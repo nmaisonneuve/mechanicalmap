@@ -96,14 +96,19 @@ class FtDao
       rescue
         answer_rows=YAML::load(answer.answer)
       end
+
       if (answer_rows.is_a? Array)
         answer_rows.each { |row|
 
           queries<<"INSERT INTO #{table_id} (#{row.keys.join(",")}) VALUES (#{row.values.map { |value| "'#{value}'" }.join(",")});"
           #we're batching
           if ((i>0) && (i % (MAXIMUM_INSERT)==0))
+            begin
             @ft.execute queries.join("")
             queries=[]
+            rescue Exception => e
+              raise Exception.new("#{e.message}\n#{answer.answer}")
+            end
 
             # We can now update their states
             answers_to_process.each { |answer_processed|

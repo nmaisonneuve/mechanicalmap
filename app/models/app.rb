@@ -2,6 +2,10 @@ class App < ActiveRecord::Base
 
   MAX_ANSWERS=10000
   MAX_TASKS=10000
+
+  STATE_READY=0 #NORMAL
+  STATE_INDEXING=1
+
   # demo mode
 
   has_many :tasks, :dependent => :destroy
@@ -12,7 +16,17 @@ class App < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :input_ft, :message => "The ID of the input fusion table can't be blank"
 
-  attr_accessible :name, :description, :output_ft, :input_ft, :script, :script_url, :redundancy, :iframe_width, :iframe_height
+  attr_accessible :name,
+                  :description,
+                  :output_ft,
+                  :input_ft,
+                  :task_column,
+                  :script,
+                  :script_url,
+                  :redundancy,
+                  :iframe_width,
+                  :iframe_height,
+                  :state
 
   def completion
     completed=self.answers.answered.count
@@ -41,6 +55,7 @@ class App < ActiveRecord::Base
   end
 
   def reindex_tasks
+    self.input_state=INPUT_INDEX
     FtIndexer.perform_async(self.id)
   end
 
@@ -48,6 +63,7 @@ class App < ActiveRecord::Base
     to_synch=answers.answered.where(:ft_sync => false)
     if (to_synch.size>0)
       puts "#{to_synch.size} answers to synchronize"
+
       FtDao.instance.sync_answers(to_synch)
     end
   end
@@ -65,7 +81,7 @@ class App < ActiveRecord::Base
     end
   end
 
-  def schedule(context)
+  def next_task(context)
     tasks=self.tasks.available.not_done_by_username(context[:current_user])
 
     # if random order

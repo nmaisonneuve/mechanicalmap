@@ -1,91 +1,59 @@
 class AnswersController < ApplicationController
 
+  respond_to :json
 
   # GET /answers/new
   # GET /answers/new.json
   def new
-    @answer = Answer.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @answer }
-    end
+    respond_with(Answer.new)
   end
 
   # POST /answers
   # POST /answers.json
   def create
-    @answer = Answer.new
-    @answer.task=Task.find(params[:task_id])
-    @answer.user=current_or_guest_user
-    @answer.state=Answer::COMPLETED
-    @answer.input_from_form(params[:task_answer])
-    @answer.ft_sync=false
-
-    respond_to do |format|
-      if @answer.save
-        FtSyncAnswers.perform_async()  if (params[:sync]=="1")
-        format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
-        format.json { render json: @answer, status: :created, location: @answer }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
-      end
-    end
+    fill_answer(Answer.new)
   end
 
-  # PUT /answers/1
-  # PUT /answers/1.json
+# PUT /answers/1
+# PUT /answers/1.json
   def update
-
-    @answer=Answer.find(params[:id])
-    @answer.user=current_or_guest_user
-    @answer.state=Answer::COMPLETED
-    @answer.input_from_form(params[:task_answer])
-    @answer.ft_sync=false
-
-    respond_to do |format|
-      if (@answer.save)
-
-        if (params[:sync]=="1")
-          FtSyncAnswers.perform_async([@answer])
-        end
-
-        format.html { redirect_to workflow_app_path(@answer.task.app), notice: 'Answer was successfully updated.' }
-        format.json { render json: @answer }
-      else
-        format.html { render action: "show" }
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
-      end
-    end
+    fill_answer(Answer.find(params[:id]))
   end
 
   def show
-
-    #render json: @unit
-    @answer=Answer.find(params[:id])
-    @task=@answer.task
-    @app=@task.app
-    @completed, @size=@task.completion
-    @editable=true #!(@task.done_by?(current_or_guest_username))
-    respond_to do |format|
-      format.html {}
-      format.js {
-        json_answer={:submit_url => app_task_answer_url(@app, @task, @answer), :task => @task, :editable => @editable}
-        render :json => json_answer
-      }
-    end
+    answer=Answer.find(params[:id])
+    task=answer.task
+    app=task.app
+    respond_with({:submit_url => app_task_answer_url(app, task, answer),
+                  :task => task,
+                  :ft_task_column => app.task_column,
+                  :editable => true #!(@task.done_by?(current_or_guest_username))
+                 })
   end
 
-  # DELETE /answers/1
-  # DELETE /answers/1.json
+# DELETE /answers/1
+# DELETE /answers/1.json
   def destroy
     @answer = Answer.find(params[:id])
     @answer.destroy
+    respond_with(:location=>answers_url)
+  end
 
-    respond_to do |format|
-      format.html { redirect_to answers_url }
-      format.json { head :no_content }
+  protected
+
+  def fill_answer(answer)
+    answer.task=Task.find(params[:task_id])
+    answer.user=current_or_guest_user
+    answer.state=Answer::COMPLETED
+    answer.input_from_form(params[:task_answer])
+    answer.ft_sync=false
+
+    if answer.save
+      FtSyncAnswers.perform_async() if (params[:sync]=="1")
+      flash[:success] = 'Answer was successfully created.'
+      respond_with(answer, location: answer_url(answer))
+    else
+      respond_with(answer.errors, :status => :unprocessable_entity, :location => nil)
     end
   end
 end
