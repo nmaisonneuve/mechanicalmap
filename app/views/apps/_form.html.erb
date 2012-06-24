@@ -60,33 +60,33 @@
 
             <div class="controls">
               <p class="help-block">
-                Enter the crypted ID of a
+                Crypted ID of a
                 <a href="http://www.google.com/fusiontables/public/tour/index.html">google fusion table</a> containing
                 the list of
-                tasks. <br/>This table should have at least a column <i>task_id</i> containing the ID of the task .
+                tasks.<!-- <br/>This table should have at least a column <i>task_id</i> containing the ID of the task .
                 <br/>
                 <small> (for GIS tasks, check
                   <a href="/demo_generator">this crowdmapping task generator</a> to generate a Google fusion table)
                 </small>
                 )
-              </p>
-              <%= f.text_field :input_ft, :placeholder => "e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :disabled => @disable_ft, :class => "text-field span4" %>
+              </p>        -->
+                <br/> <%= f.text_field :input_ft, :placeholder => "encrypted ID of the GF table  e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :class => "text-field span4" %>
               <% unless @app.input_ft.blank? %>
-                  <%= link_to reindex_app(@app), "Reindex tasks", :class => "btn" %>
+                  <%= link_to  "reindex tasks", reindex_app_url(@app), :class => "btn" %>
               <% end %>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">
               <h3>Answers
-                <small>(output)</small>
+
               </h3>
             </label>
 
             <div class="controls">
               <p class="help-block">
-                A google fusion table will be generated for you
-                <%= f.text_field :output_ft, :placeholder => "e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :disabled => @disable_ft, :class => "text-field span4" %>
+                The google fusion table storing the answers
+               <br/> <%= f.text_field :output_ft, :placeholder => "encrypted ID of the GF table e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :class => "text-field span4" %>
 
             </div>
           </div>
