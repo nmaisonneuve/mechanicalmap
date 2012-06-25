@@ -1,92 +1,59 @@
 <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js"></script>
-<style type="text/css" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-    #main {
-        margin: 0 auto;
-        float: none;
-    }
-</style>
-<div class="container-fluid">
+<div class="container">
 
-<div class="page-header">
-    <h1>MobileTask
-        <small>- Democratizing the building of spreadable,tranparent and clonable micro-apps</small>
-    </h1>
-<!--    <a href="http://opendefinition.org/ossd/">
-        <img src="http://assets.okfn.org/images/ok_buttons/os_80x15_blue.png" alt="" border="" /></a>
-        -->
-</div>
 
 <div class="row">
-    <div class="span4">
 
+    <div class="span6">
         <img style="width:100%" src="/assets/assembly-line2.jpg"/>
-        <br/><br/>
-
-        <p class="well">No need to deploy a server or a database to create your own micro-contribution
-            app. Build your own micro-contribution project
-            by creating or remixing existing micro-task template codes (html/javascript) and
-            embed it on your own web page on the fly.
-            <br/>
-            <br/>
-            <a href="/apps" class="btn  btn" style="float:right">Explore apps</a>
-            <a href="/more" class="btn btn-primary btn">Build a micro-app</a>
-        </p>
-    </div>
-
-    <div class="span8">
-        <% unless @app.nil? %>
-        <b>DEMO: </b>
-        Play with the micro-app "<a href="<%= app_url(@app) %>"><%= @app.name %></a>" that you can embed in your web
-        page like a youtube video.
-        <br>(<a href="/apps">see other examples</a>)
-
-        <p>
-        <iframe width="100%" height="340px" style="border: 1px solid #AAA" scrolling="no"
-                src="<%= app_url(@app) %>?embeddable=1"></iframe>
-        <a rel="div" href="#embed" class="btn btn-small btn-danger" style="float:left;margin:5px">Spread / Embed
-            it</a>
-        <a href="/apps/new?copyof=<%= @app.id %>" class="btn btn-small btn-danger" style="float:left;margin:5px">Clone
-            it</a>
-        <a href="<%= editor_app_url(@app) %>" class="btn btn-small btn-success" style="float:left;margin:5px">source
-            code</a>
-        <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"
-           class="btn btn-small btn-primary" style="float:left;margin:5px">Task Data</a>
-        <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>"
-           class="btn btn-small btn-primary" style="float:left;margin:5px">Answer Data</a>
-        <a href="<%= app_url(@app) %>?embeddable=1" class="btn btn-small "
-           style="float:left;margin:5px">Fullscreen</a>
-
-        <!-- <h3>Features for a remix culture</h3> -->
-        <div id="embed" class="input" style="display:none; clear:both">
-            copy & paste this code to your web site to support further contributions from your visitors.
-            <textarea class="span7">
-                <iframe width="100%" height="300px" style="border: 1px solid #AAA" scrolling="no"
-                        src="<%= app_url(@app) %>?embeddable=1"></iframe>
-            </textarea>
-        </div>
-        </p>
-        <% end %>
 
     </div>
+    <div class="span5 well" style="height: 280px">
+        <h1>MobileTask
+
+        </h1>
+
+        <p style="font-size: 18px;
+font-weight: 200;
+line-height: 27px;">Cloud Toolkit to democratize the building of spreadable, tranparent and clonable crowdsourcing
+            projects </p>
+
+        <!--
+            <p> Build your micro-app on the cloud (no server required) for crowdsourcing
+                small tasks and embed it on your own web page like a youtube video.
+          -->
+        <br/>
+        <br/>
+        <a href="/more" class="btn btn-primary btn-large">Build a micro-app</a>
+        <a href="/apps" class="btn  btn-large" style="margin-left: 50px">Explore apps</a>
+
+
+    </div>
+
+
 </div>
-
 <hr class="soften">
+
 <div class="row">
     <div class="span12">
 
         <h2>Background</h2>
 
 
-            <img src="https://docs.google.com/drawings/pub?id=1tK4GCgnKeRYK1JG-0vl6JtjiHsvL49F5l5H9id2tTxg&amp;w=344&amp;h=230"
-                 style="float:left;margin:5px">
+        <img src="https://docs.google.com/drawings/pub?id=1tK4GCgnKeRYK1JG-0vl6JtjiHsvL49F5l5H9id2tTxg&amp;w=344&amp;h=230"
+             style="float:left;margin:5px">
+
         <p>
-        <b>What is MobileTask?</b><br/>
+            <b>What is MobileTask?</b><br/>
             <!-- In the long tail theory, <i>niche</i> projects drives the largest amount of contributions. -->
-            MobileTask is a <b>toolkit</b> to democratize the launch of projects enabling
+            MobileTask is a <b>Cloud Toolkit</b> to democratize the launch of projects enabling
             micro-contributions from web
-            users, using basic knowledge in html/javascript and that you can host on your own website like a youtube video.</p>
+            users, using basic knowledge in html/javascript and that you can host on your own website like a youtube
+            video.Zero installation or deployment of a server is required: You data +your code are
+            stored/updated in cloud infrastructures</p>
+
         <p>
-        <b>What is a micro-contribution?</b><br/> Micro-contributions
+            <b>What is a micro-contribution?</b><br/> Micro-contributions
             are
             contributions of
             any kind that someone
@@ -127,17 +94,23 @@
                     <div class="span1"><img
                             src="/assets/embedIcon.png" width="45" style="padding-top: 20px;padding-left: 20px">
                     </div>
-                    <div class="span11"><h4>Embed your micro-app like a youtube video</h4>
+                    <div class="span11"><h4>Spredeable</h4>
 
                         <p>
-                            MobileTask is <!--neither a platform hosting crowdsourcing projects or a framework
+
+                            MobileTask <!--neither a platform hosting crowdsourcing projects or a framework
                             for coding applications.
-                            It's -->a web service generating micro-applications embeddable on your website like a
+                            It's --> generates micro-apps embeddable on your own website like a
                             youtube
-                            video or for mobile phones. No need to deploy a server to setup a micro-app.
+                            video and usable for mobile phones.
                             Once
-                            embedded on a website, visitors can start contributing to some tasks.
-                            (note: you are responsible to host any required tutorials/doc on your website).
+                            embedded, web visitors can directly complete some tasks, or also embed the app to their
+                            websites to <b>support your action beyond traditional advertising.</b>
+
+                            <br/>
+                            <b>Note</b> you are responsible to host any required tutorials/doc on your website.
+                            We do not host community & forums etc
+
                             <!-- be creative, you can build custom captcha 'with a purpose'
                         for your website, or active banner you can distribute to your partners'
                         websites instead of advertising. -->
@@ -150,10 +123,11 @@
                     <div class="span1"><img
                             src="/assets/icon-EMM.png"
                             width="45" style="padding-top: 20px;padding-left: 20px"></div>
-                    <div class="span11"><h4>store and share easily your data in the cloud </h4>
+                    <div class="span11"><h4>Zero installation thanks to the cloud</h4>
 
                         <p>
-                            MobileTask is a distributed infrastructure using <a
+                            No need to deploy a server to setup a crowdsourcing project. <br/>
+                            <b>Data:</b> MobileTask is a distributed infrastructure using <a
                                 href="http://www.google.com/fusiontables/public/tour/index.html"> google fusion
                             tables</a> as database to store your tasks and the answers of volunteers. We use
                             google
@@ -162,7 +136,14 @@
                             because it enables any third party to simply
                             view, export, analyze, visualize the raw answers or event insert new tasks in a
                             more
-                            transparent way.
+                            transparent way.<br/>
+                            <b>Code:</b> You are in charge to code the UI to collect the data via an
+                            HTML/javascript
+                            template. MobileTask enables you to direclty edit your code online,
+                            You app is updated on the fly, shortcuting the traditional redeployment cycle.
+                            .Furthermore you code is saved into <a
+                                href="https://gist.github.com">Gist
+                            platform</a> to manage versioning </i>.
 
                             <!-- MobileTask is a kind of search engine indexing a
                         first fusion table
@@ -180,24 +161,22 @@
                     <div class="span1"><img
                             src="/assets/media-shuffle.png" width="45"
                             style="padding-top: 20px;padding-left: 20px"></div>
-                    <div class="span11"><h4>Copy & remix apps: toward an ecosystem</h4>
+                    <div class="span11"><h4>Clonable apps: toward an eco-system</h4>
+
 
                         <p>
-                            You are in charge to code the UI/client-side to collect the data via an
-                            HTML/javascript
-                            template. But no need to code locally and deploy it on a server, or to install
-                            something
-                        </p>
+                            Anyone has access to the data and the code of any micro-app.
 
-                        <p>
-                            MobileTask shortcuts the launch of an app by using the <a
-                                href="https://gist.github.com">Gist
-                            platform</a> as a first place to host or directly edit online your code
-                            via their online editor</i>. Give the URL of your Gist snippet of code and
-                            MobileTask will
-                            generate or update the app on the fly when changes are detected.
-                        </p>
+                            They can slo clone
+                            existing micro-apps to generate variant ones in few minutes.
 
+                        Such feature
+
+                            facilitates the
+                            emergence of
+                            eco-system with best practices in micro-tasking.
+                        </p>
+                      <!--
                         <p>
                             By using Gist , we integrate its social coding features in the building of
                             micro-apps e.g.
@@ -208,7 +187,7 @@
                             existing micro-apps in few minutes.
 
                         </p>
-
+                          -->
                     </div>
                 </div>
             </li>
@@ -217,6 +196,47 @@
 
     </div>
 </div>
+<div class="row">
+    <div class="span12">
+        <% unless @app.nil? %>
+        <h1>Demo </h1>
+
+        <p>
+            Play with the micro-app "<a href="<%= app_url(@app) %>"><%= @app.name %></a>" that you can embed in your web
+            page like a youtube video.
+        </p>
+
+
+        <iframe width="100%" height="340px" style="border: 1px solid #AAA" scrolling="no"
+                src="<%= app_url(@app) %>?embeddable=1"></iframe>
+        <a rel="div" href="#embed" class="btn btn-small btn-danger" style="float:left;margin:5px">Spread / Embed
+            it</a>
+        <a href="/apps/new?copyof=<%= @app.id %>" class="btn btn-small btn-danger" style="float:left;margin:5px">Clone
+            it</a>
+        <a href="<%= editor_app_url(@app) %>" class="btn btn-small btn-success" style="float:left;margin:5px">source
+            code</a>
+        <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"
+           class="btn btn-small btn-primary" style="float:left;margin:5px">Task Data</a>
+        <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>"
+           class="btn btn-small btn-primary" style="float:left;margin:5px">Answer Data</a>
+        <a href="<%= app_url(@app) %>?embeddable=1" class="btn btn-small "
+           style="float:left;margin:5px">Fullscreen</a>
+
+        <!-- <h3>Features for a remix culture</h3> -->
+        <div id="embed" class="input" style="display:none; clear:both">
+            copy & paste this code to your web site to support further contributions from your visitors.
+            <textarea class="span7">
+                <iframe width="100%" height="300px" style="border: 1px solid #AAA" scrolling="no"
+                        src="<%= app_url(@app) %>?embeddable=1"></iframe>
+            </textarea>
+        </div>
+        </p>
+        <% end %>
+
+    </div>
+</div>
+
+<hr class="soften">
 </div>
 <footer>
     <p> Credits - <a href="http://nico.maisonneuve.free.fr" rel="author">n.maisonneuve </a> - march 2012</p>
