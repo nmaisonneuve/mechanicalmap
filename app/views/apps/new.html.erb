@@ -16,7 +16,9 @@
         <input type="hidden" name="schema" id="app_schema" value="<%= @schema %>"/>
         <%= f.hidden_field :script %>
         <fieldset>
-          <legend><%= controller.action_name.capitalize %> Micro-app <small>(* = required field)</small></legend>
+          <legend><%= controller.action_name.capitalize %> Micro-app
+            <small>(* = required field)</small>
+          </legend>
           <div class="control-group">
             <label class="control-label"><h3>Name *</h3></label>
 
@@ -35,32 +37,38 @@
           </div>
 
           <div class="control-group">
-            <label class="control-label"><h3>Iframe Size</h3></label>
+            <label class="control-label"><h3>Web widget </h3></label>
 
             <div class="controls">
-              Width= <%= f.text_field :iframe_width, :placeholder => "100%", :class => "text-field span1", :default=>"100%" %>
-              <br/>Height= <%= f.text_field :iframe_height, :placeholder => "100%", :class => "text-field span1", :default=>"100%" %>
+              Width= <%= f.text_field :iframe_width, :placeholder => "100%", :class => "text-field span1", :default => "100%" %>
+              x
+              Height= <%= f.text_field :iframe_height, :placeholder => "100%", :class => "text-field span1", :default => "100%" %>
             </div>
           </div>
 
           <div class="control-group">
             <label class="control-label">
-              <h3><a style="float:left" href="#" class="icon-question-sign" rel="popover" data-content='Enter the crypted ID of a
+              <h3><a style="float:right" href="#" class="icon-question-sign" rel="popover" data-content='Enter the crypted ID of a
                 <a href="http://www.google.com/fusiontables/public/tour/index.html">google fusion table</a> containing
                 the list of
-                tasks to index <br/>This table should have at least a column <i>task_id</i> containing the ID of the
-                task (= each row is a task).' data-original-title="Info">
+                tasks to index <br/>This table should have at least a column representing somehow the Task ID ' data-original-title="Info">
               </a>Tasks to process</h3></label>
 
             <div class="controls">
               <p class="help-block">
-                Enter the crypted ID of a
-                <a href="http://www.google.com/fusiontables/public/tour/index.html">Google Fusion table</a> containing
-                your list of
-                tasks to index. <br/>
+                Enter the Crypted ID of a
+                Google Fusion table containing
+                the tasks. <br/>
               </p>
 
-              <%= f.text_field :input_ft, :placeholder => "e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :class => "text-field span4" %>
+              <%= f.text_field :input_ft, :placeholder => "e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :class => "text-field span3" %>
+              <a href="https://www.google.com/fusiontables/DataSource?dsrcid=implicit" target="_blank" class="btn">create
+                GF Tables from your data </a>
+
+              <p class="help-block">
+                Column name representing the task ID
+              </p>
+              <%= f.text_field :task_column, :placeholder => "e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :class => "text-field span1" %>
 
             </div>
           </div>
@@ -75,16 +83,13 @@
             <div class="controls">
               <p class="help-block">
                 Enter the crypted ID of a
-                <a href="http://www.google.com/fusiontables/public/tour/index.html">Google Fusion table</a> to store the
-                answers. <br/>Let it blank to generate a table containing the answers.<br/>
+                Google Fusion table to store the
+                answers. <br/>Let it blank to generate a table containing basic answers table you can modify later.<br/>
 
                 <%= f.text_field :output_ft, :placeholder => "e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :class => "text-field span4" %>
 
 
-
-
-
-                 </div>
+            </div>
 
 
           </div>
@@ -106,7 +111,7 @@
           <div class="row">
             <div class="span12">
               <div class="form-actions">
-                <button class="btn btn-primary">Go to step 2 (Add a UI Code)</button>
+                <button class="btn btn-primary">Go to step 2 (add an UI code)</button>
               </div>
             </div>
           </div>
@@ -126,7 +131,10 @@
             placement:'right',
             offset:5,
             html:true
-        })
-    });
+        });
+
+        $('#ft_input').change(function(){
+
+        });
 </script>
 

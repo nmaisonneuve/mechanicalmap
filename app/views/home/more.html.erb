@@ -6,65 +6,76 @@
 </style>
 <div class="container">
 
-<div class="row">
-  <div class="span6">
+  <div class="row">
+    <div class="span6">
 
-    <h2>How does it work?</h2>
-    <hr/>
+      <h2>How does it work?</h2>
+      <hr/>
 
-    <ol class="unstyled">
-      <li><h4>1. Create a Google Fusion Table listing the tasks to complete</h4>
+      <ol class="unstyled">
+        <li><h4>1. Create a Google Fusion Table listing the tasks to complete</h4>
 
-        <p>Create or Clone a Google Fusion table representing the list of tasks to complete. This table should contain
-          at
-          least a
-          column representing the task ID (e.g. task_id). Check the task tables of existing apps to see their
-          structures.
-          <br/>We also propose specific <i>Tasks Generator </i> (e.g. this
-          <a href="/demo_generator">GIS Tasks Generator Helper</a> for analyzing an large area
-          by dividing it into smaller ones). </p></li>
+          <p>Create or Clone a Google Fusion table representing the list of tasks to complete. This table should contain
+            at
+            least a
+            column representing the task ID (e.g. task_id).
+            <br/>Check existing apps to see the structure of their task tables.
+            For instance a
+            <a href="https://www.google.com/fusiontables/DataSource?docid=11TePGrrVCRKJ1IPY6I8wkUrmyfZ6OKELxRgLjjU">this
+              GF
+              table </a> containing a set of images to annotate, or
+            <a href="https://www.google.com/fusiontables/DataSource?docid=1Xm-WmlR2wnxuBusTR94V3xZygkPKUukq9x-YLoM">a
+              more complex table </a>
+              with
+              clusters of documents to review. We also propose specific <i>Tasks Generator </i> (e.g.
+            this
+            <a href="/demo_generator">GIS Tasks Generator Helper</a> for processing a large area
+            by dividing it into smaller ones.
+            <a href="https://www.google.com/fusiontables/DataSource?docid=1pSWNLzQE0oZSs7KJqzhjsMeT96QELkmE9gROt7E">see
+              the resulting table </a></p></li>
 
-      <li><h4>2. Create the UI code </h4>
+        <li>
+          <h4>2. Create the UI code online</h4>
 
-        <p>
-          Clone existing apps or create yours using our javascript framework. No need to install something you can edit
-          it
-          online. The code is also saved to GIST to manage the versioning
-        </p>
-      </li>
-      <li><h4>3.  Update the created Google Fusion Answers table, (optional)</h4>
+          <p>
+            Clone existing apps or create yours using our javascript framework. No need to install something. Code
+            online. The code is also saved to GIST to manage the versioning
+          </p>
+        </li>
 
-        <p>MobileTask indexes the tasks from the Google Fusion table and generate another Google fusion table to store
-          the
-          answers from the users with 3 required columns: task_id = the id of the task answered, created_at= the
-          datetime of
-          the answer, user_id= the id of the user.
-          You can add specific columns according to your task.
-        </p>
-      </li>
-      <li><h4>4. Enjoy !</h4>
-        Your app is ready to be embedded or for Mobile phones.
-        MobileTask generates micro-app with using the provided source code. If you updates the source code, the app is
-        automatically updated. <br/>
-        <span class="label label-warning">Note</span> Google fusion has <a
-      href="https://developers.google.com/fusiontables/docs/developers_guide#Constraints">some constraints</a> you
-        need to be aware.
-      </li>
-    </ol>
-    <div style="text-align: center;">
-      <a href="/apps/new" class="btn btn-primary btn-large" style="margin-top:50px">New app</a>
+        <li><h4>3. Update the created Google Fusion Answers table, (optional)</h4>
+
+          <p>MobileTask indexes the tasks from the Google Fusion table and generate another Google fusion table to store
+            the
+            answers from the users with 3 required columns: task_id = the id of the task answered, created_at= the
+            datetime of
+            the answer, user_id= the id of the user.
+            You can add specific columns according to your task.
+          </p>
+        </li>
+        <li><h4>4. Enjoy !</h4>
+          Your app is ready to be embedded or for Mobile phones.
+          MobileTask generates micro-app with using the provided source code. If you updates the source code, the app is
+          automatically updated. <br/>
+          <span class="label label-warning">Note</span> Google fusion has <a
+        href="https://developers.google.com/fusiontables/docs/developers_guide#Constraints">some constraints</a> you
+          need to be aware.
+        </li>
+      </ol>
+      <div style="text-align: center;">
+        <a href="/apps/new" class="btn btn-primary btn-large" style="margin-top:50px">New app</a>
+
+      </div>
+    </div>
+
+    <div class="span6">
+      <!--   <img src="https://docs.google.com/drawings/pub?id=1fvbDL2pcMHqWn9B8o1D33EPAdF3vK7-UozXpEbn8XyQ&amp;w=800" class="span6">
+      -->
+      <img src="https://docs.google.com/drawings/pub?id=1b7udWkfMXof2l-jzzYV6FThdupTpIPZEVULsfnM8hak&amp;w=350&amp;h=600">
 
     </div>
-  </div>
-
-  <div class="span6">
- <!--   <img src="https://docs.google.com/drawings/pub?id=1fvbDL2pcMHqWn9B8o1D33EPAdF3vK7-UozXpEbn8XyQ&amp;w=800" class="span6">
-     -->
-    <img src="https://docs.google.com/drawings/pub?id=1b7udWkfMXof2l-jzzYV6FThdupTpIPZEVULsfnM8hak&amp;w=350&amp;h=600">
 
   </div>
-
-</div>
 
 
 </div>
