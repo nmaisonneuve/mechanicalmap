@@ -51,7 +51,7 @@ class AppsController < ApplicationController
 
   def reindex
     app=App.find(params[:id])
-    app.reindex_tasks(params[:syn] || false )
+    app.index_tasks_async()
     redirect_to app_path(app), notice: 'Reindexing tasks'
   end
 
@@ -62,8 +62,7 @@ class AppsController < ApplicationController
     if assignment.nil?
       respond_to do |format|
         format.html { redirect_to app_path(app), notice: 'Sorry no further task available!' }
-        format.js { render :json=>"", :status => 404 }
-
+        format.js { render :json=>{:error=>"no assignment found"}, :status => 404 }
       end
     else
       redirect_to app_task_answer_path(assignment.task.app, assignment.task, assignment, :format=>params[:format])
@@ -73,7 +72,7 @@ class AppsController < ApplicationController
 
   def editor
     @app = App.find(params[:id])
-      render :layout => false
+     # render :layout => false
   end
 
 
@@ -120,10 +119,10 @@ class AppsController < ApplicationController
                 {"name"=>"created_at", "type"=>"datetime"}]
 
         schema=ActiveSupport::JSON.decode(params[:schema]) unless  params[:schema].blank?
-                     p schema
+
 
         # we postpone the indexation of task + the generation of answer task
-        FtIndexer.perform_async(@app.id, params[:app_redundancy].to_i)
+        @app.index_tasks_async
         FtGenerator.perform_async(@app.id, schema, current_user.email)
 
 

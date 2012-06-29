@@ -52,8 +52,9 @@ var FTMicroTask = AbstractMicroTask.extend({
             // request more info about the task to the google fusion table
             // and interpret the result to display it
             var query = "SELECT ROWID, " + me.columns.join(",") + " FROM " + me.ft_table + " WHERE "+task.ft_task_column+" = '" + task.task.input + "'";
-
+            console.log("fetching ft input tqble: "+query);
             me.ft_request(query, function (ft_data) {
+                console.log(ft_data);
                 if (ft_data.table.rows.length == 0) {
                     me.no_available_task();
                 } else {

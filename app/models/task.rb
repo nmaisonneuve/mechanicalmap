@@ -4,9 +4,7 @@ class Task < ActiveRecord::Base
 
   has_many :answers, :dependent => :destroy
 
-  attr_accessible :state, :input, :app_id, :gold_answer
-
-  serialize :input
+  attr_accessible :state, :input, :app_id, :gold_answer, :answers
 
   scope :available, lambda {
     joins(:answers).where("answers.state=?", Answer::AVAILABLE)

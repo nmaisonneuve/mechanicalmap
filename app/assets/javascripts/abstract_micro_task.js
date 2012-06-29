@@ -91,6 +91,7 @@ var AbstractMicroTask = Class.extend({
 
         this.request_task(from_task, function (data) {
             me.cache.push(data);
+
             if (me.cache.length < 2) me.caching_task(function () {
             });
             callback();
@@ -141,12 +142,14 @@ var AbstractMicroTask = Class.extend({
             console.log("pre info loaded." + this.scheduler_url + "" + query);
             $.getJSON(this.scheduler_url + query,
                 function (task) {
+                    console.log(task);
                     if (task.submit_url) {
                         success_callback(task);
                     } else
                         me.no_available_task();
                 })
                 .error(function (data, status, xhr) {
+                    console.log("error get task");
                     if (data.status == 404) {
                         me.no_available_task();  // no task available
                     } else {

@@ -1,6 +1,5 @@
 <style type="text/css" media="screen">
 
-
     #editor {
         position: relative;
         height: 500px;
@@ -107,59 +106,6 @@
         </fieldset>
     <% end %>
 
-    <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
-    <script src="/assets/ace/ace.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/assets/ace/theme-cobalt.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/assets/ace/theme-chrome.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/assets/ace/mode-html.js" type="text/javascript" charset="utf-8"></script>
-
-    <script type="text/javascript">
-        // Global variables
-        var editor;
-
-        function evaluate_script() {
-            var text = editor.getSession().getValue()
-            console.log(text);
-            $("#app_script").val(text);
-
-            $("#script_error").removeClass("label-success");
-            $("#script_error").removeClass("label-error");
-
-
-            var script = $("#app_script").val();
-            var schema = script.match(/<!--( )*schema=(.*)-->/);
-            if (schema != null) {
-                try {
-                    schema = eval(schema[2]);
-                } catch (err) {
-                    $("#script_error_text").html("Parsing error. Schema required ");
-                    $("#script_error").addClass("alert-error");
-                    $("#script_error").show();
-                    return false;
-                }
-            }
-
-            $("#script_error_text").html("Schema detected.");
-            $("#script_error").addClass("alert-success");
-            $("#script_error").show();
-
-            $("#app_schema").val(JSON.stringify(schema));
-
-            return true;
-        }
-
-
-        // Register an event listener to fire when the page finishes loading.
-        $(function () {
-            $("#form_app").submit(function () {
-                return (evaluate_script());
-            });
-            editor = ace.edit("editor");
-            editor.setTheme("ace/theme/chrome");
-            var mode = require("ace/mode/html").Mode;
-            editor.getSession().setMode(new mode());
-        });
-    </script>
 
 
   </div>

@@ -74,11 +74,11 @@ class FtDao
 
 
 
-  def import(table_id)
-    tasks_ids=@ft.execute "SELECT task_id, count() FROM #{table_id} group by task_id "
+  def import(table_id, task_column)
+    tasks_ids=@ft.execute "SELECT #{task_column}, count() FROM #{table_id} group by #{task_column} "
     puts " #{tasks_ids.size} tasks to index"
     tasks_ids.each { |task|
-      yield(task[:task_id].to_i)
+      yield(task[task_column.to_sym])
     }
   end
 

@@ -1,3 +1,21 @@
+<% @header = capture do %>
+    <% if @app.user==current_user %>
+
+          <a href="<%= edit_app_path(@app) %>" class="btn btn-small">Setting</a>
+
+          <%= link_to 'Delete App', @app, confirm: 'Are you sure?', method: :delete, :class => "btn btn-small btn-danger" %>
+   <% end %>
+<% end %>
+<% @app_header = capture do %>
+    <li><%= link_to @app.name[0..20], app_path(@app) %></li>
+<% end %>
+<% content_for :app_header, @app_header %>
+
+
+<% content_for :header, @header %>
+
+
+
 <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
 
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -7,17 +25,14 @@
 
       <p id="notice"><%= notice %></p>
 
-      <h2><%= @app.name %></h2>
-      <% if @app.user==current_user %>
-          <div>
-            <a href="<%= edit_app_path(@app) %>" class="btn btn-small">Setting</a>
-            <%= link_to 'Delete App', @app, confirm: 'Are you sure?', method: :delete, :class => "btn btn-small btn-danger" %>
-          </div>
-      <% end %>
+      <h3><%= @app.name %></h3>
+
            <br/>
-      <!--<%= RedCloth.new(@app.description).to_html.html_safe %> -->
+
+      <!--<%= RedCloth.new(@app.description).to_html.html_safe %>
       <%= @app.description.html_safe %>
-      <br/>
+
+      <br/> -->
       <img src="http://api.qrserver.com/v1/create-qr-code/?size=145x145&data=<%= app_url(@app, :embeddable=>1) %>"  />
 
       <hr>

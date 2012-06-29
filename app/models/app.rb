@@ -54,9 +54,28 @@ class App < ActiveRecord::Base
     return clone
   end
 
-  def reindex_tasks
-    self.input_state=INPUT_INDEX
+  def index_tasks_async
+    self.status=STATE_INDEXING
+    self.save
     FtIndexer.perform_async(self.id)
+  end
+
+  def index_tasks
+    i=0
+    self.tasks.destroy_all
+    Task.transaction do
+      FtDao.instance.import(self.input_ft, self.task_column) do |task_id|
+        task=Task.create(:input => task_id.to_i, :app_id => self.id)
+        self.redundancy.times do
+          task.answers<<Answer.create!(:state => Answer::AVAILABLE)
+        end
+        task.save
+        i=i+1
+        break if (i> MAX_ANSWERS)
+      end
+    end
+    self.status=STATE_READY
+    self.save
   end
 
   def synch_answers
@@ -68,18 +87,6 @@ class App < ActiveRecord::Base
     end
   end
 
-  def index_tasks
-    Task.transaction do
-      FtDao.instance.import(self.input_ft, MAX_TASKS) do |task_id|
-        task=Task.create(:input => task_id.to_i, :app_id => self.id)
-        self.redundancy.times do
-          task.answers<<Answer.create!(:state => Answer::AVAILABLE)
-        end
-        task.save
-        break if (i> MAX_ANSWERS)
-      end
-    end
-  end
 
   def next_task(context)
     tasks=self.tasks.available.not_done_by_username(context[:current_user])
