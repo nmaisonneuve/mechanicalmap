@@ -15,10 +15,32 @@ def execute_request (req)
 end
 
 
+def get_gists(id)
+  query=(id.nil?) ? "/gists" : "/gists/#{id}"
+  req=Net::HTTP::Get.new(query, initheader = {'Content-Type' => 'application/json'})
+  result=execute_request(req)
+  p result
+ 
+end
+
+def update_gists(script,id)
+ req=Net::HTTP::Patch.new(query, initheader = {'Content-Type' => 'application/json'})
+req.body = {
+        "files" => {
+            "template_task.html" => {
+                "content" => script
+            }
+        }
+    }.to_json
+end
+
 def save_gists(app_name, script, id=nil)
   query=(id.nil?) ? "/gists" : "/gists/#{id}"
   p query
+  if (id.nil?)
   req = Net::HTTP::Post.new(query, initheader = {'Content-Type' => 'application/json'})
+  else
+ end
 
   if (id.nil?)
     req.body = {
@@ -31,13 +53,7 @@ def save_gists(app_name, script, id=nil)
         }
     }.to_json
   else
-    req.body = {
-        "files" => {
-            "template_task.html" => {
-                "content" => script
-            }
-        }
-    }.to_json
+    
   end
   p req.body
     result=execute_request(req)
@@ -46,9 +62,10 @@ def save_gists(app_name, script, id=nil)
   end
 
 
-  id=save_gists("asdad", "test")
-  p id
-  id=save_gists("asdad", "test 2", id)
+  #id=save_gists("asdad", "test")
+ #p id
+  get_gists("3023387")
+  id=save_gists("asdad", "test 2", "3023387")
   p id
 
 #uri-URI.parse('https://api.github.com/gists')
