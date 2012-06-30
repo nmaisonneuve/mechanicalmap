@@ -22,7 +22,7 @@ class AnswersController < ApplicationController
       flash[:success] = 'Answer was successfully created.'
       render :json => answer.to_json, location: answer_url(answer)
     else
-      render :json => {:error => answer.errors}, :status => :unprocessable_entity, :location => nil)
+      render :json => {:error => answer.errors}, :status => :unprocessable_entity, :location => nil
     end
   end
 
