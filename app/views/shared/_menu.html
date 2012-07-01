@@ -3,8 +3,13 @@
             it</a>
         <a href="/apps/new?copyof=<%= @app.id %>" class="btn btn-small btn-danger" style="float:left;margin:5px">Clone
             it</a>
+            <% if  @app.user!=current_user %>
         <a href="https://gist.github.com/<%= @app.gist_id %>" class="btn btn-small btn-success" style="float:left;margin:5px">source
             code</a>
+             <% else%>
+              <a href="/apps/<%= @app.id %>/editor" class="btn btn-small btn-success" style="float:left;margin:5px">source
+            code</a>
+            <% end %>
         <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"
            class="btn btn-small btn-primary" style="float:left;margin:5px">Task Data</a>
         <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>"
