@@ -1,0 +1,14 @@
+<div>
+        <a rel="div" href="#embed" class="btn btn-small btn-danger" style="float:left;margin:5px">Spread / Embed
+            it</a>
+        <a href="/apps/new?copyof=<%= @app.id %>" class="btn btn-small btn-danger" style="float:left;margin:5px">Clone
+            it</a>
+        <a href="https://gist.github.com/<%= @app.gist_id %>" class="btn btn-small btn-success" style="float:left;margin:5px">source
+            code</a>
+        <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"
+           class="btn btn-small btn-primary" style="float:left;margin:5px">Task Data</a>
+        <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>"
+           class="btn btn-small btn-primary" style="float:left;margin:5px">Answer Data</a>
+        <a href="<%= app_url(@app) %>?embeddable=1" class="btn btn-small "
+           style="float:left;margin:5px">Fullscreen</a>
+</div>
