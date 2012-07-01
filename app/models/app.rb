@@ -65,6 +65,7 @@ class App < ActiveRecord::Base
     self.tasks.destroy_all
     Task.transaction do
       FtDao.instance.import(self.input_ft, self.task_column) do |task_id|
+        unless task_id.blank?
         task=Task.create(:input => task_id.to_i, :app_id => self.id)
         self.redundancy.times do
           task.answers<<Answer.create!(:state => Answer::AVAILABLE)
@@ -72,6 +73,7 @@ class App < ActiveRecord::Base
         task.save
         i=i+1
         break if (i> MAX_ANSWERS)
+      end
       end
     end
     self.status=STATE_READY
