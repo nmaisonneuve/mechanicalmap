@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120623212603) do
+ActiveRecord::Schema.define(:version => 20120701084413) do
 
   create_table "answers", :force => true do |t|
     t.integer  "task_id"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20120623212603) do
     t.string   "output_ft"
     t.string   "input_ft"
     t.text     "script"
-    t.string   "script_url"
+    t.string   "gist_id"
     t.integer  "user_id"
     t.integer  "redundancy",                   :default => 3
     t.string   "iframe_width",                 :default => "100%"

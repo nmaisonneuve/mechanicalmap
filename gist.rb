@@ -18,31 +18,29 @@ end
 def get_gists(id)
   query=(id.nil?) ? "/gists" : "/gists/#{id}"
   req=Net::HTTP::Get.new(query, initheader = {'Content-Type' => 'application/json'})
-  result=execute_request(req)
-  p result
- 
+  result=execute_request(req) 
 end
 
 def update_gists(script,id)
+  token="5d1510e4b2334c507f582c3c057005af96d24271"
+ query="/gists/#{id}?access_token=#{token}"
  req=Net::HTTP::Patch.new(query, initheader = {'Content-Type' => 'application/json'})
-req.body = {
+ req.body = {
         "files" => {
             "template_task.html" => {
                 "content" => script
             }
         }
     }.to_json
+     result=execute_request(req)
+    p result
 end
 
-def save_gists(app_name, script, id=nil)
-  query=(id.nil?) ? "/gists" : "/gists/#{id}"
+def save_gists(app_name, script)
+  token="5d1510e4b2334c507f582c3c057005af96d24271"
+  query="/gists?access_token=#{token}" 
   p query
-  if (id.nil?)
   req = Net::HTTP::Post.new(query, initheader = {'Content-Type' => 'application/json'})
-  else
- end
-
-  if (id.nil?)
     req.body = {
         "description" => "Template of #{app_name}",
         "public" => true,
@@ -52,24 +50,20 @@ def save_gists(app_name, script, id=nil)
             }
         }
     }.to_json
-  else
-    
-  end
-  p req.body
+  #p req.body
     result=execute_request(req)
-    p result
-    result["id"]
+   # p result
+    p result["id"]
   end
 
 
-  #id=save_gists("asdad", "test")
- #p id
-  get_gists("3023387")
-  id=save_gists("asdad", "test 2", "3023387")
-  p id
-
+  id=save_gists("asdad", "test")
+  #get_gists(id)
+  id=update_gists("asdad", "3027544")
+ 
 #uri-URI.parse('https://api.github.com/gists')
 #http = Net::HTTP.new(uri.host, uri.port)
 
 
 # curl -i https://api.github.com/gists -X POST -d '{"description" => "the description for this gist","public" => true,"files" => { "file1.txt" => {"content" => "String file contents"}}}'
+#curl -u citizentasks -d  '{"scopes":["gist"], "note": "admin script" }' -i https://api.github.com/authorizations 

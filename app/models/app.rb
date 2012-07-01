@@ -22,7 +22,7 @@ class App < ActiveRecord::Base
                   :input_ft,
                   :task_column,
                   :script,
-                  :script_url,
+                  :gist_id,
                   :redundancy,
                   :iframe_width,
                   :iframe_height,
@@ -34,8 +34,8 @@ class App < ActiveRecord::Base
     [completed, size]
   end
 
-  def last_contributor
-    self.answers.where("answers.user_id!= null").order("answers.updated_at desc").limit(5)
+  def last_contributor(max_contributors=5)
+    self.answers.where("answers.user_id!= null").order("answers.updated_at desc").limit(max_contributors)
   end
 
   def schema
@@ -78,6 +78,15 @@ class App < ActiveRecord::Base
     self.save
   end
 
+  def create_schema(schema_param)
+      schema=[{"name"=>"task_id", "type"=>"number"},
+                {"name"=>"user_id", "type"=>"string"},
+                {"name"=>"created_at", "type"=>"datetime"}]
+
+      schema=ActiveSupport::JSON.decode(schema_param) unless  schema_param.blank?
+      FtGenerator.perform_async(@app.id, schema, current_user.email)
+  end
+
   def synch_answers
     to_synch=answers.answered.where(:ft_sync => false)
     if (to_synch.size>0)
@@ -85,6 +94,17 @@ class App < ActiveRecord::Base
 
       FtDao.instance.sync_answers(to_synch)
     end
+  end
+
+  def synch_gist
+    #create gist if not existing
+    if gist_id.nil?
+      self.gist_id=GistDao.instance.create_gists(self.name,self.script)
+      self.save
+    else
+      GistDao.instance.update_gists(self.gist_id,self.script)
+    end
+    self.gist_id
   end
 
 

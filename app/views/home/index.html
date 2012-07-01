@@ -9,7 +9,7 @@
 
     </div>
     <div class="span5 well" >
-        <h1>MobileTask</h1>
+        <h1>VolatileTask</h1>
 
         <p style="font-size: 18px;
 font-weight: 200;
@@ -39,12 +39,12 @@ line-height: 27px;">Cloud Toolkit to democratize the building of spreadable, tra
              style="float:left;margin:5px">
 
         <p>
-            <b>What is MobileTask?</b><br/>
+            <b>What is volatileTask?</b><br/>
             <!-- In the long tail theory, <i>niche</i> projects drives the largest amount of contributions. -->
-            MobileTask is a <b>Cloud Toolkit</b> to democratize the launch of projects enabling
+            volatileTask is a <b>Cloud Toolkit</b> to democratize the launch of projects enabling
             micro-contributions from web
             users, using basic knowledge in html/javascript and that you can host on your own website like a youtube
-            video.Zero installation or deployment of a server is required: You data +your code are
+            video. Zero installation or deployment of a server is required: You data +your code are
             stored/shared and clonable thanks to cloud infrastructures</p>
 
         <p>
@@ -93,7 +93,7 @@ line-height: 27px;">Cloud Toolkit to democratize the building of spreadable, tra
 
                         <p>
 
-                            MobileTask <!--neither a platform hosting crowdsourcing projects or a framework
+                            volatileTask <!--neither a platform hosting crowdsourcing projects or a framework
                             for coding applications.
                             It's --> generates micro-apps embeddable on your own website like a
                             youtube
@@ -118,11 +118,11 @@ line-height: 27px;">Cloud Toolkit to democratize the building of spreadable, tra
                     <div class="span1"><img
                             src="/assets/icon-EMM.png"
                             width="45" style="padding-top: 20px;padding-left: 20px"></div>
-                    <div class="span11"><h4>Zero server+database: Cloud coding + data  </h4>
+                    <div class="span11"><h4>Zero server+database: Cloud coding + cloud data  </h4>
 
                         <p>
                             No need to deploy a server to setup a crowdsourcing project. <br/>
-                            <b>Data:</b> MobileTask is a distributed infrastructure using <a
+                            <b>Data:</b> volatileTask is a distributed infrastructure using <a
                                 href="http://www.google.com/fusiontables/public/tour/index.html"> google fusion
                             tables</a> as database to store your tasks and the answers of volunteers. We use
                             google
@@ -134,13 +134,13 @@ line-height: 27px;">Cloud Toolkit to democratize the building of spreadable, tra
                             transparent way.<br/>
                             <b>Code:</b> You are in charge to code the UI to collect the data via an
                             HTML/javascript
-                            template. MobileTask enables you to direclty edit your code online,
+                            template. volatileTask enables you to direclty edit your code online,
                             You app is updated on the fly, shortcuting the traditional redeployment cycle.
                             .Furthermore you code is saved into <a
                                 href="https://gist.github.com">Gist
                             platform</a> to manage versioning </i>.
 
-                            <!-- MobileTask is a kind of search engine indexing a
+                            <!-- volatileTask is a kind of search engine indexing a
                         first fusion table
                         representing the stream of your micro-tasks to process, manages the allocation of tasks
                         (with a
@@ -202,8 +202,10 @@ line-height: 27px;">Cloud Toolkit to democratize the building of spreadable, tra
         </p>
 
 
-        <iframe width="100%" height="400px" style="border: 1px solid #AAA" scrolling="no"
+        <iframe width="700px" height="450px" style="border: 1px solid #AAA" scrolling="no"
                 src="<%= app_url(@app) %>?embeddable=1"></iframe>
+                <br/>
+                <div>
         <a rel="div" href="#embed" class="btn btn-small btn-danger" style="float:left;margin:5px">Spread / Embed
             it</a>
         <a href="/apps/new?copyof=<%= @app.id %>" class="btn btn-small btn-danger" style="float:left;margin:5px">Clone
@@ -216,12 +218,12 @@ line-height: 27px;">Cloud Toolkit to democratize the building of spreadable, tra
            class="btn btn-small btn-primary" style="float:left;margin:5px">Answer Data</a>
         <a href="<%= app_url(@app) %>?embeddable=1" class="btn btn-small "
            style="float:left;margin:5px">Fullscreen</a>
-
+</div>
         <!-- <h3>Features for a remix culture</h3> -->
         <div id="embed" class="input" style="display:none; clear:both">
             copy & paste this code to your web site to support further contributions from your visitors.
             <textarea class="span7">
-                <iframe width="100%" height="300px" style="border: 1px solid #AAA" scrolling="no"
+                <iframe width="700px" height="300px" style="border: 1px solid #AAA" scrolling="no"
                         src="<%= app_url(@app) %>?embeddable=1"></iframe>
             </textarea>
         </div>

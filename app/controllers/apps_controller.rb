@@ -21,7 +21,6 @@ class AppsController < ApplicationController
       end
     else
       render 'embeddable.erb.html', :layout=>false
-      #render 'debug.erb.html', :layout=>false
     end
   end
 
@@ -60,10 +59,7 @@ class AppsController < ApplicationController
     context={:from_task=>params[:from_task], :current_user=>current_or_guest_username}
     assignment=app.next_task(context)
     if assignment.nil?
-      respond_to do |format|
-        format.html { redirect_to app_path(app), notice: 'Sorry no further task available!' }
-        format.js { render :json=>{:error=>"no assignment found"}, :status => 404 }
-      end
+        render :json=>{:error=>"no assignment found"}, :status => 404 
     else
       redirect_to app_task_answer_path(assignment.task.app, assignment.task, assignment, :format=>params[:format])
     end
@@ -72,7 +68,6 @@ class AppsController < ApplicationController
 
   def editor
     @app = App.find(params[:id])
-     # render :layout => false
   end
 
 
@@ -81,15 +76,13 @@ class AppsController < ApplicationController
     if current_user!=@app.user
       redirect_to root_url
     else
-      respond_to do |format|
         if @app.update_attributes(params[:app])
-          format.html { render action: "editor" , notice: 'app was successfully updated.' }
-          format.json { head :no_content }
+          id=@app.synch_gist
+          p id 
+          render json: {"gist_id"=> id}.to_json 
         else
-          format.html { render action: "editor" }
-          format.json { render json: @app.errors, status: :unprocessable_entity }
+          render json: @app.errors, status: :unprocessable_entity 
         end
-      end
     end
   end
 
@@ -97,10 +90,9 @@ class AppsController < ApplicationController
   def edit
     @app = App.find(params[:id])
     if current_user!=@app.user
-      redirect_to root_url
-    else
-
+      return redirect_to root_url
     end
+
   end
 
 
@@ -114,17 +106,12 @@ class AppsController < ApplicationController
 
       if @app.save
         @app.output_ft
-        schema=[{"name"=>"task_id", "type"=>"number"},
-                {"name"=>"user_id", "type"=>"string"},
-                {"name"=>"created_at", "type"=>"datetime"}]
-
-        schema=ActiveSupport::JSON.decode(params[:schema]) unless  params[:schema].blank?
-
-
-        # we postpone the indexation of task + the generation of answer task
+      
+        # we postpone the indexation of task 
         @app.index_tasks_async
-        FtGenerator.perform_async(@app.id, schema, current_user.email)
-
+        #+ the generation of answer tables 
+        @app.create_schema_async(params[:schema])
+        
 
         format.html { redirect_to editor_app_path(@app), notice: 'app was successfully created.' }
         format.json { render json: @app, status: :created, location: @app }
@@ -173,8 +160,6 @@ class AppsController < ApplicationController
     end
 
   end
-
-  private
 
 
 end
