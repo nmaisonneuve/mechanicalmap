@@ -17,6 +17,7 @@ var FTMicroTask = AbstractMicroTask.extend({
         this._super(options);
         this.ft_table = options.ft_table;
         this.columns = [];
+
     },
 
     start:function () {
@@ -47,18 +48,26 @@ var FTMicroTask = AbstractMicroTask.extend({
     request_task:function (from_task, success_callback) {
         var me = this;
         this._super(from_task, function (task) {
-
-            //
+            
             // request more info about the task to the google fusion table
             // and interpret the result to display it
             var query = "SELECT ROWID, " + me.columns.join(",") + " FROM " + me.ft_table + " WHERE "+task.ft_task_column+" = '" + task.task.input + "'";
-            console.log("fetching ft input tqble: "+query);
+            if (me.debug){
+                console.log("fetching FT input table: "+query);
+            }
             me.ft_request(query, function (ft_data) {
-                console.log(ft_data);
+                if (me.debug){
+                    console.log("Data received from the FT task table: ");
+                    console.log(ft_data);
+                }
                 if (ft_data.table.rows.length == 0) {
                     me.no_available_task();
                 } else {
                     task.data=ft_data;
+                    if (me.debug){
+                       console.log("add ft input data with data from task managers:");
+                       console.log(task);
+                    }
                     success_callback(task);
                 }
             });

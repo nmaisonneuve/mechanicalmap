@@ -8,11 +8,13 @@ var AbstractMicroTask = Class.extend({
 
     init:function (options) {
 
-        this.scheduler_url = options.scheduler_url;
-        this.user = options.user;
-
         this.options = options;
 
+        this.scheduler_url = options.scheduler_url;
+        this.user = options.user;
+        this.debug=true || options.debug;
+
+     
         // current task
         this.task = null;
 
@@ -134,15 +136,21 @@ var AbstractMicroTask = Class.extend({
 
     request_task:function (from_task, success_callback) {
         // debug mode
-        if (this.options.debug_mode == true) {
+        if (this.options.debug_request_task) {
             this.options.debug_request_task(from_task);
         } else {
             var me = this;
             var query = (from_task == undefined) ? ".js" : ".js?from_task=" + from_task;
-            console.log("pre info loaded." + this.scheduler_url + "" + query);
+            if (this.debug){
+                console.log("requesting the scheduler: " + this.scheduler_url + "" + query);
+            }
+            var me=this;
             $.getJSON(this.scheduler_url + query,
                 function (task) {
-                    console.log(task);
+                    if (me.debug){
+                        console.log("data received from the scheduler:")
+                        console.log(task);
+                    }
                     if (task.submit_url) {
                         success_callback(task);
                     } else
