@@ -13,6 +13,8 @@ namespace :app do
   desc "synch answers"
   task :sync => :environment do
     App.all.each { |app|
+       puts "app: #{app.name}"
+      
       answers=app.answers.answered.where(:ft_sync => false)
       if (answers.size>0)
         puts "#{answers.size} answers to synchronize"

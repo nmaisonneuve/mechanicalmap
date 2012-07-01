@@ -18,9 +18,9 @@ class AnswersController < ApplicationController
     answer.input_from_form(params[:task_answer])
     answer.ft_sync=false
     if answer.save
-      FtSyncAnswers.perform_async() if (params[:sync]=="1")
+      FtSyncAnswers.perform_async()
       flash[:success] = 'Answer was successfully created.'
-      render :json => answer.to_json, location: answer_url(answer)
+      render :json => answer.to_json
     else
       render :json => {:error => answer.errors}, :status => :unprocessable_entity, :location => nil
     end
