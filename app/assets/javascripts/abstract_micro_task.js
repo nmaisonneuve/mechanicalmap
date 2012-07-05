@@ -12,7 +12,7 @@ var AbstractMicroTask = Class.extend({
 
         this.scheduler_url = options.scheduler_url;
         this.user = options.user;
-        this.debug=true || options.debug;
+        this.debug=options.debug || true;
 
      
         // current task

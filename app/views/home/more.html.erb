@@ -1,4 +1,4 @@
-<style type="text/css" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<style type="text/css">
     #main {
         margin: 0 auto;
         float: none;
@@ -7,68 +7,83 @@
 <div class="container">
 
   <div class="row">
-    <div class="span6">
+    <div class="span9">
 
-      <h2>How does it work?</h2>
+      <h2>Creation of an app: how does it work?</h2>
       <hr/>
 
       <ol class="unstyled">
-        <li><h4>1. Create a Google Fusion Table listing the tasks to complete</h4>
+        <li><h4>1. Create a tasks Table</h4>
 
-          <p>Create or Clone a Google Fusion table representing the list of tasks to complete. This table should contain
-            at
-            least a
-            column representing the task ID (e.g. task_id).
-            <br/>Check existing apps to see the structure of their task tables.
-            For instance a
+          <p>Create a Google Fusion table representing the list of tasks to complete. This table requires a column representing the task ID (e.g. task_id) and further optional input data to complete the task (e.g. the url of an image to annotate).
+
+            <br/>Check existing apps to see their task tables.
+            (e.g. 
             <a href="https://www.google.com/fusiontables/DataSource?docid=11TePGrrVCRKJ1IPY6I8wkUrmyfZ6OKELxRgLjjU">this
-              GF
+              tasks
               table </a> containing a set of images to annotate, or
             <a href="https://www.google.com/fusiontables/DataSource?docid=1Xm-WmlR2wnxuBusTR94V3xZygkPKUukq9x-YLoM">a
               more complex table </a>
-              with
-              clusters of documents to review. We also propose specific <i>Tasks Generator </i> (e.g.
+              to 
+              clusters of a set of documents). We also propose specific <i>Tasks Generator </i> (e.g.
             this
             <a href="/demo_generator">GIS Tasks Generator Helper</a> for processing a large area
             by dividing it into smaller ones.
             <a href="https://www.google.com/fusiontables/DataSource?docid=1pSWNLzQE0oZSs7KJqzhjsMeT96QELkmE9gROt7E">see
-              the resulting table </a></p></li>
+              the resulting table </a><br/>
+         <!-- <span class="label label-warning">Note</span> Google fusion has <a
+        href="https://developers.google.com/fusiontables/docs/developers_guide#Constraints">some constraints</a> you
+          need to be aware. -->
+   </p>
+            </li>
 
         <li>
-          <h4>2. Create the UI code online</h4>
+          <h4>2. Create the UI code </h4>
 
           <p>
-            Clone existing apps or create yours using our javascript framework. No need to install something. Code
-            online. The code is also saved to GIST to manage the versioning
+            Clone existing apps or create yours using the <a href="/framework">javascript framework.</a> No need to install something. Code
+            online. The code is also saved to GIST to manage the versioning.
           </p>
         </li>
 
-        <li><h4>3. Update the created Google Fusion Answers table, (optional)</h4>
+        <li><h4>3. Update the structure of the Answers table </h4>
 
-          <p>MobileTask indexes the tasks from the Google Fusion table and generate another Google fusion table to store
+          <p>VolatileTask generates a basic Google fusion table to store
             the
-            answers from the users with 3 required columns: task_id = the id of the task answered, created_at= the
+            answers of the users. This table contains initially 3 required columns: task_id = the id of the task answered, created_at= the
             datetime of
-            the answer, user_id= the id of the user.
-            You can add specific columns according to your task.
+            the answer, user_id= the user's ID.
+            Add specific columns according to the structure of your answer data.
           </p>
         </li>
         <li><h4>4. Enjoy !</h4>
-          Your app is ready to be embedded or for Mobile phones.
-          MobileTask generates micro-app with using the provided source code. If you updates the source code, the app is
-          automatically updated. <br/>
-          <span class="label label-warning">Note</span> Google fusion has <a
-        href="https://developers.google.com/fusiontables/docs/developers_guide#Constraints">some constraints</a> you
-          need to be aware.
+          <p>
+          Your app is ready. You can embed the app on your web site or display its QRcode so people can complete tasks via their mobile phones. 
+
+          <br/>Note: You can still improve/update the source code. the app will be automatically updated. 
+        </p>
         </li>
-      </ol>
-      <div style="text-align: center;">
+      </ol/>
+     <div style="text-align: center;">
         <a href="/apps/new" class="btn btn-primary btn-large" style="margin-top:50px">New app</a>
 
       </div>
+        <hr/>
+       <h4> How does it work internally</h4>   
+          Once the indexation of the GF tasks table done and a GF answers table generated, the framework will organize the tasks using a <i>parallel model</i>.
+          <br/>In a parallel model, a set of volunteers performs independently the same task.
+          So, according to the redundancy criteria provided during the creation of the app, each task will be assigned to 1 or several users. furthermore in this model a post data processing is generally required to aggregate the answers of different users (e.g. average or consensual) in order to generate a collective output. 
+
+          <br/>A parallel model is generally fine for simple tasks but certainly limited for more complex ones.  <a href="http://nico.maisonneuve.free.fr/blog/index.php/2012/crowdsourcing-satellite-imagery-part-2-iterative-vs-parallel-human-organisations/">Other models of organisation</a> are possible and a "organisation design" tool will be developed if I have time. Below an example of a parallel model to annotate maps collaboratively, fitting with the GIS 
+
+          <img src="https://docs.google.com/uc?id=0B1tvqho7IAWdYWJjdWhQdll2TUU" class="span7"/>
+         
+
+
+ 
     </div>
 
-    <div class="span6">
+    <div class="span3">
       <!--   <img src="https://docs.google.com/drawings/pub?id=1fvbDL2pcMHqWn9B8o1D33EPAdF3vK7-UozXpEbn8XyQ&amp;w=800" class="span6">
       -->
       <img src="https://docs.google.com/drawings/pub?id=1b7udWkfMXof2l-jzzYV6FThdupTpIPZEVULsfnM8hak&amp;w=350&amp;h=600">
