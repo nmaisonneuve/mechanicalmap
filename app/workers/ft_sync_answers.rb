@@ -7,7 +7,7 @@ class FtSyncAnswers
     App.all.each { |app|
     begin 
       app.synch_answers
-      rescue e
+    rescue Exception => e
       	raise Exception.new("Error sync answer for #{app.name} \n errors: #{e.backtrace}")
 	end
     }
