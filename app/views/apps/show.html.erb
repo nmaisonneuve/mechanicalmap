@@ -22,8 +22,13 @@
 <div class="container">
   <div class="row">
     <div class="span3">
-
-      <p id="notice"><%= notice %></p>
+      
+      <% unless notice.blank? %>
+        <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+            <span id="notice"><%= notice %></span>
+      </div>
+      <% end %>
 
       <h3><%= @app.name %></h3>
 
