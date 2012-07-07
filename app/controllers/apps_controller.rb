@@ -5,7 +5,7 @@ class AppsController < ApplicationController
   # GET /apps
   # GET /apps.json
   def index
-    @apps = App.all
+    @apps = App.order("created_at asc")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @apps }
