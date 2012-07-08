@@ -12,6 +12,11 @@ namespace :app do
 
   desc "synch answers"
   task :sync => :environment do
+        FtDao.instance.sync_answers(answers)
+  end
+
+  desc "synch answers"
+  task :sync => :environment do
     App.all.each { |app|
        puts "app: #{app.name}"
       

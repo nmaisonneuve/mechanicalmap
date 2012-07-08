@@ -5,11 +5,11 @@ class FtSyncAnswers
   def perform()
   	
     App.all.each { |app|
-    begin 
+   # begin 
       app.synch_answers
-    rescue Exception => e
-      	raise Exception.new("Error sync answer for #{app.name} \n errors: #{e.backtrace}")
-	end
+   # rescue Exception => e
+   #   raise Exception.new("Error sync answer for #{app.name} \n errors: #{e.backtrace}")
+	 #end
     }
 
   end

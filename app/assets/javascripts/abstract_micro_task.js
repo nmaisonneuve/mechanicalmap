@@ -13,8 +13,9 @@ var AbstractMicroTask = Class.extend({
         this.scheduler_url = options.scheduler_url;
         this.user = options.user;
         this.debug=options.debug || false;
-
      
+        this.size_cache_queue=options.size_cache_queue || 2;
+
         // current task
         this.task = null;
 
@@ -57,10 +58,6 @@ var AbstractMicroTask = Class.extend({
 
     },
 
-    loading:function () {
-
-    },
-
     initialize_ui:function () {
 
         var me = this;
@@ -94,13 +91,25 @@ var AbstractMicroTask = Class.extend({
         this.request_task(from_task, function (data) {
             me.cache.push(data);
 
-            if (me.cache.length < 2) me.caching_task(function () {
+            if (me.cache.length < me.size_cache_queue) me.caching_task(function () {
             });
             callback();
 
 
         });
     },
+    worflow:function(){
+        // function generate by users
+        // give me a random task where status=0 order by priority
+
+        //get the available tasks, status, priority, input_data(json)
+        //see the number of answers
+        // if too many answers
+        // go to the next task
+        // save parameters    
+        // too hard, I want to solve it
+    },
+
     // abstract function
     loading:function(){},
     loaded:function(){},
@@ -111,14 +120,14 @@ var AbstractMicroTask = Class.extend({
     },
     next_cached_task:function (callback) {
 
-
         console.log("request cached task");
         var me = this;
-        this.loading();
+      
         this.task_done++;
         this.update_completeness_ui();
         // if cache empty we wait
         if (this.cache.length == 0) {
+            this.loading();
             this.caching_task(function () {
                 callback(me.cache.shift());
                 me.loaded();
@@ -128,10 +137,11 @@ var AbstractMicroTask = Class.extend({
             callback(this.cache.shift());
             //and cache asynchronously
             this.caching_task(function () {
-                me.loaded();
+                // background
+                //me.loaded();
+
             });
         }
-
     },
 
     request_task:function (from_task, success_callback) {
