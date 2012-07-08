@@ -12,7 +12,9 @@ Mechanicalmap::Application.routes.draw do
     put 'editor_update', :on => :member
     get 'user_state', :on => :member
     resources :tasks do
-      resources :answers
+      resources :answers do
+        get :update #for cross domain update
+      end
     end
   end
 
