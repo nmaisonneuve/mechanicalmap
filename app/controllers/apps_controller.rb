@@ -61,7 +61,7 @@ class AppsController < ApplicationController
     if assignment.nil?
         render :json=>{:error=>"no assignment found"}, :status => 404 
     else
-      redirect_to app_task_answer_path(assignment.task.app, assignment.task, assignment, :format=>params[:format])
+      redirect_to app_task_answer_path(assignment.task.app, assignment.task, assignment, :format=>params[:format], :callback => params[:callback])
     end
   end
 

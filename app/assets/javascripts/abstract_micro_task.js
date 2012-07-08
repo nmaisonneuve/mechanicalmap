@@ -40,7 +40,7 @@ var AbstractMicroTask = Class.extend({
     },
     load_completeness:function () {
         var me = this;
-        $.get(application_url + "/user_state.js", function (data) {
+        $.getJSON(application_url + "/user_state.js&callback=?", function (data) {
             me.task_done = data.completed;
             me.task_total = me.task_done + data.opened;
             me.task_done--; //loading the current task
@@ -150,11 +150,12 @@ var AbstractMicroTask = Class.extend({
             this.options.debug_request_task(from_task);
         } else {
             var me = this;
-            var query = (from_task == undefined) ? ".js" : ".js?from_task=" + from_task;
+            var query = (from_task == undefined) ? ".js?callback=?" : ".js?from_task=" + from_task;
             if (this.debug){
                 console.log("requesting the scheduler: " + this.scheduler_url + "" + query);
             }
             var me=this;
+            console.log(this.scheduler_url + query);
             $.getJSON(this.scheduler_url + query,
                 function (task) {
                     if (me.debug){
@@ -167,6 +168,7 @@ var AbstractMicroTask = Class.extend({
                         me.no_available_task();
                 })
                 .error(function (data, status, xhr) {
+                    console.log(data);
                     console.log("error get task");
                     if (data.status == 404) {
                         me.no_available_task();  // no task available
