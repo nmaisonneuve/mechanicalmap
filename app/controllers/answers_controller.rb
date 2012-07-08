@@ -13,7 +13,7 @@ class AnswersController < ApplicationController
   def update
  
     p params[:answer]
-    answer=Answer.find(params[:id])
+    answer=Answer.find(params[:id] || params[:answer_id]) #put + get 
     answer.task=Task.find(params[:task_id])
     answer.user=current_or_guest_user
     answer.state=Answer::COMPLETED
