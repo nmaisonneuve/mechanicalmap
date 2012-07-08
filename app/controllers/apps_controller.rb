@@ -45,7 +45,7 @@ class AppsController < ApplicationController
     # strange but working
     opened=app.tasks.not_done_by_username(current_or_guest_username).count
     completed=app.tasks.done_by_username(current_or_guest_username).count
-    render json: {:opened=>opened, :completed=>completed}
+    render json: {:opened=>opened, :completed=>completed}, :callback => params[:callback]
   end
 
   def reindex
