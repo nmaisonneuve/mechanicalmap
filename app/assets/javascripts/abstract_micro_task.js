@@ -150,7 +150,7 @@ var AbstractMicroTask = Class.extend({
             this.options.debug_request_task(from_task);
         } else {
             var me = this;
-            var query = (from_task == undefined) ? ".js?callback=?" : ".js?from_task=" + from_task;
+            var query = (from_task == undefined) ? ".js?callback=?" : ".js?from_task=" + from_task+"&callback=?";
             if (this.debug){
                 console.log("requesting the scheduler: " + this.scheduler_url + "" + query);
             }
