@@ -15,7 +15,7 @@ var AbstractMicroTask = Class.extend({
         this.debug=options.debug || false;
      
         this.size_cache_queue=options.size_cache_queue || 2;
-
+        this.task_url=null;
         // current task
         this.task = null;
 
@@ -57,6 +57,24 @@ var AbstractMicroTask = Class.extend({
 
 
     },
+    
+    send_answer:function(){
+        var me = this;
+        var answer=JSON.stringify(me.save());
+        console.log(answer);
+        $.ajax({
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            type: "PUT",
+            url: me.task_url,
+            contentType: "application/json",
+            data: {answer: answer},
+            success: function(){
+                me.next_cached_task(function(data){me.load(data)});
+            },error:function(data){
+                console.log("error saving");
+            }
+        });
+    },
 
     initialize_ui:function () {
 
@@ -65,21 +83,8 @@ var AbstractMicroTask = Class.extend({
         //bind ajax request to function load/save
         $("#" + this.el_ids["skip_task"]).click(function (event) {
             event.preventDefault();
-            //me.request_task(me.task.id);
             me.next_cached_task(function(data){me.load(data);});
         });
-
-        $("#" + this.el_ids["form_task"]).bind('ajax:before',
-            function () {
-                me.save();
-            }).bind('ajax:success',
-            function (evt, data, status, xhr) {
-                //me.request_task(me.task.id);
-                me.next_cached_task(function(data){me.load(data);});
-            }).bind('ajax:error', function (data, status, xhr) {
-                console.log("error saving");
-                console.log(data);
-            });
     },
 
     caching_task:function (callback) {
@@ -90,14 +95,12 @@ var AbstractMicroTask = Class.extend({
 
         this.request_task(from_task, function (data) {
             me.cache.push(data);
-
             if (me.cache.length < me.size_cache_queue) me.caching_task(function () {
             });
             callback();
-
-
         });
     },
+    
     worflow:function(){
         // function generate by users
         // give me a random task where status=0 order by priority
@@ -182,6 +185,7 @@ var AbstractMicroTask = Class.extend({
 
     load:function (data) {
         this.task = data.task;
+        this.task_url=data.submit_url;
         $("#" + this.el_ids["form_task"]).attr("action", data.submit_url);
     }
 

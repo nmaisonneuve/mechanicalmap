@@ -11,11 +11,13 @@ class AnswersController < ApplicationController
   end
 
   def update
+ 
+    p params[:answer]
     answer=Answer.find(params[:id])
     answer.task=Task.find(params[:task_id])
     answer.user=current_or_guest_user
     answer.state=Answer::COMPLETED
-    answer.input_from_form(params[:task_answer])
+    answer.input_from_form(params[:answer])
     answer.ft_sync=false
     if answer.save
       FtSyncAnswers.perform_async()
