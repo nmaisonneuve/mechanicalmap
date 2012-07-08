@@ -40,7 +40,7 @@ var AbstractMicroTask = Class.extend({
     },
     load_completeness:function () {
         var me = this;
-        $.getJSON(application_url + "/user_state.js&callback=?", function (data) {
+        $.getJSON(application_url + "/user_state.js?callback=?", function (data) {
             me.task_done = data.completed;
             me.task_total = me.task_done + data.opened;
             me.task_done--; //loading the current task
