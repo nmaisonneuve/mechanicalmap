@@ -61,12 +61,9 @@ var AbstractMicroTask = Class.extend({
     send_answer:function(){
         var me = this;
         var answer=JSON.stringify(me.save());
-<<<<<<< HEAD
-        
-=======
         console.log(answer);
         this.task_done++;
->>>>>>> 45d3f52d97bd33013ae8153f6ed83caa8d5ece44
+
         $.ajax({
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             type: "PUT",
