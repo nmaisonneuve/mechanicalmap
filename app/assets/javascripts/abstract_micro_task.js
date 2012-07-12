@@ -98,10 +98,9 @@ var AbstractMicroTask = Class.extend({
                 me.cache.push(data);
                 callback();
                 // recursive cache if required
-                me.caching_task(function () {
-                });
-          
-        });
+                me.caching_task(function () {});
+            });
+        }
     },
 
     //answer task
