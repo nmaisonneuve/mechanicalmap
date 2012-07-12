@@ -63,7 +63,7 @@
       <file leaf-file-name="app.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="49" selection-start="505" selection-end="505" vertical-scroll-proportion="0.46703297">
+            <state line="12" column="0" selection-start="376" selection-end="376" vertical-scroll-proportion="0.37362638">
               <folding />
             </state>
           </provider>
@@ -666,11 +666,11 @@
       <item index="1" class="java.lang.String" itemvalue="Rake.db:migrate" />
       <item index="2" class="java.lang.String" itemvalue="Ruby.test" />
       <item index="3" class="java.lang.String" itemvalue="Rake.db:schema:load" />
-      <item index="4" class="java.lang.String" itemvalue="Ruby.gist" />
-      <item index="5" class="java.lang.String" itemvalue="Rails.Development: mechanicalmap" />
-      <item index="6" class="java.lang.String" itemvalue="Rails.Production: mechanicalmap" />
-      <item index="7" class="java.lang.String" itemvalue="Rake.spec" />
-      <item index="8" class="java.lang.String" itemvalue="Rake.test" />
+      <item index="4" class="java.lang.String" itemvalue="Rails.Development: mechanicalmap" />
+      <item index="5" class="java.lang.String" itemvalue="Rails.Production: mechanicalmap" />
+      <item index="6" class="java.lang.String" itemvalue="Rake.spec" />
+      <item index="7" class="java.lang.String" itemvalue="Rake.test" />
+      <item index="8" class="java.lang.String" itemvalue="Ruby.gist" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -702,7 +702,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="738" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -861,7 +861,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="49" selection-start="505" selection-end="505" vertical-scroll-proportion="0.46703297">
+        <state line="12" column="0" selection-start="376" selection-end="376" vertical-scroll-proportion="0.37362638">
           <folding />
         </state>
       </provider>
