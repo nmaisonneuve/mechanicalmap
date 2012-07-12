@@ -61,7 +61,7 @@ var AbstractMicroTask = Class.extend({
     send_answer:function(){
         var me = this;
         var answer=JSON.stringify(me.save());
-        console.log(answer);
+        
         $.ajax({
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             type: "PUT",
@@ -100,7 +100,8 @@ var AbstractMicroTask = Class.extend({
             callback();
         });
     },
-    
+
+    //answer task
     worflow:function(){
         // function generate by users
         // give me a random task where status=0 order by priority

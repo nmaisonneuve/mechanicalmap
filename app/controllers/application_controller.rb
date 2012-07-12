@@ -26,12 +26,15 @@ class ApplicationController < ActionController::Base
 
   #use only the cookie to store the current user
   def guest_username
-    if cookies[:guest_user].blank?
-      o= [(0..9), ('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
-      random=(0..6).map { o[rand(o.length)] }.join
-      cookies[:guest_user]="guest_#{random}"
+    if (params[:workerId].blank?)
+      if cookies[:guest_user].blank?
+          o= [(0..9), ('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+          random=(0..6).map { o[rand(o.length)] }.join
+          cookies[:guest_user]="guest_#{random}"
+      end
+    else
+          cookies[:guest_user]=params[:workerId]
     end
-    cookies[:guest_user]
   end
 
   # find guest_user
