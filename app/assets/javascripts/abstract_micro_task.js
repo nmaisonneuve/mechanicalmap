@@ -14,7 +14,7 @@ var AbstractMicroTask = Class.extend({
         this.user = options.user;
         this.debug=options.debug || false;
      
-        this.size_cache_queue=options.size_cache_queue || 2;
+        this.size_cache_queue=options.size_cache_queue || 1;
         this.task_url=null;
         // current task
         this.task = null;
@@ -61,7 +61,12 @@ var AbstractMicroTask = Class.extend({
     send_answer:function(){
         var me = this;
         var answer=JSON.stringify(me.save());
+<<<<<<< HEAD
         
+=======
+        console.log(answer);
+        this.task_done++;
+>>>>>>> 45d3f52d97bd33013ae8153f6ed83caa8d5ece44
         $.ajax({
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             type: "PUT",
@@ -89,15 +94,16 @@ var AbstractMicroTask = Class.extend({
 
     caching_task:function (callback) {
         var me = this;
-
-        var from_task = (me.cache.length == 0) ? null : me.cache[me.cache.length - 1].task.id;
-        console.log("caching new task  (from task " + from_task + ") - cache size "+me.cache.length);
-
-        this.request_task(from_task, function (data) {
-            me.cache.push(data);
-            if (me.cache.length < me.size_cache_queue) me.caching_task(function () {
-            });
-            callback();
+        if (me.cache.length <= me.size_cache_queue){ 
+            var from_task = (me.cache.length == 0) ? null : me.cache[me.cache.length - 1].task.id;
+            console.log("caching new task  (from task " + from_task + ") - cache size "+me.cache.length);
+            this.request_task(from_task, function (data) {
+                me.cache.push(data);
+                callback();
+                // recursive cache if required
+                me.caching_task(function () {
+                });
+          
         });
     },
 
@@ -127,7 +133,7 @@ var AbstractMicroTask = Class.extend({
         console.log("request cached task");
         var me = this;
       
-        this.task_done++;
+      
         this.update_completeness_ui();
         // if cache empty we wait
         if (this.cache.length == 0) {
@@ -139,7 +145,7 @@ var AbstractMicroTask = Class.extend({
         } else {
             // else we consume directly
             callback(this.cache.shift());
-            //and cache asynchronously
+            //and cache a new tqsk asynchronouslyif reauired
             this.caching_task(function () {
                 // background
                 //me.loaded();
