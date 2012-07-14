@@ -86,7 +86,7 @@ class App < ActiveRecord::Base
                 {"name"=>"created_at", "type"=>"datetime"}]
 
       schema=ActiveSupport::JSON.decode(schema_param) unless  schema_param.blank?
-      FtGenerator.perform_async(@app.id, schema, current_user.email)
+      FtGenerator.perform_async(self.id, schema, current_user.email)
   end
 
   def synch_answers
