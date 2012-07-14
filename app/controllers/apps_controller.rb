@@ -110,7 +110,7 @@ class AppsController < ApplicationController
         # we postpone the indexation of task 
         @app.index_tasks_async
         #+ the generation of answer tables 
-        @app.create_schema(params[:schema])
+        @app.create_schema(params[:schema], current_user.email)
         
 
         format.html { redirect_to editor_app_path(@app), notice: 'app was successfully created.' }

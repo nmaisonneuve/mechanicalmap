@@ -80,13 +80,13 @@ class App < ActiveRecord::Base
     self.save
   end
 
-  def create_schema(schema_param)
+  def create_schema(schema_param, email)
       schema=[{"name"=>"task_id", "type"=>"number"},
                 {"name"=>"user_id", "type"=>"string"},
                 {"name"=>"created_at", "type"=>"datetime"}]
 
       schema=ActiveSupport::JSON.decode(schema_param) unless  schema_param.blank?
-      FtGenerator.perform_async(self.id, schema, current_user.email)
+      FtGenerator.perform_async(self.id, schema)
   end
 
   def synch_answers
