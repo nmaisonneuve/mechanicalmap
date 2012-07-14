@@ -29,7 +29,7 @@
       <div class="nav pull-right" style="margin-right:0px;">
         <ul class="nav">
           <% if user_signed_in? %>
-              <li><a href="#" style="color:white;font-weight: bold;"><%= current_user.username %></a></li>
+              <li><a href="#" style="color:white;font-weight: bold;"><%= current_or_guest_username %></a></li>
               </ul>
              <%= link_to "Sign out", destroy_user_session_path, :method => :delete , :class=>"btn btn-small btn-primary" %>
           <% else %>

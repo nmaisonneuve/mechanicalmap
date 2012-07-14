@@ -15,12 +15,11 @@ class ApplicationController < ActionController::Base
 
   def current_or_guest_username
     if current_user
-      if cookies[:guest_user]
-        cookies[:guest_user]=""
-      end
+      cookies[:guest_user]="" if cookies[:guest_user]
       current_user.username
     else
-      guest_username
+      guest_username if cookies[:guest_user].blank?
+      cookies[:guest_user]
     end
   end
 
@@ -38,11 +37,12 @@ class ApplicationController < ActionController::Base
   end
 
   # find guest_user
-  # creating one as needed
+  # creating one if needed
   def guest_user
-    user=User.find_by_username(guest_username)
+    guest_username if cookies[:guest_user].blank?
+    user=User.find_by_username(cookies[:guest_user])
     if (user.nil?)
-      user=create_guest_user(guest_username)
+      user=create_guest_user(cookies[:guest_user])
     end
     user
   end
