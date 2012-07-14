@@ -37,6 +37,7 @@ var AbstractMicroTask = Class.extend({
         };
         this.initialize_ui();
     },
+
     load_completeness:function () {
         var me = this;
         $.getJSON(application_url + "/user_state.js?callback=?", function (data) {
@@ -61,8 +62,6 @@ var AbstractMicroTask = Class.extend({
         var me = this;
         var answer=JSON.stringify(me.save());
         console.log(answer);
-        this.task_done++;
-
         $.ajax({
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             type: "PUT",
@@ -70,6 +69,7 @@ var AbstractMicroTask = Class.extend({
             contentType: "application/json",
             data: {answer: answer},
             success: function(){
+                me.task_completed();
                 me.next_cached_task(function(data){me.load(data)});
             },error:function(data){
                 console.log("error saving");
@@ -78,7 +78,6 @@ var AbstractMicroTask = Class.extend({
     },
 
     initialize_ui:function () {
-
         var me = this;
         $("#task_user_id").html(user.name);
         //bind ajax request to function load/save
@@ -118,7 +117,9 @@ var AbstractMicroTask = Class.extend({
     // abstract function
     loading:function(){},
     loaded:function(){},
-
+    task_completed:function(){
+           this.task_done++; 
+    },
     no_available_task:function () {
         alert("no task available");
         //abstract function  to implement in the sub class
