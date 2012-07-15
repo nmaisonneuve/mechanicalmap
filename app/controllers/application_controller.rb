@@ -15,34 +15,31 @@ class ApplicationController < ActionController::Base
 
   def current_or_guest_username
     if current_user
-      cookies[:guest_user]="" if cookies[:guest_user]
+      cookies[:guest_user]=""
       current_user.username
     else
-      guest_username if cookies[:guest_user].blank?
-      cookies[:guest_user]
+      guest_username
     end
   end
 
   #use only the cookie to store the current user
   def guest_username
-    if (params[:workerId].blank?)
-      if cookies[:guest_user].blank?
-          o= [(0..9), ('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
-          random=(0..6).map { o[rand(o.length)] }.join
-          cookies[:guest_user]="guest_#{random}"
-      end
-    else
-          cookies[:guest_user]=params[:workerId]
+    if cookies[:guest_user].blank?
+      o= [(0..9), ('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+      random=(0..6).map { o[rand(o.length)] }.join
+      cookies[:guest_user]="guest_#{random}"
     end
+    #we override
+    cookies[:guest_user]=params[:workerId] unless params[:workerId].blank?
+    cookies[:guest_user]
   end
 
   # find guest_user
   # creating one if needed
   def guest_user
-    guest_username if cookies[:guest_user].blank?
-    user=User.find_by_username(cookies[:guest_user])
+    user=User.find_by_username(guest_username)
     if (user.nil?)
-      user=create_guest_user(cookies[:guest_user])
+      user=create_guest_user(guest_username)
     end
     user
   end
