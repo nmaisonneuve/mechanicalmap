@@ -142,7 +142,7 @@ var AbstractMicroTask = Class.extend({
     caching_task:function (last_task,callback) {
         var me = this;
         if (me.cache.length <= me.size_cache_queue){ 
-            console.log("caching new task  (from task " + last_task + ") - cache size "+me.cache.length);
+            console.log("caching (v2) new task  (from task " + last_task + ") - cache size "+me.cache.length);
             this.request_task(last_task, function (data) {
                 me.cache.push(data);
                 last_task=me.get_last_cache();
