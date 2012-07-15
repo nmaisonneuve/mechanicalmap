@@ -10,6 +10,11 @@ class AnswersController < ApplicationController
                      :editable => true} , :callback => params[:callback] #!(@task.done_by?(current_or_guest_username))
   end
 
+  def index
+    answers=App.find(params[:app_id]).answers.order("updated_at desc").limit(30)
+    render :json=> answers.to_json
+  end
+
   def update
     answer=Answer.find(params[:id] || params[:answer_id]) #put + get 
     answer.task=Task.find(params[:task_id])

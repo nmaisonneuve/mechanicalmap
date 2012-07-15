@@ -1,18 +1,23 @@
 class Answer < ActiveRecord::Base
 
+  STATE={
+    :AVAILABLE=>0,
+    :COMPLETED=>2
+  }
+
   AVAILABLE=0
   COMPLETED=2
 
   belongs_to :user
   belongs_to :task
 
-  scope :available, where(:state => AVAILABLE)
-  scope :not_available, where("state!=?", AVAILABLE)
-  scope :answered, where(:state => COMPLETED)
+  scope :available, where(:state => STATE[:AVAILABLE])
+  scope :not_available, where("state!=?", STATE[:AVAILABLE])
+  scope :answered, where(:state => STATE[:COMPLETED])
 
   #any kind of answer e.g string , json
   # interpreted by the related aggregator
-  attr_accessible :state, :content, :user, :ft_sync
+  attr_accessible :state, :answer, :user, :ft_sync
 
   def done_by?(user)
     self.user!=user
@@ -29,5 +34,13 @@ class Answer < ActiveRecord::Base
     }
     self.answer=answer.to_json
   end
-
+  
+  def as_json(options={})
+    {
+      :user=>(self.user.nil?)? nil : self.user.username,
+      :updated_at=>self.updated_at,
+      :content=> self.answer,
+      :state=> STATE.invert[state]
+    }
+  end  
 end

@@ -11,6 +11,7 @@ Mechanicalmap::Application.routes.draw do
     get 'reindex', :on => :member
     put 'editor_update', :on => :member
     get 'user_state', :on => :member
+    resources :answers 
     resources :tasks do
       resources :answers do
         get :update #for cross domain update
