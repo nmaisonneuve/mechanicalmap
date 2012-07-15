@@ -87,20 +87,6 @@ var AbstractMicroTask = Class.extend({
         });
     },
 
-    caching_task:function (callback) {
-        var me = this;
-        if (me.cache.length <= me.size_cache_queue){ 
-            var from_task = (me.cache.length == 0) ? null : me.cache[me.cache.length - 1].task.id;
-            console.log("caching new task  (from task " + from_task + ") - cache size "+me.cache.length);
-            this.request_task(from_task, function (data) {
-                me.cache.push(data);
-                callback();
-                // recursive cache if required
-                me.caching_task(function () {});
-            });
-        }
-    },
-
     //answer task
     worflow:function(){
         // function generate by users
@@ -124,28 +110,45 @@ var AbstractMicroTask = Class.extend({
         alert("no task available");
         //abstract function  to implement in the sub class
     },
-    next_cached_task:function (callback) {
 
+    next_cached_task:function (callback) {
         console.log("request a new task");
         var me = this;
-      
-      
         this.update_completeness_ui();
+
         // if cache empty we wait
         if (this.cache.length == 0) {
             this.loading();
-            this.caching_task(function () {
+            var last_task=this.get_last_cache();
+            this.caching_task(last_task,function () {
+                // ok now we have a task input data
                 callback(me.cache.shift());
                 me.loaded();
             });
         } else {
-            // else we consume directly
+            var last_task=this.get_last_cache();
+            // else we consume directly the data
             callback(this.cache.shift());
             //and cache a new tqsk asynchronouslyif reauired
-            this.caching_task(function () {
-                // background
-                //me.loaded();
+            this.caching_task(last_task,function () {
+            });
+        }
+    },
 
+    get_last_cache:function(){
+        return (this.cache.length == 0) ? null : this.cache[this.cache.length - 1].task.id;
+    },
+
+    caching_task:function (last_task,callback) {
+        var me = this;
+        if (me.cache.length <= me.size_cache_queue){ 
+            console.log("caching new task  (from task " + last_task + ") - cache size "+me.cache.length);
+            this.request_task(last_task, function (data) {
+                me.cache.push(data);
+                last_task=me.get_last_cache();
+                callback();
+                // recursive cache if required
+                me.caching_task(last_task,function () {});
             });
         }
     },
