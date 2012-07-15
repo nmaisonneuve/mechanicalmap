@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
   private
 
   def create_guest_user(username)
-    User.create(:username => username, :email => "#{username}@emailguest.com",:password=>"toto" :anonymous=>true)
+    User.create(:username => username, :email => "#{username}@emailguest.com",:password=>"toto", :anonymous=>true)
   end
 
 end
