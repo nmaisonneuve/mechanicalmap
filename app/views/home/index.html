@@ -1,13 +1,16 @@
-<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js"></script>
-<div class="container">
-
-<style type="text/css">
-.image { 
+<html>
+<head>
+  <script type="text/javascript" src=
+  "http://twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js">
+</script>
+  <style type="text/css">
+/*<![CDATA[*/
+  .image { 
    position: relative; 
     with:100%;
-}
+  }
 
-.headline { 
+  .headline { 
    position: absolute; 
    bottom: 0px; 
    left: 0; 
@@ -15,186 +18,163 @@
    background:rgba(255, 255, 255, 0.7);
 
    padding:10px;  
-}
-</style>
+  }
+  /*]]>*/
+  </style>
 
-<div class="row">
-    <div class="span6">
+  <title>VolatileTask</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="span6">
         <div class="image">
-         <img width="100%" src="/assets/assembly-line2.jpg"/>  
-            <div class="headline">
-            <h1>VolatileTask</h1>
-        <p style="font-size: 18px;
-font-weight: 200;
-line-height: 27px;">Cloud Toolkit to build spreadable, tranparent and clonable apps for crowdsourcing simple tasks.</p>
+          <img width="100%" src="/assets/assembly-line2.jpg" />
 
-        <!--
+          <div class="headline">
+            <h1>VolatileTask</h1>
+
+            <p style="font-size: 18px; font-weight: 200; line-height: 27px;">Cloud
+            Toolkit to build spreadable, tranparent and clonable apps for crowdsourcing
+            simple tasks.</p><!--
             <p> Build your micro-app on the cloud (no server required) for crowdsourcing
                 small tasks and embed it on your own web page like a youtube video.
           -->
-        <br/>
-      
-        <a href="/more" class="btn btn-primary btn-large">Build an app on the fly</a>
-        <a href="/apps" class="btn  btn-large" style="margin-left: 50px">Explore apps</a>
-            </div>
+            <br />
+            <a href="/more" class="btn btn-primary btn-large">Build an app on the fly</a>
+            <a href="/apps" class="btn btn-large" style="margin-left: 50px">Explore
+            apps</a>
+          </div>
         </div>
-    </div>
+      </div>
 
-   <div class="span6" >
-     
-        <h1>Demo </h1>
+      <div class="span6">
+        <h1>Demo</h1>
 
-        <p>
-            Play with the micro-app "<a href="<%= app_url(@app) %>"><%= @app.name %></a>" that you can embed in your web
-            page like a youtube video.
-        </p>
-        <% unless @app.nil? %><iframe width="<%= @app.iframe_width %>" height="<%= @app.iframe_height %>" style="border: 1px solid #AAA" scrolling="no"
-                src="<%= app_url(@app) %>?embeddable=1"></iframe><% end %>
-     <br/>
-        <%= render "shared/menu" %>
-        <!-- <h3>Features for a remix culture</h3> -->
+        <p>Play with the micro-app "<a href=
+        "<%= app_url(@app) %>"><%= @app.name %></a>" that you can embed in your
+        web page like a youtube video.</p><% unless @app.nil? %><iframe width=
+        "<%= @app.iframe_width %>" height="<%= @app.iframe_height %>" style=
+        "border: 1px solid #AAA" scrolling="no" src=
+        "<%= app_url(@app) %>?embeddable=1"></iframe><% end %><br />
+        <%= render "shared/menu" %> 
+
         <div width="100%" id="embed" class="input" style="display:none; clear:both">
-            copy & paste this code to your web site to support further contributions from your visitors.
-            <textarea width="100%"><iframe width="<%= @app.iframe_width %>" height="<%= @app.iframe_height %>" style="border: 1px solid #AAA" scrolling="no"
-                        src="<%= app_url(@app) %>?embeddable=1"></iframe></textarea>
+          copy &amp; paste this code to your web site to support further contributions
+          from your visitors. 
+          <textarea width="100%" class="span6">
+</textarea>
         </div>
-        </p>
+      </div>
     </div>
-</div>
+    <hr class="soften" />
 
-<hr class="soften">
+    <div class="row">
+      <div class="span12">
+        <h2>Background</h2><img src=
+        "https://docs.google.com/drawings/pub?id=1tK4GCgnKeRYK1JG-0vl6JtjiHsvL49F5l5H9id2tTxg&amp;w=344&amp;h=230"
+        style="float:left;margin:5px" />
 
-<div class="row">
-    <div class="span12">
+        <p><b>What is volatileTask?</b><br/>
+        VolatileTask is a <b>Cloud Toolkit to democratize</b> the launch of projects
+        enabling micro-contributions from web users, using basic knowledge in
+        HTML5/javascript and that you can host on your own website like a youtube video.
+        Zero installation or deployment of a server is required: You data +your code are
+        stored/shared and clonable thanks to cloud infrastructures</p>
 
-        <h2>Background</h2>
+        <p><b>What is a micro-contribution?</b><br />
+        Micro-contributions are contributions of any kind that someone could quickly make
+        remotely (or not) within a small amount of time. If we think about the diversity
+        of contributions in participatory projects as a long tail with few core people
+        and a large majority of volatile users,the goal of these micro-applications is to
+        tap into the latter segment assuming that the sum of these micro-contributions
+        could leverage a subtantial work.</p>
 
-
-        <img src="https://docs.google.com/drawings/pub?id=1tK4GCgnKeRYK1JG-0vl6JtjiHsvL49F5l5H9id2tTxg&amp;w=344&amp;h=230"
-             style="float:left;margin:5px">
-
-        <p>
-            <b>What is volatileTask?</b><br/>
-            <!-- In the long tail theory, <i>niche</i> projects drives the largest amount of contributions. -->
-            volatileTask is a <b>Cloud Toolkit</b> to democratize the launch of projects enabling
-            micro-contributions from web
-            users, using basic knowledge in html/javascript and that you can host on your own website like a youtube
-            video. Zero installation or deployment of a server is required: You data +your code are
-            stored/shared and clonable thanks to cloud infrastructures</p>
-
-        <p>
-            <b>What is a micro-contribution?</b><br/> Micro-contributions
-            are
-            contributions of
-            any kind that someone
-            could quickly make remotely (or not) within a
-            small amount of time.
-
-            If we think about the diversity of contributions in participatory projects as a long tail with
-            few
-            core
-            people and a large majority of volatile
-            users,the goal of these micro-applications is to tap into the latter segment assuming that the
-            sum
-            of these
-            micro-contributions could leverage a subtantial work.
-
-        </p>
-
-        <p><b>What kind of micro-contributions?</b> <br/>e.g. analyzing a large flow of individual tweets,
-            classifying a
-            large volume of images,
-            analyzing a large area on a map, segmenting very quickly a long video collaboratively,
-            generating
-            stories
-            via the writing of individual sentences
-            , or any kind of big data processable/generable more easily by volatile participants than the
-            machine.
-        </p>
-
+        <p><b>What kind of micro-contributions?</b><br />
+        e.g. analyzing a large flow of individual tweets, classifying a large volume of
+        images, analyzing a large area on a map, segmenting very quickly a long video
+        collaboratively, generating stories via the writing of individual sentences , or
+        any kind of big data processable/generable more easily by volatile participants
+        than the machine.</p>
+      </div>
     </div>
-</div>
-<hr class="soften">
-        <h2>Features </h2>
-        <div class="row" style="margin-top:10px">
-            <div class="span6">
-                <img src="http://shivsingh.com/goingsocial/images/viral.jpg" style="float:left;margin-right:10px" />
-                <h4>Spreadable over the web</h4>
-                <p>
-                volatileTask <!--neither a platform hosting crowdsourcing projects or a framework
-                            for coding applications.
-                            It's --> generates micro-apps embeddable on your own website like a
-                            youtube
-                            video. You are responsible to host any required tutorials/doc on your website.
-                            We do not host community & forums etc.
-                            Once
-                            embedded, web visitors can directly complete some tasks, or also <b style="color:#A00">embed the app to their
-                            websites to support your action beyond traditional advertising.</b>
+    <hr class="soften" />
 
-                
-                            
+    <h2>Features</h2>
 
-                            <!-- be creative, you can build custom captcha 'with a purpose'
+    <div class="row" style="margin-top:10px">
+      <div class="span6">
+        <img src=
+        "http://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Z%C3%A9ro.svg/100px-Z%C3%A9ro.svg.png"
+        style="float:left;margin-right:10px" />
+
+        <h4>1. Decentralised / in the cloud</h4>
+
+        <p>We do not host server, database, community, forum etc. VolatileTask takes a lazy/minimalist approach by using the web eco-system: it uses external web services, and thus not hosting/maintaining these components. no notion of
+        server, no database to install,no deployment process, no local
+        stuff to setup. If you want a community+forum, create a Facebook page.</p>
+      </div>
+
+      <div class="span6">
+        <img src="http://shivsingh.com/goingsocial/images/viral.jpg" style=
+        "float:left;margin-right:10px" />
+
+        <h4>2. Embeddable like a youtube video and Spreadable over the web</h4>
+
+        <p>volatileTask generates micro-apps embeddable on your own website
+like a youtube video. You are responsible to host any further tutorials/doc on your
+website. Once embedded, web visitors can
+directly play with the app, or also <b style="color:#A00">embed the app to their
+websites to support your action beyond traditional advertising.</b> 
+<!-- be creative, you can build custom captcha 'with a purpose'
                         for your website, or active banner you can distribute to your partners'
-                        websites instead of advertising. -->
-                        </p>
-             </div>
-     
-                 <div class="span6">
-             <img src="/assets/icon-EMM.png" width="100" style="float:left;margin-right:10px">
-                   <h4>Transparent App= Open Data+ Open code</h4>
-                    <p> volatileTask is a distributed infrastructure using <a
-                                href="http://www.google.com/fusiontables/public/tour/index.html"> google fusion
-                            tables</a> as database to store your tasks and the answers of volunteers. We use
-                            google
-                            fusion and
-                            not an internal database
-                            because it enables any third party to simply
-                            <b style="color:#A00">view, export, analyze, visualize the raw data (task and answers)</b> in a more transparent way. 
-                         </p>
-             </div>
-           </div>
+                        websites instead of advertising. --></p>
+      </div>
+    </div>
 
-            <div class="row" style="margin-top:10px">
-                <div class="span6">
-            <img src="http://radare.org/y/f/adv/small.png" style="float:left;margin-right:10px" />
-            <h4>Online coding </h4>
-             <p>                       
-                            You are in charge to code the UI to collect the data via an
-                            HTML/javascript
-                            template. VolatileTask enables to edit your code online and update your app on the fly. This <b style="color:#A00">shortcuts the traditional redeployment cycle for a faster iterative protoptyping</b>.
-    We also automatically save your code into the <a
-                                href="https://gist.github.com">Gist/Github
-                            platform</a> to manage versioning.
-                            <!-- volatileTask is a kind of search engine indexing a
+    <div class="row" style="margin-top:10px">
+      <div class="span6">
+        <img src="/assets/icon-EMM.png" width="100" style=
+        "float:left;margin-right:10px" />
+
+        <h4>3. Open App = Open Data + Open code</h4>
+
+        <p>VolatileTask has an open policy: any app developed with this infrastructure is Open. <b style="color:#A00">You data and your code are at any time accessible</b> (read-only for non-admin). We use
+        <a href=
+        "http://www.google.com/fusiontables/public/tour/index.html">google fusion
+        tables</a> to manage your data and not an internal database because anyone can easily<b style="color:#A00">view, export, analyze, visualize the raw data</b>. Idem with your code via Github. </p>
+      </div>
+
+    <div class="span6">
+      <img src="http://radare.org/y/f/adv/small.png" style=
+      "float:left;margin-right:10px" />
+
+      <h4>Online coding</h4>
+
+      <p>You are in charge to code the UI to collect the data via an HTML/javascript
+      template. VolatileTask enables to edit your code online and update your app on the
+      fly. This <b style="color:#A00">shortcuts the traditional redeployment cycle for a
+      faster iterative protoptyping</b>. We also automatically save your code into the
+      <a href="https://gist.github.com">Gist/Github platform</a> to manage versioning. 
+      <!-- volatileTask is a kind of search engine indexing a
                         first fusion table
                         representing the stream of your micro-tasks to process, manages the allocation of tasks
                         (with a
                         given redundancy) according to your users and send the results to
-                        another fusion table (output) -->
-                    </p>
-              </div>
-    
-                <div class="span6">
-                
-<img src="http://s4.hubimg.com/u/6531991_100.jpg" style="float:left;margin-right:10px" />
-                        <!--<img
-                            src="/assets/media-shuffle.png" width="45"
-                            style="padding-top: 20px;padding-left: 20px"> -->
-                   <h4>Clone existing apps </h4>
+                        another fusion table (output) --></p>
+    </div>
+</div>
+<div class="row" style="margin-top:10px">
+    <div class="span6">
+      <img src="http://s4.hubimg.com/u/6531991_100.jpg" style=
+      "float:left;margin-right:10px" />
 
+      <h4>Clone existing apps</h4>
 
-                        <p>
-                            Anyone can clone
-                            existing micro-apps and modify the data or the code to generate their own crowdsourcing projects in few minutes.
-
-                        Such feature
-<b style="color:#A00">
-                            facilitates the
-                            emergence of
-                            eco-system with best practices in micro-apps</b>.
-                        </p>
-                      <!--
+      <p>Anyone can clone existing micro-apps and modify the data or the code to generate
+      their own variant crowdsourcing projects in few minutes. Such feature <b style=
+      "color:#A00">facilitates the emergence of eco-system with best practices</b>.</p><!--
                         <p>
                             By using Gist , we integrate its social coding features in the building of
                             micro-apps e.g.
@@ -206,44 +186,58 @@ line-height: 27px;">Cloud Toolkit to build spreadable, tranparent and clonable a
 
                         </p>
                           -->
-            </div>
-      
-        </div>
-          <div class="row" style="margin-top:10px">
-                <div class="span6">
-                    <img src="http://screenshots.en.sftcdn.net/en/scrn/318000/318061/qr-code-scanner-pro-3.png" style="float:left;margin-right:10px" />
-                    <h4> Mobile compatible </h4>
-                    <p></p>
+    </div>
+    <div class="span6">
+      <img src="http://vsis-www.informatik.uni-hamburg.de/pics/projects/FSNet_13.gif" style=
+      "float:left;margin-right:10px" />
 
-                </div>
-                <div class="span6">
-                    <img src="http://salesin.cs.washington.edu/thumbnails/floral.jpg" style="float:left;margin-right:10px" />
-                    <h4>Workflow design: from micro to macro  problem solving </h4>
-                    <p> TODO. The answer of a micro-app could be reinjected as input into other apps creating ecosystem. Human automata cellular.
+      <h4>Interaction design: from micro to macro problem solving</h4>
 
-                    </p>
+      <p>by default we use a parallel worfklow with redundancy mechanism. but you are free to design your own workflow e.g.iterative model, or inject the answer of a micro-app as input for other apps creating interaction between apps (TODO add section: "From User to Designer" about crowdsourcing/self-organisation the decomposition/design of tasks to solve a pb)</p>
+    </div>
 
-                </div>
+  </div>
 
+  <div class="row" style="margin-top:10px">
+    <div class="span6">
+      <img src=
+      "http://screenshots.en.sftcdn.net/en/scrn/318000/318061/qr-code-scanner-pro-3.png"
+      style="float:left;margin-right:10px" />
 
+      <h4>Mobile compatible</h4>
 
+      <p>For each app, we generated the associated QRCode. displaying in full screen mode
+      the micro-app.</p>
+    </div>
 
-<hr class="soften">
-</div>
-<footer>
-    <p> Credits - <a href="http://nico.maisonneuve.free.fr" rel="author">n.maisonneuve </a> - march 2012</p>
+  
 
-</footer>
+    <div class="span6">
+      <img src=
+      "http://qph.cf.quoracdn.net/main-thumb-t-2801-100-BBm0YIIqvc8tF4DjNNGuJ8KshjjZSoO8.jpeg"
+      style="float:left;margin-right:10px" />
 
-<script type="text/javascript">
+      <h4>Mechanical Turk compatible</h4>
+
+      <p>YOu can use the <a href="https://www.mturk.com">Amazon mechanical turk
+      service</a> as fast and chip crowdsourcing simulator to test the all process or
+      improve the design/usability via the input of the users. You need to inject a small code into your app</p>
+    </div>
+  </div>
+  <hr class="soften" />
+
+  <p>Credits - <a href="http://nico.maisonneuve.free.fr" rel="author">n.maisonneuve</a> -
+  march 2012</p><script type="text/javascript">
+//<![CDATA[
     $(function () {
         $("a[rel=div]").click(function (e) {
             e.preventDefault();
             $($(this).attr("href")).toggle();
         });
     });
-</script>
-<script type="text/javascript">
+  //]]>
+  </script><script type="text/javascript">
+//<![CDATA[
 
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-30505488-1']);
@@ -258,4 +252,7 @@ line-height: 27px;">Cloud Toolkit to build spreadable, tranparent and clonable a
         s.parentNode.insertBefore(ga, s);
     })();
 
-</script>
+  //]]>
+  </script>
+</body>
+</html>
