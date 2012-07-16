@@ -119,7 +119,7 @@ var AbstractMicroTask = Class.extend({
 
     task_loading:function(){
 
-    }
+    },
     task_completed: function() {
         this.task_done++;
     },
