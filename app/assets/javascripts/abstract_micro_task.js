@@ -118,8 +118,8 @@ var AbstractMicroTask = Class.extend({
     task_loaded:function(){},
 
     task_loading:function(){
-
     },
+
     task_completed: function() {
         this.task_done++;
     },
@@ -139,13 +139,13 @@ var AbstractMicroTask = Class.extend({
             this.loading();
             var last_task = this.get_last_cache();
             this.caching_task(last_task, function() {
-                // ok now we have a task input data
+                // now consume it
                 callback(me.cache.shift());
                 me.loaded();
             });
         } else {
+            // we consume directly the last data    
             var last_task = this.get_last_cache();
-            // we consume directly the last data
             callback(this.cache.shift());
             //and cache a new task (from the last task) asynchronously
             this.caching_task(last_task, function() {});

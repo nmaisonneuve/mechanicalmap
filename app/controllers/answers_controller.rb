@@ -10,13 +10,25 @@ class AnswersController < ApplicationController
                      :editable => true} , :callback => params[:callback] #!(@task.done_by?(current_or_guest_username))
   end
 
+  def update
+    answer=Answer.find(params[:id] || params[:answer_id]) #put + get 
+    create_or_update(answer)
+  end
+
+  def create
+    answer=Answer.new
+    create_or_update(answer)
+  end
+
+  # (used only for debugging)
   def index
     answers=App.find(params[:app_id]).answers.order("updated_at desc").limit(30)
     render :json=> answers.to_json
   end
 
-  def update
-    answer=Answer.find(params[:id] || params[:answer_id]) #put + get 
+  protected
+
+  def create_or_update(answer)
     answer.task=Task.find(params[:task_id])
     answer.user=current_or_guest_user
     answer.state=Answer::COMPLETED
@@ -30,7 +42,6 @@ class AnswersController < ApplicationController
       render :json => {:error => answer.errors}, :status => :unprocessable_entity, :location => nil
     end
   end
-
 
 end
 

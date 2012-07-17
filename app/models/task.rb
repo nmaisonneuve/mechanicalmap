@@ -30,8 +30,6 @@ class Task < ActiveRecord::Base
     end
   }
 
-
-
   def done_by?(user)
     self.answers.where("answers.user_id=?",user).count!=0
   end

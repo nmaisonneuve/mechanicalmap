@@ -85,7 +85,6 @@ class App < ActiveRecord::Base
       schema=[{"name"=>"task_id", "type"=>"number"},
                 {"name"=>"user_id", "type"=>"string"},
                 {"name"=>"created_at", "type"=>"datetime"}]
-
       schema=ActiveSupport::JSON.decode(schema_param) unless  schema_param.blank?
       FtGenerator.perform_async(self.id, schema,email)
   end
@@ -112,19 +111,30 @@ class App < ActiveRecord::Base
 
 
   def next_task(context)
+    if (self.redundancy==-1)
+      worfklow_free(context)
+    else
+      worfklow_allocation(context)
+  end
+
+  def worfklow_free(context)
+    self.tasks.not_done_by_username(context[:current_user])
+    tasks=tasks.where('tasks.id>?', context[:from_task]) unless (context[:from_task].blank?)
+    task=tasks.order('tasks.id asc').first # or by priority 
+    return nil if (task.nil?)
+    task.answers.available.first
+  end
+
+  def worfklow_allocation(context)
     tasks=self.tasks.available.not_done_by_username(context[:current_user])
 
     # if random order
-    if (context[:random])
-      unless (context[:from_task].blank?)
-        tasks=tasks.where('tasks.id!=?', context[:from_task])
-      end
-      task=tasks.order('random() ').limit(1).first
+    if (context[:random])  
+      tasks=tasks.where('tasks.id!=?', context[:from_task]) unless (context[:from_task].blank?)
+      task=tasks.order('random() ').first
     else
-      unless (context[:from_task].blank?)
-        tasks=tasks.where('tasks.id>?', context[:from_task])
-      end
-      task=tasks.order('tasks.id asc').limit(1).first
+      tasks=tasks.where('tasks.id>?', context[:from_task]) unless (context[:from_task].blank?)
+      task=tasks.order('tasks.id asc').first
     end
     return nil if (task.nil?)
     task.answers.available.first

@@ -36,7 +36,6 @@ class AppsController < ApplicationController
       @schema=""
       @cloned=false
     end
-
   end
 
 
@@ -55,12 +54,15 @@ class AppsController < ApplicationController
   end
 
   def workflow
-    app=App.find(params[:id])
-    context={:from_task=>params[:from_task], :current_user=>current_or_guest_username}
-    assignment=app.next_task(context)
-    if assignment.nil?
-        render :json=>{:error=>"no assignment found"}, :status => 404 
+    app = App.find(params[:id])
+    context = { :from_task => params[:from_task], :current_user => current_or_guest_username}
+    @task = app.next_task(context)
+    if task.nil?
+        render :json => {:error => "no task found"}, :status => 404 
     else
+        render :json => {:submit_url => app_task_answer_url(app, task, answer),
+                     :task => @task,
+                     :ft_task_column => @app.task_column},  :callback => params[:callback] 
       redirect_to app_task_answer_path(assignment.task.app, assignment.task, assignment, :format=>params[:format], :callback => params[:callback])
     end
   end
@@ -148,17 +150,10 @@ class AppsController < ApplicationController
     @app = App.find(params[:id])
     if current_user==@app.user
       @app.destroy
-      respond_to do |format|
-        format.html { redirect_to apps_url, notice: 'app was successfully deleted.' }
-        format.json { head :no_content }
-      end
+      redirect_to apps_url, notice: 'app was successfully deleted.' 
     else
-      respond_to do |format|
-        format.html { redirect_to apps_url, notice: 'you are not allowed to delete this application' }
-        format.json { render json: "" }
-      end
+      redirect_to apps_url, notice: 'you are not allowed to delete this application'     
     end
-
   end
 
 
