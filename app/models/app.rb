@@ -8,6 +8,9 @@ class App < ActiveRecord::Base
 
   # demo mode
 
+  GOOGLE_TABLE_REG=/www\.google\.com\/fusiontables\/DataSource\?docid=(.*)/
+
+
   has_many :tasks, :dependent => :destroy
   has_many :answers, :through => :tasks
   has_many :contributors, :through => :answers, :source => :user, :uniq => true
@@ -68,8 +71,10 @@ class App < ActiveRecord::Base
       FtDao.instance.import(self.input_ft, self.task_column) do |task_id|
         unless task_id.blank?
         task=Task.create(:input => task_id.to_i, :app_id => self.id)
-        self.redundancy.times do
-          task.answers<<Answer.create!(:state => Answer::AVAILABLE)
+        if (self.redundancy>0)
+          self.redundancy.times do
+            task.answers<<Answer.create!(:state => Answer::AVAILABLE)
+          end
         end
         task.save
         i=i+1
@@ -115,14 +120,16 @@ class App < ActiveRecord::Base
       worfklow_free(context)
     else
       worfklow_allocation(context)
+    end
   end
 
   def worfklow_free(context)
     self.tasks.not_done_by_username(context[:current_user])
     tasks=tasks.where('tasks.id>?', context[:from_task]) unless (context[:from_task].blank?)
-    task=tasks.order('tasks.id asc').first # or by priority 
+    task=tasks.order('tasks.id asc').first
+    Answer.new # or by priority 
     return nil if (task.nil?)
-    task.answers.available.first
+    task
   end
 
   def worfklow_allocation(context)
@@ -137,7 +144,7 @@ class App < ActiveRecord::Base
       task=tasks.order('tasks.id asc').first
     end
     return nil if (task.nil?)
-    task.answers.available.first
+    task
   end
 
 end

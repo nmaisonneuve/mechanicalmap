@@ -56,14 +56,24 @@ class AppsController < ApplicationController
   def workflow
     app = App.find(params[:id])
     context = { :from_task => params[:from_task], :current_user => current_or_guest_username}
-    @task = app.next_task(context)
+    task = app.next_task(context)
+    
     if task.nil?
         render :json => {:error => "no task found"}, :status => 404 
     else
-        render :json => {:submit_url => app_task_answer_url(app, task, answer),
-                     :task => @task,
-                     :ft_task_column => @app.task_column},  :callback => params[:callback] 
-      redirect_to app_task_answer_path(assignment.task.app, assignment.task, assignment, :format=>params[:format], :callback => params[:callback])
+      answer=task.answers.available.first
+      if (answer.nil?)
+        render :json => {:submit_url => app_task_answers_url(app, task),
+                         :task => task,
+                         :ft_task_column => app.task_column},  
+                         :callback => params[:callback]
+      else
+        render :json => {:submit_url => app_task_answers_url(app, task),
+                         :task => task,
+                         :ft_task_column => app.task_column},  
+                         :callback => params[:callback]
+      end
+ 
     end
   end
 
@@ -102,6 +112,11 @@ class AppsController < ApplicationController
 # POST /apps.json
   def create
 
+    matching=App::GOOGLE_TABLE_REG.match(params[:app][:input_ft])
+    unless matching.nil?
+      params[:app][:input_ft]=matching[1]
+    end
+
     @app = App.create(params[:app])
     @app.user=current_user
     respond_to do |format|
@@ -114,7 +129,6 @@ class AppsController < ApplicationController
         #+ the generation of answer tables 
         @app.create_schema(params[:schema], current_user.email)
         
-
         format.html { redirect_to editor_app_path(@app), notice: 'app was successfully created.' }
         format.json { render json: @app, status: :created, location: @app }
       else

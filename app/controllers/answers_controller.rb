@@ -4,10 +4,7 @@ class AnswersController < ApplicationController
     answer=Answer.find(params[:id])
     task=answer.task
     app=task.app
-    render :json => {:submit_url => app_task_answer_url(app, task, answer),
-                     :task => task,
-                     :ft_task_column => app.task_column,
-                     :editable => true} , :callback => params[:callback] #!(@task.done_by?(current_or_guest_username))
+  #!(@task.done_by?(current_or_guest_username))
   end
 
   def update
