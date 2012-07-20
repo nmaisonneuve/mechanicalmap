@@ -61,7 +61,8 @@ var AbstractMicroTask = Class.extend({
     send_answer: function() {
         var me = this;
         var answers_rows=[];
-        var answer = JSON.stringify(me.save(answers_rows));
+        JSON.stringify(me.save(answers_rows));
+        console.log(answers_rows);
         $.ajax({
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
