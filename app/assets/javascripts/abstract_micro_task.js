@@ -11,7 +11,7 @@ var AbstractMicroTask = Class.extend({
 
         this.options = options;
 
-        this.scheduler_url = options.scheduler_url;
+        this.scheduler_url = options.scheduler_url || scheduler_url;
         this.user = options.user;
         this.debug = options.debug || false;
 
@@ -60,8 +60,8 @@ var AbstractMicroTask = Class.extend({
 
     send_answer: function() {
         var me = this;
-        var answer = JSON.stringify(me.save());
-        console.log(answer);
+        var answers_rows=[];
+        var answer = JSON.stringify(me.save(answers_rows));
         $.ajax({
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -75,11 +75,11 @@ var AbstractMicroTask = Class.extend({
             success: function() {
                 me.task_completed();
                 me.next_cached_task(function(data) {
-                    me.load(data)
+                    me.load(data);
                 });
             },
             error: function(data) {
-                console.log("error saving");
+                me.save_error();
             }
         });
     },
@@ -112,6 +112,10 @@ var AbstractMicroTask = Class.extend({
 
     //TODO should be renamed 
     loading: function() {},
+
+    save_error : function(){
+        console.log("saving error");
+    },
 
     loaded: function() {},
     

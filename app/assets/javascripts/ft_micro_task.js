@@ -15,7 +15,7 @@ var FTMicroTask = AbstractMicroTask.extend({
 
     init:function (options) {
         this._super(options);
-        this.ft_table = options.ft_table;
+        this.ft_table = options.ft_table || ft_table;
         this.columns = [];
 
     },
