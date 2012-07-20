@@ -2,6 +2,15 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery
   helper_method :current_or_guest_username
 
+  private 
+  def stored_location_for(resource_or_scope)
+    nil
+  end
+
+  def after_sign_in_path_for(resource_or_scope)
+     apps_path
+  end
+
   protected
 
   # if user is logged in, return current_user, else return guest_user

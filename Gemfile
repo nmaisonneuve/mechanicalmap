@@ -23,7 +23,10 @@ gem "sinatra"
 gem 'gravatar_image_tag'
 
 gem 'devise'
-gem 'omniauth-facebook'
+gem 'omniauth'
+gem "omniauth-twitter"
+gem 'omniauth-google-oauth2'
+
 
 gem 'color'
 gem "RedCloth"
