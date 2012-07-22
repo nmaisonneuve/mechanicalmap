@@ -12,16 +12,18 @@
     <!-- bootstrap
     <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
     -->
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
-<script type='text/javascript' src='http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js'></script>
-
-
     <%= javascript_include_tag "application" %>
 
-<script src="https://raw.github.com/nmaisonneuve/mechanicalmap/master/app/assets/javascripts/abstract_micro_task.js"></script>
-<script src="https://raw.github.com/nmaisonneuve/mechanicalmap/master/app/assets/javascripts/ft_micro_task.js"></script>
+<% if ENV['RAILS_ENV']=="production" %>
+    <script src="https://raw.github.com/nmaisonneuve/mechanicalmap/master/app/assets/javascripts/abstract_micro_task.js"></script>
+    <script src="https://raw.github.com/nmaisonneuve/mechanicalmap/master/app/assets/javascripts/ft_micro_task.js"></script>
+<% else %>
+    <script src="/assets/abstract_micro_task.js"></script>
+    <script src="/assets/ft_micro_task.js"></script> 
+<% end %>
 
-
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
+<script type='text/javascript' src='http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js'></script>
 
     <script type="text/javascript">
         var user = {name:"<%= current_or_guest_username %>"};

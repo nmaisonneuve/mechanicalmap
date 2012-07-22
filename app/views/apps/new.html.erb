@@ -48,24 +48,20 @@
 
           <div class="control-group">
             <label class="control-label">
-              <h3><a style="float:right" href="#" class="icon-question-sign" rel="popover" data-content='Enter the crypted ID of a
-                <a href="http://www.google.com/fusiontables/public/tour/index.html">google fusion table</a> containing
-                the list of
-                tasks to index <br/>This table should have at least a column representing somehow the Task ID ' data-original-title="Info">
-              </a>Tasks Data</h3></label>
+              <h3>Tasks </h3></label>
 
             <div class="controls">
               <p class="help-block">
-                Enter the public link of the Google Fusion table containing
+                Enter the URL of the Google Fusion table containing
                 the tasks.
-<br/><a href="https://www.google.com/fusiontables/DataSource?dsrcid=implicit" target="_blank" >Create one table from from your data </a>. And don't forget to <a href="http://support.google.com/fusiontables/bin/answer.py?hl=en&answer=171221" target="_blank">make the table public</a> <br/>
+<br/><a href="https://www.google.com/fusiontables/DataSource?dsrcid=implicit" target="_blank" >Create a table from your data </a>. And don't forget to change <a href="http://support.google.com/fusiontables/bin/answer.py?hl=en&answer=171221" target="_blank">the accessibility </a>of the table  <br/>
               </p>
 
               <%= f.text_field :input_ft, :placeholder => "https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA", :class => "text-field span5" %>
               
 
               <p class="help-block">
-                Name of the column representing the task's ID
+                Column to index (representing the task ID)
               </p>
               <%= f.text_field :task_column, :placeholder => "e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :class => "text-field span1" %>
 
@@ -73,17 +69,11 @@
           </div>
           <div class="control-group">
             <label class="control-label">
-              <h3><a style="float:left" href="#" class="icon-question-sign" rel="popover" data-content='Enter the crypted ID of a
-                <a href="http://www.google.com/fusiontables/public/tour/index.html">google fusion table</a> to store the
-                answers (Its structure should have at least these columns: task_id:number , user_id:string,
-                created_id:date). If you let a blank we geneate a basic table for you that you have to customized afterward.' data-original-title="Info">
-              </a>Answers Data</h3></label>
+              <h3>Answers</h3></label>
 
             <div class="controls">
               <p class="help-block">
-                Enter the crypted ID of a
-                Google Fusion table to store the
-                answers. <br/>Let it blank to generate a table containing basic answers table you can modify later.<br/>
+                Enter the URL of the Google Fusion table to store teh answers. <br/>Let it blank to generate a table containing basic answers table you can modify later.<br/>
 
                 <%= f.text_field :output_ft, :placeholder => "e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :class => "text-field span4" %>
 
@@ -99,8 +89,8 @@
             <div class="controls">
 
 
-              <p class="help-block">how many users should do the same task? <br/>Put '-1' for unlimited</p>
-              <%= text_field_tag "app_redundancy", "3", :disabled => @disable_redundancy, :class => "span1", :placeholder => "3" %>
+              <p class="help-block">how many users should do the same task? '-1' for  all the users</p>
+              <%= text_field_tag "app_redundancy", "-1", :disabled => @disable_redundancy, :class => "span1", :placeholder => "3" %>
             </div>
 
 
@@ -110,7 +100,7 @@
           <div class="row">
             <div class="span12">
               <div class="form-actions">
-                <button class="btn btn-primary">Go to step 2 (add an UI code)</button>
+                <button class="btn btn-primary btn-large">Next</button>
               </div>
             </div>
           </div>

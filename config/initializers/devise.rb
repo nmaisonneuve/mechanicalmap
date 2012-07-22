@@ -201,8 +201,9 @@ Devise.setup do |config|
 #  provider :facebook, "5927396942", "f77dde57f939b328049d04d663c51e5c",
 #           :scope => 'email,user_birthday,user_photos,user_location', :display => 'popup',:image_size =>"square"
 
+  require "omniauth-facebook"
+  config.omniauth :facebook, "440758929302174", "0f61aee2b3fc3fe4da0c711a16d94de3"
   
-  #config.omniauth :facebook, "5927396942", "f77dde57f939b328049d04d663c51e5c"
   require "omniauth-google-oauth2"
   config.omniauth :google_oauth2, "441865916179.apps.googleusercontent.com", "ajZ1R19u7KLBmpPGbXKsj_bn", { access_type: "offline", approval_prompt: "" }
   config.omniauth :twitter, "AeWOfkF6uucbmE5HKUEXw", "EFJEB31EKU3oK9CGxlhUABGB1JR7O9XAeQEnvr8" 

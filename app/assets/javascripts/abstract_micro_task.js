@@ -8,14 +8,14 @@ TODO: implement it via BackBone.js for a cleaner version
 
 var AbstractMicroTask = Class.extend({
     init: function(options) {
+ 
+        this.options = options || {};
 
-        this.options = options;
+        this.scheduler_url = this.options.scheduler_url || scheduler_url;
+        this.user = this.options.user;
+        this.debug = this.options.debug || false;
 
-        this.scheduler_url = options.scheduler_url || scheduler_url;
-        this.user = options.user;
-        this.debug = options.debug || false;
-
-        this.size_cache_queue = options.size_cache_queue || 1;
+        this.size_cache_queue = this.options.size_cache_queue || 1;
         this.task_url = null;
         // current task
         this.task = null;
@@ -71,7 +71,7 @@ var AbstractMicroTask = Class.extend({
             url: me.task_url,
             contentType: "application/json",
             data: {
-                answer: answer
+                answer: answers_rows
             },
             success: function() {
                 me.task_completed();

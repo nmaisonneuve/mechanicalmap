@@ -22,19 +22,28 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
-    p auth.provider
-    p auth.uid
-    p auth
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
       user = User.new(username:auth.extra.raw_info.name,
                          provider:auth.provider,
                          uid:auth.uid,
-                         email:auth.info.email,
                          password:Devise.friendly_token[0,20])
       user.save(:validate => false)
     end
     user
   end
+
+  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+  user = User.where(:email => auth.info.email).first
+  unless user
+    user = User.create(username:auth.extra.raw_info.name,
+                         provider:auth.provider,
+                         uid:auth.uid,
+                         email:auth.info.email,
+                         password:Devise.friendly_token[0,20]
+                         )
+  end
+  user
+end
 
 end
