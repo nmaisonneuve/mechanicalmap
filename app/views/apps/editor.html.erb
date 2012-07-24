@@ -79,6 +79,8 @@
         editor.setTheme("ace/theme/chrome");
         var Mode = require("ace/mode/html").Mode;
         editor.getSession().setMode(new Mode());
+        editor.getSession().setUseSoftTabs(true);
+        editor.getSession().setTabSize(2);
         // editor.getSession().setMode("ace/mode/html");
 
     });

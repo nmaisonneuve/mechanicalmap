@@ -26,7 +26,7 @@ class AnswersController < ApplicationController
   protected
 
   def create_or_update(answer)
-    answer.task=Task.find(params[:task_id])
+    answer.task=Task.where(:app_id=>params[:app_id]).where(:input_task_id=>params[:task_id]).first
     answer.user=current_or_guest_user
     answer.state=Answer::COMPLETED
     answer.input_from_form(params[:answer])

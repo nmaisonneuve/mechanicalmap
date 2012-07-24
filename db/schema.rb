@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120720071222) do
+ActiveRecord::Schema.define(:version => 20120724073551) do
 
   create_table "answers", :force => true do |t|
     t.integer  "task_id"
@@ -47,9 +47,9 @@ ActiveRecord::Schema.define(:version => 20120720071222) do
 
   create_table "tasks", :force => true do |t|
     t.integer  "app_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.integer  "input"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "input_task_id"
     t.boolean  "gold_answer"
   end
 

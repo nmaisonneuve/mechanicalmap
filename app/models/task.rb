@@ -4,7 +4,7 @@ class Task < ActiveRecord::Base
 
   has_many :answers, :dependent => :destroy
 
-  attr_accessible :state, :input, :app_id, :gold_answer, :answers
+  attr_accessible :state, :input_task_id, :app_id, :gold_answer, :answers
 
   scope :available, lambda {
     joins(:answers).where("answers.state=?", Answer::AVAILABLE)
@@ -43,6 +43,10 @@ class Task < ActiveRecord::Base
     completed=self.answers.answered.count
     size=self.answers.count
     [completed, size]
+  end
+
+  def to_param
+    input_task_id
   end
 
 end

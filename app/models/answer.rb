@@ -28,7 +28,7 @@ class Answer < ActiveRecord::Base
   def input_from_form(form_input)
     answer=ActiveSupport::JSON.decode(form_input)
     answer.each { |row|
-      row["task_id"]=self.task.input if row["task_id"].blank?
+      row["task_id"]=self.task.input_task_id if row["task_id"].blank?
       row["user_id"]=self.user.username if row["user_id"].blank?
       row["created_at"]=DateTime.now if row["created_at"].blank?
     }

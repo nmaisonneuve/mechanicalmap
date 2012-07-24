@@ -37,60 +37,70 @@
           </div>
 
           <div class="control-group">
-            <label class="control-label"><h3>Web widget </h3></label>
+            <label class="control-label"><h3>Presentation</h3></label>
 
             <div class="controls">
-              Width= <%= f.text_field :iframe_width, :placeholder => "100%", :class => "text-field span1", :default => "100%" %>
+              Web widget size:<br/>
+              Width = <%= f.text_field :iframe_width, :placeholder => "100%", :class => "text-field span1", :default => "100%" %>
               x
-              Height= <%= f.text_field :iframe_height, :placeholder => "100%", :class => "text-field span1", :default => "100%" %>
+              Height = <%= f.text_field :iframe_height, :placeholder => "100%", :class => "text-field span1", :default => "100%" %>
             </div>
           </div>
-
           <div class="control-group">
             <label class="control-label">
-              <h3>Tasks </h3></label>
+              <h3>Data Management</h3></label>
 
             <div class="controls">
               <p class="help-block">
-                Enter the URL of the Google Fusion table containing
-                the tasks.
-<br/><a href="https://www.google.com/fusiontables/DataSource?dsrcid=implicit" target="_blank" >Create a table from your data </a>. And don't forget to change <a href="http://support.google.com/fusiontables/bin/answer.py?hl=en&answer=171221" target="_blank">the accessibility </a>of the table  <br/>
+                <b>TASKS DATA</b>: what is the URL of the Google fusion table containing your tasks?
+              
+<br/>(<a href="https://www.google.com/fusiontables/DataSource?dsrcid=implicit" target="_blank" >Create a table from your data </a> + change <a href="http://support.google.com/fusiontables/bin/answer.py?hl=en&answer=171221" target="_blank">its accessibility </a> to public)
               </p>
 
               <%= f.text_field :input_ft, :placeholder => "https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA", :class => "text-field span5" %>
               
 
+              <div id="task_column" class="hide">
+                <p class="help-block">
+                Enter the name of the column representing the task ID
+                </p>
+                <%= f.text_field :task_column, :placeholder => "e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :class => "text-field span1" %>
+              </div>
+             </div> 
+             <div class="controls">
               <p class="help-block">
-                Column to index (representing the task ID)
-              </p>
-              <%= f.text_field :task_column, :placeholder => "e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :class => "text-field span1" %>
+                <b>ANSWERS DATA</b>: what is the URL of the Google fusion table storing the answers? <br/>(let the field blank to automatically generate a table)</p>
 
-            </div>
+                <%= f.text_field :output_ft, :placeholder => "https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA", :class => "text-field span5" %>
+
+             </div>
           </div>
+      
           <div class="control-group">
             <label class="control-label">
-              <h3>Answers</h3></label>
-
-            <div class="controls">
-              <p class="help-block">
-                Enter the URL of the Google Fusion table to store teh answers. <br/>Let it blank to generate a table containing basic answers table you can modify later.<br/>
-
-                <%= f.text_field :output_ft, :placeholder => "e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :class => "text-field span4" %>
-
-
-            </div>
-
-
-          </div>
-          <div class="control-group">
-            <label class="control-label">
-              <h3>Redundancy</h3></label>
+              <h3>Task Allocation</h3></label>
 
             <div class="controls">
 
 
-              <p class="help-block">how many users should do the same task? '-1' for  all the users</p>
+              <p class="help-block">How many users should do the same task?<br/> Write '-1' for unlimited allocation (each task will be submitted to each new user)</p>
               <%= text_field_tag "app_redundancy", "-1", :disabled => @disable_redundancy, :class => "span1", :placeholder => "3" %>
+            </div>
+
+
+          </div>
+
+           <div class="control-group">
+            <label class="control-label">
+              <h3>Task Template Code</h3></label>
+
+           <div class="controls">
+              <p class="help-block">
+                Enter the URL of the Gist Github with the task template. <br/>Or let it blank to generate one<br/>
+
+                <%= f.text_field :gist_id, :placeholder => "https://gist.github.com/3028982", :class => "text-field span3" %>
+
+
             </div>
 
 

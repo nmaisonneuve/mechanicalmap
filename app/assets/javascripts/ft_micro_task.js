@@ -51,7 +51,7 @@ var FTMicroTask = AbstractMicroTask.extend({
             
             // request more info about the task to the google fusion table
             // and interpret the result to display it
-            var query = "SELECT ROWID, " + me.columns.join(",") + " FROM " + me.ft_table + " WHERE "+task.ft_task_column+" = '" + task.task.input + "'";
+            var query = "SELECT ROWID, " + me.columns.join(",") + " FROM " + me.ft_table + " WHERE "+task.ft_task_column+" = '" + task.task.input_task_id + "'";
             if (me.debug){
                 console.log("fetching FT input table: "+query);
             }

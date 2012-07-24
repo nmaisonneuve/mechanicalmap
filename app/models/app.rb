@@ -10,7 +10,6 @@ class App < ActiveRecord::Base
 
   GOOGLE_TABLE_REG=/www\.google\.com\/fusiontables\/DataSource\?docid=(.*)/
 
-
   has_many :tasks, :dependent => :destroy
   has_many :answers, :through => :tasks
   has_many :contributors, :through => :answers, :source => :user, :uniq => true
@@ -46,20 +45,20 @@ class App < ActiveRecord::Base
   end
 
   def clone
-    clone= App.new
-    clone.name="copy of #{self.name}"
-    clone.description="copy of #{self.description}"
-    clone.input_ft=self.input_ft
-    clone.script=self.script
-    clone.gist_id=GistDao.fork_gists(self.gist_id) unless (self.gist_id.nil?) 
-    clone.redundancy=self.redundancy
-    clone.iframe_width=self.iframe_width
-    clone.iframe_height= self.iframe_height
+    clone = App.new
+    clone.name = "copy of #{self.name}"
+    clone.description = "copy of #{self.description}"
+    clone.input_ft = self.input_ft
+    clone.script = self.script
+    clone.gist_id = GistDao.fork_gists(self.gist_id) unless (self.gist_id.nil?) 
+    clone.redundancy = self.redundancy
+    clone.iframe_width = self.iframe_width
+    clone.iframe_height = self.iframe_height
     return clone
   end
 
   def index_tasks_async
-    self.status=STATE_INDEXING
+    self.status = STATE_INDEXING
     self.save
     FtIndexer.perform_async(self.id)
   end
@@ -70,7 +69,7 @@ class App < ActiveRecord::Base
     Task.transaction do
       FtDao.instance.import(self.input_ft, self.task_column) do |task_id|
         unless task_id.blank?
-        task=Task.create(:input => task_id.to_i, :app_id => self.id)
+        task=Task.create(:input_task_id=> task_id.to_i, :app_id => self.id)
         if (self.redundancy>0)
           self.redundancy.times do
             task.answers<<Answer.create!(:state => Answer::AVAILABLE)
@@ -89,7 +88,8 @@ class App < ActiveRecord::Base
   def create_schema(schema_param, email)
       schema=[{"name"=>"task_id", "type"=>"number"},
                 {"name"=>"user_id", "type"=>"string"},
-                {"name"=>"created_at", "type"=>"datetime"}]
+                {"name"=>"created_at", "type"=>"datetime"},
+                {"name"=>"answer", "type"=>"text"}]
       schema=ActiveSupport::JSON.decode(schema_param) unless  schema_param.blank?
       FtGenerator.perform_async(self.id, schema,email)
   end
@@ -97,8 +97,6 @@ class App < ActiveRecord::Base
   def synch_answers
     to_synch=answers.answered.where(:ft_sync => false)
     if (to_synch.size>0)
-      puts "#{to_synch.size} answers to synchronize"
-
       FtDao.instance.sync_answers(to_synch)
     end
   end
@@ -125,9 +123,8 @@ class App < ActiveRecord::Base
 
   def worfklow_free(context)
     self.tasks.not_done_by_username(context[:current_user])
-    tasks=tasks.where('tasks.id>?', context[:from_task]) unless (context[:from_task].blank?)
-    task=tasks.order('tasks.id asc').first
-    Answer.new # or by priority 
+    tasks=tasks.where('tasks.input_task_id>?', context[:from_task]) unless (context[:from_task].blank?)
+    task=tasks.order('tasks.input_task_id asc').first
     return nil if (task.nil?)
     task
   end
@@ -137,11 +134,11 @@ class App < ActiveRecord::Base
 
     # if random order
     if (context[:random])  
-      tasks=tasks.where('tasks.id!=?', context[:from_task]) unless (context[:from_task].blank?)
+      tasks=tasks.where('tasks.input_task_id!=?', context[:from_task]) unless (context[:from_task].blank?)
       task=tasks.order('random() ').first
     else
-      tasks=tasks.where('tasks.id>?', context[:from_task]) unless (context[:from_task].blank?)
-      task=tasks.order('tasks.id asc').first
+      tasks=tasks.where('tasks.input_task_id>?', context[:from_task]) unless (context[:from_task].blank?)
+      task=tasks.order('tasks.input_task_id asc').first
     end
     return nil if (task.nil?)
     task

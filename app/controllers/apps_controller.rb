@@ -68,7 +68,7 @@ class AppsController < ApplicationController
                          :ft_task_column => app.task_column},  
                          :callback => params[:callback]
       else
-        render :json => {:submit_url => app_task_answers_url(app, task),
+        render :json => {:submit_url => app_task_answer_path(app, task, answer),
                          :task => task,
                          :ft_task_column => app.task_column},  
                          :callback => params[:callback]
@@ -111,12 +111,7 @@ class AppsController < ApplicationController
 # POST /apps
 # POST /apps.json
   def create
-
-    matching=App::GOOGLE_TABLE_REG.match(params[:app][:input_ft])
-    unless matching.nil?
-      params[:app][:input_ft]=matching[1]
-    end
-
+    clean_url(params)
     @app = App.create(params[:app])
     @app.user=current_user
     respond_to do |format|
@@ -141,7 +136,7 @@ class AppsController < ApplicationController
 # PUT /apps/1
 # PUT /apps/1.json
   def update
-
+    clean_url(params)
     @app = App.find(params[:id])
     if current_user!=@app.user
       redirect_to root_url
@@ -170,5 +165,22 @@ class AppsController < ApplicationController
     end
   end
 
+private
+  def clean_url(params)
+    matching=App::GOOGLE_TABLE_REG.match(params[:app][:input_ft])
+    unless matching.nil?
+      params[:app][:input_ft]=matching[1]
+    end
+
+    matching=App::GOOGLE_TABLE_REG.match(params[:app][:output_ft])
+    unless matching.nil?
+      params[:app][:output_ft]=matching[1]
+    end
+
+    matching=/https:\/\/gist\.github.com\/(.*)\/?/.match(params[:app][:gist_id])
+    unless matching.nil?
+      params[:app][:gist_id]=matching[1]
+    end
+  end
 
 end

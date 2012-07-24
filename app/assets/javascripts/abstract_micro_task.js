@@ -13,7 +13,7 @@ var AbstractMicroTask = Class.extend({
 
         this.scheduler_url = this.options.scheduler_url || scheduler_url;
         this.user = this.options.user;
-        this.debug = this.options.debug || false;
+        this.debug = this.options.debug || true;
 
         this.size_cache_queue = this.options.size_cache_queue || 1;
         this.task_url = null;
@@ -60,18 +60,19 @@ var AbstractMicroTask = Class.extend({
 
     send_answer: function() {
         var me = this;
-        var answers_rows=[];
-        JSON.stringify(me.save(answers_rows));
+        var answers_rows=me.save([]);
+        answers_json=JSON.stringify(answers_rows);
         console.log(answers_rows);
+        type= (/answers$/.test(me.task_url))? "POST" : "PUT";
         $.ajax({
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            type: "PUT",
+            type: type,
             url: me.task_url,
             contentType: "application/json",
             data: {
-                answer: answers_rows
+                answer: answers_json
             },
             success: function() {
                 me.task_completed();
@@ -158,7 +159,7 @@ var AbstractMicroTask = Class.extend({
     },
 
     get_last_cache: function() {
-        return (this.cache.length == 0) ? null : this.cache[this.cache.length - 1].task.id;
+        return (this.cache.length == 0) ? null : this.cache[this.cache.length - 1].task.input_task_id;
     },
 
     caching_task: function(last_task, callback) {
