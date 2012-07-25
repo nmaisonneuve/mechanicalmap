@@ -29,7 +29,7 @@
 
 
           <div class="control-group">
-            <label class="control-label"><h3>Description</h3></label>
+            <label class="control-label"><h3>Description for the repository</h3></label>
 
             <div class="controls">
               <%= f.text_area :description, :rows => 5, :placeholder => "short description (in html)", :class => "text-field span4" %>
@@ -52,7 +52,7 @@
 
             <div class="controls">
               <p class="help-block">
-                <b>TASKS DATA</b>: what is the URL of the Google fusion table containing your tasks?
+                <b>TASKS DATA</b>: URL of the Google fusion table containing your tasks
               
 <br/>(<a href="https://www.google.com/fusiontables/DataSource?dsrcid=implicit" target="_blank" >Create a table from your data </a> + change <a href="http://support.google.com/fusiontables/bin/answer.py?hl=en&answer=171221" target="_blank">its accessibility </a> to public)
               </p>
@@ -64,12 +64,12 @@
                 <p class="help-block">
                 Enter the name of the column representing the task ID
                 </p>
-                <%= f.text_field :task_column, :placeholder => "e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :class => "text-field span1" %>
+                <%= f.select :task_column, :class => "text-field span1" %>
               </div>
              </div> 
              <div class="controls">
               <p class="help-block">
-                <b>ANSWERS DATA</b>: what is the URL of the Google fusion table storing the answers? <br/>(let the field blank to automatically generate a table)</p>
+                <b>ANSWERS DATA</b>: URL of the Google fusion table storing the answers <br/>(let the field blank to automatically generate a table)</p>
 
                 <%= f.text_field :output_ft, :placeholder => "https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA", :class => "text-field span5" %>
 
@@ -124,6 +124,32 @@
 <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
 <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
 <script type="text/javascript">
+    
+    function load_schema(ft_table,callback_fct) {
+        var me = this;
+        var columns=[];
+        ft_request("DESCRIBE " + ft_table, function (data) {
+            $.each(data.table.rows, function (i, row) {
+                columns.push(row[1]);
+            });
+            console.log(columns);
+            callback_fct(columns);
+        });
+    }
+
+    function ft_request(query, callback_fct) {
+        // Builds a Fusion Tables SQL query and hands the result to dataHandler()
+        var queryUrlHead = 'http://www.google.com/fusiontables/api/query?sql=';
+        var queryUrlTail = '&jsonCallback=?'; // ? could be a function name
+        // write your SQL as normal, then encode it
+        query = queryUrlHead + query + queryUrlTail;
+        var queryurl = encodeURI(query);
+        console.log(queryurl);
+        $.get(queryurl, function (data) {
+            callback_fct(data);
+        }, "jsonp");
+    }
+
     $(function () {
 
         $('a[rel=popover]').popover({
@@ -132,8 +158,20 @@
             html:true
         });
 
-        $('#ft_input').change(function(){
+        $('#app_input_ft').change(function(){
 
+          load_schema($(this).val(),function(columns){
+            select=$("#app_task_column");
+            select.html("");
+            options="";
+            for (var i=0; i<columns.length;i++){
+              options+="<option value='"+columns[i]+"'>"+columns[i]+"</option>";
+            }
+            select.append(options)
+           $("#task_column").show();
+          });
         });
+
+    });
 </script>
 
