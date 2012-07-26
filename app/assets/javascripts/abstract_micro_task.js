@@ -8,7 +8,7 @@ TODO: implement it via BackBone.js for a cleaner version
 
 var AbstractMicroTask = Class.extend({
     init: function(options) {
- 
+
         this.options = options || {};
 
         this.scheduler_url = this.options.scheduler_url || scheduler_url;
@@ -55,15 +55,15 @@ var AbstractMicroTask = Class.extend({
         if ($("#progress_bar").length > 0) $("#progress_bar").width(ratio + "%");
         if ($("#" + this.el_ids["task_done"]).length > 0) $("#" + this.el_ids["task_done"]).html(this.task_done);
 
-
     },
 
     send_answer: function() {
         var me = this;
-        var answers_rows=me.save([]);
-        answers_json=JSON.stringify(answers_rows);
-        console.log(answers_rows);
-        type= (/answers$/.test(me.task_url))? "POST" : "PUT";
+        var answers_rows = me.save([]);
+        answers_json = JSON.stringify(answers_rows);
+        if (this.debug) console.log(answers_rows);
+
+        type = (/answers$/.test(me.task_url)) ? "POST" : "PUT";
         $.ajax({
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -77,7 +77,7 @@ var AbstractMicroTask = Class.extend({
             success: function() {
                 me.task_completed();
                 me.next_cached_task(function(data) {
-                    me.load(data);
+                    me._load(data);
                 });
             },
             error: function(data) {
@@ -93,7 +93,7 @@ var AbstractMicroTask = Class.extend({
         $("#" + this.el_ids["skip_task"]).click(function(event) {
             event.preventDefault();
             me.next_cached_task(function(data) {
-                me.load(data);
+                me._load(data);
             });
         });
     },
@@ -111,20 +111,18 @@ var AbstractMicroTask = Class.extend({
     },
 
     // abstract functions to implement
-
     //TODO should be renamed 
     loading: function() {},
 
-    save_error : function(){
+    save_error: function() {
         console.log("saving error");
     },
 
     loaded: function() {},
-    
-    task_loaded:function(){},
 
-    task_loading:function(){
-    },
+    task_loaded: function() {},
+
+    task_loading: function() {},
 
     task_completed: function() {
         this.task_done++;
@@ -193,7 +191,7 @@ var AbstractMicroTask = Class.extend({
                 }
                 if (task.submit_url) {
                     success_callback(task);
-                } else{ 
+                } else {
                     me.no_available_task();
                 }
             }).error(function(data, status, xhr) {
@@ -209,10 +207,11 @@ var AbstractMicroTask = Class.extend({
         }
     },
 
-    load: function(data) {
+    _load: function(data) {
         this.task = data.task;
         this.task_url = data.submit_url;
         $("#" + this.el_ids["form_task"]).attr("action", data.submit_url);
+        this.load(data);
     }
 
 });

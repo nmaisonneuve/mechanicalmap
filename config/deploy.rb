@@ -1,4 +1,5 @@
-#$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+
+
 Dir['lib/**/*.rb'].each { |recipe| require  File.basename(recipe, '.rb') }
 
 set :rvm_type, :user
