@@ -48,7 +48,7 @@ class App < ActiveRecord::Base
     clone.description = "copy of #{self.description}"
     clone.input_ft = self.input_ft
     clone.script = self.script
-    clone.gist_id = GistDao.fork_gists(self.gist_id) unless (self.gist_id.nil?) 
+    clone.gist_id = GistDao.instance.fork_gists(self.gist_id) unless (self.gist_id.nil?) 
     clone.redundancy = self.redundancy
     clone.iframe_width = self.iframe_width
     clone.iframe_height = self.iframe_height
