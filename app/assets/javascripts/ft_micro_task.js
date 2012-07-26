@@ -17,15 +17,43 @@ var FTMicroTask = AbstractMicroTask.extend({
         this._super(options);
         this.ft_table = this.options.ft_table || ft_table;
         this.columns = [];
-
     },
 
+    /*
+    Add a task (containing potentially several rows) to the Google fusion table
+    the code:
+    
+      taskmanager.add_task([{image:"http://coco.jpg"}], function(task_created){
+        console.log(task_created)
+      })
+    
+    1. will add a row with the following columns:
+        - image = http://coco.jpg, 
+        - {task_ref} = {incremented_id} 
+    {task_ref} is the column name representing the task ID (e.g. task_id)
+    and {incremented_id} = the incremented id of this column
+
+    2. and will index the task to allocate the number of answers specified in the app.
+    
+    IMPORTANT NOTE: This fct works only if VolatileTask has a *write access* to this table.
+    add 'citizenscybercience@gmail.com' as editor of the table if it is not already done.
+    */
+    add_task:function(rows, callback){
+        $.post(application_url + "/tasks.json", {data:JSON.stringify(rows)},function(data) {
+        callback(data); }, "json");
+    },
+
+    /* Start the MicroTaskManager
+
+    the code:
+        taskmanager.start() 
+    will start the task manager by caching some tasks, and load the first one.
+    */
     start:function () {
         var me = this;
         // once the structure of a task is known
         // we request a task
         this.load_schema(function () {
-            //me.request_task(null,function(task){
             me.next_cached_task(function(task) {
                 me.load(task);
             });
@@ -73,8 +101,6 @@ var FTMicroTask = AbstractMicroTask.extend({
             });
         });
     },
-
-
 
     load_schema:function (callback_fct) {
         var me = this;

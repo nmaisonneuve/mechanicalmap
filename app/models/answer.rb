@@ -23,8 +23,8 @@ class Answer < ActiveRecord::Base
     self.user!=user
   end
 
-  # if they are not present
-  # we enriched the answer by common info
+  # if some fields are not present
+  # we enriched the answers with default values
   def input_from_form(form_input)
     answer=ActiveSupport::JSON.decode(form_input)
     answer.each { |row|

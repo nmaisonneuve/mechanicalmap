@@ -20,86 +20,119 @@
     </div>
 <% end %>
 
+<% if @app.errors.any? %>
+    <div class="alert alert-error">
+      <a class="close" data-dismiss="alert">×</a>
+      <h4 class="alert-heading"><%= pluralize(@app.errors.count, "error") %> prohibited this app from being saved:</h4>
+      <ul>
+        <% @app.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+
 <div class="row">
   <div class="span12">
     <%= form_for(@app, :html => {:class => 'form-horizontal', :id => "form_app"}) do |f| %>
-        <input type="hidden" name="schema" id="app_schema" value=""/>
+        <input type="hidden" name="schema" id="app_schema" value="<%= @schema %>"/>
+        <%= f.hidden_field :script %>
         <fieldset>
-          <legend><%= controller.action_name.capitalize %> App</legend>
+          <legend><%= controller.action_name.capitalize %> Micro-app
+            <small>(* = required field)</small>
+          </legend>
           <div class="control-group">
-            <label class="control-label"><h3>Name</h3></label>
+            <label class="control-label"><h3>Name *</h3></label>
 
             <div class="controls">
               <%= f.text_field :name, :placeholder => "name of the app", :class => "text-field span4" %>
             </div>
           </div>
 
-          <div class="control-group">
-            <label class="control-label"><h3>Iframe size </h3></label>
-
-            <div class="controls">
-              Width= <%= f.text_field :iframe_width, :placeholder => "100%", :class => "text-field span1", :default => "100%" %>
-              x
-              Height= <%= f.text_field :iframe_height, :placeholder => "100%", :class => "text-field span1", :default => "100%" %>
-            </div>
-          </div>
 
           <div class="control-group">
             <label class="control-label"><h3>Description</h3></label>
 
             <div class="controls">
-              <%= f.text_area :description, :rows => 5, :placeholder => "short description of the crowdsourcing project", :class => "text-field span4" %>
+              <%= f.text_area :description, :rows => 5, :placeholder => "Short description (in html) for the VolatileTask Apps repository", :class => "text-field span4" %>
             </div>
           </div>
 
           <div class="control-group">
-            <label class="control-label">
-              <h3>Tasks to process </h3></label>
+            <label class="control-label"><h3>Presentation</h3></label>
 
             <div class="controls">
-              <p class="help-block">
-                Crypted ID of a
-                <a href="http://www.google.com/fusiontables/public/tour/index.html">google fusion table</a> containing
-                the list of
-                tasks.<!-- <br/>This table should have at least a column <i>task_id</i> containing the ID of the task .
-                <br/>
-                <small> (for GIS tasks, check
-                  <a href="/demo_generator">this crowdmapping task generator</a> to generate a Google fusion table)
-                </small>
-                )
-              </p>        -->
-                <br/> <%= f.text_field :input_ft, :placeholder => "encrypted ID of the GF table  e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :class => "text-field span4" %>
-              <% unless @app.input_ft.blank? %>
-                  <%= link_to  "reindex tasks", reindex_app_url(@app), :class => "btn" %>
-              <% end %>
+              Web widget size:<br/>
+              Width = <%= f.text_field :iframe_width, :placeholder => "100%", :class => "text-field span1", :default => "100%" %>
+              x
+              Height = <%= f.text_field :iframe_height, :placeholder => "100%", :class => "text-field span1", :default => "100%" %>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">
-              <h3>Answers</h3>
-            </label>
+              <h3>Data Management</h3></label>
 
             <div class="controls">
               <p class="help-block">
-                The google fusion table storing the answers
-               <br/> <%= f.text_field :output_ft, :placeholder => "encrypted ID of the GF table e.g. 1It3U5IJCOlk3MVyNUygG7NOWvLeNj8eWbIIYLGo", :class => "text-field span4" %>
+                <b>TASKS DATA</b>: URL of the Google fusion table containing your tasks
+              
+<br/>(<a href="https://www.google.com/fusiontables/DataSource?dsrcid=implicit" target="_blank" >Create a table from your data </a> + change <a href="http://support.google.com/fusiontables/bin/answer.py?hl=en&answer=171221" target="_blank">its accessibility </a> to public) <a href="#" class="btn btn-primary">More info</a>
+              </p>
 
-            </div>
+              <%= f.text_field :input_ft, :placeholder => "https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA", :class => "text-field span5" %>
+              <img src="http://www.inishtech.com/App_Themes/Default/Images/CMSModules/Forums/LiveImages/AcceptedSolution.gif" style="display:none" id="task_ft_accepted"/>
+              <img src="http://www.finta.pl/content/ico-false.png" style="display:none" id="task_ft_rejected"/>
+
+              <div id="task_column" class="hide">
+                <p class="help-block">
+                Enter the name of the column representing the task ID
+                </p>
+                <%= f.select :task_column, :class => "text-field span1" %>
+              </div>
+             </div> 
+             <div class="controls">
+              <p class="help-block">
+                <b>ANSWERS DATA</b>: URL of the Google fusion table storing the answers <br/>(let the field blank to automatically generate a table)</p>
+
+                <%= f.text_field :output_ft, :placeholder => "https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA", :class => "text-field span5" %>
+             </div>
           </div>
-
+      
           <div class="control-group">
-            <label class="control-label"><h3>Quality</h3></label>
+            <label class="control-label">
+              <h3>Task Allocation</h3></label>
 
             <div class="controls">
-              <p class="help-block">How many volunteers should do the same task?</p>
-              <%= f.text_field :redundancy, :placeholder => "", :disabled => @disable_ft, :class => "text-field span1" %>
+
+
+              <p class="help-block">How many users should do the same task?<br/> Write '-1' for unlimited allocation (each task will be submitted to each new user)</p>
+              <%= text_field_tag "app_redundancy", "-1", :disabled => @disable_redundancy, :class => "span1", :placeholder => "3" %>
             </div>
+
+
           </div>
+
+           <div class="control-group">
+            <label class="control-label">
+              <h3>Task Template Code</h3></label>
+
+           <div class="controls">
+              <p class="help-block">
+                Enter the URL of the Gist Github with the task template. <br/>Or let it blank to generate one<br/>
+
+                <%= f.text_field :gist_id, :placeholder => "https://gist.github.com/3028982", :class => "text-field span3" %>
+
+
+            </div>
+
+
+          </div>
+
 
           <div class="row">
             <div class="span12">
               <div class="form-actions">
-                <button class="btn btn-primary">Submit</button>
+                <button class="btn btn-primary btn-large">Next</button>
               </div>
             </div>
           </div>
@@ -107,6 +140,76 @@
     <% end %>
 
 
-
   </div>
 </div>
+
+<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
+<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
+<script type="text/javascript">
+    
+    function load_schema(ft_table,callback_fct) {
+        var me = this;
+        var columns=[];
+        ft_request("DESCRIBE " + ft_table, function (data) {
+            $.each(data.table.rows, function (i, row) {
+                columns.push(row[1]);
+            });
+            console.log(columns);
+            callback_fct(columns);
+        });
+    }
+
+    function ft_request(query, callback_fct) {
+        // Builds a Fusion Tables SQL query and hands the result to dataHandler()
+        var queryUrlHead = 'http://www.google.com/fusiontables/api/query?sql=';
+        var queryUrlTail = '&jsonCallback=?'; // ? could be a function name
+        // write your SQL as normal, then encode it
+        query = queryUrlHead + query + queryUrlTail;
+        var queryurl = encodeURI(query);
+        console.log(queryurl);
+        $.ajax({url: queryurl,
+          success: function (data) {
+            $("#task_ft_rejected").hide();
+            $("#task_ft_accepted").show();
+            callback_fct(data);
+
+          },
+          error: function(data){
+              console.log(data);
+               $("#task_ft_rejected").show();
+               $("#task_ft_accepted").hide();
+             }});
+    }
+    
+    function retrieve_columns_names(){
+      var url=$('#app_input_ft').val().replace("https://www.google.com/fusiontables/DataSource?docid=","");
+          load_schema(url,function(columns){
+            select=$("#app_task_column");
+            select.html("");
+            options="";
+            for (var i=0; i<columns.length;i++){
+              options+="<option value='"+columns[i]+"'>"+columns[i]+"</option>";
+            }
+            select.append(options)
+           $("#task_column").show();
+          });
+    }
+
+    $(function () {
+
+        $('a[rel=popover]').popover({
+            placement:'right',
+            offset:5,
+            html:true
+        });
+
+        $('#app_input_ft').change(function(){
+            retrieve_columns_names();
+        });
+
+        if ($('#app_input_ft').val()!=""){
+          retrieve_columns_names();
+        }
+
+    });
+</script>

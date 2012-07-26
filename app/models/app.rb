@@ -8,8 +8,6 @@ class App < ActiveRecord::Base
 
   # demo mode
 
-  GOOGLE_TABLE_REG=/www\.google\.com\/fusiontables\/DataSource\?docid=(.*)/
-
   has_many :tasks, :dependent => :destroy
   has_many :answers, :through => :tasks
   has_many :contributors, :through => :answers, :source => :user, :uniq => true
@@ -37,7 +35,7 @@ class App < ActiveRecord::Base
   end
 
   def last_contributor(max_contributors=5)
-    self.answers.where("answers.user_id!= null").order("answers.updated_at desc").limit(max_contributors)
+    self.answers.answered.order("answers.updated_at desc").limit(max_contributors)
   end
 
   def schema
@@ -61,6 +59,27 @@ class App < ActiveRecord::Base
     self.status = STATE_INDEXING
     self.save
     FtIndexer.perform_async(self.id)
+  end
+
+  def add_task(rows)
+    # increment the task_id
+    last_known_task = self.tasks.order('input_task_id desc').first 
+    task_id = last_known_task.input_task_id + 1
+    rows.each { |row|
+      row[self.task_column] = task_id
+    }
+    # insert the task on the FT
+    FtDao.instance.enqueue(self.input_ft, rows)
+
+    # add the task as it was just indexed
+    task = Task.create(:input_task_id => task_id, :app_id => self.id)
+      if (self.redundancy > 0)
+        self.redundancy.times do
+          task.answers << Answer.create!(:state => Answer::AVAILABLE)
+        end
+      end
+    task.save
+    task
   end
 
   def index_tasks

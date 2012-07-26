@@ -53,6 +53,13 @@ class AppsController < ApplicationController
     redirect_to app_path(app), notice: 'Reindexing tasks'
   end
 
+  def del_answers
+    app=App.find(params[:id])
+    app.answers.destroy_all
+    FtDao.delete_all(app.output_ft)
+    redirect_to app_path(app), notice: 'Deleting answers'
+  end
+
   def workflow
     app = App.find(params[:id])
     context = { :from_task => params[:from_task], :current_user => current_or_guest_username}
@@ -65,13 +72,11 @@ class AppsController < ApplicationController
       if (answer.nil?)
         render :json => {:submit_url => app_task_answers_url(app, task),
                          :task => task,
-                         :ft_task_column => app.task_column},  
-                         :callback => params[:callback]
+                         :ft_task_column => app.task_column}, :callback => params[:callback]
       else
         render :json => {:submit_url => app_task_answer_path(app, task, answer),
                          :task => task,
-                         :ft_task_column => app.task_column},  
-                         :callback => params[:callback]
+                         :ft_task_column => app.task_column}, :callback => params[:callback]
       end
  
     end
@@ -166,13 +171,16 @@ class AppsController < ApplicationController
   end
 
 private
+  
+  GOOGLE_TABLE_REG=/www\.google\.com\/fusiontables\/DataSource\?docid=(.*)/
+
   def clean_url(params)
-    matching=App::GOOGLE_TABLE_REG.match(params[:app][:input_ft])
+    matching=GOOGLE_TABLE_REG.match(params[:app][:input_ft])
     unless matching.nil?
       params[:app][:input_ft]=matching[1]
     end
 
-    matching=App::GOOGLE_TABLE_REG.match(params[:app][:output_ft])
+    matching=GOOGLE_TABLE_REG.match(params[:app][:output_ft])
     unless matching.nil?
       params[:app][:output_ft]=matching[1]
     end

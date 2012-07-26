@@ -27,6 +27,11 @@ class FtDao
   end
 
 
+  def delete_all(table_name)
+    sql="sql=" + CGI::escape("DELETE FROM #{table_name}")
+    resp=@ft.post(SERVICE_URL, sql)
+  end
+
   def get_schema(table_id)
     sql = "DESCRIBE #{table_id}"
     sql="sql=" + CGI::escape(sql)
@@ -140,9 +145,8 @@ class FtDao
         answer.save
       }
     end
-
   end
-
+  
   def enqueue(table_id, rows)
     queries=[]
     to_process=false

@@ -11,6 +11,7 @@ Mechanicalmap::Application.routes.draw do
     get 'workflow', :on => :member
     get 'editor', :on => :member
     get 'reindex', :on => :member
+    get 'delete_answers', :on => :member
     put 'editor_update', :on => :member
     get 'user_state', :on => :member
     resources :answers 
