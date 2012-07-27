@@ -12,7 +12,4 @@ class FtGenerator
     FtDao.instance.change_ownership(app.output_ft, user_email)
   end
 
-
-
-
 end

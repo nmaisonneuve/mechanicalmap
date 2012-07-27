@@ -14,7 +14,7 @@ var AbstractMicroTask = Class.extend({
         this.scheduler_url = this.options.scheduler_url || scheduler_url;
         this.user = this.options.user;
         this.debug = this.options.debug || true;
-
+        this.state_no_task=false;
         this.size_cache_queue = this.options.size_cache_queue || 1;
         this.task_url = null;
         // current task
@@ -57,10 +57,9 @@ var AbstractMicroTask = Class.extend({
 
     },
 
-    send_answer: function() {
+    send_answer: function(rows, callback) {
         var me = this;
-        var answers_rows = me.save([]);
-        answers_json = JSON.stringify(answers_rows);
+        answers_json = JSON.stringify(rows);
         if (this.debug) console.log(answers_rows);
 
         type = (/answers$/.test(me.task_url)) ? "POST" : "PUT";
@@ -75,10 +74,7 @@ var AbstractMicroTask = Class.extend({
                 answer: answers_json
             },
             success: function() {
-                me.task_completed();
-                me.next_cached_task(function(data) {
-                    me._load(data);
-                });
+                callback();//e.task_completed();
             },
             error: function(data) {
                 me.save_error();
@@ -93,7 +89,7 @@ var AbstractMicroTask = Class.extend({
         $("#" + this.el_ids["skip_task"]).click(function(event) {
             event.preventDefault();
             me.next_cached_task(function(data) {
-                me._load(data);
+                me.load(data);
             });
         });
     },
@@ -133,16 +129,19 @@ var AbstractMicroTask = Class.extend({
         //abstract function  to implement in the sub class
     },
 
-    next_cached_task: function(callback) {
+    next_task: function(callback) {
         console.log("request a new task");
         var me = this;
         this.update_completeness_ui();
+        if (me.state_no_task) {
+            me.no_available_task();
+        } 
 
         // if cache empty we wait
         if (this.cache.length == 0) {
             this.loading();
             var last_task = this.get_last_cache();
-            this.caching_task(last_task, function() {
+            this.caching_tasks(last_task, function() {
                 // now consume it
                 callback(me.cache.shift());
                 me.loaded();
@@ -152,7 +151,7 @@ var AbstractMicroTask = Class.extend({
             var last_task = this.get_last_cache();
             callback(this.cache.shift());
             //and cache a new task (from the last task) asynchronously
-            this.caching_task(last_task, function() {});
+            this.caching_tasks(last_task, function() {});
         }
     },
 
@@ -160,10 +159,10 @@ var AbstractMicroTask = Class.extend({
         return (this.cache.length == 0) ? null : this.cache[this.cache.length - 1].task.input_task_id;
     },
 
-    caching_task: function(last_task, callback) {
+    caching_tasks: function(last_task, callback) {
         var me = this;
         if (me.cache.length <= me.size_cache_queue) {
-            console.log("caching (v2) new task  (from task " + last_task + ") - cache size " + me.cache.length);
+            console.log("caching a task  (from previous task " + last_task + ") - cache size " + me.cache.length);
             this.request_task(last_task, function(data) {
                 me.cache.push(data);
                 last_task = me.get_last_cache();
@@ -182,22 +181,24 @@ var AbstractMicroTask = Class.extend({
             var me = this;
             var query = (from_task == undefined) ? ".js?callback=?" : ".js?from_task=" + from_task + "&callback=?";
             if (this.debug) {
-                console.log("requesting the scheduler: " + this.scheduler_url + "" + query);
+                console.log("requesting the indexer: " + this.scheduler_url + "" + query);
             }
             $.getJSON(this.scheduler_url + query, function(task) {
                 if (me.debug) {
-                    console.log("data received from the scheduler:")
+                    console.log("task received :")
                     console.log(task);
                 }
                 if (task.submit_url) {
                     success_callback(task);
                 } else {
+                    me.state_no_task=true;
                     me.no_available_task();
                 }
             }).error(function(data, status, xhr) {
                 console.log(data);
                 console.log("error get task");
                 if (data.status == 404) {
+                    me.state_no_task=true;
                     me.no_available_task(); // no task available
                 } else {
                     console.log("error requesting task");
@@ -205,13 +206,6 @@ var AbstractMicroTask = Class.extend({
                 }
             })
         }
-    },
-
-    _load: function(data) {
-        this.task = data.task;
-        this.task_url = data.submit_url;
-        $("#" + this.el_ids["form_task"]).attr("action", data.submit_url);
-        this.load(data);
     }
 
 });

@@ -18,8 +18,8 @@
     <script src="https://raw.github.com/nmaisonneuve/mechanicalmap/master/app/assets/javascripts/abstract_micro_task.js"></script>
     <script src="https://raw.github.com/nmaisonneuve/mechanicalmap/master/app/assets/javascripts/ft_micro_task.js"></script>
 <% else %>
-    <script src="/assets/abstract_micro_task.js"></script>
-    <script src="/assets/ft_micro_task.js"></script> 
+     <%= javascript_include_tag "abstract_micro_task" %> 
+     <%= javascript_include_tag "ft_micro_task" %> 
 <% end %>
 
 <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>

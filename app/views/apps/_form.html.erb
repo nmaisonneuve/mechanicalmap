@@ -166,7 +166,6 @@
         // write your SQL as normal, then encode it
         query = queryUrlHead + query + queryUrlTail;
         var queryurl = encodeURI(query);
-        console.log(queryurl);
         $.ajax({url: queryurl,
           success: function (data) {
             $("#task_ft_rejected").hide();
