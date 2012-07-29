@@ -1,4 +1,3 @@
-
 var BasicAppRouter = Backbone.Router.extend({
     routes: {
         "play" :"play",
@@ -20,7 +19,7 @@ var BasicAppRouter = Backbone.Router.extend({
     task:function(id){
       var me=this;
       task=this.app.tasks.get(id);
-      task.on('answer_saved',function(){
+      task.on('answered',function(){
         me.app.navigate("play");
       });
       new TaskView({model:task});
