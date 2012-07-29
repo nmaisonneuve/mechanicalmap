@@ -28,7 +28,7 @@ class AnswersController < ApplicationController
   def create_or_update(answer)
     answer.task = Task.where(:app_id=>params[:app_id]).where(:input_task_id=>params[:task_id]).first
     answer.user = current_or_guest_user
-    answer.state = Answer::COMPLETED
+    answer.state = Answer::STATE[:COMPLETED]
     answer.input_from_form(params[:rows])
     current_or_guest_user.save
     answer.ft_sync = false

@@ -5,17 +5,12 @@ class Answer < ActiveRecord::Base
     :COMPLETED=>2
   }
 
-  AVAILABLE=0
-  COMPLETED=2
-
   belongs_to :user,  :touch => true
   belongs_to :task
 
   scope :available, where(:state => STATE[:AVAILABLE])
   scope :not_available, where("state!=?", STATE[:AVAILABLE])
-  scope :answered, where(:state => STATE[:COMPLETED])
-
-  scope :answer, 
+  scope :answered, where(:state => STATE[:COMPLETED]) 
   
   #any kind of answer e.g string , json
   # interpreted by the related aggregator

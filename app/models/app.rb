@@ -75,7 +75,7 @@ class App < ActiveRecord::Base
     task = Task.create(:input_task_id => task_id, :app_id => self.id)
       if (self.redundancy > 0)
         self.redundancy.times do
-          task.answers << Answer.create!(:state => Answer::AVAILABLE)
+          task.answers << Answer.create!(:state => Answer::STATE[:AVAILABLE])
         end
       end
     task.save
@@ -91,7 +91,7 @@ class App < ActiveRecord::Base
         task=Task.create(:input_task_id=> task_id.to_i, :app_id => self.id)
         if (self.redundancy>0)
           self.redundancy.times do
-            task.answers<<Answer.create!(:state => Answer::AVAILABLE)
+            task.answers<<Answer.create!(:state => Answer::STATE[:AVAILABLE])
           end
         end
         task.save

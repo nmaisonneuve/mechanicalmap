@@ -40,7 +40,7 @@ namespace :app do
   task :answers_gen => :environment do
     App.first.tasks.each { |task|
       1.times do
-        task.answers<<Answer.create!(:state => Answer::AVAILABLE)
+        task.answers<<Answer.create!(:state => Answer::STATE[:AVAILABLE])
       end
     }
   end
