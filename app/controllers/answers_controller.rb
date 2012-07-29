@@ -30,6 +30,7 @@ class AnswersController < ApplicationController
     answer.user = current_or_guest_user
     answer.state = Answer::COMPLETED
     answer.input_from_form(params[:rows])
+    current_or_guest_user.save
     answer.ft_sync = false
     if answer.save
       logger.info("answer #{answer.id} saved for microapp #{answer.task.app.name} ");
