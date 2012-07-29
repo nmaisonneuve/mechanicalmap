@@ -13,11 +13,11 @@ job_type :rake,    "source /home/newhouse/.rvm/scripts/rvm && rvm use 1.9.3 && c
 job_type :runner, "source /home/newhouse/.rvm/scripts/rvm && rvm use 1.9.3 && cd :path && rails runner -e :environment ':task' :output"
 set :output, "/home/newhouse/mechanicalmap/current/log/cron.log"
 #
-every 2.minutes do
+#every 2.minutes do
 #   command "/usr/bin/some_great_command"
-   runner "FtSyncAnswers.perform_async"
+#   runner "FtSyncAnswers.perform_async"
 #  rake "sync"
-end
+#end
 #
 # every 4.days do
 #   runner "AnotherModel.prune_old_records"
