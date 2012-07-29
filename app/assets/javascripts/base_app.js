@@ -100,6 +100,7 @@ var DefaultTaskManager = Class.extend({
     this.tasks.model = options.task_model || GFTask;
     this.tasks.url   = options.root_url + "tasks";
     this.notask = false;
+    this.nb_task_done=0;
     this.models = this.tasks.models;
     this.tasks.on("no_task",function(){this.notask = true;},this);
   },
@@ -131,7 +132,11 @@ var DefaultTaskManager = Class.extend({
   get :function(id){
     return this.tasks.get(id);
   },
-
+  
+  task_done: function(){
+      this.nb_task_done++;
+  },
+  
   next: function(options){
 
     var last_task_id = this.last_task_id();
@@ -139,7 +144,9 @@ var DefaultTaskManager = Class.extend({
     var me = this;
     
     var consume = function(){
-      me.trigger("next_task",me.models.shift());
+      var task = me.models.shift();
+      task.on("answer_saved",task_done);
+      me.trigger("next_task",task);
     };
     
     if (this.tasks.models.length > 0){
