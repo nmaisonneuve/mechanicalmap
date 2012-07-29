@@ -103,17 +103,15 @@ class FtDao
       end
 
       if (answer_rows.is_a? Array)
+          begin
         answer_rows.each { |row|
 
           queries<<"INSERT INTO #{table_id} (#{row.keys.join(",")}) VALUES (#{row.values.map { |value| "'#{value}'" }.join(",")});"
           #we're batching
           if ((i>0) && (i % (MAXIMUM_INSERT)==0))
-            begin
+            
             @ft.execute queries.join("")
             queries=[]
-            rescue Exception => e
-              raise Exception.new("#{e.message}\n#{answer.answer}")
-            end
 
             # We can now update their states
             answers_to_process.each { |answer_processed|
@@ -129,6 +127,9 @@ class FtDao
           i=i+1
         }
         answers_to_process<<answer
+         rescue Exception => e
+              raise Exception.new("FTDAO: #{e.message}\n#{answer.answer}")
+            end
       else
         answer.ft_sync=true
         answer.save

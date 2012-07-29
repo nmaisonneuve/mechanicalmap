@@ -113,7 +113,7 @@ class App < ActiveRecord::Base
       FtGenerator.perform_async(self.id, schema,email)
   end
 
-  def synch_answers
+  def sync_answers
     to_synch=answers.answered.where(:ft_sync => false)
     if (to_synch.size>0)
       FtDao.instance.sync_answers(to_synch)
