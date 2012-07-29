@@ -1,25 +1,27 @@
 
-
 var BasicAppRouter = Backbone.Router.extend({
     routes: {
         "play" :"play",
         "tasks/:id" : "task",
         "static/:name" : "static_content"
     },
-
+    initialize:function(options){
+      this.app=options.app;   
+    },
     static_content:function(name){
        $("section").hide(); $("#"+name).show();
     },
     
     play:function(){
       this.static_content("task");
-      app.tasks.next();
+      this.app.tasks.next();
     },
     
     task:function(id){
-      task=app.tasks.get(id);
+      var me=this;
+      task=this.app.tasks.get(id);
       task.on('answer_saved',function(){
-        app.navigate("play");
+        me.app.navigate("play");
       });
       new TaskView({model:task});
     },
@@ -37,7 +39,7 @@ window.GFTask = Backbone.Model.extend({
     var  me=this;
     answer = new GFAnswer({id: this.get('answer_id'), rows: data});
     answer.on('sync',function (answer){
-      me.trigger('answer_saved',answer);
+      me.trigger('answered',answer);
     }, answer);
     var url = this.url()+"/answers" +((answer.isNew())? "" : "/"+answer.id);
     answer.save(undefined,{url:url});
@@ -97,6 +99,7 @@ var DefaultTaskManager = Class.extend({
     this.tasks.model = options.task_model || GFTask;
     this.tasks.url   = options.root_url + "tasks";
     this.notask = false;
+    this.nb_task_done=0;
     this.models = this.tasks.models;
     this.tasks.on("no_task",function(){this.notask = true;},this);
   },
@@ -128,7 +131,13 @@ var DefaultTaskManager = Class.extend({
   get :function(id){
     return this.tasks.get(id);
   },
-
+  
+  saved: function(){
+      console.log('save')
+      this.nb_task_done++;
+      this.trigger("task_answered");
+  },
+  
   next: function(options){
 
     var last_task_id = this.last_task_id();
@@ -136,7 +145,9 @@ var DefaultTaskManager = Class.extend({
     var me = this;
     
     var consume = function(){
-      me.trigger("next_task",me.models.shift());
+      var task = me.models.shift();
+      task.on("answered",me.saved,me);
+      me.trigger("next_task",task);
     };
     
     if (this.tasks.models.length > 0){
@@ -160,7 +171,11 @@ VolatileTaskApp = Class.extend({
  init: function (options){
     this.root_url = options.root_url;
     this.tasks = new DefaultTaskManager(options);
-    this.router = options.router || new BasicAppRouter();
+    if (options.router){
+     this.router = new options.router({app:this});   
+    }else{
+      this.router = new BasicAppRouter({app:this});  
+    }
   },
 
   navigate: function(route){
