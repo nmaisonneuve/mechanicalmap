@@ -133,8 +133,9 @@ var DefaultTaskManager = Class.extend({
     return this.tasks.get(id);
   },
   
-  task_done: function(){
+  _saved: function(task){
       this.nb_task_done++;
+      this.trigger("task_answered",task);
   },
   
   next: function(options){
@@ -145,7 +146,7 @@ var DefaultTaskManager = Class.extend({
     
     var consume = function(){
       var task = me.models.shift();
-      task.on("answer_saved",task_done);
+      task.on("answer_saved",_saved,task);
       me.trigger("next_task",task);
     };
     
