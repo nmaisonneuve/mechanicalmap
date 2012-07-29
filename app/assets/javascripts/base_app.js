@@ -40,7 +40,7 @@ window.GFTask = Backbone.Model.extend({
     var  me=this;
     answer = new GFAnswer({id: this.get('answer_id'), rows: data});
     answer.on('sync',function (answer){
-      me.trigger('answer_saved',answer);
+      me.trigger('answered',answer);
     }, answer);
     var url = this.url()+"/answers" +((answer.isNew())? "" : "/"+answer.id);
     answer.save(undefined,{url:url});
@@ -133,9 +133,10 @@ var DefaultTaskManager = Class.extend({
     return this.tasks.get(id);
   },
   
-  _saved: function(task){
+  saved: function(){
+      console.log('save')
       this.nb_task_done++;
-      this.trigger("task_answered",task);
+      this.trigger("task_answered");
   },
   
   next: function(options){
@@ -146,7 +147,7 @@ var DefaultTaskManager = Class.extend({
     
     var consume = function(){
       var task = me.models.shift();
-      task.on("answer_saved",me._saved,task);
+      task.on("answered",me.saved,me);
       me.trigger("next_task",task);
     };
     
