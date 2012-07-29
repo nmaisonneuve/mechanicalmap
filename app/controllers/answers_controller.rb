@@ -29,7 +29,7 @@ class AnswersController < ApplicationController
     answer.task=Task.where(:app_id=>params[:app_id]).where(:input_task_id=>params[:task_id]).first
     answer.user=current_or_guest_user
     answer.state=Answer::COMPLETED
-    answer.input_from_form(params[:answer])
+    answer.input_from_form(params[:rows])
     answer.ft_sync=false
     if answer.save
       FtSyncAnswers.perform_async()

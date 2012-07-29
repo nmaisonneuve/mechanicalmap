@@ -25,14 +25,13 @@ class Answer < ActiveRecord::Base
 
   # if some fields are not present
   # we enriched the answers with default values
-  def input_from_form(form_input)
-    answer=ActiveSupport::JSON.decode(form_input)
-    answer.each { |row|
+  def input_from_form(rows)
+    rows.each { |row|
       row["task_id"]=self.task.input_task_id if row["task_id"].blank?
       row["user_id"]=self.user.username if row["user_id"].blank?
       row["created_at"]=DateTime.now if row["created_at"].blank?
     }
-    self.answer=answer.to_json
+    self.answer=rows.to_json
   end
   
   def as_json(options={})

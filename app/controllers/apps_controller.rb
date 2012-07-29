@@ -53,35 +53,14 @@ class AppsController < ApplicationController
     redirect_to app_path(app), notice: 'Reindexing tasks'
   end
 
-  def del_answers
+  def clean_answers
     app=App.find(params[:id])
-    app.answers.destroy_all
+    app.answers.each {|answer| 
+      answer.destroy
+    }
     FtDao.delete_all(app.output_ft)
     redirect_to app_path(app), notice: 'Deleting answers'
   end
-
-  def workflow
-    app = App.find(params[:id])
-    context = { :from_task => params[:from_task], :current_user => current_or_guest_username}
-    task = app.next_task(context)
-    
-    if task.nil?
-        render :json => {:error => "no task found"}, :status => 404 
-    else
-      answer=task.answers.available.first
-      if (answer.nil?)
-        render :json => {:submit_url => app_task_answers_url(app, task),
-                         :task => task,
-                         :ft_task_column => app.task_column}, :callback => params[:callback]
-      else
-        render :json => {:submit_url => app_task_answer_path(app, task, answer),
-                         :task => task,
-                         :ft_task_column => app.task_column}, :callback => params[:callback]
-      end
- 
-    end
-  end
-
 
   def editor
     @app = App.find(params[:id])

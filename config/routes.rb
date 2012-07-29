@@ -8,14 +8,14 @@ Mechanicalmap::Application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
   resources :apps do
-    get 'workflow', :on => :member
     get 'editor', :on => :member
     get 'reindex', :on => :member
-    get 'delete_answers', :on => :member
+    get 'clean_answers', :on => :member
     put 'editor_update', :on => :member
     get 'user_state', :on => :member
     resources :answers 
     resources :tasks do
+      get 'next', :on => :collection
       resources :answers do
         get :update #for cross domain update
       end

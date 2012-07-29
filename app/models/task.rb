@@ -49,4 +49,15 @@ class Task < ActiveRecord::Base
     input_task_id
   end
 
+  def as_json(params={})
+    {
+      :id => self.input_task_id,
+      :gftable => {
+        :ft_task_column => self.app.task_column,
+        :ft_table => self.app.input_ft
+      } ,
+      :answer_id => self.answers.available.first.id
+    }
+  end
+
 end

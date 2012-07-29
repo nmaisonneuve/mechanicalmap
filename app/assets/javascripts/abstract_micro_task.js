@@ -136,11 +136,11 @@ var AbstractMicroTask = Class.extend({
         if (me.state_no_task) {
             me.no_available_task();
         } 
-
         // if cache empty we wait
         if (this.cache.length == 0) {
             this.loading();
             var last_task = this.get_last_cache();
+
             this.caching_tasks(last_task, function() {
                 // now consume it
                 callback(me.cache.shift());
