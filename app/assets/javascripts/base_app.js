@@ -164,7 +164,7 @@ VolatileTaskApp = Class.extend({
     this.root_url = options.root_url;
     this.tasks = new DefaultTaskManager(options);
     if (options.router){
-     this.router = window[options.router]({app:this});   
+     this.router = new options.router({app:this});   
     }else{
       this.router = new BasicAppRouter({app:this});  
     }
