@@ -69,26 +69,28 @@ class AppsController < ApplicationController
 
   def editor_update
     @app = App.find(params[:id])
-    if current_user!=@app.user
+    if current_user != @app.user
       redirect_to root_url
     else
-        if @app.update_attributes(params[:app])
-          id=@app.synch_gist
-          p id 
-          render json: {"gist_id"=> id}.to_json 
-        else
-          render json: @app.errors, status: :unprocessable_entity 
-        end
+      if @app.update_attributes(params[:app])
+        render json: {"gist_id"=> @app.synch_gist}.to_json 
+      else
+        render json: @app.errors, status: :unprocessable_entity 
+      end
     end
   end
 
 # GET /apps/1/edit
   def edit
     @app = App.find(params[:id])
-    if current_user!=@app.user
+    
+    @app.input_ft = "https://www.google.com/fusiontables/DataSource?docid=#{@app.input_ft }" unless @app.input_ft.blank?
+    @app.output_ft = "https://www.google.com/fusiontables/DataSource?docid=#{@app.output_ft}" unless @app.output_ft.blank?
+    @app.gist_id = "https://gist.github.com/#{@app.gist_id}" unless @app.gist_id.blank?
+
+    if current_user != @app.user
       return redirect_to root_url
     end
-
   end
 
 

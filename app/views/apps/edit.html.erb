@@ -2,13 +2,7 @@
     <li><%= link_to @app.name[0..20], app_path(@app) %></li>
 <% end %>
 <% content_for :app_header, @app_header %>
-
 <%
-   @disable_ft=true
-   @disable_redundancy=true
+    @edit=true
 %>
 <%= render 'form' %>
-
-<%= link_to 'Delete', @app, confirm: 'Are you sure?', method: :delete, :class=>"btn btn-mini btn-danger" %>
-<%= link_to 'Show', @app %> |
-<%= link_to 'Back', apps_path %>

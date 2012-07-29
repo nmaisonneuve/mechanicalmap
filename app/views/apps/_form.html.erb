@@ -70,18 +70,24 @@
           </div>
           <div class="control-group">
             <label class="control-label">
-              <h3>Data Management</h3></label>
+              <h3>Data Management</h3>
+              <br/>
+<a href="#" class="btn btn-primary">More info</a>
+            </label>
 
             <div class="controls">
               <p class="help-block">
                 <b>TASKS DATA</b>: URL of the Google fusion table containing your tasks
               
-<br/>(<a href="https://www.google.com/fusiontables/DataSource?dsrcid=implicit" target="_blank" >Create a table from your data </a> + change <a href="http://support.google.com/fusiontables/bin/answer.py?hl=en&answer=171221" target="_blank">its accessibility </a> to public) <a href="#" class="btn btn-primary">More info</a>
+<br/>(<a href="https://www.google.com/fusiontables/DataSource?dsrcid=implicit" target="_blank" >Create a table from your data </a> + change <a href="http://support.google.com/fusiontables/bin/answer.py?hl=en&answer=171221" target="_blank">its accessibility </a> to public) 
               </p>
 
               <%= f.text_field :input_ft, :placeholder => "https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA", :class => "text-field span5" %>
               <img src="http://www.inishtech.com/App_Themes/Default/Images/CMSModules/Forums/LiveImages/AcceptedSolution.gif" style="display:none" id="task_ft_accepted"/>
               <img src="http://www.finta.pl/content/ico-false.png" style="display:none" id="task_ft_rejected"/>
+              <% if @edit %>
+                <a href="reindex" class="btn"/>reindexing</a>
+              <% end %>
 
               <div id="task_column" class="hide">
                 <p class="help-block">
@@ -121,14 +127,8 @@
                 Enter the URL of the Gist Github with the task template. <br/>Or let it blank to generate one<br/>
 
                 <%= f.text_field :gist_id, :placeholder => "https://gist.github.com/3028982", :class => "text-field span3" %>
-
-
             </div>
-
-
           </div>
-
-
           <div class="row">
             <div class="span12">
               <div class="form-actions">
@@ -138,8 +138,6 @@
           </div>
         </fieldset>
     <% end %>
-
-
   </div>
 </div>
 
@@ -147,42 +145,34 @@
 <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
 <script type="text/javascript">
     
-    function load_schema(ft_table,callback_fct) {
-        var me = this;
-        var columns=[];
-        ft_request("DESCRIBE " + ft_table, function (data) {
-            $.each(data.table.rows, function (i, row) {
-                columns.push(row[1]);
-            });
-            console.log(columns);
-            callback_fct(columns);
-        });
+    function url_google(ft_table) {
+      var key = 'AIzaSyDaD2I-HSjUXgmQr9uOvF5-wZTwgfLgW-Q';
+      var sqlquery = "DESCRIBE " + ft_table;
+      return 'https://www.googleapis.com/fusiontables/v1/query?sql=' + encodeURI(sqlquery) + "&key=" + key;
     }
 
-    function ft_request(query, callback_fct) {
-        // Builds a Fusion Tables SQL query and hands the result to dataHandler()
-        var queryUrlHead = 'http://www.google.com/fusiontables/api/query?sql=';
-        var queryUrlTail = '&jsonCallback=?'; // ? could be a function name
-        // write your SQL as normal, then encode it
-        query = queryUrlHead + query + queryUrlTail;
-        var queryurl = encodeURI(query);
-        $.ajax({url: queryurl,
+    function load_schema(url,callback_fct) {
+        var columns=[];
+        $.ajax({url:url,
           success: function (data) {
+            console.log(data);
+             $.each(data.rows, function (i, row) {
+                columns.push(row[1]);
+            });
             $("#task_ft_rejected").hide();
             $("#task_ft_accepted").show();
-            callback_fct(data);
-
+            callback_fct(columns);
           },
           error: function(data){
-              console.log(data);
-               $("#task_ft_rejected").show();
-               $("#task_ft_accepted").hide();
-             }});
+            $("#task_ft_rejected").show();
+            $("#task_ft_accepted").hide();
+            $("#task_column").hide();
+          }});
     }
     
     function retrieve_columns_names(){
-      var url=$('#app_input_ft').val().replace("https://www.google.com/fusiontables/DataSource?docid=","");
-          load_schema(url,function(columns){
+      var ft_table=$('#app_input_ft').val().replace("https://www.google.com/fusiontables/DataSource?docid=","");
+          load_schema(url_google(ft_table),function(columns){
             select=$("#app_task_column");
             select.html("");
             options="";
@@ -190,7 +180,7 @@
               options+="<option value='"+columns[i]+"'>"+columns[i]+"</option>";
             }
             select.append(options)
-           $("#task_column").show();
+            $("#task_column").show();
           });
     }
 
@@ -203,7 +193,8 @@
         });
 
         $('#app_input_ft').change(function(){
-            retrieve_columns_names();
+          console.log("input");
+           retrieve_columns_names();
         });
 
         if ($('#app_input_ft').val()!=""){

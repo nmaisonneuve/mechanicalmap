@@ -1,6 +1,6 @@
 
 
-var DefaultAppRouter = Backbone.Router.extend({
+var BasicAppRouter = Backbone.Router.extend({
     routes: {
         "play" :"play",
         "tasks/:id" : "task",
@@ -21,8 +21,7 @@ var DefaultAppRouter = Backbone.Router.extend({
       task.on('answer_saved',function(){
         app.navigate("play");
       });
-      var view=new TaskView({model:task});
-      view.render();
+      new TaskView({model:task});
     },
   });
 
@@ -161,7 +160,7 @@ VolatileTaskApp = Class.extend({
  init: function (options){
     this.root_url = options.root_url;
     this.tasks = new DefaultTaskManager(options);
-    this.router = options.router || new DefaultAppRouter();
+    this.router = options.router || new BasicAppRouter();
   },
 
   navigate: function(route){
