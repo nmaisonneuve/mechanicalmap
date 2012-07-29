@@ -1,25 +1,28 @@
 
-
-var DefaultAppRouter = Backbone.Router.extend({
+var BasicAppRouter = Backbone.Router.extend({
     routes: {
         "play" :"play",
         "tasks/:id" : "task",
         "static/:name" : "static_content"
     },
-
+    initialize:function(options){
+        console.log(options);
+     this.app=options.app;   
+    },
     static_content:function(name){
        $("section").hide(); $("#"+name).show();
     },
     
     play:function(){
       this.static_content("task");
-      app.tasks.next();
+      this.app.tasks.next();
     },
     
     task:function(id){
-      task=app.tasks.get(id);
+      var me=this;
+      task=this.app.tasks.get(id);
       task.on('answer_saved',function(){
-        app.navigate("play");
+        me.app.navigate("play");
       });
       var view=new TaskView({model:task});
       view.render();
@@ -161,7 +164,7 @@ VolatileTaskApp = Class.extend({
  init: function (options){
     this.root_url = options.root_url;
     this.tasks = new DefaultTaskManager(options);
-    this.router = options.router || new DefaultAppRouter();
+    this.router = options.router || new BasciAppRouter({app:this});
   },
 
   navigate: function(route){
