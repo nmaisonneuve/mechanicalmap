@@ -11,7 +11,7 @@ class Answer < ActiveRecord::Base
   scope :available, where(:state => STATE[:AVAILABLE])
   scope :not_available, where("state!=?", STATE[:AVAILABLE])
   scope :answered, where(:state => STATE[:COMPLETED]) 
-  
+  scope :to_synchronize, answered.where(:ft_sync=>false)
   #any kind of answer e.g string , json
   # interpreted by the related aggregator
   attr_accessible :state, :answer, :user, :ft_sync

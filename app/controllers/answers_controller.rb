@@ -33,8 +33,9 @@ class AnswersController < ApplicationController
     current_or_guest_user.save
     answer.ft_sync = false
     if answer.save
-      logger.info("answer #{answer.id} saved for microapp #{answer.task.app.name} ");
-      FtSyncAnswers.perform_async(answer.task.app.id)
+      app_id=answer.task.app.id
+      logger.info("answer #{answer.id} saved for microapp #{answer.task.app.name} (#{app_id}) ");
+      FtSyncAnswers.perform_async(app_id)
       flash[:success] = 'Answer was successfully created.'
       render :json => answer.to_json, :callback => params[:callback]
     else

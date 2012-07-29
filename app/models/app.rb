@@ -114,7 +114,8 @@ class App < ActiveRecord::Base
   end
 
   def sync_answers
-    to_synch=answers.answered.where(:ft_sync => false)
+    to_synch = self.answers.merge(Answer.to_synchronize)
+    puts "#{to_synch.size} answers to synchronize from app #{self.name}"
     if (to_synch.size>0)
       FtDao.instance.sync_answers(to_synch)
     end
