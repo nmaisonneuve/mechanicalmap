@@ -146,7 +146,7 @@ var DefaultTaskManager = Class.extend({
     var consume = function(){
       var task = me.models.shift();
       task.on("answered",me.saved,me);
-      me.current = task;
+      me.current_task = task;
       me.trigger("next_task",task);
     };
     
