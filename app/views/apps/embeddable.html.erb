@@ -8,9 +8,7 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
       <![endif]-->
-    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
     <%= javascript_include_tag "application" %>
-    
     <script src="http://underscorejs.org/underscore-min.js"></script>
     <script src="http://backbonejs.org/backbone-min.js"></script>
     <% if ENV['RAILS_ENV']=="production" %>
@@ -18,8 +16,6 @@
     <% else %>
     <%= javascript_include_tag "base_app" %> 
     <% end %>
-    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
-    <script type='text/javascript' src='http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js'></script>
     <script type="text/javascript">
     var user = {name:"<%= current_or_guest_username %>"};
     var application_url = "<%= app_url(@app) %>";

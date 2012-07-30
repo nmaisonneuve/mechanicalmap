@@ -1,30 +1,4 @@
-var BasicAppRouter = Backbone.Router.extend({
-    routes: {
-        "play" :"play",
-        "tasks/:id" : "task",
-        "static/:name" : "static_content"
-    },
-    initialize:function(options){
-      this.app=options.app;   
-    },
-    static_content:function(name){
-       $("section").hide(); $("#"+name).show();
-    },
-    
-    play:function(){
-      this.static_content("task");
-      this.app.tasks.next();
-    },
-    
-    task:function(id){
-      var me=this;
-      task=this.app.tasks.get(id);
-      task.on('answered',function(){
-        me.app.navigate("play");
-      });
-      new TaskView({model:task});
-    },
-  });
+
 
 window.GFAnswer = Backbone.Model.extend({
   initialize: function(options) {
@@ -93,7 +67,7 @@ window.DefaultVolatileTasks = Backbone.Collection.extend({
 var DefaultTaskManager = Class.extend({
 
   init: function(options){
-    _.extend(this, Backbone.Events); // mixed with event
+    _.extend(this, Backbone.Events); // mixin with Event features
     this.tasks = new DefaultVolatileTasks();
     this.tasks.model = options.task_model || GFTask;
     this.tasks.url   = options.root_url + "tasks";
@@ -132,7 +106,6 @@ var DefaultTaskManager = Class.extend({
   },
   
   saved: function(){
-      console.log('save')
       this.nb_task_done++;
       this.trigger("task_answered");
   },
@@ -173,7 +146,7 @@ VolatileTaskApp = Class.extend({
     if (options.router){
      this.router = new options.router({app:this});   
     }else{
-      this.router = new BasicAppRouter({app:this});  
+      this.router = new Backbone.Router({app:this});  
     }
   },
 
