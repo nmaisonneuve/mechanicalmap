@@ -94,6 +94,9 @@ class FtDao
     to_process=false
     answers_to_process=[]
     answers.each { |answer|
+      if Answer.where("answers.id = ?",answer.id).where(:sync => false).empty?
+        next
+      end
 
       table_id=answer.task.app.output_ft
       begin

@@ -7,6 +7,7 @@ class Answer < ActiveRecord::Base
 
   belongs_to :user,  :touch => true
   belongs_to :task
+  has_one :app, :through => :task
 
   scope :available, where(:state => STATE[:AVAILABLE])
   scope :not_available, where("state!=?", STATE[:AVAILABLE])
