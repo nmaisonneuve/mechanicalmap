@@ -142,7 +142,7 @@ class App < ActiveRecord::Base
   end
 
   def worfklow_free(context)
-    self.tasks.not_done_by_username(context[:current_user])
+    tasks = self.tasks.not_done_by_username(context[:current_user])
     tasks=tasks.where('tasks.input_task_id>?', context[:from_task]) unless (context[:from_task].blank?)
     task=tasks.order('tasks.input_task_id asc').first
     return nil if (task.nil?)
