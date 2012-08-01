@@ -55,6 +55,7 @@ class AppsController < ApplicationController
 
   def clean_answers
     app=App.find(params[:id])
+    app.execute_sql("DELETE FROM answers inner joins tasks on answers.task_id=tasks.id inner join app on app.where ")
     app.answers.each {|answer| 
       answer.destroy
     }

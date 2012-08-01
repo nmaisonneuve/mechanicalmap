@@ -94,7 +94,7 @@ class FtDao
     to_process=false
     answers_to_process=[]
     answers.each { |answer|
-      if Answer.where("answers.id = ?",answer.id).where(:sync => false).empty?
+      if Answer.where("answers.id = ?",answer.id).where(:ft_sync => false).empty?
         next
       end
 
