@@ -58,7 +58,7 @@ class AppsController < ApplicationController
     app.answers.each {|answer| 
       answer.destroy
     }
-    FtDao.delete_all(app.output_ft)
+    FtDao.instance.delete_all(app.output_ft)
     redirect_to app_path(app), notice: 'Deleting answers'
   end
 

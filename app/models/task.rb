@@ -15,7 +15,6 @@ class Task < ActiveRecord::Base
   }
 
   scope :not_done_by, lambda { |user|
-    # not optimized
     tasks_done_ids=Task.joins(:answers).where("answers.state!=?", Answer::STATE[:AVAILABLE]).where("answers.user_id=?", user)
     unless (tasks_done_ids.empty?)
       where("#{self.table_name}.id not in (?)", tasks_done_ids)

@@ -15,13 +15,13 @@
 
       <div class="row">
         <div class="span12">
-          <h2> Fusion table generated !</h2>
-          A google fusion table was generated and filled with a grid of areas to analyze.
-          <br/>If you have a email from gmail.com, Google sent you an email as we grant you as the owner of this table.
-          <p>Table ID <br/><h4 class="alert alert-info"><%= @table_id %></h4>
-          </p>
-          <a class="btn btn-primary btn-large" href="http://www.google.com/fusiontables/DataSource?docid=<%= @table_id %>">See
-            the generated tasks</a>
+          <h2> Fusion table being generating !</h2>
+          A google fusion table is being generated , filled with a grid of smaller areas to analyz.
+          <br/>Once done , you should received an email. If you have a gmail account, Google will send an email since we grant you as the owner of this table.
+          <!--<p>Table ID <br/><h4 class="alert alert-info"><%= @table_id %></h4>
+          </p>-->
+    <!--      <a class="btn btn-primary btn-large" href="http://www.google.com/fusiontables/DataSource?docid=<%= @table_id %>">See
+            the generated tasks</a> -->
         </div>
       </div>
 
@@ -31,9 +31,9 @@
         <div class="span12">
           <h2> Next step</h2>
 
-          <p>Create the task you want to ask to  volunteers for each cell.
+          <p>Create you app using this table
             <br/>
-            <a class="btn btn-primary btn-large" href="/apps/new?input_ft=<%= @table_id %>">Create app</a>
+            <a class="btn btn-primary btn-large" href="/apps/new %>">Create app</a>
           </p>
         </div>
       </div>
