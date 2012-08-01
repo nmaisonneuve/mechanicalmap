@@ -7,7 +7,7 @@ class TaskGeneratorsController < ApplicationController
     rectangle  = gen_params["rectangle"]
     resolution = gen_params["resolution"]
     email = current_user.email
-    TaskGenerator.perform_async(table_name,rectangle, resolution,email)
+    GisTaskGenerator.perform_async(table_name,rectangle, resolution,email)
     render "show.html.erb"
   end
 end
