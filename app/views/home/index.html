@@ -1,175 +1,200 @@
 <html>
-<head>
-  <script type="text/javascript" src=
-  "http://twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js">
-</script>
-  <style type="text/css">
-/*<![CDATA[*/
-  .image { 
-   position: relative; 
-    with:100%;
-  }
+    <head>
+        <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js">
+        </script>
+        <style type="text/css">
+       
 
-  .headline { 
-   position: absolute; 
-   bottom: 0px; 
-   left: 0; 
-   width: 100%;
-   background:rgba(255, 255, 255, 0.7);
-
-   padding:10px;  
-  }
-  /*]]>*/
-  </style>
-
-  <title>VolatileTask</title>
-</head>
-
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="span6">
-        <div class="image">
-          <img width="100%" src="/assets/assembly-line2.jpg" />
-
-          <div class="headline">
-            <h1>VolatileTask</h1>
-
-            <p style="font-size: 18px; font-weight: 200; line-height: 27px;">Cloud
-            Toolkit to build spreadable, tranparent and clonable micro-apps for crowdsourcing
-            simple tasks.</p><!--
-            <p> Build your micro-app on the cloud (no server required) for crowdsourcing
+            .image { position: relative; with:100%; } .headline { position:
+            absolute; bottom: 0px; left: 0; width: 100%; background:rgba(255, 255,
+            255, 0.9); padding:10px; }
+            .marketing h1{text-align:left;}
+        </style>
+        <title>
+            microapp.io
+        </title>
+    </head>
+    
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="span6">
+                    <div class="image">
+                        <img width="100%" src="http://crowdmm.org/crowd.jpg" />
+                        <div class="headline">
+                            <h1>
+                                microapp.io
+                            </h1>
+                            <p style="font-size: 18px; font-weight: 200; line-height: 27px;">
+                                Cloud Toolkit to build web+mobile apps
+                                for leveraging micro-contributions.
+                            </p>
+                            <!-- <p> Build your micro-app on the cloud (no server required) for crowdsourcing
                 small tasks and embed it on your own web page like a youtube video.
           -->
-           <div style="text-align:center;width:100%">
-            <a href="/more" class="btn btn-primary btn-large">Create an app</a>
-            <a href="/apps" class="btn btn-large" style="margin-left: 50px">Explore
+                            <div style="text-align:center;width:100%">
+                                <a href="/more" class="btn btn-primary btn-large">Create an app</a>
+                                <a href="/apps" class="btn btn-large" style="margin-left: 50px">Explore
             open apps</a>
-          </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="span6">
-        <h3>DEMO <small>Play with <a href=
-        "<%= app_url(@app) %>"><%= @app.name %></a></small></h3>
-
-        <% unless @app.nil? %>
- 
-      <div style="width:100%;text-align:center;">
-      <%= render "shared/menu" %><br/>
-        <iframe height="<%= @app.iframe_height %>" style="width:100%;height:330px;padding:0;margin:0;border:0px" scrolling="no" src="<%= app_url(@app) %>?embeddable=1">
-          </iframe>
-          </div> 
-        <% end %>
-     
-
-   
-      </div>
-    </div>
-    <hr class="soften" />
-
-    <div class="row">
-      <div class="span12">
-        <h2>Background</h2><img src=
-        "https://docs.google.com/drawings/pub?id=1tK4GCgnKeRYK1JG-0vl6JtjiHsvL49F5l5H9id2tTxg&amp;w=344&amp;h=230"
-        style="float:left;margin:5px" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="span6">
+                    <h3>
+                        DEMO
+                        <small>
+                            Play with
+                            <a href="<%= app_url(@app) %>"><%= @app.name %></a>
+                        </small>
+                    </h3>
+                    <% unless @app.nil? %>
+                        <div style="width:100%;text-align:center;">
+                            <%= render "shared/menu" %>
+                                <br/>
+                                <iframe height="<%= @app.iframe_height %>" style="width:100%;height:330px;padding:0;margin:0;border:0px"
+                                scrolling="no" src="<%= app_url(@app) %>?embeddable=1">
+                                </iframe>
+                        </div>
+                        <% end %>
+                </div>
+            </div>
+            <hr class="soften" />
+               <div class="marketing">
         
-        <p><b>What is volatileTask?</b><br/>
-        VolatileTask is a <b style="color:#A00">Cloud Toolkit</b>  democratizing the building of  participatory apps 
-        that leverage <b style="color:#A00">micro-contributions</b> from web / mobile users for <b style="color:#A00">lightweight programmers</b> by <b style="color:#A00"> cloning apps</b> and <b style="color:#A00">coding online</b>.
-        Zero installation  is required (no server+database to deploy) thanks to <b style="color:#A00">Cloud infrastructures</b>.  Embed it on your own web site like a youtube video. Such infrastructure and its open policy (open app = open data + open code) will facilitate the
-                            emergence of an <b style="color:#A00">eco-system of micro-apps</b> with best practices and conventions</p>
-                                 <!-- volatileTask is a kind of search engine indexing a
-                        first fusion table
-                        representing the stream of your micro-tasks to process, manages the allocation of tasks
-                        (with a
-                        given redundancy) according to your users and send the results to
-                        another fusion table (output) -->
-
-        <p><b>What is a micro-contribution?</b><br />
-        we live in a period of <a href="http://lindastone.net/qa/continuous-partial-attention/">continous partial attention</a>. Micro-contributions are contributions of any kind that someone could quickly make remotely (or not) within a small amount of time. If we think about the diversity
-        of contributions in participatory projects as a long tail with few core people
-        and a large majority of volatile users,the goal of these micro-applications is to
-        tap into the latter segment assuming that the sum of these micro-contributions
-        could leverage a subtantial work (but different from what hard-core contributors will produce). </p>
-<!--
-        <p><b>What kind of micro-contributions?</b><br />
+                   
+                        <h1>
+                            What is microapp.io?
+                        </h1>
+                        <p>
+                        MicroApp.io is a
+                        <b style="color:#A00">
+                            Cloud Toolkit
+                        </b>
+                        democratizing the building of participatory apps that leverage
+                        <b style="color:#A00">
+                            micro-contributions
+                        </b>
+                        from web / mobile users for
+                        <b style="color:#A00">
+                            lightweight programmers
+                        </b>
+                        by
+                        <b style="color:#A00">
+                            cloning apps
+                        </b>
+                        and
+                        <b style="color:#A00">
+                            coding online
+                        </b>
+                        . Zero installation is required (no server+database to deploy) thanks
+                        to
+                        <b style="color:#A00">
+                            Cloud infrastructures
+                        </b>
+                        . Embed your app on your own web site like a youtube video. Such infrastructure
+                        and its open policy (open app = open data + open code) will facilitate
+                        the emergence of an
+                        <b style="color:#A00">
+                            eco-system of micro-apps
+                        </b>
+                        with best practices.
+                    </p>
+                    <!-- MicroApp is a kind of search engine indexing a first fusion table
+                    representing the stream of your micro-tasks to process, manages the allocation
+                    of tasks (with a given redundancy) according to your users and send the
+                    results to another fusion table (output) -->
+               
+                        <img src="https://docs.google.com/drawings/pub?id=1tK4GCgnKeRYK1JG-0vl6JtjiHsvL49F5l5H9id2tTxg&amp;w=344&amp;h=230"
+                    style="float:right;margin:5px" /> <h1>
+                            What is a micro-contribution?
+                        </h1>
+                       <p> We live in a period of
+                        <a href="http://lindastone.net/qa/continuous-partial-attention/">continous partial attention</a>
+                        . Micro-contributions are contributions of any kind that someone could
+                        quickly make remotely (or not) within a small amount of time. If we think
+                        about the diversity of contributions in participatory projects as a long
+                        tail with few core people and a large majority of volatile users,the goal
+                        of these micro-applications is to tap into the latter segment assuming
+                        that the sum of these micro-contributions could leverage a subtantial work
+                        (but different from what hard-core contributors will produce). Up to you to request repetitive or not, fun or boring tasks.
+                    </p>
+                    <!-- <p><b>What kind of micro-contributions?</b><br />
         e.g. analyzing a large flow of individual tweets, classifying a large volume of
         images, analyzing a large area on a map, segmenting very quickly a long video
         collaboratively, generating stories via the writing of individual sentences , or
         any kind of big data processable/generable more easily by volatile participants
         than the machine.</p> -->
-      </div>
-    </div>
-    <hr class="soften" />
-<div class="marketing">
-    <h2>Features</h2>
-
-    <div class="row" style="margin-top:10px">
-      <div class="span6">
-        <img src=
-        "http://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Z%C3%A9ro.svg/100px-Z%C3%A9ro.svg.png"
-        style="float:left;margin-right:10px" />
-
-        <h2> Minimal setup </h2>
-
-        <p>No
-        server + database to install, no deployment process, no code editor to install. VolatileTask has a green/minimalist approach by <b style="color:#A00">using web eco-system i.e. existing (cloud) services </b>. If you want a community+forum for your app, create a Facebook page or a Google group</p>
-      </div>
-
-      <div class="span6">
-        <img src="http://shivsingh.com/goingsocial/images/viral.jpg" style=
-        "float:left;margin-right:10px" />
-<!-- http://www.supadupawebdesign.co.uk/images/articles/20/captcha.jpg
- -->        <h2>Embeddable and spreadable over the web</h2>
-
-        <p>Embed any generated app on your web site 
-like a Youtube video. <!-- You are responsible to host any further tutorials/doc on your
-website. --> Once embedded, web visitors can
-directly play with the app, or also <b style="color:#A00">embed the app to their
-websites to support your action beyond traditional advertising.</b> 
-<!-- be creative, you can build custom captcha 'with a purpose'
-                        for your website, or active banner you can distribute to your partners'
-                        websites instead of advertising. --></p>
-      </div>
-    </div>
-
-    <div class="row" style="margin-top:10px">
-      <div class="span6">
-        <div style=
-        "float:left;margin-right:10px;height:100px;width:100px">
-        <img src="http://www.loscabos-mexicanrestaurant.com/assets/images/We_reOpen.png" width="100"  /></div>
-
-        <h2>Open App = Open Data + Open code</h2>
-
-        <p>VolatileTask has an open policy: any app developed with this infrastructure is open. <b style="color:#A00">You data and your code are at any time accessible by anyone</b> (read-only for non-admin). We use
-        <a href=
-        "http://www.google.com/fusiontables/Home/">google fusion
-        tables</a> to store your data and not an internal database because anyone can easily <b style="color:#A00">view, export, analyze, visualize this public raw data</b>. Idem with your code via <a href="https://gist.github.com">Github</a>. </p>
-      </div>
-
-    <div class="span6">
-      <img src="http://radare.org/y/f/adv/small.png" style=
-      "float:left;margin-right:10px" />
-
-      <h2>Cloud coding:</h2>
-
-      <p>Code the task logic anywhere, anytime (why not from your mobile phone)  by directly using an online editor  <b style="color:#A00">coding online</b> and update your app on the
-      fly. This <b style="color:#A00">shortcuts the deployment cycle to get faster protoptyping</b>. We also manage code versioning by using 
-      <a href="https://gist.github.com">Gist/Github platform</a>.</p>
-    </div>
-</div>
-<div class="row" style="margin-top:10px">
-    <div class="span6">
-      <img src="http://s4.hubimg.com/u/6531991_100.jpg" style=
-      "float:left;margin-right:10px" />
-
-      <h2>Clone apps</h2>
-
-      <p>Anyone can clone existing apps and modify the data or the code to generate
-      their own variant crowdsourcing projects in few minutes. For instance you can experiment different protocol variations and launch several cloned apps. </p><!--
+                </div>
+            <div class="marketing">
+                <h1>
+                     Make your crowdsourcing project
+                </h1>
+                <ul class="thumbnails">
+                    <li>
+                        <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Z%C3%A9ro.svg/100px-Z%C3%A9ro.svg.png"
+                        style="float:left;position:relative;margin-right:10px" />
+                        <h2>
+                            Minimal setup
+                        </h2>
                         <p>
+                            No server + database to install, no deployment process, no code editor
+                            to install. MicroApp has a green/minimalist approach by
+                            <b style="color:#A00">
+                                using web eco-system i.e. existing (cloud) services
+                            </b>
+                            . If you want a community+forum for your app, create a Facebook page or
+                            a Google group
+                        </p>
+                    </li>
+                    <li >
+                        <div style="float:left;margin-right:10px;height:100px;width:100px">
+                            <img src="http://taravana-tdm.com/local/cache-vignettes/L100xH100/rubon52-7ddaa.png"
+                            />
+                        </div>
+                        <h2>
+                            Open App = Open Data + Open Code
+                        </h2>
+                        <p>
+                            MicroApp has an open policy:
+                            <b style="color:#A00">
+                                You data and your code are at any time accessible by anyone
+                            </b>
+                            (read-only for non-admin) thanks to Cloud infrastructure. This policy
+                            will facilitate the emergence of eco-system with best practices in micro-tasking.
+                        </p>
+                    </li>
+                    <li >
+                        <img src="http://radare.org/y/f/adv/small.png" style="float:left;margin-right:10px"
+                        />
+                        <h2>
+                            Cloud coding
+                        </h2>
+                        <p>
+                            Code your app anywhere, anytime by directly using an integrated
+                            <b style="color:#A00">
+                                web code editor
+                            </b>
+                            and update your app on the fly (+ management of your code versioning via
+                            <a href="https://gist.github.com">Github</a>
+                            ). This
+                            <b style="color:#A00">
+                                shortcuts the redeployment / protoptyping process
+                            </b>
+                            .
+                        </p>
+                    </li>
+                    <li >
+                        <img src="http://www.spraypaintstencils.com/sciencestencils/dna-stencil-thumb.gif"
+                        style="float:left;margin-right:10px" />
+                        <h2>
+                            Clone apps
+                        </h2>
+                        <p>
+                            Anyone can clone existing apps and modify the data or the code to generate
+                            their own variant crowdsourcing projects in few minutes. Experiment easily different UI / task design by launching several cloned apps.
+                        </p>
+                        <!-- <p>
                             By using Gist , we integrate its social coding features in the building of
                             micro-apps e.g.
                             (public code, easy remix/fork, code comments) and facilitate the
@@ -180,76 +205,116 @@ websites to support your action beyond traditional advertising.</b>
 
                         </p>
                           -->
-    </div>
-    <div class="span6">
-      <img src="http://vsis-www.informatik.uni-hamburg.de/pics/projects/FSNet_13.gif" style=
-      "float:left;margin-right:10px" />
-
-      <h2>Workflow design</h2>
-
-      <p>by default we use a parallel worfklow with redundancy mechanism. but you are free to design your own workflow e.g.iterative model, or inject the answer of a micro-app as input for other apps creating interaction between apps (TODO add section: "From Solver to Designer" about crowdsourcing/self-organisation the decomposition/design of tasks to solve a pb)</p>
-    </div>
-
-  </div>
-
-  <div class="row" style="margin-top:10px">
-    <div class="span6">
-      <img src=
-      "http://www.atafotostudio.com/art/qrcode-correze.jpg"
-      style="float:left;margin-right:10px" />
-
-      <h2>Mobile  Compatible</h2>
-
-      <p>  
-      
-      Code an app directly from your mobile thanks to the online editor. We also generated the associated <a href="http://en.wikipedia.org/wiki/QR_code">QRCode</a> stick to access to app in full screen mode, so you can print it to advertise your app in the physical world.
-<!-- Create apps directly from your mobile phone. no need a laptop since you can edit the code online !  -->
-      </p>
-    </div>
-
-  
-
-    <div class="span6">
-      <img src=
-      "http://qph.cf.quoracdn.net/main-thumb-t-2801-100-BBm0YIIqvc8tF4DjNNGuJ8KshjjZSoO8.jpeg"
-      style="float:left;margin-right:10px" />
-
-      <h2>Mechanical Turk compatible</h2>
-
-      <p>You can use the <a href="https://www.mturk.com">Amazon mechanical turk
-      service</a> as fast and chip simulator to test your app or get tasks done by turkers. You need to inject a small code into your app</p>
-    </div>
-  </div>
-</div>
-  <hr class="soften" />
-
-  <p>Credits - <a href="http://nico.maisonneuve.free.fr" rel="author">n.maisonneuve</a> -
-  march 2012</p><script type="text/javascript">
-//<![CDATA[
-    $(function () {
-        $("a[rel=div]").click(function (e) {
-            e.preventDefault();
-            $($(this).attr("href")).toggle();
-        });
+                    </li>
+                    <li >
+                        <img src="http://vsis-www.informatik.uni-hamburg.de/pics/projects/FSNet_13.gif"
+                        style="float:left;margin-right:10px" />
+                        <h2>
+                            Workflow design
+                        </h2>
+                        <p>
+                            by default we use a parallel worfklow with redundancy mechanism. but you
+                            are free to design your own workflow e.g.iterative model, or inject the
+                            answer of a micro-app as input for other apps creating interaction between
+                            apps (TODO add section: "From Solver to Designer" about crowdsourcing/self-organisation
+                            the decomposition/design of tasks to solve a pb)
+                        </p>
+                    </li>
+                  </ul>
+                </div>
+                   <div class="marketing">
+                <h1>
+                    Leverage participation
+                </h1>
+                <ul class="thumbnails">
+                  <li>
+                        <img src="http://shivsingh.com/goingsocial/images/viral.jpg" style="float:left;osition:relative;margin-right:10px"
+                        />
+                        <!-- http://www.supadupawebdesign.co.uk/images/articles/20/captcha.jpg
+                        -->
+                        <h2>
+                            Embeddable and spreadable over the web
+                        </h2>
+                        <p>
+                            Embed any generated app on your web site like a Youtube video.
+                            <!-- You are responsible to host any further tutorials/doc on your website.
+                            -->
+                            Once embedded, web visitors can directly play with the app, or also
+                            <b style="color:#A00">
+                                embed the app to their websites to support your action beyond traditional
+                                advertising.
+                            </b>
+                            <!-- be creative, you can build custom captcha 'with a purpose' for your
+                            website, or active banner you can distribute to your partners' websites
+                            instead of advertising. -->
+                        </p>
+                    </li>
+                    <li >
+                        <img src="http://www.atafotostudio.com/art/qrcode-correze.jpg" style="float:left;margin-right:10px"
+                        />
+                        <h2>
+                            Mobile Compatible
+                        </h2>
+                        <p>
+                            Code an app directly from your mobile thanks to the online editor. We
+                            also generated the associated
+                            <a href="http://en.wikipedia.org/wiki/QR_code">QRCode</a>
+                            stick to access to app in full screen mode, so you can print it to advertise
+                            your app in the physical world.
+                            <!-- Create apps directly from your mobile phone. no need a laptop since
+                            you can edit the code online ! -->
+                        </p>
+                    </li>
+                    <li >
+                        <img src="http://qph.cf.quoracdn.net/main-thumb-t-2801-100-BBm0YIIqvc8tF4DjNNGuJ8KshjjZSoO8.jpeg"
+                        style="float:left;margin-right:10px" />
+                        <h2>
+                            Mechanical Turk compatible
+                        </h2>
+                        <p>
+                            You can use the
+                            <a href="https://www.mturk.com">Amazon mechanical turk
+      service</a>
+                            as fast and chip simulator to test your app or get tasks done by turkers.
+                            You need to inject a small code into your app
+                        </p>
+                    </li>
+                </ul>
+            </div>
+    
+            <footer class="footer">
+              <p class="pull-right"><a href="#">Back to top</a></p>
+              <p><a href="http://nico.maisonneuve.free.fr" rel="author">n.maisonneuve</a>
+                - march 2012</p>
+            </footer>
+        </div>
+            <script type="text/javascript">
+            //<![CDATA[
+$(function() {
+    $("a[rel=div]").click(function(e) {
+        e.preventDefault();
+        $($(this).attr("href")).toggle();
     });
-  //]]>
-  </script><script type="text/javascript">
-//<![CDATA[
+});
+//]]>
+            </script>
+            <script type="text/javascript">
+            //<![CDATA[
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-30505488-1']);
+_gaq.push(['_trackPageview']);
 
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-30505488-1']);
-    _gaq.push(['_trackPageview']);
+(function() {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+})();
 
-    (function () {
-        var ga = document.createElement('script');
-        ga.type = 'text/javascript';
-        ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(ga, s);
-    })();
+//]]>
+            </script>
+    </body>
 
-  //]]>
-  </script>
-</body>
 </html>
