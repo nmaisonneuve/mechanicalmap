@@ -1,119 +1,36 @@
-<style type="text/css">
-    #main {
-        margin: 0 auto;
-        float: none;
-    }
-</style>
 <div class="container">
 
-  <div class="row">
-    <div class="span11">
 
-      <h2>You're new and wonder how to create a micro-app? <br/>(you also can clone an existing one)</h2>
-  
-  <div style="text-align: center;margin-top:30px">
-        <a href="/apps/new" class="btn btn-primary btn-large">I already know, let me create an app from scratch</a>
-  <a href="/apps" class="btn btn-large">Clone an existing app</a>
-      </div>
-          <hr/>
-      <ol class="unstyled">
-        <li><h4>1. Create the tasks</h4>
+  <div id="actions" style="margin:auto;width:400px;text-align:center">
+    <h1> Creating a new micro app </h1>
+    <p style="margin-top:10px;">
+    <a href="/apps/new" class="btn btn-primary btn-large"> from scratch</a>
+    <a href="/apps" class="btn btn-large">Clone one</a>
+  </p>
+  </div>
+</div>
 
-          <p>Create a <a href="https://www.google.com/fusiontables/DataSource?dsrcid=implicit" target="_blank" >Google fusion table from your data </a>
- representing the list of tasks to complete, with a column representing the task ID (e.g. task_id) and further input data (e.g. the url of an image to annotate).
-
-          <img src='/assets/ft_input_images2.jpg' style='width:100%;border:1px solid black' /> 
-          <br/> Here another table given as example.
-          <img src='/assets/ft_input_table.jpg' style='width:100%;border:1px solid black' /> 
-          
-          </p>
-          <p>Once created, make the table public, click to the 'share' button at the top right.
-          and make its access to 'public'. Then copy the Link to share. You can still add some data or change its structure later. In this case, you need to reindex the table.<br/>
-
-          <img src='/assets/share.jpg' style='width:100%;border:1px solid black' /> </p>
-
-<div class="alert alert-block alert-success fade in">
-            <p>I encourage you to review the Tasks data of existing open apps to get more familiar with the framework.  <a href="https://www.google.com/fusiontables/DataSource?docid=11TePGrrVCRKJ1IPY6I8wkUrmyfZ6OKELxRgLjjU">Here</a> is the task data containing a set of images to annotate, or
-            <a href="https://www.google.com/fusiontables/DataSource?docid=1Xm-WmlR2wnxuBusTR94V3xZygkPKUukq9x-YLoM">here </a> with a
-              more complex task structure </a>
-              to 
-              clusters of a set of documents. We also propose specific <i>Tasks Generator </i> e.g.
-            <a href="/demo_generator"> a generator GIS-related tasks</a> for analyzing a large area
-            by dividing it into smaller ones.
-            <a href="https://www.google.com/fusiontables/DataSource?docid=1pSWNLzQE0oZSs7KJqzhjsMeT96QELkmE9gROt7E">see
-              the resulting table </a></p>
-      </div>
-          <span class="label label-warning">Note</span> Google fusion has <a
-        href="https://developers.google.com/fusiontables/docs/developers_guide#Constraints">some constraints</a> you
-          need to be aware. -->
-   </p>
-            </li>
-      <li><h4>2. Update the Answers table (optional) </h4>
-
-          <p>Update an answer table that Volatile tasks generated a basic Google fusion table to store
-            the
-            answers of the users. This table contains initially 3 required columns: task_id = the id of the task answered, created_at= the
-            datetime of
-            the answer, user_id= the user's ID.
-            Add specific columns according to the structure of an answer.
-          </p>
-        </li>
-        <li>
-          <h4>3. Create the UI code </h4>
-
-          <p>
-            Create the UI to present the task and collect the data using the <a href="/framework">javascript framework.</a> No need to install something. Code
-            online. The code is also saved to GIST to manage the versioning.
-            <img src='/assets/editor.jpg' style="width:100%;border: 1px solid black"/>
-          </p>
-        </li>
-
-  
-        <li><h4>4. Enjoy !</h4>
-          <p>
-          Your app is ready. You can embed the app on your web site or display its QRcode so people can complete tasks via their mobile phones. 
-
-          <br/>Note: You can still improve/update the source code. the app will be automatically updated. 
-        </p>
-        </li>
-      </ol/>
-      
-     <div style="text-align: center;margin-top:30px">
-        <a href="/apps/new" class="btn btn-primary btn-large">Let me try create an app from scratch</a>
-  <a href="/apps" class="btn btn-large">Clone an existing app</a>
-      </div>
-        <hr/>
+<!-- 
+<div class="container">
        <h4> How does it work internally?</h4>   
           Once the indexation of the GF tasks table done and a GF answers table generated, the framework will organize the tasks using a <i>parallel model</i>.
           <br/>In a parallel model, a set of volunteers performs independently the same task.
           So, according to the redundancy criteria provided during the creation of the app, each task will be assigned to 1 or several users. furthermore in this model a post data processing is generally required to aggregate the answers of different users (e.g. average or consensual) in order to generate a collective output. 
-<!-- 
+
           <br/>A parallel model is generally fine for simple tasks but certainly limited for more complex ones.  <a href="http://nico.maisonneuve.free.fr/blog/index.php/2012/crowdsourcing-satellite-imagery-part-2-iterative-vs-parallel-human-organisations/">Other models of organisation</a> are possible and a "organisation design" tool will be developed if I have time. Below an example of a parallel model to annotate maps collaboratively, fitting with the GIS  
 
           <img src="https://docs.google.com/uc?id=0B1tvqho7IAWdYWJjdWhQdll2TUU" class="span7"/>
-         -->
-
+       
     <img src='/assets/architecture.jpg' style='width:100%;border:1px solid black' />
-  <!--   <div class="span3">
+   <div class="span3">
         <img src="https://docs.google.com/drawings/pub?id=1fvbDL2pcMHqWn9B8o1D33EPAdF3vK7-UozXpEbn8XyQ&amp;w=800" class="span6">
    
       <img src="https://docs.google.com/drawings/pub?id=1b7udWkfMXof2l-jzzYV6FThdupTpIPZEVULsfnM8hak&amp;w=350&amp;h=600">
 
-    </div>   -->
+    </div>  
 </div>
-  </div>
-
-</div>
+ -->
 <script type="text/javascript">
-    $(function () {
-        $("a[rel=div]").click(function (e) {
-            e.preventDefault();
-            $($(this).attr("href")).toggle();
-        });
-    });
-</script>
-<script type="text/javascript">
-
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-30505488-1']);
     _gaq.push(['_trackPageview']);
@@ -126,5 +43,4 @@
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(ga, s);
     })();
-
 </script>
