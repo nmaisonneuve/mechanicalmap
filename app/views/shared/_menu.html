@@ -1,17 +1,17 @@
 <div id="app_menu">
     <div class="navbar active">
-        <a href="<%= app_url(@app) %>?embeddable=1" class="btn btn-small"  target="_parent">Mobile</a>
-        <a rel="div" href="#embed" class="btn btn-small btn-danger" style="margin-left:10px">Spread it</a>
-        <a href="/apps/new?copyof=<%= @app.id %>" class="btn btn-small btn-danger"    target="_parent">Clone it</a>
+        <a href="<%= app_url(@app) %>?embeddable=1" class="btn btn-small"  target="_parent">mobile</a>
+        <a rel="div" href="#embed" class="btn btn-small btn-danger" style="margin-left:10px">spread it</a>
+        <a href="/apps/new?copyof=<%= @app.id %>" class="btn btn-small btn-danger"    target="_parent">clone it</a>
         <% if @app.user!=current_user %>
             <a href="https://gist.github.com/<%= @app.gist_id %>" class="btn btn-small btn-primary" style="padding-left:10px"    target="_blank">source code</a>
             <% else%>
                 <a href="/apps/<%= @app.id %>/editor" class="btn btn-small btn-primary" style="margin-left:10px"    target="_blank">source code</a>
                 <% end %>
                     <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"
-                    class="btn btn-small btn-primary"    target="_blank">Task Data</a>
+                    class="btn btn-small btn-primary"    target="_blank">task data</a>
                     <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>"
-                    class="btn btn-small btn-primary"    target="_blank" >Answer Data</a>
+                    class="btn btn-small btn-primary"    target="_blank" >answer data</a>
     </div>
     <div width="100%" id="embed" class="input" style="display:none;clear:both;">
         copy &amp; paste this code to your web site to support further contributions

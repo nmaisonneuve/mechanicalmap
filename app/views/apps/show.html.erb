@@ -1,95 +1,72 @@
 <% @header = capture do %>
-    <% if @app.user==current_user %>
-
-          <a href="<%= edit_app_path(@app) %>" class="btn btn-small">Setting</a>
-
-          <%= link_to 'Delete App', @app, confirm: 'Are you sure?', method: :delete, :class => "btn btn-small btn-danger" %>
-   <% end %>
+  <% if @app.user==current_user %>
+    <a href="<%= edit_app_path(@app) %>" class="btn btn-small">Setting</a>
+    <%= link_to 'Delete App', @app, confirm: 'Are you sure?', method: :delete, :class => "btn btn-small btn-danger" %>
+ <% end %>
 <% end %>
+
 <% @app_header = capture do %>
     <li><%= link_to @app.name[0..20], app_path(@app) %></li>
 <% end %>
+
 <% content_for :app_header, @app_header %>
-
-
 <% content_for :header, @header %>
+<style type="">
+section{margin-top:10px;}
+</style>
 
-
-
-<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
-<script type='text/javascript' src='http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js'></script>
-
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <div class="container">
   <div class="row">
-    <div class="span3">
-      
-      <% unless notice.blank? %>
+    <div class="span2">
+
+     <% unless notice.blank? %>
         <div class="alert alert-block alert-success fade in">
             <button type="button" class="close" data-dismiss="alert">×</button>
             <p><%= notice %></p>
-      </div>
+        </div>
       <% end %>
 
       <h3><%= @app.name %></h3>
 
-           <br/>
+      <section>
+        <!--<%= RedCloth.new(@app.description).to_html.html_safe %>
+        <%= @app.description.html_safe %>
+        <br/> -->
+      </section>
 
-      <!--<%= RedCloth.new(@app.description).to_html.html_safe %>
-      <%= @app.description.html_safe %>
+      <section>
+        <img src="http://api.qrserver.com/v1/create-qr-code/?size=145x145&data=<%= app_url(@app, :embeddable=>1) %>" width="100%" />
+      </section>
 
-      <br/> -->
-      <img src="http://api.qrserver.com/v1/create-qr-code/?size=145x145&data=<%= app_url(@app, :embeddable=>1) %>"  />
+      <section>
+        <h4>Activity</h4>
+        <% completed, size=@app.completion %>
+        <%= completed %> / <%= size %> answers.
+        <div class="progress progress-info  progress-striped">
+          <div class="bar" style="width: <%= completed.to_f/size.to_f*100 %>%;"></div>
+        </div>
+      </section>
 
-      <hr>
-
-      <h4>Activity</h4>
-      <% completed, size=@app.completion %>
-      <%= completed %> / <%= size %> answers.
-      <div class="progress progress-info  progress-striped">
-        <div class="bar" style="width: <%= completed.to_f/size.to_f*100 %>%;"></div>
-      </div>
-      Last contributors
-
-      <ul style="padding: 0px;margin: 0; margin-top: 3px;">
-        <% @app.contributors.order('users.updated_at desc').limit(5).each { |u| %>
-            <li style="list-style-type: none;">
-              <%= gravatar_image_tag(u.email, :title => u.username, :gravatar => {:default => :identicon, :size => 20}) %>
-              contributed <%= time_ago_in_words(u.updated_at) %> ago
-            </li>
-        <% } %>
-      </ul>
+      <section>
+        <h4>Last contributors</h4>
+        <ul style="padding: 0px;margin: 0; margin-top: 3px;">
+          <% @app.contributors.order('users.updated_at desc').limit(5).each { |u| %>
+              <li style="list-style-type: none;">
+                <%= gravatar_image_tag(u.email, :title => u.username, :gravatar => {:default => :identicon, :size => 30}) %>
+            <%= time_ago_in_words(u.updated_at) %> ago
+              </li>
+          <% } %>
+        </ul>
+      </section>
     </div>
-
     <div class="span9">
-      <a href="<%= app_url(@app) %>?embeddable=1" class="btn btn-small "
-         style="float:left;margin:5px">Fullscreen</a>
-      <a rel="div" href="#embed" class="btn btn-small btn-danger" style="float:left;margin:5px">Spread
-        it</a>
-      <a href="/apps/new?copyof=<%=@app.id %>"
-         class="btn btn-small btn-info" style="float:left;margin:5px">Clone it</a>
-      <a href="<%= editor_app_url(@app) %>" class="btn btn-small btn-success" style="float:left;margin:5px">source
-        code</a>
-
-      <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"
-         class="btn btn-small btn-primary" style="float:left;margin:5px">Task Data</a>
-      <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>"
-         class="btn btn-small btn-primary" style="float:left;margin:5px">Answer Data</a>
-
-      <div id="embed" class="input" style="display:none; clear:both">
-        copy & paste this code to your web site to support further contributions from your visitors.
-        <textarea class="span7">
-          <iframe width="<%= @app.iframe_width %>" height="<%= @app.iframe_height %>" scrolling="no"
-                  src="<%= app_url(@app) %>?embeddable=1"></iframe>
-        </textarea>
-      </div>
-      <iframe width="<%= @app.iframe_width %>" height="<%= @app.iframe_height %>" style="border: 1px solid #AAA" scrolling="no" frameborder="0" src="<%= app_url(@app, :embeddable => 1) %>"></iframe>
-
+     <%= render "shared/menu.html" %>
     </div>
-
   </div>
 </div>
 
+<script type='text/javascript' src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
+<script type='text/javascript' src='http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js'></script>
 <script type="text/javascript">
     $(function () {
         $('#myTab a').click(function (e) {

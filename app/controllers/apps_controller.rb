@@ -25,6 +25,7 @@ class AppsController < ApplicationController
   end
 
   def new
+    @edit=false
     unless params[:copyof].blank?
       original=App.find(params[:copyof])
       @app=original.clone
@@ -56,8 +57,8 @@ class AppsController < ApplicationController
   def clean_answers
     app=App.find(params[:id])
     app.execute_sql("DELETE FROM answers inner joins tasks on answers.task_id=tasks.id inner join app on app.where ")
-    app.answers.each {|answer| 
-      answer.destroy
+    app.tasks.each {|answer| 
+      tasks.delete_all
     }
     FtDao.instance.delete_all(app.output_ft)
     redirect_to app_path(app), notice: 'Deleting answers'
@@ -84,7 +85,7 @@ class AppsController < ApplicationController
 # GET /apps/1/edit
   def edit
     @app = App.find(params[:id])
-    
+    @edit = true
     @app.input_ft = "https://www.google.com/fusiontables/DataSource?docid=#{@app.input_ft }" unless @app.input_ft.blank?
     @app.output_ft = "https://www.google.com/fusiontables/DataSource?docid=#{@app.output_ft}" unless @app.output_ft.blank?
     @app.gist_id = "https://gist.github.com/#{@app.gist_id}" unless @app.gist_id.blank?
