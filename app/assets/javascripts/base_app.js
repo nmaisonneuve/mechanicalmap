@@ -1,5 +1,4 @@
 
-
 window.GFAnswer = Backbone.Model.extend({
   initialize: function(options) {
     this.url = function(){return options.app_root+"/tasks";};
@@ -42,10 +41,14 @@ window.GFTask = Backbone.Model.extend({
       Backbone.sync(method,model,options);
   },
 
-  url_google: function() {
+  sql: function(){
     var gftable = this.get('gftable');
+    return "SELECT * FROM " + gftable.ft_table + " WHERE " + gftable.ft_task_column + " = '" + this.id + "'";
+  },
+
+  url_google: function() {   
     var key = 'AIzaSyDaD2I-HSjUXgmQr9uOvF5-wZTwgfLgW-Q';
-    var sqlquery = "SELECT * FROM " + gftable.ft_table + " WHERE " + gftable.ft_task_column + " = '" + this.id + "'";
+    var sqlquery = this.sql();
     return 'https://www.googleapis.com/fusiontables/v1/query?sql=' + encodeURI(sqlquery) + "&key=" + key;
   }
 });
