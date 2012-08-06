@@ -17,9 +17,8 @@ window.GFTask = Backbone.Model.extend({
   },
 
   // parse differently according to the provider (volatiletask vs google fusion)
-  parse: function(resp) {
-    if (resp.columns) {
-      data = {
+  parse_ft_data(resp){
+    data = {
         gftable: {
           columns: resp.columns,
           rows: resp.rows
@@ -30,8 +29,15 @@ window.GFTask = Backbone.Model.extend({
           data[column] = resp.rows[0][i];
         });
       }
-      return data;
-    } else return resp;
+    return data;
+  },
+  
+  parse: function(resp) {
+    if (resp.gftable!=undefined) {
+      return resp;
+    } else {
+      return this.parse_ft_data(resp);
+    }
   },
 
   sync: function (method, model, options){
