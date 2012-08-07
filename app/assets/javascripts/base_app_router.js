@@ -1,17 +1,24 @@
 /**
 
-this is a backbone router ( http://backbonetutorials.com/what-is-a-router/ ) for a basic microapp 
+This is a backbone router ( http://backbonetutorials.com/what-is-a-router/ ) for a basic microapp 
 
-by convention:
+Any router can be extended by the method app.add_route of any microapp
 
-app.navigate("static/mysection") will display 
- <section id="mysection">...</section> and hide the other <section> tags
+app.add_route(routepattern, function(parameter){
+  ...
+});
 
-e.g. app.navigate("static/intro") to start your app with an intruction panel <section id="intro">
+This router follows these conventions:
 
-app.navigate("play") will load the next task e.g. task with ID =12
+1. app.navigate("static/mysection") will display 
+<section id="mysection">...</section> 
+and hide the other <section> tags
+e.g. app.navigate("static/intro") to start your app with an instruction panel <section id="intro">
+
+2. app.navigate("play") will load the next task e.g. task with ID =12
 and then executes app.navigate("tasks/12")
-that call router.task:function(id)
+that call router.task(id) function
+
 */
 var BasicAppRouter = Backbone.Router.extend({
     
@@ -35,15 +42,8 @@ var BasicAppRouter = Backbone.Router.extend({
     },
     
     task:function(id){
-      var me=this;
-      task=this.app.tasks.get(id);
-      task.on('answered',function(){
-        me.app.navigate("play");
-      });
-      this.render(task);
-    },
-
-    render:function(task){
-      //to implement
+      // to implement
+      // task=this.app.tasks.get(id);
+        
     }
   });
