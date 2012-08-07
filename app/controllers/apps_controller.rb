@@ -12,15 +12,15 @@ class AppsController < ApplicationController
     end
   end
 
+  def dashboard
+    @app = App.find(params[:id])
+  end
+
   def show
     @app = App.find(params[:id])
-    if (params[:embeddable].blank?)
-      respond_to do |format|
-        format.html {render 'show.erb.html'}
-        format.png { render :qrcode => app_url(@app, :embeddable=>1), :size => 5 }
-      end
-    else
-      render 'embeddable.erb.html', :layout=>false
+    respond_to do |format|
+      format.html { render "show.html.erb", :layout => false }
+      format.png  { redirect_to "http://api.qrserver.com/v1/create-qr-code/?size=145x145&data=#{app_url(@app)}"  }   
     end
   end
 
@@ -54,22 +54,23 @@ class AppsController < ApplicationController
     redirect_to app_path(app), notice: 'Reindexing tasks'
   end
 
-  def clean_answers
+  def delete_answers
     app=App.find(params[:id])
-    app.execute_sql("DELETE FROM answers inner joins tasks on answers.task_id=tasks.id inner join app on app.where ")
-    app.tasks.each {|answer| 
-      tasks.delete_all
-    }
-    FtDao.instance.delete_all(app.output_ft)
+    app.delete_answers
     redirect_to app_path(app), notice: 'Deleting answers'
   end
 
-  def editor
+  def source
     @app = App.find(params[:id])
+    if (current_or_guest_username == @app.owner and !@app.gist_id.nil?)
+      redirect_to "https://gist.github.com/#{@app.gist_id}"
+    else
+
+    end
   end
 
 
-  def editor_update
+  def source_update
     @app = App.find(params[:id])
     if current_user != @app.user
       redirect_to root_url
@@ -145,7 +146,7 @@ class AppsController < ApplicationController
 # DELETE /apps/1.json
   def destroy
     @app = App.find(params[:id])
-    if current_user==@app.user
+    if current_user == @app.user
       @app.destroy
       redirect_to apps_url, notice: 'app was successfully deleted.' 
     else

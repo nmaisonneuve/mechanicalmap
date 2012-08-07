@@ -39,13 +39,19 @@ window.GFTask = Backbone.Model.extend({
   sync: function (method, model, options){
     if (method == "read")
       options.url = this.url_google();
+
       Backbone.sync(method,model,options);
+  },
+  
+  sql: function(){
+    var gftable = this.get('gftable');
+    return "SELECT * FROM " + gftable.ft_table + " WHERE " + gftable.ft_task_column + " = '" + this.id + "'";
   },
 
   url_google: function() {
-    var gftable = this.get('gftable');
+    
     var key = 'AIzaSyDaD2I-HSjUXgmQr9uOvF5-wZTwgfLgW-Q';
-    var sqlquery = "SELECT * FROM " + gftable.ft_table + " WHERE " + gftable.ft_task_column + " = '" + this.id + "'";
+    var sqlquery = this.sql();
     return 'https://www.googleapis.com/fusiontables/v1/query?sql=' + encodeURI(sqlquery) + "&key=" + key;
   }
 });
@@ -70,7 +76,7 @@ var DefaultTaskManager = Class.extend({
     _.extend(this, Backbone.Events); // mixin with Event features
     this.tasks = new DefaultVolatileTasks();
     this.tasks.model = options.task_model || GFTask;
-    this.tasks.url   = options.root_url + "tasks";
+    this.tasks.url   = options.root_url + "/tasks";
     this.notask = false;
     this.nb_task_done=0;
     this.models = this.tasks.models;
@@ -145,7 +151,7 @@ VolatileTaskApp = Class.extend({
     this.root_url = options.root_url;
     this.tasks = new DefaultTaskManager(options);
     if (options.router){
-     this.router = new options.router({app:this});   
+      this.router = new options.router({app:this});   
     }else{
       this.router = new Backbone.Router({app:this});  
     }
@@ -163,7 +169,7 @@ VolatileTaskApp = Class.extend({
   // Trigger the initial route and enable HTML5 History API support, set the
   // root folder to '/' by default.  Change in app.js.
   // pushState: true,
-    Backbone.history.start({root: this.root_url}); 
+    Backbone.history.start({root: this.root_url+"/"}); 
     this.navigate(route);
  }
 });

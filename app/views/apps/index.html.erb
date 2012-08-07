@@ -11,7 +11,7 @@
       <hr/>
       <div class="row">
         <div class="span12"> 
-           <h3><%= link_to app.name, app_path(app) %>
+           <h3><%= link_to app.name, dashboard_app_path(app) %>
             <small> created <%= time_ago_in_words(app.created_at) %> ago</small></h3>
         </div>
       </div>

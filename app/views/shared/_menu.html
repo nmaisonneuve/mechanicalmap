@@ -1,21 +1,17 @@
 <div id="app_menu">
     <div class="navbar active">
-        <a href="<%= app_url(@app) %>?embeddable=1" class="btn btn-small"  target="_parent">mobile</a>
+        <a href="<%= app_url(@app) %>" class="btn btn-small"  target="_parent">fullscreen</a>
         <a rel="div" href="#embed" class="btn btn-small btn-danger" style="margin-left:10px">spread it</a>
         <a href="/apps/new?copyof=<%= @app.id %>" class="btn btn-small btn-danger"    target="_parent">clone it</a>
-        <% if @app.user!=current_user %>
-            <a href="https://gist.github.com/<%= @app.gist_id %>" class="btn btn-small btn-primary" style="padding-left:10px"    target="_blank">source code</a>
-            <% else%>
-                <a href="/apps/<%= @app.id %>/editor" class="btn btn-small btn-primary" style="margin-left:10px"    target="_blank">source code</a>
-                <% end %>
-                    <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"
+        <a href="/apps/<%= @app.id %>/source" class="btn btn-small btn-primary" style="margin-left:10px"    target="_blank">source code</a>
+        <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"
                     class="btn btn-small btn-primary"    target="_blank">task data</a>
-                    <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>"
+        <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>"
                     class="btn btn-small btn-primary"    target="_blank" >answer data</a>
     </div>
     <div width="100%" id="embed" class="input" style="display:none;clear:both;">
         copy &amp; paste this code to your web site to support further contributions
         from your visitors.
-        <textarea style="width:100%" ><iframe width="<%= @app.iframe_width %>" height="<%= @app.iframe_height %>" scrolling="no" src="<%= app_url(@app) %>?embeddable=1"></iframe></textarea>
+        <textarea style="width:100%" ><iframe width="<%= @app.iframe_width %>" height="<%= @app.iframe_height %>" scrolling="no" src="<%= app_url(@app) %>"></iframe></textarea>
     </div>
 </div>

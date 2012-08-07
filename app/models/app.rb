@@ -34,7 +34,7 @@ class App < ActiveRecord::Base
     [completed, size]
   end
 
-  def last_contributor(max_contributors=5)
+  def last_contributor(max_contributors = 5)
     self.answers.answered.order("answers.updated_at desc").limit(max_contributors)
   end
 
@@ -42,6 +42,11 @@ class App < ActiveRecord::Base
     FtDao.instance.get_schema(self.output_ft)
   end
 
+  def delete_answers
+    ActiveRecord::Base.execute("DELETE FROM answers inner joins tasks on answers.task_id=tasks.id inner join apps on tasks.app_id = apps.id where apps.id = #{self.id}")
+    FtDao.instance.delete_all(app.output_ft)
+  end
+  
   def clone
     clone = App.new
     clone.name = "copy of #{self.name}"
