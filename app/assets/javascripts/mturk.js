@@ -26,6 +26,7 @@ then you can use the class MTurk:
 */
 
 var MTurk = function(options){
+    options = options ? options : {};
   // create a form at the end of body
   $("body").append("<form method='POST' id='form_mturk'>");
   this.setup_environment(options.sandbox || false);
