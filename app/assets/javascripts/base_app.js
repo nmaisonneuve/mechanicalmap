@@ -1,5 +1,3 @@
-
-
 window.GFAnswer = Backbone.Model.extend({
   initialize: function(options) {
     this.url = function(){return options.app_root+"/tasks";};
@@ -19,9 +17,8 @@ window.GFTask = Backbone.Model.extend({
   },
 
   // parse differently according to the provider (volatiletask vs google fusion)
-  parse: function(resp) {
-    if (resp.columns) {
-      data = {
+  parse_ft_data:function(resp){
+    data = {
         gftable: {
           columns: resp.columns,
           rows: resp.rows
@@ -32,8 +29,15 @@ window.GFTask = Backbone.Model.extend({
           data[column] = resp.rows[0][i];
         });
       }
-      return data;
-    } else return resp;
+    return data;
+  },
+  
+  parse: function(resp) {
+    if (resp.gftable!=undefined) {
+      return resp;
+    } else {
+      return this.parse_ft_data(resp);
+    }
   },
 
   sync: function (method, model, options){
@@ -48,11 +52,14 @@ window.GFTask = Backbone.Model.extend({
     return "SELECT * FROM " + gftable.ft_table + " WHERE " + gftable.ft_task_column + " = '" + this.id + "'";
   },
 
-  url_google: function() {
-    
+  url_google: function(){
+    var gftable = this.get('gftable');
+    return this.ft_query("SELECT * FROM " + gftable.ft_table + " WHERE " + gftable.ft_task_column + " = '" + this.id + "'");
+  },
+
+  ft_query: function(sql) {   
     var key = 'AIzaSyDaD2I-HSjUXgmQr9uOvF5-wZTwgfLgW-Q';
-    var sqlquery = this.sql();
-    return 'https://www.googleapis.com/fusiontables/v1/query?sql=' + encodeURI(sqlquery) + "&key=" + key;
+    return 'https://www.googleapis.com/fusiontables/v1/query?sql=' + encodeURI(sql) + "&key=" + key;
   }
 });
 
