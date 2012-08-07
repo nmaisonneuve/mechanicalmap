@@ -26,6 +26,7 @@ then you can use the class MTurk:
 */
 
 var MTurk = function(options){
+    options = options ? options : {};
   // create a form at the end of body
   $("body").append("<form method='POST' id='form_mturk'>");
   this.setup_environment(options.sandbox || false);
@@ -48,7 +49,7 @@ MTurk.prototype.setup_environment = function (sandbox){
 MTurk.prototype.set_sandbox = function (sandbox){
   console.log("sandbox env: "+sandbox);
   var turk_url = (sandbox)? "https://workersandbox.mturk.com/mturk/externalSubmit" : "https://www.mturk.com/mturk/externalSubmit";
-  $("#form_mturk").attr("action",mturk_url);
+  $("#form_mturk").attr("action",turk_url);
 };
 
 MTurk.prototype.add_hidden_input = function (name,value){
