@@ -1,6 +1,6 @@
 <% @header = capture do %>
 
-<%= form_for(@app, :url => {:action => "editor_update"}, :html => {:id => "form_app"}, :remote => true) do |f| %>
+<%= form_for(@app, :url => {:action => "source_update"}, :html => {:id => "form_app"}, :remote => true) do |f| %>
 
     <input type="hidden" name="app[script]" id="app_script" value=""/>
 <div class="nav">
