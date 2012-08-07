@@ -1,3 +1,18 @@
+/**
+
+this is a backbone router ( http://backbonetutorials.com/what-is-a-router/ ) for a basic microapp 
+
+by convention:
+
+app.navigate("static/mysection") will display 
+ <section id="mysection">...</section> and hide the other <section> tags
+
+e.g. app.navigate("static/intro") to start your app with an intruction panel <section id="intro">
+
+app.navigate("play") will load the next task e.g. task with ID =12
+and then executes app.navigate("tasks/12")
+that call router.task:function(id)
+*/
 var BasicAppRouter = Backbone.Router.extend({
     
     routes: {

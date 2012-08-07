@@ -1,8 +1,30 @@
-
-
 /**
 * Mechanical Turk Facilitator class
+
+add your html code:
+  <script src="/assets/mturk.js"></script>
+
+then you can use the class MTurk:
+
+  $(function(){
+    var mturk = new MTurk();
+
+    //(optional) to enable sandbox mturk
+    mturk.set_sandbox(true);
+    
+    // to check of if we are in a mturk environment 
+    // i.e. if the url contains 'assignmentId' parameters
+    // return true or false
+    mturk.env_detected
+    
+    // submit the HIT
+    mturk.submit();
+    
+    // submit the HIT with data
+    mturk.submit({param1: val1, param2: val2});
+  });
 */
+
 var MTurk = function(options){
   // create a form at the end of body
   $("body").append("<form method='POST' id='form_mturk'>");
@@ -13,11 +35,11 @@ MTurk.prototype.setup_environment = function (sandbox){
   var assignment=$.urlParam('assignmentId');
   if (assignment !== 0){
     console.log("mturk environment detected.");
-    this.mturk_detected = true;
+    this.env_detected = true;
     this.add_hidden_input("assignmentId",assignment);
     this.set_sandbox(sandbox);
   } else {
-    this.mturk_detected = true;
+    this.env_detected = true;
     console.log("mturk environment not detected.");
   }
   return (this.mturk_detected);
@@ -47,7 +69,7 @@ MTurk.prototype.submit = function (hash_data){
  **/
 $.urlParam = function(name){
   var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results==null){
+    if (results == null){
     return 0;
   }else{
     return results[1] || 0;
