@@ -85,6 +85,7 @@ var DefaultTaskManager = Class.extend({
     this.tasks.model = options.task_model || GFTask;
     this.tasks.url   = options.root_url + "/tasks";
     this.notask = false;
+    this.cache_size = options.cache_size || 2;
     this.nb_task_done=0;
     this.models = this.tasks.models;
     this.tasks.on("no_task",function(){this.notask = true;},this);
@@ -92,7 +93,7 @@ var DefaultTaskManager = Class.extend({
   
   caching: function(last_task, callback,no_task_handler){
       
-    if ((this.tasks.models.length <= 2 && (!this.notask))) {
+    if ((this.tasks.models.length <= this.cache_size && (!this.notask))) {
       
       var me = this;
       
@@ -157,11 +158,8 @@ VolatileTaskApp = Class.extend({
  init: function (options){
     this.root_url = options.root_url;
     this.tasks = new DefaultTaskManager(options);
-    if (options.router){
-      this.router = new options.router({app:this});   
-    }else{
-      this.router = new Backbone.Router({app:this});  
-    }
+    routerclass = (options.router)? options.router : Backbone.Router;
+    this.router = new routerclass({app:this});
   },
 
   navigate: function(route){
