@@ -26,7 +26,7 @@ then you can use the following method in your microapp:
 
 
 VolatileTaskApp.prototype.activate_mturk_env = function (options){
-  options = options ? options : {};
+  options = options ? options : {sandbox:false};
   this.form = $("<form method='POST' id='form_mturk'>");
   $("body").append(this.form);
 
@@ -35,7 +35,7 @@ VolatileTaskApp.prototype.activate_mturk_env = function (options){
     console.log("mturk environment detected.");
     this.env_detected = true;
     this.add_hidden_input("assignmentId",assignment);
-    this.set_sandbox(sandbox);
+    this.set_sandbox(options.sandbox);
   } else {
     this.env_detected = true;
     console.log("mturk environment not detected.");
@@ -49,7 +49,7 @@ VolatileTaskApp.prototype.set_sandbox = function (sandbox){
   this.form.attr("action",turk_url);
 };
 
-VolatileTaskApp.prototype.add_hidden_input = function (name,value){
+VolatileTaskApp.prototype.add_hidden_input = function (name, value){
   this.form.append("<input type='hidden' name='" + name + "' value='" + value + "' />");
 };
 
