@@ -1,40 +1,35 @@
 /**
 * Mechanical Turk Facilitator class
 
-add your html code:
+add this script in your html code:
   <script src="/assets/mturk.js"></script>
 
-then you can use the class MTurk:
+then you can use the following method in your microapp:
 
-  $(function(){
-    var mturk = new MTurk();
+    var app = new VolatileTask(...)
 
-    //(optional) to enable sandbox mturk
-    mturk.set_sandbox(true);
+    //to enable mturk
+    app.activate_mturk_env({sandbox:true});
     
     // to check of if we are in a mturk environment 
     // i.e. if the url contains 'assignmentId' parameters
     // return true or false
-    mturk.env_detected
+    app.mturk_env_detected
     
-    // submit the HIT
-    mturk.submit();
+    // submit the HIT to the mturk platform
+    app.finish_HIT();
     
-    // submit the HIT with data
-    mturk.submit({param1: val1, param2: val2});
-  });
+    //or submit the HIT with data 
+    app.finish_HIT({param1: val1, param2: val2});
+
 */
 
-var MTurk = function(options){
+
+VolatileTaskApp.prototype.activate_mturk_env = function (options){
   options = options ? options : {};
-  
   this.form = $("<form method='POST' id='form_mturk'>");
   $("body").append(this.form);
 
-  this.setup_environment(options.sandbox || false);
-};
-
-MTurk.prototype.setup_environment = function (sandbox){
   var assignment=$.urlParam('assignmentId');
   if (assignment !== 0){
     console.log("mturk environment detected.");
@@ -48,23 +43,23 @@ MTurk.prototype.setup_environment = function (sandbox){
   return (this.mturk_detected);
 };
 
-MTurk.prototype.set_sandbox = function (sandbox){
+VolatileTaskApp.prototype.set_sandbox = function (sandbox){
   console.log("sandbox env: "+sandbox);
   var turk_url = (sandbox)? "https://workersandbox.mturk.com/mturk/externalSubmit" : "https://www.mturk.com/mturk/externalSubmit";
   this.form.attr("action",turk_url);
 };
 
-MTurk.prototype.add_hidden_input = function (name,value){
+VolatileTaskApp.prototype.add_hidden_input = function (name,value){
   this.form.append("<input type='hidden' name='" + name + "' value='" + value + "' />");
 };
 
-MTurk.prototype.submit = function (hash_data){
+VolatileTaskApp.prototype.finish_HIT = function (hash_data){
   if (hash_data !== undefined){
     $each(hash_data, function(name, value){
       this.add_hidden_input(name,data);
     });
   }
-  $("#form_mturk").submit();
+  this.form.submit();
 };
 
 /**
