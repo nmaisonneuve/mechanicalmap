@@ -1,12 +1,13 @@
 <% @header = capture do %>
   <% if @app.user==current_user %>
-    <a href="<%= edit_app_path(@app) %>" class="btn btn-small">Setting</a>
-    <%= link_to 'Delete App', @app, confirm: 'Are you sure?', method: :delete, :class => "btn btn-small btn-danger" %>
+    <a href="<%= edit_app_path(@app) %>" class="btn btn-small">app setting</a>
+    <%= link_to 'delete app', @app, confirm: 'Are you sure?', method: :delete, :class => "btn btn-small btn-danger" %>
  <% end %>
 <% end %>
 
 <% @app_header = capture do %>
     <li><%= link_to @app.name[0..20], app_path(@app) %></li>
+    <li class="active" ><a href="#">dashboard</a></li>
 <% end %>
 
 <% content_for :app_header, @app_header %>
