@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120724073551) do
+ActiveRecord::Schema.define(:version => 20120809194321) do
 
   create_table "answers", :force => true do |t|
     t.integer  "task_id"
@@ -26,11 +26,11 @@ ActiveRecord::Schema.define(:version => 20120724073551) do
   add_index "answers", ["task_id"], :name => "index_units_on_task_id"
 
   create_table "apps", :force => true do |t|
-    t.string   "name",                                                :null => false
+    t.string   "name",                                                                                                                          :null => false
     t.string   "shortname"
     t.text     "description",   :limit => 255
-    t.datetime "created_at",                                          :null => false
-    t.datetime "updated_at",                                          :null => false
+    t.datetime "created_at",                                                                                                                    :null => false
+    t.datetime "updated_at",                                                                                                                    :null => false
     t.string   "output_ft"
     t.string   "input_ft"
     t.text     "script"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20120724073551) do
     t.string   "iframe_height",                :default => "100%"
     t.integer  "status",                       :default => 0
     t.string   "task_column",                  :default => "task_id"
+    t.string   "image_url",                    :default => "http://payload76.cargocollective.com/1/2/88505/3839876/02_nowicki_poland_1949.jpg"
   end
 
   add_index "apps", ["user_id"], :name => "index_apps_on_user_id"

@@ -26,7 +26,8 @@ class App < ActiveRecord::Base
                   :redundancy,
                   :iframe_width,
                   :iframe_height,
-                  :state
+                  :state,
+                  :image_url
 
   def completion
     completed=self.answers.answered.count
