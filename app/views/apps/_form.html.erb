@@ -36,12 +36,19 @@
             </div>
           </div>
 
-
           <div class="control-group">
             <label class="control-label"><h3>Description</h3></label>
 
             <div class="controls">
               <%= f.text_area :description, :rows => 5, :placeholder => "Short description (in html) for the VolatileTask Apps repository", :class => "text-field span4" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label"><h3>Image url</h3></label>
+
+            <div class="controls">
+              <%= f.text_field :image_url, :placeholder => "image url", :class => "text-field span4" %>
             </div>
           </div>
 
