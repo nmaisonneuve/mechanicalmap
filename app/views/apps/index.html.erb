@@ -45,14 +45,17 @@ section{
   %>
  
       <section>
+
            <h3><%= link_to app.name, dashboard_app_path(app) %>
             <small> created <%= time_ago_in_words(app.created_at) %> ago</small>
           </h3>
-      <img style="float:right;width:145px;" src="http://api.qrserver.com/v1/create-qr-code/?size=145x145&data=<%= app_url(app) %>"  />
-         <img src="<%= @app.image_url %>" style="height:145px"/>
-        <%=  app.description.html_safe %>
+          <img style="float:right;width:145px;" src="http://api.qrserver.com/v1/create-qr-code/?size=145x145&data=<%= app_url(app) %>"  />
+         <img src="<%= @app.image_url %>" style="height:145px;margin:5px"/>
+         <div style="clear:both;margin:5px">
+          <%=  app.description.html_safe %>
+        </div>
          <% @button_size = "btn-mini" %>
- 
+
   
        
            <%= render "shared/menu.html" %> 

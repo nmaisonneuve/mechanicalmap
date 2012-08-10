@@ -132,7 +132,7 @@ class AppsController < ApplicationController
     else
       respond_to do |format|
         if @app.update_attributes(params[:app])
-          format.html { redirect_to dashboard_url(@app), notice: 'app was successfully updated.' }
+          format.html { redirect_to dashboard_app_path(@app), notice: 'app was successfully updated.' }
           format.json { head :no_content }
         else
           format.html { render action: "edit" }
