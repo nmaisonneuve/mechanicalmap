@@ -25,7 +25,7 @@ window.GFTask = Backbone.Model.extend({
           rows: resp.rows
         }
       };
-      if (resp.rows.length == 1) {
+      if (resp.rows != undefined && resp.rows.length == 1) {
         _.each(resp.columns, function(column, i) {
           data[column] = resp.rows[0][i];
         });
