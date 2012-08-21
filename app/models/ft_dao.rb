@@ -9,6 +9,7 @@ class FtDao
   SERVICE_URL = "https://tables.googlelabs.com/api/query"
   MAXIMUM_INSERT=499 #maximum insert queries according to https://developers.google.com/fusiontables/docs/developers_guide
 
+
   def initialize()
     @ft=GData::Client::FusionTables.new
     @ft.clientlogin("citizencyberscience", "noisetube") # I know you know...
@@ -25,6 +26,20 @@ class FtDao
     table_id
   end
 
+
+  def get_schema(table_id)
+    sql = "DESCRIBE #{table_id}"
+    sql="sql=" + CGI::escape(sql)
+    resp=@ft.post(SERVICE_URL, sql)
+    columns=[]
+
+    resp.body.split("\n")[1..-1].each { |col|
+      col=col.split(",")
+
+      columns<<{"name" => col[1], "type" => col[2]}
+    }
+    return columns
+  end
 
 # Connect to service
   def change_ownership(table_id, email_owner)
@@ -57,10 +72,13 @@ class FtDao
     response = @doclist.post("https://docs.google.com/feeds/default/private/full/#{table_id}/acl", acl_entry_visibility).to_xml
   end
 
-  def import(table_id, limit=10)
-    tasks_ids=@ft.execute "SELECT task_id FROM #{table_id} LIMIT #{limit}"
+
+
+  def import(table_id, task_column)
+    tasks_ids=@ft.execute "SELECT #{task_column}, count() FROM #{table_id} group by #{task_column} "
+    puts " #{tasks_ids.size} tasks to index"
     tasks_ids.each { |task|
-      yield(task[:task_id].to_i)
+      yield(task[task_column.to_sym])
     }
   end
 
@@ -78,14 +96,19 @@ class FtDao
       rescue
         answer_rows=YAML::load(answer.answer)
       end
+
       if (answer_rows.is_a? Array)
         answer_rows.each { |row|
 
           queries<<"INSERT INTO #{table_id} (#{row.keys.join(",")}) VALUES (#{row.values.map { |value| "'#{value}'" }.join(",")});"
           #we're batching
           if ((i>0) && (i % (MAXIMUM_INSERT)==0))
+            begin
             @ft.execute queries.join("")
             queries=[]
+            rescue Exception => e
+              raise Exception.new("#{e.message}\n#{answer.answer}")
+            end
 
             # We can now update their states
             answers_to_process.each { |answer_processed|

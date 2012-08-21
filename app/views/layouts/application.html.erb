@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MechanicalTask</title>
+  <title>VolatileTask</title>
   <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
   <![endif]-->
@@ -12,36 +12,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div class="navbar navbar-fixed-top">
+
+
+<div class="navbar navbar-fixed-top active">
   <div class="navbar-inner">
-    <div class="container">
-
-      <a class="brand" href="/">MechanicalTask</a>
-
+    <div class="container" >
+   <a class="brand" href="/">VolatileTask</a>
       <div class="nav-collapse">
         <ul class="nav">
-          <li><%= link_to "Browse micro-apps", apps_path %></li>
+          <li><%= link_to "Apps", apps_path %></li>
+          <%=  yield(:app_header)  %>
         </ul>
+
       </div>
 
       <div class="nav pull-right" style="margin-right:0px;">
         <ul class="nav">
           <% if user_signed_in? %>
               <li><a href="#" style="color:white;font-weight: bold;"><%= current_user.username %></a></li>
-              <li>  <%= link_to "Sign out", destroy_user_session_path, :method => :delete  %> </li>
+              </ul>
+             <%= link_to "Sign out", destroy_user_session_path, :method => :delete , :class=>"btn btn-small btn-primary" %>
           <% else %>
-              <li><a href="#" style="color:white;font-weight: bold;"><%= current_or_guest_username %></a></li>
-              <li><%= link_to "Sign in", new_user_session_path  %> </li>
+              <li><a href="#" style="color:white;"><%= current_or_guest_username %></a>  </li>
+              </ul>
+              <%= link_to "Sign in", new_user_session_path, :class=>"btn btn-small btn-primary"  %>
           <% end %>
-
-        </ul>
       </div>
+      <%=  yield(:header)  %>
+      
     </div>
   </div>
 </div>
 <div class="container">
   <%= yield %>
 </div>
+<script type="text/javascript">
 
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-30505488-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
 </body>
 </html>

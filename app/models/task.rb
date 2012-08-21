@@ -4,9 +4,7 @@ class Task < ActiveRecord::Base
 
   has_many :answers, :dependent => :destroy
 
-  attr_accessible :state, :input, :app_id, :gold_answer
-
-  serialize :input
+  attr_accessible :state, :input, :app_id, :gold_answer, :answers
 
   scope :available, lambda {
     joins(:answers).where("answers.state=?", Answer::AVAILABLE)
@@ -14,6 +12,14 @@ class Task < ActiveRecord::Base
 
   scope :done_by_username, lambda { |username|
     joins(:answers=>:user).where("answers.state!=?", Answer::AVAILABLE).where("users.username=?", username)
+  }
+
+  scope :not_done_by, lambda { |user|
+    # not optimized
+    tasks_done_ids=Task.joins(:answers).where("answers.state!=?", Answer::AVAILABLE).where("answers.user_id=?", user)
+    unless (tasks_done_ids.empty?)
+      where("#{self.table_name}.id not in (?)", tasks_done_ids)
+    end
   }
 
   scope :not_done_by_username, lambda { |username|
@@ -24,13 +30,7 @@ class Task < ActiveRecord::Base
     end
   }
 
-  scope :not_done_by, lambda { |user|
-    # not optimized
-    tasks_done_ids=Task.joins(:answers).where("answers.state!=?", Answer::AVAILABLE).where("answers.user_id=?", user)
-    unless (tasks_done_ids.empty?)
-      where("#{self.table_name}.id not in (?)", tasks_done_ids)
-    end
-  }
+
 
   def done_by?(user)
     self.answers.where("answers.user_id=?",user).count!=0

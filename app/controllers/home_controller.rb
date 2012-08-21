@@ -7,6 +7,8 @@ class HomeController < ApplicationController
 
   def more
 
+    render :layout=>"application"
+
   end
 
 end

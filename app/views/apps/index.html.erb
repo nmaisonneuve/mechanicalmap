@@ -10,16 +10,17 @@
   %>
       <hr/>
       <div class="row">
-        <div class="span4">
+        <div class="span3">
+          <img src="http://api.qrserver.com/v1/create-qr-code/?size=145x145&data=<%= app_url(app, :embeddable=>1) %>"  />
+
+        </div>
+        <div class="span6" style="height:200px">
 
           <h3><%= link_to app.name, app_path(app) %>
-
             <% unless u.nil? %>
-
-
-
-            <% end %></h3>
+            <% end %> </h3>
           <p><small> created <%= time_ago_in_words(app.created_at) %> ago</small></p>
+
 
           <!--<p> <%=  RedCloth.new(app.description).to_html.html_safe %> </p> -->
           <p> <%=  app.description.html_safe %> </p>
@@ -29,7 +30,7 @@
           </div>
         <div class="span2" style="text-align: center">
           <% if app.user == current_user %>
-              <%= link_to "Edit code", editor_app_path(app), :class => "btn btn-success btn-small" %>
+              <%= link_to "Source code", editor_app_path(app), :class => "btn btn-success btn-small" %>
           <% end %>
         </div>
       </div>

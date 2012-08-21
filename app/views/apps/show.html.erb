@@ -1,22 +1,46 @@
+<% @header = capture do %>
+    <% if @app.user==current_user %>
+
+          <a href="<%= edit_app_path(@app) %>" class="btn btn-small">Setting</a>
+
+          <%= link_to 'Delete App', @app, confirm: 'Are you sure?', method: :delete, :class => "btn btn-small btn-danger" %>
+   <% end %>
+<% end %>
+<% @app_header = capture do %>
+    <li><%= link_to @app.name[0..20], app_path(@app) %></li>
+<% end %>
+<% content_for :app_header, @app_header %>
+
+
+<% content_for :header, @header %>
+
+
+
 <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
+<script type='text/javascript' src='http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js'></script>
 
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <div class="container">
   <div class="row">
     <div class="span3">
-
-      <p id="notice"><%= notice %></p>
-
-      <h2><%= @app.name %></h2>
-      <% if @app.user==current_user %>
-          <div>
-            <a href="<%= edit_app_path(@app) %>" class="btn btn-small ">Setting</a>
-            <%= link_to 'Delete App', @app, confirm: 'Are you sure?', method: :delete, :class => "btn btn-small btn-danger" %>
-          </div>
+      
+      <% unless notice.blank? %>
+        <div class="alert alert-block alert-success fade in">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <p><%= notice %></p>
+      </div>
       <% end %>
+
+      <h3><%= @app.name %></h3>
+
            <br/>
-      <!--<%= RedCloth.new(@app.description).to_html.html_safe %> -->
+
+      <!--<%= RedCloth.new(@app.description).to_html.html_safe %>
       <%= @app.description.html_safe %>
+
+      <br/> -->
+      <img src="http://api.qrserver.com/v1/create-qr-code/?size=145x145&data=<%= app_url(@app, :embeddable=>1) %>"  />
+
       <hr>
 
       <h4>Activity</h4>
@@ -40,10 +64,10 @@
     <div class="span9">
       <a href="<%= app_url(@app) %>?embeddable=1" class="btn btn-small "
          style="float:left;margin:5px">Fullscreen</a>
-      <a rel="div" href="#embed" class="btn btn-small btn-danger" style="float:left;margin:5px">Spread / Embed
+      <a rel="div" href="#embed" class="btn btn-small btn-danger" style="float:left;margin:5px">Spread
         it</a>
-      <a href="#"
-         class="btn btn-small btn-info disabled" style="float:left;margin:5px">Copy/Fork it</a>
+      <a href="/apps/new?copyof=<%=@app.id %>"
+         class="btn btn-small btn-info" style="float:left;margin:5px">Clone it</a>
       <a href="<%= editor_app_url(@app) %>" class="btn btn-small btn-success" style="float:left;margin:5px">source
         code</a>
 
@@ -51,7 +75,6 @@
          class="btn btn-small btn-primary" style="float:left;margin:5px">Task Data</a>
       <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>"
          class="btn btn-small btn-primary" style="float:left;margin:5px">Answer Data</a>
-
 
       <div id="embed" class="input" style="display:none; clear:both">
         copy & paste this code to your web site to support further contributions from your visitors.
@@ -78,5 +101,6 @@
             e.preventDefault();
             $($(this).attr("href")).toggle();
         });
+         $(".alert").alert();
     });
 </script>

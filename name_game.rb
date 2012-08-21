@@ -28,16 +28,20 @@ def enqueue(table_id, rows)
 end
 
 
+TaskGFTable_id="4371217"
+
 rows=[]
 puts "Requesting data from FT"
 $ft=GData::Client::FusionTables.new
 $ft.clientlogin("citizencyberscience", "noisetube") # I know you know...
-#sql = "SELECT personID,COUNT() FROM 3942022 group by personID order by COUNT()  asc LIMIT 1000"
 sql = "SELECT ClusterID,Count()  FROM 3950961 where ClusterState=-1 group by ClusterID LIMIT 1000"
 
 sql="sql=" + CGI::escape(sql) #encrypted table id
 resp = $ft.post(SERVICE_URL, sql)
+
 idx=1
+
+
 puts "Transforming data"
 resp.body.split("\n").each { |row|
   cells=row.split(",")
@@ -46,6 +50,7 @@ resp.body.split("\n").each { |row|
     idx=idx+1
   end
 }
+
 puts "Reindexing task by freq"
 idx=1
 rows=rows.sort{ |a,b| a["freq"]<=>b["freq"]}
@@ -55,6 +60,6 @@ rows.each { |row|
 }
 
 puts "Storing data into FT"
-enqueue("3953510", rows)
+enqueue(TaskGFTable_id, rows)
 
 

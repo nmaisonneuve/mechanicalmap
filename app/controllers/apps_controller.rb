@@ -1,66 +1,73 @@
 class AppsController < ApplicationController
 
   before_filter :authenticate_user!, :only=>[:new]
+
   # GET /apps
   # GET /apps.json
   def index
-    @apps = App.all
+    @apps = App.order("created_at asc")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @apps }
     end
   end
 
-
   def show
     @app = App.find(params[:id])
     if (params[:embeddable].blank?)
-      render 'show.erb.html'
+      respond_to do |format|
+        format.html {render 'show.erb.html'}
+        format.png { render :qrcode => app_url(@app, :embeddable=>1), :size => 5 }
+      end
     else
       render 'embeddable.erb.html', :layout=>false
-      #render 'debug.erb.html', :layout=>false
     end
   end
 
-
   def new
-    @app = App.new
-    @app.input_ft=params[:input_ft] unless params[:input_ft].blank?
-    @app.output_ft=params[:output_ft] unless params[:output_ft].blank?
+    unless params[:copyof].blank?
+      original=App.find(params[:copyof])
+      @app=original.clone
+      @schema=FtDao.instance.get_schema(original.output_ft)
+      @schema=@schema.to_json.to_s     #to json string
+      @cloned=true
+    else
+      @app = App.new
+      @schema=""
+      @cloned=false
+    end
+
   end
+
 
   def user_state
     app=App.find(params[:id])
     # strange but working
     opened=app.tasks.not_done_by_username(current_or_guest_username).count
     completed=app.tasks.done_by_username(current_or_guest_username).count
-    render json: {:opened=>opened, :completed=>completed}
+    render json: {:opened=>opened, :completed=>completed}, :callback => params[:callback]
   end
 
   def reindex
     app=App.find(params[:id])
-    app.reindex_tasks
+    app.index_tasks_async()
     redirect_to app_path(app), notice: 'Reindexing tasks'
   end
 
   def workflow
     app=App.find(params[:id])
     context={:from_task=>params[:from_task], :current_user=>current_or_guest_username}
-    assignment=app.schedule(context)
+    assignment=app.next_task(context)
     if assignment.nil?
-      respond_to do |format|
-        format.html { redirect_to app_path(app), notice: 'Sorry no further task available!' }
-        format.js { render :json=>"", :status => 404 }
-      end
+        render :json=>{:error=>"no assignment found"}, :status => 404 
     else
-      redirect_to app_task_answer_path(assignment.task.app, assignment.task, assignment, :format=>params[:format])
+      redirect_to app_task_answer_path(assignment.task.app, assignment.task, assignment, :format=>params[:format], :callback => params[:callback])
     end
   end
 
 
   def editor
     @app = App.find(params[:id])
-      render :layout => false
   end
 
 
@@ -69,15 +76,13 @@ class AppsController < ApplicationController
     if current_user!=@app.user
       redirect_to root_url
     else
-      respond_to do |format|
         if @app.update_attributes(params[:app])
-          format.html { render action: "editor" , notice: 'app was successfully updated.' }
-          format.json { head :no_content }
+          id=@app.synch_gist
+          p id 
+          render json: {"gist_id"=> id}.to_json 
         else
-          format.html { render action: "editor" }
-          format.json { render json: @app.errors, status: :unprocessable_entity }
+          render json: @app.errors, status: :unprocessable_entity 
         end
-      end
     end
   end
 
@@ -85,10 +90,9 @@ class AppsController < ApplicationController
   def edit
     @app = App.find(params[:id])
     if current_user!=@app.user
-      redirect_to root_url
-    else
-
+      return redirect_to root_url
     end
+
   end
 
 
@@ -101,21 +105,14 @@ class AppsController < ApplicationController
     respond_to do |format|
 
       if @app.save
+        @app.output_ft
+      
+        # we postpone the indexation of task 
+        @app.index_tasks_async
+        #+ the generation of answer tables 
+        @app.create_schema_async(params[:schema])
+        
 
-        schema=[{"name"=>"task_id", "type"=>"number"},
-                {"name"=>"user_id", "type"=>"string"},
-                {"name"=>"created_at", "type"=>"datetime"}]
-
-        schema=ActiveSupport::JSON.decode(params[:schema]) unless  params[:schema].blank?
-
-        # we postpone in production
-        if (Rails.env=="production")
-        FtIndexer.perform_async(@app.id, params[:app_redundancy].to_i)
-        FtGenerator.perform_async(@app.id, schema, current_user.email)
-        else
-        #  @app.ft_index_tasks(params[:app_redundancy].to_i)
-          @app.ft_create_output(schema, current_user.email)
-        end
         format.html { redirect_to editor_app_path(@app), notice: 'app was successfully created.' }
         format.json { render json: @app, status: :created, location: @app }
       else
@@ -163,8 +160,6 @@ class AppsController < ApplicationController
     end
 
   end
-
-  private
 
 
 end
