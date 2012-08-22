@@ -1,14 +1,7 @@
 <% @app_header = capture do %>
-    <li><%= link_to @app.name[0..20], app_path(@app) %></li>
+    <li class="active"><%= link_to @app.name[0..20], app_path(@app) %></li>
+     <a class="btn btn-primary" id="save">save</a>
+    <a data-toggle="modal" href="#tutorial" class="btn">tutorial</a>
 <% end %>
 <% content_for :app_header, @app_header %>
-
-<%
-   @disable_ft=true
-   @disable_redundancy=true
-%>
 <%= render 'form' %>
-
-<%= link_to 'Delete', @app, confirm: 'Are you sure?', method: :delete, :class=>"btn btn-mini btn-danger" %>
-<%= link_to 'Show', @app %> |
-<%= link_to 'Back', apps_path %>

@@ -18,8 +18,7 @@ function MercatorProjection() {
         MERCATOR_RANGE / 2, MERCATOR_RANGE / 2);
     this.pixelsPerLonDegree_ = MERCATOR_RANGE / 360;
     this.pixelsPerLonRadian_ = MERCATOR_RANGE / (2 * Math.PI);
-}
-;
+};
 
 MercatorProjection.prototype.fromLatLngToPoint = function(latLng, opt_point) {
     var me = this;

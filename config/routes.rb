@@ -1,24 +1,29 @@
 Mechanicalmap::Application.routes.draw do
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
+  root :to => "home#index"
+  
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
   resources :apps do
-    get 'workflow', :on => :member
-    get 'editor', :on => :member
     get 'reindex', :on => :member
-    put 'editor_update', :on => :member
+    get 'dashboard', :on => :member
+    get 'delete_answers', :on => :member
+    get 'source', :on => :member
+    put 'source_update', :on => :member
     get 'user_state', :on => :member
+
     resources :tasks do
+      get 'next', :on => :collection
       resources :answers do
         get :update #for cross domain update
       end
     end
   end
 
-  root :to => "home#index"
+
   match "/more" => "home#more"
 
   match "/demo_generator" => "task_generators#new", :via => "get"

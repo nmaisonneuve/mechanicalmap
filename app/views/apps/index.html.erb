@@ -1,41 +1,51 @@
+<% @app_header = capture do %>
+  
+    <li class="active" ><a href="#">open apps (open data + open code)
+</a></li>
+<% end %>
+
+<% content_for :app_header, @app_header %>
+
+<style type="text/css">
+
+section{
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    padding:1em;
+    margin:1em;
+    background-color: #FFF;
+}
+
+</style>
 <link type="text/css" href="/assets/jquery-ui-1.8.16.custom.css"/>
 <link type="text/css" href="/assets/bootstrap.css"/>
 
-<div class="container">
-<h1> Apps </h1>
+<div class="container row-fluid">
+<h1> </h1>
 
   <% @apps.each do |app|
-    completed, size=app.completion
-    u=app.user
+    @app = app
+    completed, size= @app.completion
+    u = @app.user
   %>
-      <hr/>
-      <div class="row">
-        <div class="span3">
-          <img src="http://api.qrserver.com/v1/create-qr-code/?size=145x145&data=<%= app_url(app, :embeddable=>1) %>"  />
+ 
+      <section>
 
+           <h3><%= link_to app.name, dashboard_app_path(app) %>
+            <small> created <%= time_ago_in_words(app.created_at) %> ago</small>
+          </h3>
+          <img style="float:right;width:145px;" src="http://api.qrserver.com/v1/create-qr-code/?size=145x145&data=<%= app_url(app) %>"  />
+         <img src="<%= @app.image_url %>" style="height:145px;margin:5px"/>
+         <div style="clear:both;margin:5px">
+          <%=  app.description.html_safe %>
         </div>
-        <div class="span6" style="height:200px">
+         <% @button_size = "btn-mini" %>
 
-          <h3><%= link_to app.name, app_path(app) %>
-            <% unless u.nil? %>
-            <% end %> </h3>
-          <p><small> created <%= time_ago_in_words(app.created_at) %> ago</small></p>
-
-
-          <!--<p> <%=  RedCloth.new(app.description).to_html.html_safe %> </p> -->
-          <p> <%=  app.description.html_safe %> </p>
-          <div class="progress progress-info  progress-striped" style="height:10px;">
-            <div class="bar" style="width:<%= (completed.to_f/size.to_f)*100  %>%;"></div>
-          </div>
-          </div>
-        <div class="span2" style="text-align: center">
-          <% if app.user == current_user %>
-              <%= link_to "Source code", editor_app_path(app), :class => "btn btn-success btn-small" %>
-          <% end %>
-        </div>
-      </div>
-  <% end %>
-
+  
+       
+           <%= render "shared/menu.html" %> 
+      </section>
+    <% end %>
 </div>
 
 <script type="text/javascript" src="/assets/jquery-ui-1.8.16.custom.min.js"></script>

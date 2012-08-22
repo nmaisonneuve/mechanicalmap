@@ -1,6 +1,6 @@
 <% @header = capture do %>
 
-<%= form_for(@app, :url => {:action => "editor_update"}, :html => {:id => "form_app"}, :remote => true) do |f| %>
+<%= form_for(@app, :url => {:action => "source_update"}, :html => {:id => "form_app"}, :remote => true) do |f| %>
 
     <input type="hidden" name="app[script]" id="app_script" value=""/>
 <div class="nav">
@@ -79,6 +79,8 @@
         editor.setTheme("ace/theme/chrome");
         var Mode = require("ace/mode/html").Mode;
         editor.getSession().setMode(new Mode());
+        editor.getSession().setUseSoftTabs(true);
+        editor.getSession().setTabSize(2);
         // editor.getSession().setMode("ace/mode/html");
 
     });

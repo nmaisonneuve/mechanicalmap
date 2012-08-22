@@ -1,0 +1,83 @@
+<% @header = capture do %>
+
+<% end %>
+
+<% @app_header = capture do %>
+    <li><a href="/apps">open apps</a></li>
+    <li><%= link_to @app.name[0..20], app_path(@app) %></li>
+    <li class="active" ><a href="#">dashboard</a></li>
+<% end %>
+
+<% content_for :app_header, @app_header %>
+<% content_for :header, @header %>
+<style type="">
+section{margin-top:10px;}
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="span12">
+        <% unless notice.blank? %>
+        <div class="alert alert-block alert-success fade in">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <p><%= notice %></p>
+        </div>
+      <% end %>
+    <h3><%= @app.name %></h3>   <% if @app.user==current_user %>
+   
+ <% end %>
+  </div>
+  </div>
+  <div class="row">
+    <div class="span2">
+       <a href="<%= edit_app_path(@app) %>" class="btn btn-mini">setting</a>
+    <%= link_to 'delete app', @app, confirm: 'Are you sure?', method: :delete, :class => "btn btn-mini btn-danger" %>
+      <section>
+        <img src="<%= app_path(@app,:format=>"png") %>" width="100%" />
+      </section>
+
+      <section>
+        <h4>Activity</h4>
+        <% completed, size=@app.completion %>
+        <%= completed %> / <%= size %> answers.
+        <div class="progress progress-info  progress-striped">
+          <div class="bar" style="width: <%= completed.to_f/size.to_f*100 %>%;"></div>
+        </div>
+      </section>
+
+      <section>
+        <h4>Last contributors</h4>
+        <ul style="padding: 0px;margin: 0; margin-top: 3px;">
+          <% @app.contributors.order('users.updated_at desc').limit(5).each { |u| %>
+              <li style="list-style-type: none;">
+                <%= gravatar_image_tag(u.email, :title => u.username, :gravatar => {:default => :identicon, :size => 30}) %>
+            <%= time_ago_in_words(u.updated_at) %> ago
+              </li>
+          <% } %>
+        </ul>
+      </section>
+    </div>
+    <div class="span9">
+     <% @button_size = "btn-mini" %>
+     <%= render "shared/menu.html" %>
+     <iframe scrolling="no" src="<%= app_url(@app) %>" style="width:<%= @app.iframe_width %>;height:<%= @app.iframe_height %>;padding:0;border:1px solid black"></iframe>
+    </div>
+  </div>
+</div>
+
+<script type='text/javascript' src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
+<script type='text/javascript' src='http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js'></script>
+<script type="text/javascript">
+    $(function () {
+        $('#myTab a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+
+        $("a[rel=div]").click(function (e) {
+            e.preventDefault();
+            $($(this).attr("href")).toggle();
+        });
+         $(".alert").alert();
+    });
+</script>

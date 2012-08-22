@@ -27,6 +27,11 @@ class FtDao
   end
 
 
+  def delete_all(table_name)
+    sql="sql=" + CGI::escape("DELETE FROM #{table_name}")
+    resp=@ft.post(SERVICE_URL, sql)
+  end
+
   def get_schema(table_id)
     sql = "DESCRIBE #{table_id}"
     sql="sql=" + CGI::escape(sql)
@@ -89,6 +94,9 @@ class FtDao
     to_process=false
     answers_to_process=[]
     answers.each { |answer|
+      if Answer.where("answers.id = ?",answer.id).where(:ft_sync => false).empty?
+        next
+      end
 
       table_id=answer.task.app.output_ft
       begin
@@ -98,17 +106,15 @@ class FtDao
       end
 
       if (answer_rows.is_a? Array)
+          begin
         answer_rows.each { |row|
 
           queries<<"INSERT INTO #{table_id} (#{row.keys.join(",")}) VALUES (#{row.values.map { |value| "'#{value}'" }.join(",")});"
           #we're batching
           if ((i>0) && (i % (MAXIMUM_INSERT)==0))
-            begin
+            
             @ft.execute queries.join("")
             queries=[]
-            rescue Exception => e
-              raise Exception.new("#{e.message}\n#{answer.answer}")
-            end
 
             # We can now update their states
             answers_to_process.each { |answer_processed|
@@ -124,6 +130,9 @@ class FtDao
           i=i+1
         }
         answers_to_process<<answer
+         rescue Exception => e
+              raise Exception.new("FTDAO: #{e.message}\n#{answer.answer}")
+            end
       else
         answer.ft_sync=true
         answer.save
@@ -140,9 +149,8 @@ class FtDao
         answer.save
       }
     end
-
   end
-
+  
   def enqueue(table_id, rows)
     queries=[]
     to_process=false

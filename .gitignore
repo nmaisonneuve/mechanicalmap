@@ -11,7 +11,11 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
+<<<<<<< HEAD
 .idea/*
+=======
+/.idea
+>>>>>>> ef658b563d79622d5fd4273b4008117a8f03fcb6
 # Ignore all logfiles and tempfiles.
-/log/*.log
+/log
 /tmp

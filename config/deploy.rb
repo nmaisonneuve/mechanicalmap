@@ -1,4 +1,5 @@
-#$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+
+
 Dir['lib/**/*.rb'].each { |recipe| require  File.basename(recipe, '.rb') }
 
 set :rvm_type, :user
@@ -35,11 +36,8 @@ set :use_sudo, false
 default_run_options[:pty] = true  # Must be set for the password prompt from git to work
 ssh_options[:forward_agent] = true
 
-
-
 set :whenever_command, "bundle exec whenever"
 require "whenever/capistrano"
-
 
 desc "Fix permission"
 task :fix_permissions, :roles => [ :app, :db, :web ] do

@@ -2,65 +2,95 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6ad8450-30bb-4e34-983c-de221ba7f1f7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/String file contents" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/true," />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/{" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.rvmrc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/gist_dao.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/apps/tutorial.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/shared/_menu.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/initializers/facebook.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20120623154319_add_app_state.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20120623212603_add_task_key.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20120701084413_change_script_url.rb" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\embeddable.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\name_game.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\helpers\apps_helper.rb" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\helpers\home_helper.rb" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\helpers\task_generators_helper.rb" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\helpers\units_helper.rb" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\views\home\.index.html.swo" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\views\home\.index.html.swp" afterPath="" />
-      <change type="MOVED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ft_micro_task3.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ft_micro_task.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.rakeTasks" afterPath="$PROJECT_DIR$/.idea/.rakeTasks" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/mechanicalmap.iml" afterPath="$PROJECT_DIR$/.idea/mechanicalmap.iml" />
+      <change type="NEW" beforePath="" afterPath="C:\dev\mechanicalmap\app\assets\images\100px-Zéro.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/Thumb3.jpeg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/captcha.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/cloud.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/dna-stencil-thumb.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/editor.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/ft_input_images2.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/main-thumb-t-2801-100-BBm0YIIqvc8tF4DjNNGuJ8KshjjZSoO8.jpeg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/qrcode.jpeg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/share.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/small.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/viral.jpeg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/base_app.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/base_app_router.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/mturk.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/base_app.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/apps/dashboard.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/workers/ft_sync_tasks.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/workers/gis_task_generator.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20120719231326_add_columns_to_users.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20120720071222_change_columns_to_users.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20120724073551_addtoto.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20120809194321_toto.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dp.sh" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\String file contents" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\views\apps\embeddable.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\views\layouts\assignments.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\views\layouts\home.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\config\initializers\facebook.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\deprecated\bootstrap_and_overrides.css.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\gist.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\html5.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\inheritance.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\model.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\name_game.rb" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\namegame.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\saving_name_game.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\stopwords.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\true," afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\vendor\assets\javascripts\.gitkeep" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\vendor\assets\stylesheets\.gitkeep" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\vendor\plugins\.gitkeep" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\{" afterPath="" />
+      <change type="MOVED" beforePath="C:\dev\mechanicalmap\app\views\apps\editor.html.erb" afterPath="$PROJECT_DIR$/app/views/apps/source.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/images/ft_input_images.jpg" afterPath="$PROJECT_DIR$/app/assets/images/ft_input_images.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Rakefile" afterPath="$PROJECT_DIR$/Rakefile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ft_micro_task.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ft_micro_task.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/map_helper.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/map_helper.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/answers_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/answers_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/apps_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/apps_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/home_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/home_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/task_generators_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/task_generators_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/tasks_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/tasks_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/application_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/application_helper.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/answer.rb" afterPath="$PROJECT_DIR$/app/models/answer.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/app.rb" afterPath="$PROJECT_DIR$/app/models/app.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/ft_dao.rb" afterPath="$PROJECT_DIR$/app/models/ft_dao.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/gist_dao.rb" afterPath="$PROJECT_DIR$/app/models/gist_dao.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/task.rb" afterPath="$PROJECT_DIR$/app/models/task.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/apps/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/apps/_form.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/apps/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/apps/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/apps/editor.html.erb" afterPath="$PROJECT_DIR$/app/views/apps/editor.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/apps/index.html.erb" afterPath="$PROJECT_DIR$/app/views/apps/index.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/apps/new.html.erb" afterPath="$PROJECT_DIR$/app/views/apps/new.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/apps/show.html.erb" afterPath="$PROJECT_DIR$/app/views/apps/show.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/devise/registrations/new.html.erb" afterPath="$PROJECT_DIR$/app/views/devise/registrations/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" afterPath="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/devise/shared/_links.erb" afterPath="$PROJECT_DIR$/app/views/devise/shared/_links.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/index.html" afterPath="$PROJECT_DIR$/app/views/home/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/more.html.erb" afterPath="$PROJECT_DIR$/app/views/home/more.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/assignments.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/assignments.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/home.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/home.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/workers/ft_indexer.rb" afterPath="$PROJECT_DIR$/app/workers/ft_indexer.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/shared/_menu.html" afterPath="$PROJECT_DIR$/app/views/shared/_menu.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/task_generators/new.html.erb" afterPath="$PROJECT_DIR$/app/views/task_generators/new.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/task_generators/show.html.erb" afterPath="$PROJECT_DIR$/app/views/task_generators/show.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/workers/ft_generator.rb" afterPath="$PROJECT_DIR$/app/workers/ft_generator.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/workers/ft_sync_answers.rb" afterPath="$PROJECT_DIR$/app/workers/ft_sync_answers.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/deploy.rb" afterPath="$PROJECT_DIR$/config/deploy.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/development.rb" afterPath="$PROJECT_DIR$/config/environments/development.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/devise.rb" afterPath="$PROJECT_DIR$/config/initializers/devise.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/schedule.rb" afterPath="$PROJECT_DIR$/config/schedule.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gist.rb" afterPath="$PROJECT_DIR$/gist.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/name_game.rb" afterPath="$PROJECT_DIR$/name_game.rb" />
     </list>
     <ignored path="mechanicalmap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -85,25 +115,34 @@
       <file leaf-file-name="apps_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="136" column="8" selection-start="3473" selection-end="3473" vertical-scroll-proportion="0.0">
+            <state line="106" column="42" selection-start="2747" selection-end="2747" vertical-scroll-proportion="-12.48">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/app.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="0" selection-start="212" selection-end="212" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="7" selection-start="390" selection-end="390" vertical-scroll-proportion="0.38434783">
+            <state line="17" column="7" selection-start="426" selection-end="426" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="286" column="50" selection-start="13609" selection-end="13609" vertical-scroll-proportion="0.4148728">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/apps/index.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="7" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -112,7 +151,7 @@
       <file leaf-file-name="ft_indexer.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/workers/ft_indexer.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="7" selection-start="67" selection-end="109" vertical-scroll-proportion="0.0">
+            <state line="8" column="3" selection-start="67" selection-end="109" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -121,7 +160,7 @@
       <file leaf-file-name="edit.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/apps/edit.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="21" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
+            <state line="6" column="20" selection-start="300" selection-end="300" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -154,20 +193,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gist.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gist.rb">
+      <file leaf-file-name="app.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="7" selection-start="188" selection-end="188" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="name_game.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/name_game.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="13" column="0" selection-start="292" selection-end="292" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1345530387119" expanded="true" signature="9:4976" placeholder=" ... end" />
+                <marker date="1345530387119" expanded="true" signature="2726:3034" placeholder="do ... end" />
+                <marker date="1345530387119" expanded="true" signature="2842:2936" placeholder="do ... end" />
+                <marker date="1345530387119" expanded="true" signature="4052:4142" placeholder="if ... end" />
+                <marker date="1345530387119" expanded="true" signature="4441:4926" placeholder="if ... end" />
+                <marker date="1345530387119" expanded="true" signature="4478:4558" placeholder="unless ... end" />
+                <marker date="1345530387119" expanded="true" signature="4712:4766" placeholder="unless ... end" />
+                <marker date="1345530387119" expanded="true" signature="4965:4971" placeholder=" ... end" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -193,10 +232,8 @@
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/controllers/apps_controller.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20120521160447_change_input.rb" />
-        <option value="$PROJECT_DIR$/app/views/home/index.html" />
         <option value="$PROJECT_DIR$/db/migrate/20120610124619_change_app.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20120610141843_change_app2.rb" />
-        <option value="$PROJECT_DIR$/app/views/apps/index.html.erb" />
         <option value="$PROJECT_DIR$/db/migrate/20120610190920_add_iframe.rb" />
         <option value="$PROJECT_DIR$/app/views/apps/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/views/apps/new.html.erb" />
@@ -205,6 +242,8 @@
         <option value="$PROJECT_DIR$/gist.rb" />
         <option value="$PROJECT_DIR$/app/models/app.rb" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/app/views/apps/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/home/index.html" />
       </list>
     </option>
   </component>
@@ -247,6 +286,34 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="RailsProjectView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mechanicalmap" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mechanicalmap" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mechanicalmap" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mechanicalmap" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -267,34 +334,21 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="RailsProjectView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mechanicalmap" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mechanicalmap" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Favorites" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="preferences.general" />
     <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/sentiment_analysis" />
     <property name="RakeTaksPopup.undocumentedIncluded" value="false" />
-    <property name="DefaultHtmlFileTemplate" value="Html" />
     <property name="RailsGeneratorsPopup.hiddenIncluded" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="DefaultHtmlFileTemplate" value="Html" />
     <property name="Ruby.ViewRefParam.DefaultExtension" value="html.erb" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -647,15 +701,15 @@
       <method />
     </configuration>
     <list size="9">
-      <item index="0" class="java.lang.String" itemvalue="Rake.routes" />
-      <item index="1" class="java.lang.String" itemvalue="Rake.db:migrate" />
-      <item index="2" class="java.lang.String" itemvalue="Ruby.test" />
-      <item index="3" class="java.lang.String" itemvalue="Rake.db:schema:load" />
-      <item index="4" class="java.lang.String" itemvalue="Ruby.gist" />
-      <item index="5" class="java.lang.String" itemvalue="Rails.Development: mechanicalmap" />
-      <item index="6" class="java.lang.String" itemvalue="Rails.Production: mechanicalmap" />
-      <item index="7" class="java.lang.String" itemvalue="Rake.spec" />
-      <item index="8" class="java.lang.String" itemvalue="Rake.test" />
+      <item index="0" class="java.lang.String" itemvalue="Rails.Development: mechanicalmap" />
+      <item index="1" class="java.lang.String" itemvalue="Rails.Production: mechanicalmap" />
+      <item index="2" class="java.lang.String" itemvalue="Rake.spec" />
+      <item index="3" class="java.lang.String" itemvalue="Rake.test" />
+      <item index="4" class="java.lang.String" itemvalue="Rake.routes" />
+      <item index="5" class="java.lang.String" itemvalue="Rake.db:migrate" />
+      <item index="6" class="java.lang.String" itemvalue="Ruby.test" />
+      <item index="7" class="java.lang.String" itemvalue="Rake.db:schema:load" />
+      <item index="8" class="java.lang.String" itemvalue="Ruby.gist" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -674,6 +728,7 @@
     <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
     <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
     <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
     <configuration useDefault="true">C:\Users\nico.PC-de-mathilde\AppData\Roaming\Subversion</configuration>
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
   </component>
@@ -691,16 +746,16 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3659091" sideWeight="0.6721854" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19469696" sideWeight="0.6721854" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36968085" sideWeight="0.5158046" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32750398" sideWeight="0.7219828" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32580644" sideWeight="0.47916666" order="1" side_tool="false" content_ui="tabs" />
@@ -794,21 +849,16 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/name_game.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/workers/ft_indexer.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="7" selection-start="67" selection-end="109" vertical-scroll-proportion="0.0">
+        <state line="8" column="3" selection-start="67" selection-end="109" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/apps/edit.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="21" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
+        <state line="6" column="20" selection-start="300" selection-end="300" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -828,30 +878,46 @@
         <state line="4" column="2" selection-start="57" selection-end="118" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gist.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="7" selection-start="188" selection-end="188" vertical-scroll-proportion="0.0">
+        <state line="13" column="0" selection-start="292" selection-end="292" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1345530387119" expanded="true" signature="9:4976" placeholder=" ... end" />
+            <marker date="1345530387119" expanded="true" signature="2726:3034" placeholder="do ... end" />
+            <marker date="1345530387119" expanded="true" signature="2842:2936" placeholder="do ... end" />
+            <marker date="1345530387119" expanded="true" signature="4052:4142" placeholder="if ... end" />
+            <marker date="1345530387119" expanded="true" signature="4441:4926" placeholder="if ... end" />
+            <marker date="1345530387119" expanded="true" signature="4478:4558" placeholder="unless ... end" />
+            <marker date="1345530387119" expanded="true" signature="4712:4766" placeholder="unless ... end" />
+            <marker date="1345530387119" expanded="true" signature="4965:4971" placeholder=" ... end" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="7" selection-start="426" selection-end="426" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/apps/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="7" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="8" selection-start="3473" selection-end="3473" vertical-scroll-proportion="0.0">
+        <state line="106" column="42" selection-start="2747" selection-end="2747" vertical-scroll-proportion="-12.48">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/app.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="212" selection-end="212" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="7" selection-start="390" selection-end="390" vertical-scroll-proportion="0.38434783">
+        <state line="286" column="50" selection-start="13609" selection-end="13609" vertical-scroll-proportion="0.4148728">
           <folding />
         </state>
       </provider>

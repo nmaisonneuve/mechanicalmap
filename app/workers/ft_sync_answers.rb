@@ -2,15 +2,11 @@ class FtSyncAnswers
 
   include Sidekiq::Worker
 
-  def perform()
-  	
-    App.all.each { |app|
-   # begin 
-      app.synch_answers
-   # rescue Exception => e
-   #   raise Exception.new("Error sync answer for #{app.name} \n errors: #{e.backtrace}")
-	 #end
-    }
-
+  def perform(app_id)
+    if (app_id.nil?)
+      raise ArgumentError.new("no application given to sync")
+    end
+    app=App.find(app_id)
+    app.sync_answers()
   end
 end

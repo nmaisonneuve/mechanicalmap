@@ -23,6 +23,13 @@ def update_gists(id,script)
     result["id"]
 end
 
+def fork_gists(id)
+  query="/gists/#{id}/fork?access_token=#{TOKEN}" 
+  req = Net::HTTP::Post.new(query)
+  result=execute_request(req)
+  result["id"]
+end  
+
 def create_gists(app_name, script)
  
   query="/gists?access_token=#{TOKEN}" 
