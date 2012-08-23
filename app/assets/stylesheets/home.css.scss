@@ -1,6 +1,10 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import "bootstrap.min.css";
-body { padding-top: 20px; }
-@import "bootstrap-responsive.min.css";
+@import "twitter/bootstrap";
+body{
+  padding-top: 40px;
+}
+@import "twitter/bootstrap-responsive";
+
+@import "docs.css";

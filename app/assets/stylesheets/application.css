@@ -10,10 +10,10 @@
  *
  *= require_self
 */
-@import "bootstrap.min.css";
+
+@import "twitter/bootstrap";
 body{
     padding-top: 50px;
 }
-
-@import "bootstrap-responsive.min.css";
+@import "twitter/bootstrap-responsive";
 

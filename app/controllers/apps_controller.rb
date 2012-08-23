@@ -62,10 +62,8 @@ class AppsController < ApplicationController
 
   def source
     @app = App.find(params[:id])
-    if (current_or_guest_username == @app.user and !@app.gist_id.nil?)
+    if (current_or_guest_username != @app.user and !@app.gist_id.nil?)
       redirect_to "https://gist.github.com/#{@app.gist_id}"
-    else
-
     end
   end
 

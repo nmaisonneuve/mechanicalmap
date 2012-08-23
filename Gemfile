@@ -3,7 +3,6 @@ source 'http://rubygems.org'
 gem 'rails'
 gem 'jquery-rails'
 
-
 gem "sidekiq"
 gem "slim"
 gem "sinatra"
@@ -17,13 +16,11 @@ gem 'omniauth-google-oauth2'
 gem "omniauth-facebook"
 
 gem 'color'
-gem "RedCloth"
+#gem "RedCloth"
 gem "fusion_tables"
 gem "nofxx-georuby"
 gem "whenever"
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
   gem 'sqlite3'
 end
@@ -38,9 +35,11 @@ end
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  #gem 'therubyracer'
+  gem 'backbone-on-rails'
+  gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
+      :git => 'git://github.com/anjlab/bootstrap-rails.git'
   gem 'uglifier'
+  gem 'ace-rails',  :git => 'git://github.com/jbfeldis/ace-rails.git'
 end
 
 # To use ActiveModel has_secure_password
@@ -49,5 +48,6 @@ end
 # Deploy with Capistrano
 gem 'capistrano'
 gem 'rvm-capistrano'
+
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

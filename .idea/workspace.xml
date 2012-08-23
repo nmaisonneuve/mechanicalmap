@@ -2,95 +2,175 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6ad8450-30bb-4e34-983c-de221ba7f1f7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="C:\dev\mechanicalmap\app\assets\images\100px-Zéro.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/Thumb3.jpeg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/captcha.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/cloud.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/dna-stencil-thumb.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/editor.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/ft_input_images2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/main-thumb-t-2801-100-BBm0YIIqvc8tF4DjNNGuJ8KshjjZSoO8.jpeg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/qrcode.jpeg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/share.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/small.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/viral.jpeg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/base_app.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/base_app_router.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/mturk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/base_app.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/apps/dashboard.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/workers/ft_sync_tasks.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/workers/gis_task_generator.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20120719231326_add_columns_to_users.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20120720071222_change_columns_to_users.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20120724073551_addtoto.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20120809194321_toto.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dp.sh" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\String file contents" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\views\apps\embeddable.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\views\layouts\assignments.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\views\layouts\home.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\config\initializers\facebook.rb" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\deprecated\bootstrap_and_overrides.css.less" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\gist.rb" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\html5.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\inheritance.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\model.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\name_game.rb" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\namegame.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\saving_name_game.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\stopwords.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\true," afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\vendor\assets\javascripts\.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\vendor\assets\stylesheets\.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\vendor\plugins\.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\mechanicalmap\{" afterPath="" />
-      <change type="MOVED" beforePath="C:\dev\mechanicalmap\app\views\apps\editor.html.erb" afterPath="$PROJECT_DIR$/app/views/apps/source.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/images/ft_input_images.jpg" afterPath="$PROJECT_DIR$/app/assets/images/ft_input_images.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/home.js" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\abstract_micro_task.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\ace-compat-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\ace-compat-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\ace-compat-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\ace-compat.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\ace-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\ace-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\keybinding-emacs-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\keybinding-emacs-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\keybinding-emacs-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\keybinding-vim-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\keybinding-vim-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\keybinding-vim-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-html-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-html-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-html-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-java-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-java-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-java-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-javascript-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-javascript-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-javascript-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-json-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-json-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-json-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\mode-json.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-chrome-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-chrome-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-chrome-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-chrome.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-clouds-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-clouds-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-clouds-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-clouds_midnight-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-clouds_midnight-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-clouds_midnight-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-cobalt-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-cobalt-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-cobalt-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-crimson_editor-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-crimson_editor-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-crimson_editor-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-crimson_editor.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-dawn-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-dawn-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-dawn-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-dreamweaver-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-dreamweaver-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-dreamweaver-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-dreamweaver.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-eclipse-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-eclipse-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-eclipse-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-idle_fingers-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-idle_fingers-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-idle_fingers-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-kr_theme-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-kr_theme-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-kr_theme-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-merbivore-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-merbivore-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-merbivore-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-merbivore.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-merbivore_soft-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-merbivore_soft-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-merbivore_soft-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-merbivore_soft.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-mono_industrial-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-mono_industrial-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-mono_industrial-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-monokai-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-monokai-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-monokai-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-pastel_on_dark-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-pastel_on_dark-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-pastel_on_dark-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-solarized_dark-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-solarized_dark-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-solarized_dark-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-solarized_dark.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-solarized_light-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-solarized_light-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-solarized_light-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-solarized_light.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-textmate-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-textmate-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-textmate-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-textmate.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow_night-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow_night-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow_night-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow_night.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow_night_blue-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow_night_blue-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow_night_blue-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow_night_blue.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow_night_bright-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow_night_bright-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow_night_bright-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow_night_bright.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow_night_eighties-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow_night_eighties-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow_night_eighties-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-tomorrow_night_eighties.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-twilight-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-twilight-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-twilight-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-vibrant_ink-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-vibrant_ink-uncompressed-noconflict.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-vibrant_ink-uncompressed.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\theme-vibrant_ink.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\worker-coffee.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\worker-css.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ace\worker-json.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\ft_micro_task.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\inheritance.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\javascripts\jquery-ui-1.8.16.custom.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\stylesheets\bootstrap-responsive.min.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\stylesheets\bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\stylesheets\bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\stylesheets\images\ui-bg_flat_0_aaaaaa_40x100.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\stylesheets\images\ui-bg_glass_55_fbf9ee_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\stylesheets\images\ui-bg_glass_65_ffffff_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\stylesheets\images\ui-bg_glass_75_dadada_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\stylesheets\images\ui-bg_glass_75_e6e6e6_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\stylesheets\images\ui-bg_glass_75_ffffff_1x400.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\stylesheets\images\ui-bg_highlight-soft_75_cccccc_1x100.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\stylesheets\images\ui-bg_inset-soft_95_fef1ec_1x100.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\stylesheets\images\ui-icons_222222_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\stylesheets\images\ui-icons_2e83ff_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\stylesheets\images\ui-icons_454545_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\stylesheets\images\ui-icons_888888_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\stylesheets\images\ui-icons_cd0a0a_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\stylesheets\images\ui-icons_f6cf3b_256x240.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\stylesheets\jquery-ui-1.8.16.custom.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\dev\mechanicalmap\app\assets\stylesheets\jquery.ui.1.8.16.ie.css" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Rakefile" afterPath="$PROJECT_DIR$/Rakefile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/abstract_micro_task.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/ace-uncompressed.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/ace-uncompressed.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/ace.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/ace.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/keybinding-emacs.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/keybinding-emacs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/keybinding-vim.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/keybinding-vim.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-html.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-html.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-java.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-java.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-javascript.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/mode-javascript.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds_midnight.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-clouds_midnight.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-cobalt.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-cobalt.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-dawn.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-dawn.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-eclipse.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-eclipse.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-idle_fingers.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-idle_fingers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-kr_theme.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-kr_theme.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-mono_industrial.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-mono_industrial.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-monokai.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-monokai.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-pastel_on_dark.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-pastel_on_dark.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-twilight.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/theme-twilight.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ace/worker-javascript.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ace/worker-javascript.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/ft_micro_task.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/ft_micro_task.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/map_helper.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/map_helper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/answers_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/answers_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.css" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/home.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/home.css.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/apps_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/apps_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/home_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/home_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/task_generators_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/task_generators_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/tasks_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/tasks_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/application_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/application_helper.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/answer.rb" afterPath="$PROJECT_DIR$/app/models/answer.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/app.rb" afterPath="$PROJECT_DIR$/app/models/app.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/ft_dao.rb" afterPath="$PROJECT_DIR$/app/models/ft_dao.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/gist_dao.rb" afterPath="$PROJECT_DIR$/app/models/gist_dao.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/task.rb" afterPath="$PROJECT_DIR$/app/models/task.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/apps/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/apps/_form.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/apps/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/apps/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/apps/index.html.erb" afterPath="$PROJECT_DIR$/app/views/apps/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/apps/new.html.erb" afterPath="$PROJECT_DIR$/app/views/apps/new.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/apps/show.html.erb" afterPath="$PROJECT_DIR$/app/views/apps/show.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" afterPath="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/devise/shared/_links.erb" afterPath="$PROJECT_DIR$/app/views/devise/shared/_links.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/index.html" afterPath="$PROJECT_DIR$/app/views/home/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/more.html.erb" afterPath="$PROJECT_DIR$/app/views/home/more.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/shared/_menu.html" afterPath="$PROJECT_DIR$/app/views/shared/_menu.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/task_generators/new.html.erb" afterPath="$PROJECT_DIR$/app/views/task_generators/new.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/task_generators/show.html.erb" afterPath="$PROJECT_DIR$/app/views/task_generators/show.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/workers/ft_generator.rb" afterPath="$PROJECT_DIR$/app/workers/ft_generator.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/workers/ft_sync_answers.rb" afterPath="$PROJECT_DIR$/app/workers/ft_sync_answers.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/deploy.rb" afterPath="$PROJECT_DIR$/config/deploy.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/development.rb" afterPath="$PROJECT_DIR$/config/environments/development.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/devise.rb" afterPath="$PROJECT_DIR$/config/initializers/devise.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/schedule.rb" afterPath="$PROJECT_DIR$/config/schedule.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
     </list>
     <ignored path="mechanicalmap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -112,19 +192,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="apps_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
+      <file leaf-file-name="application.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="106" column="42" selection-start="2747" selection-end="2747" vertical-scroll-proportion="-12.48">
+            <state line="13" column="22" selection-start="621" selection-end="621" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="home.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="7" selection-start="426" selection-end="426" vertical-scroll-proportion="0.0">
+            <state line="3" column="40" selection-start="138" selection-end="138" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ace-rails.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/ace-rails.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="0" selection-start="527" selection-end="626" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.css.scss" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/home.css.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="5" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -133,41 +240,23 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="286" column="50" selection-start="13609" selection-end="13609" vertical-scroll-proportion="0.4148728">
+            <state line="247" column="88" selection-start="10010" selection-end="10010" vertical-scroll-proportion="0.4019231">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/apps/index.html.erb">
+      <file leaf-file-name="debug.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/apps/debug.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="7" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0">
+            <state line="22" column="16" selection-start="1077" selection-end="1077" vertical-scroll-proportion="-12.961538">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ft_indexer.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/workers/ft_indexer.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="3" selection-start="67" selection-end="109" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/apps/edit.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="20" selection-start="300" selection-end="300" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="20120417133000_units_to_answer.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/migrate/20120417133000_units_to_answer.rb">
+      <file leaf-file-name="application_helper.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
@@ -175,38 +264,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="20120328160641_remove_project.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/migrate/20120328160641_remove_project.rb">
+      <file leaf-file-name="application.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="13" column="20" selection-start="559" selection-end="559" vertical-scroll-proportion="-8.5">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="20120323144556_add_sync.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/migrate/20120323144556_add_sync.rb">
+      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="2" selection-start="57" selection-end="118" vertical-scroll-proportion="0.0">
+            <state line="43" column="58" selection-start="766" selection-end="766" vertical-scroll-proportion="0.0">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/app.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="292" selection-end="292" vertical-scroll-proportion="0.0">
-              <folding>
-                <marker date="1345530387119" expanded="true" signature="9:4976" placeholder=" ... end" />
-                <marker date="1345530387119" expanded="true" signature="2726:3034" placeholder="do ... end" />
-                <marker date="1345530387119" expanded="true" signature="2842:2936" placeholder="do ... end" />
-                <marker date="1345530387119" expanded="true" signature="4052:4142" placeholder="if ... end" />
-                <marker date="1345530387119" expanded="true" signature="4441:4926" placeholder="if ... end" />
-                <marker date="1345530387119" expanded="true" signature="4478:4558" placeholder="unless ... end" />
-                <marker date="1345530387119" expanded="true" signature="4712:4766" placeholder="unless ... end" />
-                <marker date="1345530387119" expanded="true" signature="4965:4971" placeholder=" ... end" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -228,14 +299,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/models/answer.rb" />
-        <option value="$PROJECT_DIR$/config/routes.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/apps_controller.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20120521160447_change_input.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20120610124619_change_app.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20120610141843_change_app2.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20120610190920_add_iframe.rb" />
-        <option value="$PROJECT_DIR$/app/views/apps/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/views/apps/new.html.erb" />
         <option value="$PROJECT_DIR$/app/views/apps/show.html.erb" />
         <option value="$PROJECT_DIR$/app/workers/gist_updater.rb" />
@@ -243,6 +306,14 @@
         <option value="$PROJECT_DIR$/app/models/app.rb" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/views/apps/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/home.js" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/docs.css" />
+        <option value="$PROJECT_DIR$/app/controllers/apps_controller.rb" />
+        <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/home.css.scss" />
         <option value="$PROJECT_DIR$/app/views/home/index.html" />
       </list>
     </option>
@@ -255,10 +326,8 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="754" />
+    <option name="width" value="1366" />
+    <option name="height" value="738" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -286,6 +355,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mechanicalmap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="RailsProjectView">
         <subPane>
           <PATH>
@@ -312,14 +391,44 @@
               <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersFolderNode" />
             </PATH_ELEMENT>
           </PATH>
-        </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="mechanicalmap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mechanicalmap" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HomeController" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ControllerClassNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mechanicalmap" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mechanicalmap" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HomeController" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ControllerClassNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="index" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ActionNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -341,7 +450,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="options.lastSelected" value="preferences.sourceCode.HTML" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/sentiment_analysis" />
     <property name="RakeTaksPopup.undocumentedIncluded" value="false" />
     <property name="RailsGeneratorsPopup.hiddenIncluded" value="false" />
@@ -741,24 +850,24 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="0" y="0" width="1366" height="738" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3245033" sideWeight="0.47916666" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19469696" sideWeight="0.6721854" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23849693" sideWeight="0.6754967" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36968085" sideWeight="0.5158046" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32750398" sideWeight="0.7219828" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32580644" sideWeight="0.47916666" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36935484" sideWeight="0.47198275" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -819,105 +928,110 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/db/migrate/20120610190920_add_iframe.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="54" selection-start="207" selection-end="207" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20120610141843_change_app2.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="45" selection-start="97" selection-end="97" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/schema.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="38" selection-start="1951" selection-end="1951" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/apps/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/apps/show.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="16" selection-start="613" selection-end="613" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/workers/gist_updater.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/workers/ft_indexer.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="3" selection-start="67" selection-end="109" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/apps/edit.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="20" selection-start="300" selection-end="300" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20120417133000_units_to_answer.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20120328160641_remove_project.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20120323144556_add_sync.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="2" selection-start="57" selection-end="118" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/app.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="292" selection-end="292" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1345530387119" expanded="true" signature="9:4976" placeholder=" ... end" />
-            <marker date="1345530387119" expanded="true" signature="2726:3034" placeholder="do ... end" />
-            <marker date="1345530387119" expanded="true" signature="2842:2936" placeholder="do ... end" />
-            <marker date="1345530387119" expanded="true" signature="4052:4142" placeholder="if ... end" />
-            <marker date="1345530387119" expanded="true" signature="4441:4926" placeholder="if ... end" />
-            <marker date="1345530387119" expanded="true" signature="4478:4558" placeholder="unless ... end" />
-            <marker date="1345530387119" expanded="true" signature="4712:4766" placeholder="unless ... end" />
-            <marker date="1345530387119" expanded="true" signature="4965:4971" placeholder=" ... end" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="7" selection-start="426" selection-end="426" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/apps/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="7" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0">
+        <state line="9" column="0" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/docs.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="295" column="28" selection-start="7724" selection-end="7724" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/base_app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/apps/_form.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/shared/_menu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/apps_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="42" selection-start="2747" selection-end="2747" vertical-scroll-proportion="-12.48">
+        <state line="58" column="40" selection-start="1497" selection-end="1497" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="58" selection-start="766" selection-end="766" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="22" selection-start="621" selection-end="621" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="40" selection-start="138" selection-end="138" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/ace-rails.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="20" selection-start="559" selection-end="559" vertical-scroll-proportion="-8.5">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/apps/debug.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="16" selection-start="1077" selection-end="1077" vertical-scroll-proportion="-12.961538">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="527" selection-end="626" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/home.css.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="5" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/home/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="286" column="50" selection-start="13609" selection-end="13609" vertical-scroll-proportion="0.4148728">
+        <state line="247" column="88" selection-start="10010" selection-end="10010" vertical-scroll-proportion="0.4019231">
           <folding />
         </state>
       </provider>
