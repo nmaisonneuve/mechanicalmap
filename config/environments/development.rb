@@ -6,8 +6,6 @@ Mechanicalmap::Application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
-   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
@@ -32,7 +30,7 @@ Mechanicalmap::Application.configure do
   config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # Do not compress assets
-  config.assets.compress =true
+  config.assets.compress = false
 
   # Expands the lines which load the assets
   config.assets.debug = true

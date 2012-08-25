@@ -102,8 +102,8 @@ var DefaultTaskManager = Class.extend({
         if (callback) callback();
         me.caching(task.id); //and cache further tasks
       };
-      
-      console.log("caching a task  (from previous task " + last_task + ") - cache size " + this.tasks.models.length);
+      //if (this.debug)
+        console.log("caching a task  (from previous task " + last_task + ") - cache size " + this.tasks.models.length);
       
       this.tasks.fetch({url: this.tasks.url+"/next.js?from_task="+last_task, success:success, error:function(){
           me.notask = true;

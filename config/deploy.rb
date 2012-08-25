@@ -2,11 +2,11 @@
 
 Dir['lib/**/*.rb'].each { |recipe| require  File.basename(recipe, '.rb') }
 
-set :rvm_type, :user
-set :rvm_ruby_string, :local
 
 #load 'deploy/assets'
-require "rvm/capistrano"
+#require "rvm/capistrano"
+#set :rvm_type, :user
+#set :rvm_ruby_string, :local
 
 require 'sidekiq/capistrano'
 

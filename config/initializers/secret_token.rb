@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Mechanicalmap::Application.config.secret_token = '4c31319f8bb849bd8aea3c7b95b8e91e6575ecdb6460b0e0d88b30b7f367b3adc4bf3b49c4a0a49200a51d2b46b4edb18a0732354d7dc5eb1bd811d6843c814d'
+Mechanicalmap::Application.config.secret_token = '52bbcbaef4b2fca1da8b7037e3a291927b12b0e9108c576da9935b278ba1c700c145023de047ed0ecbb3f4abbf2782efa65691365c07b5278647ea31f6d790ff'
