@@ -1,60 +1,40 @@
 <% @app_header = capture do %>
-  
-    <li class="active" ><a href="#">open apps (open data + open code)
-</a></li>
+<li class="active" ><a href="#">apps</a></li>
+<li><a href="/more">Create an app</a></li>
 <% end %>
-
 <% content_for :app_header, @app_header %>
 
 <style type="text/css">
-
 section{
     border-radius: 15px;
     -moz-border-radius: 15px;
-    padding:1em;
     margin:1em;
     background-color: #FFF;
 }
-
 </style>
-<link type="text/css" href="/assets/jquery-ui-1.8.16.custom.css"/>
+
 <link type="text/css" href="/assets/bootstrap.css"/>
-
-<div class="container row-fluid">
-<h1> </h1>
-
+<div class="container">
   <% @apps.each do |app|
     @app = app
     completed, size= @app.completion
     u = @app.user
-  %>
- 
-      <section>
-
+  %>  
+      <div class="row">
+        <div class="span12">
            <h3><%= link_to app.name, dashboard_app_path(app) %>
             <small> created <%= time_ago_in_words(app.created_at) %> ago</small>
           </h3>
           <img style="float:right;width:145px;" src="http://api.qrserver.com/v1/create-qr-code/?size=145x145&data=<%= app_url(app) %>"  />
-         <img src="<%= @app.image_url %>" style="height:145px;margin:5px"/>
-         <div style="clear:both;margin:5px">
+         <img src="<%= @app.image_url %>" style="float:left;height:145px;margin:5px"/>
+        
           <%=  app.description.html_safe %>
-        </div>
+          <div style="clear:both">
          <% @button_size = "btn-mini" %>
-
-  
-       
-           <%= render "shared/menu.html" %> 
-      </section>
+       <%= render "shared/menu.html" %>
+       </div> 
+       <hr class="soften" />
+      </div>
+    </div>
     <% end %>
 </div>
-
-<script type="text/javascript" src="/assets/jquery-ui-1.8.16.custom.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-
-        $('#slider').slider({
-            range:true,
-            values:[17, 67]
-        });
-    });
-</script>

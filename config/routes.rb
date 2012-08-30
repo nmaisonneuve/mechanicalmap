@@ -7,13 +7,14 @@ Mechanicalmap::Application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
-  resources :apps do
+   resources :apps do
     get 'reindex', :on => :member
     get 'dashboard', :on => :member
     get 'delete_answers', :on => :member
     get 'source', :on => :member
     put 'source_update', :on => :member
     get 'user_state', :on => :member
+    get 'create_tasks_table', :on => :collection
 
     resources :tasks do
       get 'next', :on => :collection

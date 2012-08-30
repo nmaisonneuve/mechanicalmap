@@ -58,10 +58,8 @@
 
 <%= javascript_include_tag "application" %>
 <!--<script  src="/assets/ace/ace-noconflict.js" type="text/javascript" charset="utf-8"></script>-->
-
-<script src="/assets/ace/ace.js" type="text/javascript" charset="utf-8"></script>
-<script src="/assets/ace/theme-chrome.js" type="text/javascript" charset="utf-8"></script>
-<script src="/assets/ace/mode-html.js" type="text/javascript" charset="utf-8"></script>
+<script type='text/javascript' src='/assets/ace/ace.js' charset='utf-8' ></script>
+<script type='text/javascript' src='/assets/ace/mode-html.js' charset='utf-8' ></script>
 <script type="text/javascript">
     // Global variables
     var editor;
@@ -76,7 +74,7 @@
             return true;
       });
         editor = ace.edit("editor");
-        editor.setTheme("ace/theme/chrome");
+        editor.setTheme("ace/theme/cobalt");
         var Mode = require("ace/mode/html").Mode;
         editor.getSession().setMode(new Mode());
         editor.getSession().setUseSoftTabs(true);

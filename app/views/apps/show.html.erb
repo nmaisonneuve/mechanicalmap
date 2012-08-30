@@ -14,7 +14,7 @@
     <% if ENV['RAILS_ENV']=="production" %>
     <script src="https://raw.github.com/nmaisonneuve/mechanicalmap/master/app/assets/javascripts/base_app.js"></script>
     <% else %>
-    <%= javascript_include_tag "base_app" %> 
+    <%= javascript_include_tag "app" %> 
     <% end %>
     <script type="text/javascript">
     var user = {name:"<%= current_or_guest_username %>"};

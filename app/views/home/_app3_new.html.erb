@@ -1,0 +1,15 @@
+<section id="app3">
+  <div class="row-fluid">
+    <div style="margin:auto;width:800px">
+      <p>GIS Crowdsourcing. copy of the citizen science project <a href="#">Galaxy Zoo</a>, with first a tutorial, then the Level 1 assisting the user
+        and finally the Level 2 with real images to annotate. In a real case each image is only annotated by n users (e.g. 3 /4) and an aggregation function is used to generate the collective output.
+        For a demo purpose, there is no limit here: each user annotates all the images.<br/>
+      </p>
+            <iframe allowtransparency="true" frameborder="0" scrolling="no"
+                    style="border:1px solid #888; width:800px;height: 450px;"
+                    src="http://microapp.io/apps/6"></iframe>
+      <% @app = App.find(6) if Rails.env == "production" %>
+      <%= render "shared/menu.html" %>
+    </div>
+  </div>
+</section>

@@ -3,7 +3,7 @@
 <% end %>
 
 <% @app_header = capture do %>
-    <li><a href="/apps">open apps</a></li>
+    <li><a href="/apps">apps</a></li>
     <li><%= link_to @app.name[0..20], app_path(@app) %></li>
     <li class="active" ><a href="#">dashboard</a></li>
 <% end %>
@@ -23,15 +23,17 @@ section{margin-top:10px;}
             <p><%= notice %></p>
         </div>
       <% end %>
-    <h3><%= @app.name %></h3>   <% if @app.user==current_user %>
-   
- <% end %>
+    <h3><%= @app.name %>   <% if @app.user == current_user %>
+       <a href="<%= edit_app_path(@app) %>" class="btn btn-mini">setting</a>
+        <%= link_to 'delete', @app, confirm: 'Are you sure?', method: :delete, :class => "btn btn-mini btn-danger" %> 
+      <% end %>
+    </h3>   
+
   </div>
   </div>
   <div class="row">
     <div class="span2">
-       <a href="<%= edit_app_path(@app) %>" class="btn btn-mini">setting</a>
-    <%= link_to 'delete app', @app, confirm: 'Are you sure?', method: :delete, :class => "btn btn-mini btn-danger" %>
+      
       <section>
         <img src="<%= app_path(@app,:format=>"png") %>" width="100%" />
       </section>

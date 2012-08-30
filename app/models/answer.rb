@@ -18,18 +18,24 @@ class Answer < ActiveRecord::Base
   attr_accessible :state, :answer, :user, :ft_sync
 
   def done_by?(user)
-    self.user!=user
+    self.user != user
   end
 
   # if some fields are not present
   # we enriched the answers with default values
   def input_from_form(rows)
     rows.each { |row|
-      row["task_id"]=self.task.input_task_id if row["task_id"].blank?
-      row["user_id"]=self.user.username if row["user_id"].blank?
-      row["created_at"]=DateTime.now if row["created_at"].blank?
+      if row["answer_id"].blank?
+        # random number
+        # o = [(0..9), ('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+        # (0..9).map { o[rand(o.length)] }.join 
+        row["answer_id"] = self.id
+      end
+      row["task_id"] = self.task.input_task_id if row["task_id"].blank?
+      row["user_id"] = self.user.username if row["user_id"].blank?
+      row["created_at"] = DateTime.now if row["created_at"].blank?
     }
-    self.answer=rows.to_json
+    self.answer = rows.to_json
   end
   
   def as_json(options={})

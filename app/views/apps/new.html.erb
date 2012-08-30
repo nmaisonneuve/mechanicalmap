@@ -1,7 +1,6 @@
 <% @app_header = capture do %>
-    <li class="active"><a href="#">create a new app</a></li>
-    <a class="btn btn-primary" id="save">create</a>
-    <a data-toggle="modal" href="#tutorial" class="btn">tutorial</a>
+    <li class="active"><a href="/apps/new">create a new app</a></li>
+    
 <% end %>
 <% content_for :app_header, @app_header %>
 <%= render 'form' %>

@@ -89,40 +89,63 @@ class App < ActiveRecord::Base
   end
 
   def index_tasks
-    i=0
+    i = 0
     self.tasks.destroy_all
     Task.transaction do
       FtDao.instance.import(self.input_ft, self.task_column) do |task_id|
         unless task_id.blank?
-        task=Task.create(:input_task_id=> task_id.to_i, :app_id => self.id)
-        if (self.redundancy>0)
-          self.redundancy.times do
-            task.answers<<Answer.create!(:state => Answer::STATE[:AVAILABLE])
+          task = Task.create(:input_task_id=> task_id.to_i, :app_id => self.id)
+          if (self.redundancy > 0)
+            self.redundancy.times do
+              task.answers << Answer.create!(:state => Answer::STATE[:AVAILABLE])
+            end
           end
+          task.save
+          i = i + 1
+          break if (i> MAX_ANSWERS)
         end
-        task.save
-        i=i+1
-        break if (i> MAX_ANSWERS)
-      end
       end
     end
-    self.status=STATE_READY
+    self.status = STATE_READY
     self.save
   end
 
-  def create_schema(schema_param, email)
-      schema=[{"name"=>"task_id", "type"=>"number"},
-                {"name"=>"user_id", "type"=>"string"},
-                {"name"=>"created_at", "type"=>"datetime"},
-                {"name"=>"answer", "type"=>"text"}]
-      schema=ActiveSupport::JSON.decode(schema_param) unless  schema_param.blank?
-      FtGenerator.perform_async(self.id, schema,email)
+  def create_FT_answers_table(schema_param, email)
+    schema = if schema_param.blank? 
+      [{"name" => "answer_id", "type" => "number"},
+                {"name" => "task_id", "type" => "number"},
+                {"name" => "user_id", "type" => "string"},
+                {"name" => "created_at", "type" => "datetime"},
+                {"name" => "answer", "type" => "text"}]
+    else
+      ActiveSupport::JSON.decode(schema_param)
+    end
+    FtGenerator.perform_async(self.id, schema, email)
+  end
+
+  def self.create_basic_tasks_table(email, schema_param = nil )
+    schema = if schema_param.blank?
+      [{"name" => "task_id", "type" => "number"}, {"name" => "input", "type" => "string"}] 
+    else 
+      ActiveSupport::JSON.decode(schema_param)
+    end
+    FtDao.instance.create_table_smart("Tasks Table", schema, email)
+  end
+
+  def create_FT_user_table(schema_param, email)
+    schema = [{"name" =>"user_id", "type" => "string"},
+            {"name" => "app", "type" => "string"},
+            {"name" => "nb_tasks_done", "type" => "number"},
+            {"name" => "last_activity", "type" => "datetime"},
+            {"name" => "answer", "type" => "text"}]
+    schema = ActiveSupport::JSON.decode(schema_param) unless schema_param.blank?
+    FtGenerator.perform_async(self.id, schema, email)
   end
 
   def sync_answers
     to_synch = self.answers.merge(Answer.to_synchronize)
     puts "#{to_synch.size} answers to synchronize from app #{self.name}"
-    if (to_synch.size>0)
+    if (to_synch.size > 0)
       FtDao.instance.sync_answers(to_synch)
     end
   end
@@ -140,7 +163,7 @@ class App < ActiveRecord::Base
 
 
   def next_task(context)
-    if (self.redundancy==-1)
+    if (self.redundancy == -1)
       worfklow_free(context)
     else
       worfklow_allocation(context)
@@ -156,15 +179,15 @@ class App < ActiveRecord::Base
   end
 
   def worfklow_allocation(context)
-    tasks=self.tasks.available.not_done_by_username(context[:current_user])
+    tasks = self.tasks.available.not_done_by_username(context[:current_user])
 
     # if random order
     if (context[:random])  
-      tasks=tasks.where('tasks.input_task_id!=?', context[:from_task]) unless (context[:from_task].blank?)
-      task=tasks.order('random() ').first
+      tasks = tasks.where('tasks.input_task_id!=?', context[:from_task]) unless (context[:from_task].blank?)
+      task = tasks.order('random() ').first
     else
-      tasks=tasks.where('tasks.input_task_id>?', context[:from_task]) unless (context[:from_task].blank?)
-      task=tasks.order('tasks.input_task_id asc').first
+      tasks = tasks.where('tasks.input_task_id>?', context[:from_task]) unless (context[:from_task].blank?)
+      task = tasks.order('tasks.input_task_id asc').first
     end
     return nil if (task.nil?)
     task

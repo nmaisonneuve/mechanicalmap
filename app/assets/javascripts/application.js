@@ -12,9 +12,3 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require base_app
-//= require base_app_router
-//= require mturk
-
-
-

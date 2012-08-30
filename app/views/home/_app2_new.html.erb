@@ -1,0 +1,17 @@
+<section id="app2">
+  <div class="row">
+    <div class="span11 offset1" style="text-align:left">
+
+      <p>A copy of a basic citizen science project <a href="http://www.galaxyzoo.org/">Galaxy Zoo</a>, with game components (Levels, rewards, sounds, progress bar) with a 3-step workflow:  a tutorial + Level 1 assisting the user (with gold data) + Level 2 with real images to annotate. 
+        <br/>Work load: Around 200 lines of code (not coded from scratch; cloned and modified from another app of course) + a Google fusion table with some images taken from Galazy Zoo. 
+        <br/>In a real case, the task allocation of the app is configured so that each image is annotated by only few users e.g. 3 to get enough information to aggregate.  
+        For the demo, the app was configured with no threshold i.e. each user annotate all the images.  <!-- and put it
+        in a Google fusion  table (GTF), the 'Task data'. The GFT 'Answer data' is asynchronously updated with the submission of the users. --><br/>
+      </p>
+
+        <iframe style="margin:auto;width:400px;height:300px" scrolling="no" src="http://microapp.io/apps/26"></iframe>
+      <% @app = App.find(26) if Rails.env == "production" %>
+      <%= render "shared/menu.html" %>
+    </div>
+  </div>
+</section>

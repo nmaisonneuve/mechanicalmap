@@ -10,51 +10,36 @@
     </div>
 <% end %>
 
-<% if @app.errors.any? %>
-    <div class="alert alert-error">
-      <a class="close" data-dismiss="alert">×</a>
-      <h4 class="alert-heading"><%= pluralize(@app.errors.count, "error") %> prohibited this app from being saved:</h4>
-      <ul>
-        <% @app.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-<% end %>
-
 <div class="row">
-  <div class="span12">
+  <div class="span7">
     <%= form_for(@app, :html => {:class => 'form-horizontal', :id => "form_app"}) do |f| %>
+<legend>New App </legend>
         <input type="hidden" name="schema" id="app_schema" value="<%= @schema %>"/>
         <%= f.hidden_field :script %>
         <fieldset>
           <div class="control-group">
-            <label class="control-label"><h3>Name *</h3></label>
-
+            <label class="control-label">Name *</label>
             <div class="controls">
               <%= f.text_field :name, :placeholder => "name of the app", :class => "text-field span4" %>
             </div>
           </div>
 
           <div class="control-group">
-            <label class="control-label"><h3>Description</h3></label>
-
+            <label class="control-label">Description</label>
             <div class="controls">
               <%= f.text_area :description, :rows => 5, :placeholder => "Short description (in html) for the VolatileTask Apps repository", :class => "text-field span4" %>
             </div>
           </div>
 
           <div class="control-group">
-            <label class="control-label"><h3>Image url</h3></label>
-
+            <label class="control-label">Image url</label>
             <div class="controls">
               <%= f.text_field :image_url, :placeholder => "image url", :class => "text-field span4" %>
             </div>
           </div>
 
           <div class="control-group">
-            <label class="control-label"><h3>Presentation</h3></label>
-
+            <label class="control-label">Presentation</label>
             <div class="controls">
               Web widget size:<br/>
               Width = <%= f.text_field :iframe_width, :placeholder => "100%", :class => "text-field span1", :default => "100%" %>
@@ -63,26 +48,24 @@
             </div>
           </div>
           <div class="control-group">
-            <label class="control-label">
-              <h3>Data Management</h3>
-              <br/>
-           
-            </label>
-
+            <label class="control-label">Data Management </label>
             <div class="controls">
               <p class="help-block">
-                <b>TASKS DATA</b>: URL of the Google fusion table containing your tasks
-              
-<br/>(<a href="https://www.google.com/fusiontables/DataSource?dsrcid=implicit" target="_blank" >Create a table from your data </a> + change <a href="http://support.google.com/fusiontables/bin/answer.py?hl=en&answer=171221" target="_blank">its accessibility </a> to public) 
+                <b>Challenge related data</b>:<br/> URL of the Google fusion table or 
+<button id="create_tasks" data-disable-with="Creating table..." class="btn btn-primary btn-mini" style="margin:5px">Create a table</button>      
+<br/><!--(<a href="https://www.google.com/fusiontables/DataSource?dsrcid=implicit" target="_blank" >Create a table from your data </a> + change <a href="http://support.google.com/fusiontables/bin/answer.py?hl=en&answer=171221" target="_blank">its accessibility </a> to public)--> 
               </p>
+<div class="input-append">
+   <%= f.text_field :input_ft, :placeholder => "https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA", :class => "text-field span5" %>
+</div>
 
-              <%= f.text_field :input_ft, :placeholder => "https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA", :class => "text-field span5" %>
+             
               <img src="http://www.inishtech.com/App_Themes/Default/Images/CMSModules/Forums/LiveImages/AcceptedSolution.gif" style="display:none" id="task_ft_accepted"/>
               <img src="http://www.finta.pl/content/ico-false.png" style="display:none" id="task_ft_rejected"/>
               <% if @edit %>
                 <a href="reindex" class="btn"/>reindexing</a>
               <% end %>
-
+ <span id="link"></span>   
               <div id="task_column" class="hide">
                 <p class="help-block">
                 Enter the name of the column representing the task ID
@@ -92,20 +75,17 @@
              </div> 
              <div class="controls">
               <p class="help-block">
-                <b>ANSWERS DATA</b>: URL of the Google fusion table storing the answers <br/>(let the field blank to automatically generate a table)</p>
+                <b>Answers data</b>:
+                <br/> URL of the Google fusion table </p>
 
                 <%= f.text_field :output_ft, :placeholder => "https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA", :class => "text-field span5" %>
              </div>
           </div>
       
           <div class="control-group">
-            <label class="control-label">
-              <h3>Task Allocation</h3></label>
-
+            <label class="control-label">Challenges Allocation</label>
             <div class="controls">
-
-
-              <p class="help-block">How many users should do the same task?<br/> Write '-1' for unlimited allocation (each task will be submitted to each new user)</p>
+              How many users should solve the same challenge? Write '-1' for unlimited allocation (each challenge will be submitted to each new user)<br/>
               <%= text_field_tag "app_redundancy", "-1", :disabled => @disable_redundancy, :class => "span1", :placeholder => "3" %>
             </div>
 
@@ -114,26 +94,25 @@
 
            <div class="control-group">
             <label class="control-label">
-              <h3>Task Template Code</h3></label>
+              Source Code
+            </label>
 
            <div class="controls">
               <p class="help-block">
-                Enter the URL of the Gist Github with the task template. <br/>Or let it blank to generate one<br/>
+                Enter the URL of the Gist Github with the task template. 
 
                 <%= f.text_field :gist_id, :placeholder => "https://gist.github.com/3028982", :class => "text-field span3" %>
             </div>
           </div>
         </fieldset>
     <% end %>
-  </div>
+<div style="text-align:center">
+    <a class="btn btn-primary btn-large" id="save" style="margin:0 auto">create</a>
 </div>
-<div id="tutorial" class="modal hide fade" style="display: none; ">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">×</button>
-              <h3>Tutorial</h3>
-            </div>
-            <div class="modal-body">
-               <ol class="unstyled">
+
+  </div>
+  <div class="span5">
+ <ol class="unstyled">
         <li><h4>1. Create the tasks</h4>
 
           <p>Create a <a href="https://www.google.com/fusiontables/DataSource?dsrcid=implicit" target="_blank" >Google fusion table from your data </a>
@@ -191,9 +170,8 @@
         </p>
         </li>
       </ol/>
-            </div>  
+  </div>
 </div>
-
 
 <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
 <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
@@ -245,6 +223,17 @@
             placement:'right',
             offset:5,
             html:true
+        });
+
+        $('#create_tasks').click(function(){
+          $.getJSON("/apps/create_tasks_table.json",function(data){
+            $('#app_input_ft').val("https://www.google.com/fusiontables/DataSource?docid="+data.ft_table_id);
+            $('#create_tasks').hide();
+            retrieve_columns_names();
+            link = $("<a href='https://www.google.com/fusiontables/DataSource?docid="+data.ft_table_id+"' target='_blank'>See the table</a>");
+            $('#link').html(link);
+          })
+          return false;
         });
 
         $('#app_input_ft').change(function(){

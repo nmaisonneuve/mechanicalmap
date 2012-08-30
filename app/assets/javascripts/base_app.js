@@ -6,6 +6,10 @@ window.GFAnswer = Backbone.Model.extend({
 
 window.GFTask = Backbone.Model.extend({
 
+  initialize: function(options) {
+     this.google_api_key = options.google_api_key ||  "AIzaSyDaD2I-HSjUXgmQr9uOvF5-wZTwgfLgW-Q";
+  },
+
   save_answer:function (data){
     var  me=this;
     answer = new GFAnswer({id: this.get('answer_id'), rows: data});
@@ -59,12 +63,11 @@ window.GFTask = Backbone.Model.extend({
   },
 
   ft_query: function(sql) {   
-    var key = 'AIzaSyDaD2I-HSjUXgmQr9uOvF5-wZTwgfLgW-Q';
-    return 'https://www.googleapis.com/fusiontables/v1/query?sql=' + encodeURI(sql) + "&key=" + key;
+    return 'https://www.googleapis.com/fusiontables/v1/query?sql=' + encodeURI(sql) + "&key=" + this.google_api_key;
   }
 });
 
-window.DefaultVolatileTasks = Backbone.Collection.extend({
+window.Tasks = Backbone.Collection.extend({
   fetch: function(options) {
     options = options ? _.clone(options) : {};
     var collection = this;
@@ -82,10 +85,11 @@ var DefaultTaskManager = Class.extend({
 
   init: function(options){
     _.extend(this, Backbone.Events); // mixin with Event features
-    this.tasks = new DefaultVolatileTasks();
+    this.tasks = new Tasks();
     this.tasks.model = options.task_model || GFTask;
     this.tasks.url   = options.root_url + "/tasks";
     this.notask = false;
+   
     this.cache_size = options.cache_size || 2;
     this.nb_task_done=0;
     this.models = this.tasks.models;

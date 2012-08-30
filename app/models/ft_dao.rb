@@ -26,6 +26,12 @@ class FtDao
     table_id
   end
 
+  def create_table_smart(table_name, columns,user_email)
+    table_id = create_table(table_name, columns)
+    set_exportable(table_id)  # set permission exportable
+    change_ownership(table_id, user_email) unless user_email.blank?
+    table_id
+  end
 
   def delete_all(table_name)
     sql="sql=" + CGI::escape("DELETE FROM #{table_name}")
