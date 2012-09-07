@@ -6,16 +6,16 @@
 
 # Ignore bundler config
 /.bundle
-/*/*~
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
-<<<<<<< HEAD
-.idea/*
-=======
-/.idea
->>>>>>> ef658b563d79622d5fd4273b4008117a8f03fcb6
+# ignore rubymine app
+.idea
+
+# Ignore mac 
+.DS_Store
+
 # Ignore all logfiles and tempfiles.
 /log
 /tmp
