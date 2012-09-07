@@ -14,7 +14,8 @@ class App < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :name
-  validates_presence_of :input_ft, :message => "The ID of the input fusion table can't be blank"
+  validates_presence_of :input_ft, :message => "No Challenge Table, Give an URL "
+  validates_presence_of :output_ft, :message =>  "No Answer Table, Give an URL "
 
   attr_accessible :name,
                   :description,
@@ -30,8 +31,8 @@ class App < ActiveRecord::Base
                   :image_url
 
   def completion
-    completed=self.answers.answered.count
-    size=self.answers.count
+    completed = self.answers.answered.count
+    size = self.answers.count
     [completed, size]
   end
 
@@ -67,11 +68,36 @@ class App < ActiveRecord::Base
     FtIndexer.perform_async(self.id)
   end
 
+  def index_tasks
+    i = 0
+    self.tasks.destroy_all
+    Task.transaction do
+      FtDao.instance.import(self.input_ft, self.task_column) do |task_id|
+        unless task_id.blank?
+          task = Task.create(:input_task_id=> task_id.to_i, :app_id => self.id)
+          if (self.redundancy > 0)
+            self.redundancy.times do
+              task.answers << Answer.create!(:state => Answer::STATE[:AVAILABLE])
+            end
+          end
+          task.save
+          i = i + 1
+          break if (i > MAX_ANSWERS)
+        end
+      end
+    end
+    self.status = STATE_READY
+    self.save
+  end
+
+
   def add_task(rows)
     # increment the task_id
     last_known_task = self.tasks.order('input_task_id desc').first 
     task_id = last_known_task.input_task_id + 1
+    p rows
     rows.each { |row|
+      p row
       row[self.task_column] = task_id
     }
     # insert the task on the FT
@@ -88,47 +114,17 @@ class App < ActiveRecord::Base
     task
   end
 
-  def index_tasks
-    i = 0
-    self.tasks.destroy_all
-    Task.transaction do
-      FtDao.instance.import(self.input_ft, self.task_column) do |task_id|
-        unless task_id.blank?
-          task = Task.create(:input_task_id=> task_id.to_i, :app_id => self.id)
-          if (self.redundancy > 0)
-            self.redundancy.times do
-              task.answers << Answer.create!(:state => Answer::STATE[:AVAILABLE])
-            end
-          end
-          task.save
-          i = i + 1
-          break if (i> MAX_ANSWERS)
-        end
-      end
-    end
-    self.status = STATE_READY
-    self.save
+  def self.create_basic_answers_table(email)
+    schema = [{"name" => "answer_id", "type" => "number"},
+              {"name" => "task_id", "type" => "number"},
+              {"name" => "user_id", "type" => "string"},
+              {"name" => "created_at", "type" => "datetime"},
+              {"name" => "content", "type" => "string"}]
+    FtDao.instance.create_table_smart("Answers Table", schema, email)
   end
 
-  def create_FT_answers_table(schema_param, email)
-    schema = if schema_param.blank? 
-      [{"name" => "answer_id", "type" => "number"},
-                {"name" => "task_id", "type" => "number"},
-                {"name" => "user_id", "type" => "string"},
-                {"name" => "created_at", "type" => "datetime"},
-                {"name" => "answer", "type" => "text"}]
-    else
-      ActiveSupport::JSON.decode(schema_param)
-    end
-    FtGenerator.perform_async(self.id, schema, email)
-  end
-
-  def self.create_basic_tasks_table(email, schema_param = nil )
-    schema = if schema_param.blank?
-      [{"name" => "task_id", "type" => "number"}, {"name" => "input", "type" => "string"}] 
-    else 
-      ActiveSupport::JSON.decode(schema_param)
-    end
+  def self.create_basic_tasks_table(email)
+    schema = [{"name" => "task_id", "type" => "number"}, {"name" => "input", "type" => "string"}]
     FtDao.instance.create_table_smart("Tasks Table", schema, email)
   end
 
@@ -137,7 +133,7 @@ class App < ActiveRecord::Base
             {"name" => "app", "type" => "string"},
             {"name" => "nb_tasks_done", "type" => "number"},
             {"name" => "last_activity", "type" => "datetime"},
-            {"name" => "answer", "type" => "text"}]
+            {"name" => "answer", "type" => "string"}]
     schema = ActiveSupport::JSON.decode(schema_param) unless schema_param.blank?
     FtGenerator.perform_async(self.id, schema, email)
   end
@@ -153,44 +149,24 @@ class App < ActiveRecord::Base
   def synch_gist
     #create gist if not existing
     if gist_id.nil?
-      self.gist_id=GistDao.instance.create_gists(self.name,self.script)
+      self.gist_id = GistDao.instance.create_gists(self.name, self.script)
       self.save
+      Rails.log("creating Gists")
     else
-      GistDao.instance.update_gists(self.gist_id,self.script)
+      GistDao.instance.update_gists(self.gist_id, self.script)
+      Rails.log("updating Gists")
     end
     self.gist_id
   end
 
-
   def next_task(context)
-    if (self.redundancy == -1)
-      worfklow_free(context)
+    #choice of the task manager
+    tm = if (self.redundancy == -1)
+      TasksManagerFree.new(self)
     else
-      worfklow_allocation(context)
+      TasksManager.new(self)
     end
-  end
-
-  def worfklow_free(context)
-    tasks = self.tasks.not_done_by_username(context[:current_user])
-    tasks=tasks.where('tasks.input_task_id>?', context[:from_task]) unless (context[:from_task].blank?)
-    task=tasks.order('tasks.input_task_id asc').first
-    return nil if (task.nil?)
-    task
-  end
-
-  def worfklow_allocation(context)
-    tasks = self.tasks.available.not_done_by_username(context[:current_user])
-
-    # if random order
-    if (context[:random])  
-      tasks = tasks.where('tasks.input_task_id!=?', context[:from_task]) unless (context[:from_task].blank?)
-      task = tasks.order('random() ').first
-    else
-      tasks = tasks.where('tasks.input_task_id>?', context[:from_task]) unless (context[:from_task].blank?)
-      task = tasks.order('tasks.input_task_id asc').first
-    end
-    return nil if (task.nil?)
-    task
+    tm.perform(context)
   end
 
 end

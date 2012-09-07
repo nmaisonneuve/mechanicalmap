@@ -15,7 +15,7 @@ Mechanicalmap::Application.routes.draw do
     put 'source_update', :on => :member
     get 'user_state', :on => :member
     get 'create_tasks_table', :on => :collection
-
+    get 'create_answers_table', :on => :collection
     resources :tasks do
       get 'next', :on => :collection
       resources :answers do
@@ -24,9 +24,7 @@ Mechanicalmap::Application.routes.draw do
     end
   end
 
-
   match "/more" => "home#more"
-
   match "/demo_generator" => "task_generators#new", :via => "get"
   match "/demo_generator" => "task_generators#create", :via => "post"
 

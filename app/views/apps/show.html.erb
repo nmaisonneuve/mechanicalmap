@@ -12,7 +12,7 @@
     <script src="http://underscorejs.org/underscore-min.js"></script>
     <script src="http://backbonejs.org/backbone-min.js"></script>
     <% if ENV['RAILS_ENV']=="production" %>
-    <script src="https://raw.github.com/nmaisonneuve/mechanicalmap/master/app/assets/javascripts/base_app.js"></script>
+      <script src="https://raw.github.com/nmaisonneuve/mechanicalmap/master/app/assets/javascripts/base_app.js"></script>
     <% else %>
     <%= javascript_include_tag "app" %> 
     <% end %>

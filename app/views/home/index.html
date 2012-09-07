@@ -71,16 +71,16 @@
 
 <div class="marketing" id="about" style="margin-top: 40px; ">
     <div class="container">
-        <h1>Introducing microapp.io      <a href="#features" class="btn btn-large btn-primary">Next</a></h1>
+        <h1>Introducing microapp.io </h1>
 
         <div class="row-fluid" style="text-align: justify;margin-top: 40px; ">
             <div class="span12">
                 <h2>What is microapp.io?</h2>
-<video autoplay></video>
+
                 <p> Any of your 200 Facebook friends have time to review  your 10-page dissertation copypasted from internet. However they should be ok to review a tiny portion of it. but how to do it? </p>
                 
 
-                <p>Microapp.io is an experimental toolkit to build basic multi-solvers apps broadcasting mini-challenges and gathering micro-contributions from an (open) network of web/mobile users. It's based on a distributed architecture reusing Google Fusion table as data manager, github as code manager and this tiny server as challenges indexer and contributors manager recommending challenges to contributors. Furthermore transparency (open app = open data + open code) and the easiness of 'clonability' (one button to clone a full app and modify it) facilitate the emergence of an eco-system of apps and best practices</p>
+                <p>Microapp.io is an *experimental* toolkit to build basic multi-solvers apps broadcasting mini-challenges and gathering micro-contributions from an (open) network of web/mobile users. It's based on a distributed architecture reusing Google Fusion table as data manager, github as code manager and this tiny server as challenges indexer and contributors manager recommending challenges to contributors. Furthermore transparency (open app = open data + open code) and the easiness of 'clonability' (one button to clone a full app and modify it) facilitate the emergence of an eco-system of apps and best practices</p>
 
                 <p> Create a crowdsourcing app in few minutes: clone existing apps (data+code), edit online the code or
                     the data and
@@ -368,23 +368,7 @@ function snapshot() {
 
     //<![CDATA[
 $(function () {
-       
-       window.URL = window.URL || window.webkitURL;
-      navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia ||
-                          navigator.mozGetUserMedia || navigator.msGetUserMedia;
-    var video = document.querySelector('video');
-    video.addEventListener('click', snapshot, false)
-    if (navigator.getUserMedia) {
-  navigator.getUserMedia({audio: true, video: true}, function(stream) {
-    video.src = window.URL.createObjectURL(stream);
-  }, onFailSoHard);
-} else {
-  video.src = 'somevideo.webm'; // fallback.
-}
-
-
-
-
+    
         $("a[rel=div]").click(function (e) {
             e.preventDefault();
             $($(this).attr("href")).toggle();

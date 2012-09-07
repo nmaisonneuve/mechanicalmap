@@ -81,15 +81,13 @@ window.Tasks = Backbone.Collection.extend({
   }
 });
 
-var DefaultTaskManager = Class.extend({
+var DefaultTaskManager =  Backbone.Model.extend({
 
-  init: function(options){
-    _.extend(this, Backbone.Events); // mixin with Event features
+  initialize: function(options){
     this.tasks = new Tasks();
     this.tasks.model = options.task_model || GFTask;
     this.tasks.url   = options.root_url + "/tasks";
     this.notask = false;
-   
     this.cache_size = options.cache_size || 2;
     this.nb_task_done=0;
     this.models = this.tasks.models;
@@ -106,13 +104,14 @@ var DefaultTaskManager = Class.extend({
         if (callback) callback();
         me.caching(task.id); //and cache further tasks
       };
+
       //if (this.debug)
-        console.log("caching a task  (from previous task " + last_task + ") - cache size " + this.tasks.models.length);
-      
+      console.log("caching a task  (from previous task " + last_task + ") - cache size " + this.tasks.models.length);
       this.tasks.fetch({url: this.tasks.url+"/next.js?from_task="+last_task, success:success, error:function(){
           me.notask = true;
           if (no_task_handler) no_task_handler.trigger("no_task");
       }});
+      
     }
   },
   
@@ -123,7 +122,13 @@ var DefaultTaskManager = Class.extend({
   get :function(id){
     return this.tasks.get(id);
   },
-  
+
+  create :function(data,callback){
+    $.post(this.tasks.url,{data: JSON.stringify(data)}, function(data) {
+         callback();
+     });
+  },
+
   saved: function(){
       this.nb_task_done++;
       this.trigger("task_answered");

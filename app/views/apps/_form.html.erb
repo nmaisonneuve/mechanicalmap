@@ -25,9 +25,9 @@
           </div>
 
           <div class="control-group">
-            <label class="control-label">Description</label>
+            <label class="control-label">Description (in HTML)</label>
             <div class="controls">
-              <%= f.text_area :description, :rows => 5, :placeholder => "Short description (in html) for the VolatileTask Apps repository", :class => "text-field span4" %>
+              <%= f.text_area :description, :rows => 5, :placeholder => "Short description  for the microapp.io repository", :class => "text-field span4" %>
             </div>
           </div>
 
@@ -39,33 +39,33 @@
           </div>
 
           <div class="control-group">
-            <label class="control-label">Presentation</label>
+            <label class="control-label">Size of the web widget </label>
             <div class="controls">
-              Web widget size:<br/>
               Width = <%= f.text_field :iframe_width, :placeholder => "100%", :class => "text-field span1", :default => "100%" %>
               x
               Height = <%= f.text_field :iframe_height, :placeholder => "100%", :class => "text-field span1", :default => "100%" %>
             </div>
           </div>
           <div class="control-group">
+
             <label class="control-label">Data Management </label>
             <div class="controls">
               <p class="help-block">
-                <b>Challenge related data</b>:<br/> URL of the Google fusion table or 
-<button id="create_tasks" data-disable-with="Creating table..." class="btn btn-primary btn-mini" style="margin:5px">Create a table</button>      
-<br/><!--(<a href="https://www.google.com/fusiontables/DataSource?dsrcid=implicit" target="_blank" >Create a table from your data </a> + change <a href="http://support.google.com/fusiontables/bin/answer.py?hl=en&answer=171221" target="_blank">its accessibility </a> to public)--> 
-              </p>
-<div class="input-append">
-   <%= f.text_field :input_ft, :placeholder => "https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA", :class => "text-field span5" %>
-</div>
-
+                 URL of the Google fusion table to retrieve <b>challenge-related data</b>:
+                <br/><small style="font-size:10px">e.g. https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA</small><!--(<a href="https://www.google.com/fusiontables/DataSource?dsrcid=implicit" target="_blank" >Create a table from your data </a> + change <a href="http://support.google.com/fusiontables/bin/answer.py?hl=en&answer=171221" target="_blank">its accessibility </a> to public)--> </p>
+              <div class="input-append">
+                 <%= f.text_field :input_ft, :placeholder => "https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA", :class => "text-field span3" %>
+                <button id="create_tasks" data-disable-with="Creating table..." class="btn btn-primary">Create basic  table</button>
+>
+                <% if @edit %>
+                  <a href="reindex" class="btn"/>reindexing</a>
+                <% end %>
+              </div>
+              <div id="link_tasks"></div>
              
               <img src="http://www.inishtech.com/App_Themes/Default/Images/CMSModules/Forums/LiveImages/AcceptedSolution.gif" style="display:none" id="task_ft_accepted"/>
               <img src="http://www.finta.pl/content/ico-false.png" style="display:none" id="task_ft_rejected"/>
-              <% if @edit %>
-                <a href="reindex" class="btn"/>reindexing</a>
-              <% end %>
- <span id="link"></span>   
+
               <div id="task_column" class="hide">
                 <p class="help-block">
                 Enter the name of the column representing the task ID
@@ -75,101 +75,42 @@
              </div> 
              <div class="controls">
               <p class="help-block">
-                <b>Answers data</b>:
-                <br/> URL of the Google fusion table </p>
-
-                <%= f.text_field :output_ft, :placeholder => "https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA", :class => "text-field span5" %>
+                URL of the Google fusion table to store <b>answers</b>:
+                <br/><small style="font-size:10px">https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA</small>  </p>
+                <div class="input-append">
+                    <%= f.text_field :output_ft, :placeholder => "https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA", :class => "text-field span3" %><button id="create_answers" data-disable-with="Creating table..." class="btn btn-primary">Create basic table</button>
+                </div>
+               <div id="link_answers"></div>
              </div>
           </div>
       
           <div class="control-group">
-            <label class="control-label">Challenges Allocation</label>
+            <label class="control-label">Basic Management of Contributors </label>
             <div class="controls">
-              How many users should solve the same challenge? Write '-1' for unlimited allocation (each challenge will be submitted to each new user)<br/>
+              How many users should try to solve each challenge? <br/>( -1 for unlimited allocation) <br/>
               <%= text_field_tag "app_redundancy", "-1", :disabled => @disable_redundancy, :class => "span1", :placeholder => "3" %>
             </div>
 
 
           </div>
 
-           <div class="control-group">
-            <label class="control-label">
-              Source Code
-            </label>
-
+          <div class="control-group hide" >
+          <label class="control-label">Source Code</label>
            <div class="controls">
               <p class="help-block">
                 Enter the URL of the Gist Github with the task template. 
-
                 <%= f.text_field :gist_id, :placeholder => "https://gist.github.com/3028982", :class => "text-field span3" %>
             </div>
           </div>
         </fieldset>
     <% end %>
 <div style="text-align:center">
-    <a class="btn btn-primary btn-large" id="save" style="margin:0 auto">create</a>
+    <a class="btn btn-primary btn-large" id="save" style="margin:0 auto">Create & Start coding online</a>
 </div>
 
   </div>
   <div class="span5">
- <ol class="unstyled">
-        <li><h4>1. Create the tasks</h4>
-
-          <p>Create a <a href="https://www.google.com/fusiontables/DataSource?dsrcid=implicit" target="_blank" >Google fusion table from your data </a>
- representing the list of tasks to complete, with a column representing the task ID (e.g. task_id) and further input data (e.g. the url of an image to annotate).
-
-          <img src='/assets/ft_input_images2.jpg' style='width:100%;border:1px solid black' /> 
-          <!--<br/> Here another table given as example.
-          <img src='/assets/ft_input_table.jpg' style='width:100%;border:1px solid black' /> 
-          -->
-          </p>
-          <p>Once created, make the table public, click to the 'share' button at the top right.
-          and make its access to 'public'. Then copy the Link to share. You can still add some data or change its structure later. In this case, you need to reindex the table.<br/>
-
-          <img src='/assets/share.jpg' style='width:100%;border:1px solid black' /> </p>
-
-<div class="alert alert-block alert-success fade in">
-            <p>I encourage you to review the Tasks data of existing open apps to get more familiar with the framework.  <a href="https://www.google.com/fusiontables/DataSource?docid=11TePGrrVCRKJ1IPY6I8wkUrmyfZ6OKELxRgLjjU">Here</a> is the task data containing a set of images to annotate, or
-            <a href="https://www.google.com/fusiontables/DataSource?docid=1Xm-WmlR2wnxuBusTR94V3xZygkPKUukq9x-YLoM">here </a> with a
-              more complex task structure </a>
-              to 
-              clusters of a set of documents. We also propose specific <i>Tasks Generator </i> e.g.
-            <a href="/demo_generator"> a generator GIS-related tasks</a> for analyzing a large area
-            by dividing it into smaller ones.
-            <a href="https://www.google.com/fusiontables/DataSource?docid=1pSWNLzQE0oZSs7KJqzhjsMeT96QELkmE9gROt7E">see
-              the resulting table </a></p>
-      </div>
-          <span class="label label-warning">Note</span> Google fusion has <a
-        href="https://developers.google.com/fusiontables/docs/developers_guide#Constraints">some constraints</a> you
-          need to be aware. -->
-   </p>
-            </li>
-      <li><h4>2. Update the Answers table (optional) </h4>
-
-          <p>Update an answer table that Volatile tasks generated a basic Google fusion table to store the
-            answers of the users. This table contains initially 3 required columns: task_id = the id of the task answered, created_at= the
-            datetime of
-            the answer, user_id= the user's ID.
-            Add specific columns according to the structure of an answer.
-          </p>
-        </li>
-        <li>
-          <h4>3. Create the UI code </h4>
-
-          <p>
-            Create the UI to present the task and collect the data using the <a href="/framework">javascript framework.</a> No need to install something. Code
-            online. The code is also saved to GIST to manage the versioning.
-            <img src='/assets/editor.jpg' style="width:100%;border: 1px solid black"/>
-          </p>
-        </li>
-
-  
-        <li><h4>4. Enjoy !</h4>
-          <p>
-          Your app is ready. You can embed the app on your web site or display its QRcode so people can complete tasks via their mobile phones. <br/>Note: You can still improve/update the source code. the app will be automatically updated. 
-        </p>
-        </li>
-      </ol/>
+    <%= render 'tutorial.html' %>
   </div>
 </div>
 
@@ -218,21 +159,35 @@
     }
 
     $(function () {
-
+        var GF_TABLE_BASE_URL = "https://www.google.com/fusiontables/DataSource?docid=";
+        
         $('a[rel=popover]').popover({
             placement:'right',
             offset:5,
             html:true
         });
-
-        $('#create_tasks').click(function(){
+        
+        $('#create_tasks').click(function(event){
+          $('#create_tasks').attr("disabled",true);
+          $('#create_tasks').html("Creating table...");
           $.getJSON("/apps/create_tasks_table.json",function(data){
-            $('#app_input_ft').val("https://www.google.com/fusiontables/DataSource?docid="+data.ft_table_id);
+            $('#app_input_ft').val(GF_TABLE_BASE_URL+data.ft_table_id);
             $('#create_tasks').hide();
             retrieve_columns_names();
-            link = $("<a href='https://www.google.com/fusiontables/DataSource?docid="+data.ft_table_id+"' target='_blank'>See the table</a>");
-            $('#link').html(link);
-          })
+            link = $("<a href='"+GF_TABLE_BASE_URL+data.ft_table_id+"' target='_blank' >see/modify the table</a>");
+            $('#link_tasks').append(link);
+           });
+        });
+
+        $('#create_answers').click(function(event){
+          $('#create_answers').attr("disabled",true);
+          $('#create_answers').html("Creating table...");
+          $.getJSON("/apps/create_answers_table.json",function(data){
+            $('#app_output_ft').val(GF_TABLE_BASE_URL+data.ft_table_id);
+            $('#create_answers').hide();
+            link = $("<a href='"+GF_TABLE_BASE_URL+data.ft_table_id+"' target='_blank'>see/modify the table</a>");
+            $('#link_answers').append(link);
+          });
           return false;
         });
 
