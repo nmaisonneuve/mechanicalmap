@@ -36,8 +36,7 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'backbone-on-rails'
-  gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
-      :git => 'git://github.com/anjlab/bootstrap-rails.git'
+  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
   gem 'uglifier'
   gem 'ace-rails',  :git => 'git://github.com/jbfeldis/ace-rails.git'
 end
