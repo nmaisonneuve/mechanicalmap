@@ -1,7 +1,8 @@
 <% @app_header = capture do %>
-<li class="active" ><a href="#">apps</a></li>
-<li><a href="/more">Create an app</a></li>
+  <li class="active" ><a href="#">apps</a></li>
+  <li><a href="/more">Create an app</a></li>
 <% end %>
+
 <% content_for :app_header, @app_header %>
 
 <style type="text/css">
@@ -18,7 +19,7 @@ section{
     @app = app
     completed, size= @app.completion
     u = @app.user
-  %>  
+  %>
       <div class="row">
         <div class="span12">
            <h3><%= link_to app.name, dashboard_app_path(app) %>
@@ -26,12 +27,12 @@ section{
           </h3>
           <img style="float:right;width:145px;" src="http://api.qrserver.com/v1/create-qr-code/?size=145x145&data=<%= app_url(app) %>"  />
          <img src="<%= @app.image_url %>" style="float:left;height:145px;margin:5px"/>
-        
+
           <%=  app.description.html_safe %>
           <div style="clear:both">
          <% @button_size = "btn-mini" %>
        <%= render "shared/menu.html" %>
-       </div> 
+       </div>
        <hr class="soften" />
       </div>
     </div>

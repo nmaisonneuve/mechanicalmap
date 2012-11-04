@@ -1,4 +1,4 @@
-
+<% unless @app.nil? %>
 <% _button_size = @button_size || "btn-small" %>
 
 <div id="app_menu">
@@ -18,3 +18,4 @@
         <textarea style="width:100%" ><iframe width="<%= @app.iframe_width %>" height="<%= @app.iframe_height %>" scrolling="no" src="<%= app_url(@app) %>"></iframe></textarea>
     </div>
 </div>
+<% end %>

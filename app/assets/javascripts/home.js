@@ -1,6 +1,19 @@
 //= require jquery
-//= require twitter/bootstrap/scrollspy
-//= require twitter/bootstrap/transition
-//= require twitter/bootstrap/carousel
-//= require twitter/bootstrap/tab
+//= require twitter/bootstrap
 
+$(function () {
+
+  $("a[rel=div]").click(function (e) {
+      e.preventDefault();
+      $($(this).attr("href")).toggle();
+  });
+  $('#navbar').scrollspy();
+  $('.carousel').carousel({
+      interval:false
+  });
+
+  $('#myTab a').click(function (e) {
+      e.preventDefault();
+      $(this).tab('show');
+  });
+});

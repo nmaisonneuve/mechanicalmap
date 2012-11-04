@@ -3,17 +3,21 @@ source 'http://rubygems.org'
 gem 'rails'
 gem 'jquery-rails'
 
+# sidekiq + UI admin
 gem "sidekiq"
 gem "slim"
 gem "sinatra"
 
+# administration
 gem 'gravatar_image_tag'
-
 gem 'devise'
 gem 'omniauth'
 gem "omniauth-twitter"
 gem 'omniauth-google-oauth2'
 gem "omniauth-facebook"
+
+# wizard form
+gem 'wicked'
 
 gem 'color'
 #gem "RedCloth"
@@ -28,12 +32,9 @@ end
 group :production do
   gem 'pg'
   gem 'thin'
-  # Use unicorn as the app server
-  # gem 'unicorn'
 end
 
 group :assets do
-  gem 'sass-rails'
   gem 'coffee-rails'
   gem 'backbone-on-rails'
   gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
