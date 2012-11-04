@@ -3,7 +3,7 @@
 Dir['lib/**/*.rb'].each { |recipe| require  File.basename(recipe, '.rb') }
 
 
-#load 'deploy/assets'
+load 'deploy/assets'
 require "rvm/capistrano"
 set :rvm_type, :user
 set :rvm_ruby_string, :local
@@ -16,7 +16,7 @@ require 'bundler/capistrano'
 set :user, 'newhouse'
 set :domain, 'mechanicaltask.dev.fabelier.org'
 set :application, "mechanicalmap"
-set :applicationdir, "~/mechanicalmap"
+set :applicationdir, "/home/newhouse/mechanicalmap"
 set :repository, "git://github.com/nmaisonneuve/mechanicalmap.git"  # Your clone URL
 set :scm, "git"
 set :scm_verbose, true
