@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Teststrap" %></title>
+    <title><%= content_for?(:title) ? content_for(:title) : "Microapp.io" %></title>
     <%= csrf_meta_tags %>
 
     <!--[if lt IE 9]>
@@ -27,8 +27,16 @@
         <a class="brand" href="/">microapp.io</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="<%= 'active' if current_page?(apps_path) %>"><a href="/apps">apps</a></li>
-              <li class="<%= 'active' if current_page?(new_app_path) %>"><a href="/apps/new">new app</a></li>
+              <% if content_for?(:menu_header)  %>
+                 <%= content_for(:menu_header)  %>
+              <% else %>
+                <li class="<%= 'active' if current_page?(apps_path) %>">
+                  <a href="/apps">apps</a>
+                </li>
+                <li class="<%= 'active' if current_page?(new_app_path) %>">
+                  <a href="/apps/new">new app</a>
+                </li>
+              <% end %>
             </ul>
           </div>
 
@@ -36,7 +44,7 @@
             <ul class="nav">
               <li>
               <% if user_signed_in? %>
-                <a href="#" style="color:white;font-weight: bold;"><%= current_or_guest_username %></a>
+                <a href="#" ><%= current_or_guest_username %></a>
               <% else %>
                 <a href="#" style="color:white;"><%= current_or_guest_username %></a>
               <% end %>
@@ -48,7 +56,7 @@
             <%= link_to "Sign in", new_user_session_path, :class=>"btn btn-small btn-primary"  %>
             <% end %>
           </div>
-          <%=  yield(:header)  %>
+          <%= content_for(:header)  %>
       </div>
     </div>
   </div>
@@ -59,7 +67,6 @@
   <!-- Placed at the end of the document so the pages load faster -->
   <%= javascript_include_tag "application" %>
   <script type="text/javascript">
-
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-30505488-1']);
     _gaq.push(['_trackPageview']);

@@ -1,9 +1,3 @@
-<% @app_header = capture do %>
-
-<% end %>
-
-<% content_for :app_header, @app_header %>
-
 <style type="text/css">
 section{
     border-radius: 15px;
@@ -14,12 +8,13 @@ section{
 </style>
 <link type="text/css" href="/assets/bootstrap.css"/>
 <div class="container">
-  <% @apps.each do |app|
+  <%
+  @apps.each do |app|
     @app = app
     completed, size= @app.completion
     u = @app.user
   %>
-      <div class="row">
+      <div class="row-fluid">
         <div class="span12">
            <h3><%= link_to app.name, dashboard_app_path(app) %>
             <small> created <%= time_ago_in_words(app.created_at) %> ago</small>
@@ -35,5 +30,5 @@ section{
        <hr class="soften" />
       </div>
     </div>
-    <% end %>
+  <% end %>
 </div>
