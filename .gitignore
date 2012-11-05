@@ -10,10 +10,13 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
+# ignore assets
+public/assets/
+
 # ignore rubymine app
 .idea
 
-# Ignore mac 
+# Ignore mac
 .DS_Store
 
 # Ignore all logfiles and tempfiles.

@@ -17,6 +17,12 @@ class AnswersController < ApplicationController
     create_or_update(answer)
   end
 
+  private
+
+  def get_answer
+    @answer = Answer.find(params[:id] || params[:answer_id])
+  end
+
   protected
 
   def create_or_update(answer)
