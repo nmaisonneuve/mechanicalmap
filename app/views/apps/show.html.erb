@@ -1,20 +1,18 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="http://cdn.androidblip.com/icn/com_defiant_supermarioentertainment____90218.png" /> 
+    <link rel="icon" type="image/png" href="http://cdn.androidblip.com/icn/com_defiant_supermarioentertainment____90218.png" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title><%= raw @app.name %></title>
     <%= csrf_meta_tags %>
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
       <![endif]-->
-    <%= javascript_include_tag "application" %>
     <script src="http://underscorejs.org/underscore-min.js"></script>
     <script src="http://backbonejs.org/backbone-min.js"></script>
-    <% if ENV['RAILS_ENV']=="production" %>
-      <script src="https://raw.github.com/nmaisonneuve/mechanicalmap/master/app/assets/javascripts/base_app.js"></script>
-    <% else %>
-    <%= javascript_include_tag "app" %> 
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "app" %>
+
     <% end %>
     <script type="text/javascript">
     var user = {name:"<%= current_or_guest_username %>"};
