@@ -27,22 +27,26 @@
         <a class="brand" href="/">microapp.io</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active" ><a href="#">apps</a></li>
-              <li><a href="/more">new app</a></li>
+              <li class="<%= 'active' if current_page?(apps_path) %>"><a href="/apps">apps</a></li>
+              <li class="<%= 'active' if current_page?(new_app_path) %>"><a href="/apps/new">new app</a></li>
             </ul>
           </div>
 
           <div class="nav pull-right">
             <ul class="nav">
+              <li>
               <% if user_signed_in? %>
-                  <li><a href="#" style="color:white;font-weight: bold;"><%= current_or_guest_username %></a></li>
-                  </ul>
-                 <%= link_to "Sign out", destroy_user_session_path, :method => :delete , :class=>"btn btn-small btn-primary" %>
+                <a href="#" style="color:white;font-weight: bold;"><%= current_or_guest_username %></a>
               <% else %>
-                  <li><a href="#" style="color:white;"><%= current_or_guest_username %></a>  </li>
-                  </ul>
-                  <%= link_to "Sign in", new_user_session_path, :class=>"btn btn-small btn-primary"  %>
+                <a href="#" style="color:white;"><%= current_or_guest_username %></a>
               <% end %>
+              </li>
+            </ul>
+            <% if user_signed_in? %>
+            <%= link_to "Sign out", destroy_user_session_path, :method => :delete , :class=>"btn btn-small btn-primary" %>
+            <% else %>
+            <%= link_to "Sign in", new_user_session_path, :class=>"btn btn-small btn-primary"  %>
+            <% end %>
           </div>
           <%=  yield(:header)  %>
       </div>

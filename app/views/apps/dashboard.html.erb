@@ -25,15 +25,15 @@ section{margin-top:10px;}
       <% end %>
     <h3><%= @app.name %>   <% if @app.user == current_user %>
        <a href="<%= edit_app_path(@app) %>" class="btn btn-mini">setting</a>
-        <%= link_to 'delete', @app, confirm: 'Are you sure?', method: :delete, :class => "btn btn-mini btn-danger" %> 
+        <%= link_to 'delete', @app, confirm: 'Are you sure?', method: :delete, :class => "btn btn-mini btn-danger" %>
       <% end %>
-    </h3>   
+    </h3>
 
   </div>
   </div>
   <div class="row">
     <div class="span2">
-      
+
       <section>
         <img src="<%= app_path(@app,:format=>"png") %>" width="100%" />
       </section>
@@ -41,14 +41,14 @@ section{margin-top:10px;}
       <section>
         <h4>Activity</h4>
         <% completed, size=@app.completion %>
-        <%= completed %> / <%= size %> answers.
+        <%= completed %> / <%= size %> challenges solved.
         <div class="progress progress-info  progress-striped">
           <div class="bar" style="width: <%= completed.to_f/size.to_f*100 %>%;"></div>
         </div>
       </section>
 
       <section>
-        <h4>Last contributors</h4>
+        <h4>Last solvers</h4>
         <ul style="padding: 0px;margin: 0; margin-top: 3px;">
           <% @app.contributors.order('users.updated_at desc').limit(5).each { |u| %>
               <li style="list-style-type: none;">

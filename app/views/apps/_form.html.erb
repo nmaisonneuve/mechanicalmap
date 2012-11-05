@@ -48,11 +48,8 @@
           </div>
           <div class="control-group">
 
-            <label class="control-label">Data Management </label>
+            <label class="control-label">Challenges data URL</label>
             <div class="controls">
-              <p class="help-block">
-                 URL of the Google fusion table to retrieve <b>challenge-related data</b>:
-                <br/><small style="font-size:10px">e.g. https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA</small><!--(<a href="https://www.google.com/fusiontables/DataSource?dsrcid=implicit" target="_blank" >Create a table from your data </a> + change <a href="http://support.google.com/fusiontables/bin/answer.py?hl=en&answer=171221" target="_blank">its accessibility </a> to public)--> </p>
               <div class="input-append">
                  <%= f.text_field :input_ft, :placeholder => "https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA", :class => "text-field span3" %>
                 <button id="create_tasks" data-disable-with="Creating table..." class="btn btn-primary">Create basic  table</button>
@@ -62,7 +59,7 @@
                 <% end %>
               </div>
               <div id="link_tasks"></div>
-             
+
               <img src="http://www.inishtech.com/App_Themes/Default/Images/CMSModules/Forums/LiveImages/AcceptedSolution.gif" style="display:none" id="task_ft_accepted"/>
               <img src="http://www.finta.pl/content/ico-false.png" style="display:none" id="task_ft_rejected"/>
 
@@ -72,20 +69,20 @@
                 </p>
                 <%= f.select :task_column, :class => "text-field span1" %>
               </div>
-             </div> 
-             <div class="controls">
-              <p class="help-block">
-                URL of the Google fusion table to store <b>answers</b>:
-                <br/><small style="font-size:10px">https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA</small>  </p>
+             </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Answers data URL</label>
+              <div class="controls">
                 <div class="input-append">
                     <%= f.text_field :output_ft, :placeholder => "https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA", :class => "text-field span3" %><button id="create_answers" data-disable-with="Creating table..." class="btn btn-primary">Create basic table</button>
                 </div>
                <div id="link_answers"></div>
              </div>
           </div>
-      
+
           <div class="control-group">
-            <label class="control-label">Basic Management of Contributors </label>
+            <label class="control-label">Organisation Strategy</label>
             <div class="controls">
               How many users should try to solve each challenge? <br/>( -1 for unlimited allocation) <br/>
               <%= text_field_tag "app_redundancy", "-1", :disabled => @disable_redundancy, :class => "span1", :placeholder => "3" %>
@@ -98,7 +95,7 @@
           <label class="control-label">Source Code</label>
            <div class="controls">
               <p class="help-block">
-                Enter the URL of the Gist Github with the task template. 
+                Enter the URL of the Gist Github with the task template.
                 <%= f.text_field :gist_id, :placeholder => "https://gist.github.com/3028982", :class => "text-field span3" %>
             </div>
           </div>
@@ -118,7 +115,7 @@
 <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
 <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
 <script type="text/javascript">
-    
+
     function url_google(ft_table) {
       var key = 'AIzaSyDaD2I-HSjUXgmQr9uOvF5-wZTwgfLgW-Q';
       var sqlquery = "DESCRIBE " + ft_table;
@@ -143,7 +140,7 @@
             $("#task_column").hide();
           }});
     }
-    
+
     function retrieve_columns_names(){
       var ft_table=$('#app_input_ft').val().replace("https://www.google.com/fusiontables/DataSource?docid=","");
           load_schema(url_google(ft_table),function(columns){
@@ -160,13 +157,13 @@
 
     $(function () {
         var GF_TABLE_BASE_URL = "https://www.google.com/fusiontables/DataSource?docid=";
-        
+
         $('a[rel=popover]').popover({
             placement:'right',
             offset:5,
             html:true
         });
-        
+
         $('#create_tasks').click(function(event){
           $('#create_tasks').attr("disabled",true);
           $('#create_tasks').html("Creating table...");

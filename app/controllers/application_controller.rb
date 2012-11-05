@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery
   helper_method :current_or_guest_username
 
-  private 
+  private
   def stored_location_for(resource_or_scope)
     nil
   end
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   protected
 
   # if user is logged in, return current_user, else return guest_user
-  # guest_user used only to save results 
+  # guest_user used only to save results
   # to display results in anonymous mode , we do not save the user
   # but set a value inside a cookie
   def current_or_guest_user
@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 
   def current_or_guest_username
     if current_user
-      cookies[:guest_user]=""
+      cookies[:guest_user] = ""
       current_user.username
     else
       guest_username
@@ -37,12 +37,12 @@ class ApplicationController < ActionController::Base
   #use only the cookie to store the current user
   def guest_username
     if cookies[:guest_user].blank?
-      o= [(0..9), ('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
-      random=(0..6).map { o[rand(o.length)] }.join
-      cookies[:guest_user]="guest_#{random}"
+      o = [(0..9), ('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+      random = (0..6).map { o[rand(o.length)] }.join
+      cookies[:guest_user] = "guest_#{random}"
     end
     #we override if mturk
-    cookies[:guest_user]=params[:workerId] unless params[:workerId].blank?
+    cookies[:guest_user] = params[:workerId] unless params[:workerId].blank?
     cookies[:guest_user]
   end
 
