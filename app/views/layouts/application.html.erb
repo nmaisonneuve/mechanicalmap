@@ -43,11 +43,7 @@
           <div class="nav pull-right">
             <ul class="nav">
               <li>
-              <% if user_signed_in? %>
                 <a href="#" ><%= current_or_guest_username %></a>
-              <% else %>
-                <a href="#" style="color:white;"><%= current_or_guest_username %></a>
-              <% end %>
               </li>
             </ul>
             <% if user_signed_in? %>
@@ -66,6 +62,7 @@
   <!-- Javascripts ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
   <%= javascript_include_tag "application" %>
+  <%= content_for(:script)  %>
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-30505488-1']);

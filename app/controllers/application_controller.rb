@@ -49,11 +49,7 @@ class ApplicationController < ActionController::Base
   # find guest_user
   # creating one if needed
   def guest_user
-    user=User.find_by_username(guest_username)
-    if (user.nil?)
-      user=create_guest_user(guest_username)
-    end
-    user
+    User.find_by_username(guest_username) || create_guest_user(guest_username)
   end
 
   private

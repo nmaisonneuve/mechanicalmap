@@ -1,7 +1,7 @@
-<% @app_header = capture do %>
-    <li class="active"><%= link_to @app.name[0..20], app_path(@app) %></li>
-     <a class="btn btn-primary" id="save">save</a>
-    <a data-toggle="modal" href="#tutorial" class="btn">tutorial</a>
+<% app_header = capture do %>
+	<li> <a href="/apps">apps</a></li>
+	<li class="active"><%= link_to @app.name[0..20], app_path(@app) %></li>
 <% end %>
-<% content_for :app_header, @app_header %>
+<% content_for :app_header, app_header %>
+
 <%= render 'form' %>

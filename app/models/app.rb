@@ -6,6 +6,10 @@ class App < ActiveRecord::Base
   STATE_READY=0 #NORMAL
   STATE_INDEXING=1
 
+
+  GOOGLE_TABLE_REG = /www\.google\.com\/fusiontables\/DataSource\?docid=(.*)/
+  GIT_REG = /https:\/\/gist\.github.com\/(.*)\/?/
+
   # demo mode
 
   has_many :tasks, :dependent => :destroy
@@ -14,8 +18,8 @@ class App < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :name
-  validates_presence_of :input_ft, :message => "No Challenge Table, Give an URL "
-  validates_presence_of :output_ft, :message =>  "No Answer Table, Give an URL "
+  validates_presence_of :input_ft, :message => "No Challenges Table, Give an URL "
+  validates_presence_of :output_ft, :message =>  "No Answers Table, Give an URL "
 
   attr_accessible :name,
                   :description,
@@ -28,13 +32,43 @@ class App < ActiveRecord::Base
                   :iframe_width,
                   :iframe_height,
                   :state,
-                  :image_url
+                  :image_url,
+                  :user
 
   def completion
     completed = self.answers.answered.count
     size = self.answers.count
     [completed, size]
   end
+
+  def self.build_from_params(params)
+    params = App.clean_build_params(params)
+    app = App.new(params)
+    app.gist_id = GistDao.instance.fork_gists("3543287") if app.gist_id.blank?
+    app.script = GistDao.instance.get_script(app.gist_id)
+
+    if app.save
+      # we postpone the indexation of task
+      index_tasks_start
+      app
+    else
+      false
+    end
+  end
+
+
+  def self.clean_build_params(params)
+    matching = GOOGLE_TABLE_REG.match(params[:input_ft])
+    params[:input_ft] = matching[1] unless matching.nil?
+
+    matching = GOOGLE_TABLE_REG.match(params[:output_ft])
+    params[:output_ft] = matching[1] unless matching.nil?
+
+
+
+    params
+  end
+
 
   def last_contributor(max_contributors = 5)
     self.answers.answered.order("answers.updated_at desc").limit(max_contributors)
@@ -48,18 +82,26 @@ class App < ActiveRecord::Base
     ActiveRecord::Base.execute("DELETE FROM answers inner joins tasks on answers.task_id=tasks.id inner join apps on tasks.app_id = apps.id where apps.id = #{self.id}")
     FtDao.instance.delete_all(app.output_ft)
   end
-  
+
   def clone
     clone = App.new
     clone.name = "copy of #{self.name}"
     clone.description = "copy of #{self.description}"
     clone.input_ft = self.input_ft
     clone.script = self.script
-    clone.gist_id = GistDao.instance.fork_gists(self.gist_id) unless (self.gist_id.nil?) 
+    clone.gist_id = GistDao.instance.fork_gists(self.gist_id) unless (self.gist_id.nil?)
     clone.redundancy = self.redundancy
     clone.iframe_width = self.iframe_width
     clone.iframe_height = self.iframe_height
     return clone
+  end
+
+  def index_tasks_start
+   if Rails.env == "production"
+      index_tasks_async()
+    else
+      index_tasks()
+    end
   end
 
   def index_tasks_async
@@ -93,11 +135,9 @@ class App < ActiveRecord::Base
 
   def add_task(rows)
     # increment the task_id
-    last_known_task = self.tasks.order('input_task_id desc').first 
+    last_known_task = self.tasks.order('input_task_id desc').first
     task_id = last_known_task.input_task_id + 1
-    p rows
     rows.each { |row|
-      p row
       row[self.task_column] = task_id
     }
     # insert the task on the FT
@@ -153,10 +193,10 @@ class App < ActiveRecord::Base
       self.save
       Rails.log("creating Gists")
     else
-      GistDao.instance.update_gists(self.gist_id, self.script)
+      GistDao.instance.update_gists(gist_id, self.script)
       Rails.log("updating Gists")
     end
-    self.gist_id
+    gist_id
   end
 
   def next_task(context)
@@ -167,6 +207,28 @@ class App < ActiveRecord::Base
       TasksManager.new(self)
     end
     tm.perform(context)
+  end
+
+  def gist_id
+    GIT_REG.match(gist_url)[1]
+  end
+
+  def gist_id=(gist_id)
+    self.gist_url = "https://gist.github.com/#{gist_id}"
+  end
+
+  def gf_answers_id
+    gf_table_id(gf_answers_url)
+  end
+
+  def gf_tasks_id
+    gf_table_id(gf_tasks_url)
+  end
+
+protected
+
+  def gf_table_id(gf_table_url)
+     GOOGLE_TABLE_REG.match(gf_table_url)[1]
   end
 
 end

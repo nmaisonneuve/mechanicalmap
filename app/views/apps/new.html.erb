@@ -1,1 +1,7 @@
+<% app_header = capture do %>
+	<li> <a href="/apps">apps</a></li>
+	<li class="active"><a href="/apps/new">Create an app</a></li>
+<% end %>
+<% content_for :app_header, app_header %>
+
 <%= render 'form' %>

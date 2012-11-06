@@ -1,67 +1,76 @@
+<%
+@edit = (controller.action_name == 'new')? false : true
+%>
+
+<% script = capture do %>
+  <%= javascript_include_tag "app_edit" %>
+<% end %>
+<% content_for :script, script %>
+
+<%= form_for(@app, :html => {:class => 'form-horizontal', :id => "form_app"}) do |f| %>
+
 <% if @app.errors.any? %>
-    <div class="alert alert-error">
-      <a class="close" data-dismiss="alert">×</a>
-      <h4 class="alert-heading"><%= pluralize(@app.errors.count, "error") %> prohibited this app from being saved:</h4>
-      <ul>
+  <!-- error module -->
+      <div class="alert alert-error">
+        <a class="close" data-dismiss="alert">×</a>
+        <h4 class="alert-heading">
+          <%= pluralize(@app.errors.count, "error") %> prohibited this app from being saved:
+        </h4>
+        <ul>
         <% @app.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
+          <li><%= msg %></li>
         <% end %>
-      </ul>
-    </div>
+        </ul>
+      </div>
+    <div/>
+  </div>
 <% end %>
 
-<div class="row">
-  <div class="span7">
-    <%= form_for(@app, :html => {:class => 'form-horizontal', :id => "form_app"}) do |f| %>
-<legend>New App </legend>
-        <input type="hidden" name="schema" id="app_schema" value="<%= @schema %>"/>
+  <input type="hidden" name="schema" id="app_schema" value="<%= @schema %>"/>
         <%= f.hidden_field :script %>
         <fieldset>
+
           <div class="control-group">
             <label class="control-label">Name *</label>
             <div class="controls">
-              <%= f.text_field :name, :placeholder => "name of the app", :class => "text-field span4" %>
+            <%= f.text_field :name, :placeholder => "name of the app", :class => "text-field span4" %>
             </div>
           </div>
 
           <div class="control-group">
             <label class="control-label">Description (in HTML)</label>
             <div class="controls">
-              <%= f.text_area :description, :rows => 5, :placeholder => "Short description  for the microapp.io repository", :class => "text-field span4" %>
+            <%= f.text_area :description, :rows => 5, :placeholder => "Short description  for the microapp.io repository", :class => "text-field span4" %>
             </div>
           </div>
 
           <div class="control-group">
             <label class="control-label">Image url</label>
             <div class="controls">
-              <%= f.text_field :image_url, :placeholder => "image url", :class => "text-field span4" %>
+            <%= f.text_field :image_url, :placeholder => "image url", :class => "text-field span4" %>
             </div>
           </div>
 
           <div class="control-group">
             <label class="control-label">Size of the web widget </label>
             <div class="controls">
-              Width = <%= f.text_field :iframe_width, :placeholder => "100%", :class => "text-field span1", :default => "100%" %>
-              x
-              Height = <%= f.text_field :iframe_height, :placeholder => "100%", :class => "text-field span1", :default => "100%" %>
+            Width = <%= f.text_field :iframe_width, :placeholder => "100%", :class => "text-field span1", :default => "100%" %>
+            x Height = <%= f.text_field :iframe_height, :placeholder => "100%", :class => "text-field span1", :default => "100%" %>
             </div>
           </div>
-          <div class="control-group">
 
+          <div class="control-group">
             <label class="control-label">Challenges data URL</label>
             <div class="controls">
               <div class="input-append">
-                 <%= f.text_field :input_ft, :placeholder => "https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA", :class => "text-field span3" %>
-                <button id="create_tasks" data-disable-with="Creating table..." class="btn btn-primary">Create basic  table</button>
->
+                <%= f.text_field :input_ft, :placeholder => "URL of a google fusion table" %>
+                <button id="create_tasks" data-disable-with="Creating table..." class="btn btn-primary">Create a GF table</button>
                 <% if @edit %>
-                  <a href="reindex" class="btn"/>reindexing</a>
+                <a href="reindex" class="btn"/>reindexing</a>
                 <% end %>
               </div>
-              <div id="link_tasks"></div>
-
-              <img src="http://www.inishtech.com/App_Themes/Default/Images/CMSModules/Forums/LiveImages/AcceptedSolution.gif" style="display:none" id="task_ft_accepted"/>
-              <img src="http://www.finta.pl/content/ico-false.png" style="display:none" id="task_ft_rejected"/>
+              <div id="link_tasks" ></div>
+              <img src="#" style="display:none" id="table_state"/>
 
               <div id="task_column" class="hide">
                 <p class="help-block">
@@ -75,7 +84,7 @@
               <label class="control-label">Answers data URL</label>
               <div class="controls">
                 <div class="input-append">
-                    <%= f.text_field :output_ft, :placeholder => "https://www.google.com/fusiontables/DataSource?docid=1pFY66e2r3ZMrimRuftMs4j-fvwvCOdKGSaHOmuA", :class => "text-field span3" %><button id="create_answers" data-disable-with="Creating table..." class="btn btn-primary">Create basic table</button>
+                    <%= f.text_field :output_ft, :placeholder => "URL of a google fusion table" %><button id="create_answers" data-disable-with="Creating table..." class="btn btn-primary">Create a GF table</button>
                 </div>
                <div id="link_answers"></div>
              </div>
@@ -101,105 +110,11 @@
           </div>
         </fieldset>
     <% end %>
-<div style="text-align:center">
-    <a class="btn btn-primary btn-large" id="save" style="margin:0 auto">Create & Start coding online</a>
-</div>
-
+    <div class="form-actions">
+      <a class="btn btn-primary btn-large" id="save" style="margin:0 auto">Create & Start coding online</a>
   </div>
   <div class="span5">
-    <%= render 'tutorial.html' %>
+    <%= render 'tutorial' %>
   </div>
 </div>
-
-<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
-<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
-<script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
-<script type="text/javascript">
-
-    function url_google(ft_table) {
-      var key = 'AIzaSyDaD2I-HSjUXgmQr9uOvF5-wZTwgfLgW-Q';
-      var sqlquery = "DESCRIBE " + ft_table;
-      return 'https://www.googleapis.com/fusiontables/v1/query?sql=' + encodeURI(sqlquery) + "&key=" + key;
-    }
-
-    function load_schema(url,callback_fct) {
-        var columns=[];
-        $.ajax({url:url,
-          success: function (data) {
-            console.log(data);
-             $.each(data.rows, function (i, row) {
-                columns.push(row[1]);
-            });
-            $("#task_ft_rejected").hide();
-            $("#task_ft_accepted").show();
-            callback_fct(columns);
-          },
-          error: function(data){
-            $("#task_ft_rejected").show();
-            $("#task_ft_accepted").hide();
-            $("#task_column").hide();
-          }});
-    }
-
-    function retrieve_columns_names(){
-      var ft_table=$('#app_input_ft').val().replace("https://www.google.com/fusiontables/DataSource?docid=","");
-          load_schema(url_google(ft_table),function(columns){
-            select=$("#app_task_column");
-            select.html("");
-            options="";
-            for (var i=0; i<columns.length;i++){
-              options+="<option value='"+columns[i]+"'>"+columns[i]+"</option>";
-            }
-            select.append(options)
-            $("#task_column").show();
-          });
-    }
-
-    $(function () {
-        var GF_TABLE_BASE_URL = "https://www.google.com/fusiontables/DataSource?docid=";
-
-        $('a[rel=popover]').popover({
-            placement:'right',
-            offset:5,
-            html:true
-        });
-
-        $('#create_tasks').click(function(event){
-          $('#create_tasks').attr("disabled",true);
-          $('#create_tasks').html("Creating table...");
-          $.getJSON("/apps/create_tasks_table.json",function(data){
-            $('#app_input_ft').val(GF_TABLE_BASE_URL+data.ft_table_id);
-            $('#create_tasks').hide();
-            retrieve_columns_names();
-            link = $("<a href='"+GF_TABLE_BASE_URL+data.ft_table_id+"' target='_blank' >see/modify the table</a>");
-            $('#link_tasks').append(link);
-           });
-        });
-
-        $('#create_answers').click(function(event){
-          $('#create_answers').attr("disabled",true);
-          $('#create_answers').html("Creating table...");
-          $.getJSON("/apps/create_answers_table.json",function(data){
-            $('#app_output_ft').val(GF_TABLE_BASE_URL+data.ft_table_id);
-            $('#create_answers').hide();
-            link = $("<a href='"+GF_TABLE_BASE_URL+data.ft_table_id+"' target='_blank'>see/modify the table</a>");
-            $('#link_answers').append(link);
-          });
-          return false;
-        });
-
-        $('#app_input_ft').change(function(){
-          console.log("input");
-           retrieve_columns_names();
-        });
-
-        if ($('#app_input_ft').val()!=""){
-          retrieve_columns_names();
-        }
-
-        $("#save").click(function(){
-            $("#form_app").submit();
-        });
-
-    });
-</script>
+</div>

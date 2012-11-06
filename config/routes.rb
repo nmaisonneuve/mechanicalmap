@@ -3,7 +3,7 @@ Mechanicalmap::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
 
-  
+
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
@@ -14,8 +14,7 @@ Mechanicalmap::Application.routes.draw do
     get 'source', :on => :member
     put 'source_update', :on => :member
     get 'user_state', :on => :member
-    get 'create_tasks_table', :on => :collection
-    get 'create_answers_table', :on => :collection
+    get 'create_gf_table', :on => :collection
     resources :tasks do
       get 'next', :on => :collection
       resources :answers do
@@ -29,7 +28,7 @@ Mechanicalmap::Application.routes.draw do
   match "/demo_generator" => "task_generators#create", :via => "post"
 
   root :to => "home#index"
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

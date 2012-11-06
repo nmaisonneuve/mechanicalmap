@@ -1,5 +1,5 @@
 module ApplicationHelper
 
 
-	
+
 end
