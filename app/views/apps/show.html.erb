@@ -13,7 +13,6 @@
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "app" %>
 
-    <% end %>
     <script type="text/javascript">
     var user = {name:"<%= current_or_guest_username %>"};
     var application_url = "<%= app_url(@app) %>";
