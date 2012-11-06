@@ -18,6 +18,7 @@ gem "omniauth-facebook"
 
 # wizard form
 gem 'wicked'
+#gem "validate_url"
 
 gem 'color'
 #gem "RedCloth"

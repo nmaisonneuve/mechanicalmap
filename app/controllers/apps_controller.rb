@@ -35,9 +35,8 @@ class AppsController < ApplicationController
   # POST /apps
   # POST /apps.json
   def create
-    params[:app][:user] = current_user
-    @app = App.build_from_params(params[:app])
-    if @app
+    @app = App.create(params[:app])
+    if @app.save
       respond_to do |format|
         format.html { redirect_to source_app_path(@app), notice: 'app was successfully created.' }
         format.json { render json: @app, status: :created, location: @app }
@@ -66,9 +65,9 @@ class AppsController < ApplicationController
   def create_gf_table
     ft_id = case params[:table]
     when "answers"
-      App.create_basic_tasks_table(current_user.email)
+      FtDao.create_answers_table(current_user.email)
     when "tasks"
-      App.create_basic_answers_table(current_user.email)
+      FtDao.create_challenges_table(current_user.email)
     end
     render :json => {:ft_table_id => ft_id}.to_json
   end
@@ -130,7 +129,6 @@ class AppsController < ApplicationController
 
 
   def redirect_unless_owner
-    p "asdsads"
     redirect_to root_url unless current_user == @app.user
   end
 

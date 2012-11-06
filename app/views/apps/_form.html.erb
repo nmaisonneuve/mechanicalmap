@@ -63,7 +63,7 @@
             <label class="control-label">Challenges data URL</label>
             <div class="controls">
               <div class="input-append">
-                <%= f.text_field :input_ft, :placeholder => "URL of a google fusion table" %>
+                <%= f.text_field :challenges_table_url, :placeholder => "URL of a google fusion table" %>
                 <button id="create_tasks" data-disable-with="Creating table..." class="btn btn-primary">Create a GF table</button>
                 <% if @edit %>
                 <a href="reindex" class="btn"/>reindexing</a>
@@ -84,7 +84,7 @@
               <label class="control-label">Answers data URL</label>
               <div class="controls">
                 <div class="input-append">
-                    <%= f.text_field :output_ft, :placeholder => "URL of a google fusion table" %><button id="create_answers" data-disable-with="Creating table..." class="btn btn-primary">Create a GF table</button>
+                    <%= f.text_field :answers_table_url, :placeholder => "URL of a google fusion table" %><button id="create_answers" data-disable-with="Creating table..." class="btn btn-primary">Create a GF table</button>
                 </div>
                <div id="link_answers"></div>
              </div>
@@ -105,7 +105,7 @@
            <div class="controls">
               <p class="help-block">
                 Enter the URL of the Gist Github with the task template.
-                <%= f.text_field :gist_id, :placeholder => "https://gist.github.com/3028982", :class => "text-field span3" %>
+                <%= f.text_field :gist_url, :placeholder => "https://gist.github.com/3028982", :class => "text-field span3" %>
             </div>
           </div>
         </fieldset>

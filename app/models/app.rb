@@ -1,16 +1,12 @@
 class App < ActiveRecord::Base
 
-  MAX_ANSWERS=10000
-  MAX_TASKS=10000
+  STATE = {
+    READY: 0,
+    INDEXING: 2
+  }
 
-  STATE_READY=0 #NORMAL
-  STATE_INDEXING=1
-
-
-  GOOGLE_TABLE_REG = /www\.google\.com\/fusiontables\/DataSource\?docid=(.*)/
+  GOOGLE_TABLE_REG = /https:\/\/www\.google\.com\/fusiontables\/DataSource\?docid=(.*)/
   GIT_REG = /https:\/\/gist\.github.com\/(.*)\/?/
-
-  # demo mode
 
   has_many :tasks, :dependent => :destroy
   has_many :answers, :through => :tasks
@@ -18,16 +14,16 @@ class App < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :name
-  validates_presence_of :input_ft, :message => "No Challenges Table, Give an URL "
-  validates_presence_of :output_ft, :message =>  "No Answers Table, Give an URL "
+  validates_presence_of :challenges_table_url
+  validates_presence_of :answers_table_url
 
   attr_accessible :name,
                   :description,
-                  :output_ft,
-                  :input_ft,
+                  :answers_table_url,
+                  :challenges_table_url,
+                  :gist_url,
                   :task_column,
                   :script,
-                  :gist_id,
                   :redundancy,
                   :iframe_width,
                   :iframe_height,
@@ -35,200 +31,127 @@ class App < ActiveRecord::Base
                   :image_url,
                   :user
 
-  def completion
-    completed = self.answers.answered.count
-    size = self.answers.count
-    [completed, size]
+  before_create :complete_with_default_values
+  after_create :post_processing
+
+  def complete_with_default_values
+    self.gist_url = clone_gist(3543287) if gist_url.blank?
+    self.answers_table_url = FtDao.create_answers_table  if answers_table_url.blank?
+    self.challenges_table_url = FtDao.create_challenges_table  if challenges_table_url.blank?
+    self.image_url = "http://payload76.cargocollective.com/1/2/88505/3839876/02_nowicki_poland_1949.jpg" if image_url.blank?
   end
 
-  def self.build_from_params(params)
-    params = App.clean_build_params(params)
-    app = App.new(params)
-    app.gist_id = GistDao.instance.fork_gists("3543287") if app.gist_id.blank?
-    app.script = GistDao.instance.get_script(app.gist_id)
+  def post_processing
+    synch_source_code
+    index_tasks_start
+  end
 
-    if app.save
-      # we postpone the indexation of task
-      index_tasks_start
-      app
+  # delete all answers without
+  # deleting the challenges
+  def delete_answers
+    ActiveRecord::Base.execute("DELETE FROM answers inner joins tasks on answers.task_id=tasks.id inner join apps on tasks.app_id = apps.id where apps.id = #{self.id}")
+    FtDao.instance.delete_all(app.answers_table_url)
+  end
+
+  def clone
+    clone = App.new
+    clone.name = "Copy of #{self.name}"
+    clone.description = "copy of #{self.description}"
+    clone.challenges_table_url = self.challenges_table_url
+    clone.answers_table_url = clone_answers_table
+    clone.gist_url = clone_gist
+    clone.script = self.script
+    clone.redundancy = self.redundancy
+    clone.iframe_width = self.iframe_width
+    clone.iframe_height = self.iframe_height
+    clone
+  end
+
+  def add_task(data)
+    task_id = self.next_generated_task_id
+    # we fill the task_ID column with the next generated task_id
+    data.each { |row|
+      row[app.task_column] = task_id
+    }
+    # insert the task on the FT
+    FtDao.instance.enqueue(challenges_table_url, data)
+    # add the task as it was just indexed
+    indexer = FtIndexer.new()
+    indexer.index_task(task_id, self.id, redundancy)
+  end
+
+  def index_tasks
+   if Rails.env == "production"
+      FtIndexer.perform_async(self.id)
     else
-      false
+      FtIndexer.new().perform(self.id)
     end
   end
 
-
-  def self.clean_build_params(params)
-    matching = GOOGLE_TABLE_REG.match(params[:input_ft])
-    params[:input_ft] = matching[1] unless matching.nil?
-
-    matching = GOOGLE_TABLE_REG.match(params[:output_ft])
-    params[:output_ft] = matching[1] unless matching.nil?
-
-
-
-    params
+  def sync_answers
+    to_synch = self.answers.merge(Answer.to_synchronize)
+    FtDao.instance.sync_answers(to_synch)
   end
 
+  def synch_source_code
+    GistDao.instance.update_gists(gist_id, self.script)
+  end
+
+  def next_task(context)
+    task_manager.perform(context)
+  end
+
+  ########## PERSISTENCE AND MODEL ATTRIBUTE #################
+
+  def task_manager
+    #choice of the task manager
+    (redundancy == -1)? TasksManagerFree.new(self) : TasksManager.new(self)
+  end
+
+  def gist_id
+    GIT_REG.match(gist_url)[1] unless gist_url.nil?
+  end
+
+  def answers_table_id
+    gf_table_id(answers_table_url)
+  end
+
+  def challenges_table_id
+    gf_table_id(challenges_table_url)
+  end
 
   def last_contributor(max_contributors = 5)
     self.answers.answered.order("answers.updated_at desc").limit(max_contributors)
   end
 
-  def schema
-    FtDao.instance.get_schema(self.output_ft)
+  def answer_schema
+    FtDao.instance.get_schema(answers_table_url)
   end
 
-  def delete_answers
-    ActiveRecord::Base.execute("DELETE FROM answers inner joins tasks on answers.task_id=tasks.id inner join apps on tasks.app_id = apps.id where apps.id = #{self.id}")
-    FtDao.instance.delete_all(app.output_ft)
+  def completion
+    {completed: self.answers.answered.count,
+      total: self.answers.count}
   end
 
-  def clone
-    clone = App.new
-    clone.name = "copy of #{self.name}"
-    clone.description = "copy of #{self.description}"
-    clone.input_ft = self.input_ft
-    clone.script = self.script
-    clone.gist_id = GistDao.instance.fork_gists(self.gist_id) unless (self.gist_id.nil?)
-    clone.redundancy = self.redundancy
-    clone.iframe_width = self.iframe_width
-    clone.iframe_height = self.iframe_height
-    return clone
-  end
-
-  def index_tasks_start
-   if Rails.env == "production"
-      index_tasks_async()
-    else
-      index_tasks()
-    end
-  end
-
-  def index_tasks_async
-    self.status = STATE_INDEXING
-    self.save
-    FtIndexer.perform_async(self.id)
-  end
-
-  def index_tasks
-    i = 0
-    self.tasks.destroy_all
-    Task.transaction do
-      FtDao.instance.import(self.input_ft, self.task_column) do |task_id|
-        unless task_id.blank?
-          task = Task.create(:input_task_id=> task_id.to_i, :app_id => self.id)
-          if (self.redundancy > 0)
-            self.redundancy.times do
-              task.answers << Answer.create!(:state => Answer::STATE[:AVAILABLE])
-            end
-          end
-          task.save
-          i = i + 1
-          break if (i > MAX_ANSWERS)
-        end
-      end
-    end
-    self.status = STATE_READY
-    self.save
-  end
-
-
-  def add_task(rows)
-    # increment the task_id
-    last_known_task = self.tasks.order('input_task_id desc').first
-    task_id = last_known_task.input_task_id + 1
-    rows.each { |row|
-      row[self.task_column] = task_id
-    }
-    # insert the task on the FT
-    FtDao.instance.enqueue(self.input_ft, rows)
-
-    # add the task as it was just indexed
-    task = Task.create(:input_task_id => task_id, :app_id => self.id)
-      if (self.redundancy > 0)
-        self.redundancy.times do
-          task.answers << Answer.create!(:state => Answer::STATE[:AVAILABLE])
-        end
-      end
-    task.save
-    task
-  end
-
-  def self.create_basic_answers_table(email)
-    schema = [{"name" => "answer_id", "type" => "number"},
-              {"name" => "task_id", "type" => "number"},
-              {"name" => "user_id", "type" => "string"},
-              {"name" => "created_at", "type" => "datetime"},
-              {"name" => "content", "type" => "string"}]
-    FtDao.instance.create_table_smart("Answers Table", schema, email)
-  end
-
-  def self.create_basic_tasks_table(email)
-    schema = [{"name" => "task_id", "type" => "number"}, {"name" => "input", "type" => "string"}]
-    FtDao.instance.create_table_smart("Tasks Table", schema, email)
-  end
-
-  def create_FT_user_table(schema_param, email)
-    schema = [{"name" =>"user_id", "type" => "string"},
-            {"name" => "app", "type" => "string"},
-            {"name" => "nb_tasks_done", "type" => "number"},
-            {"name" => "last_activity", "type" => "datetime"},
-            {"name" => "answer", "type" => "string"}]
-    schema = ActiveSupport::JSON.decode(schema_param) unless schema_param.blank?
-    FtGenerator.perform_async(self.id, schema, email)
-  end
-
-  def sync_answers
-    to_synch = self.answers.merge(Answer.to_synchronize)
-    puts "#{to_synch.size} answers to synchronize from app #{self.name}"
-    if (to_synch.size > 0)
-      FtDao.instance.sync_answers(to_synch)
-    end
-  end
-
-  def synch_gist
-    #create gist if not existing
-    if gist_id.nil?
-      self.gist_id = GistDao.instance.create_gists(self.name, self.script)
-      self.save
-      Rails.log("creating Gists")
-    else
-      GistDao.instance.update_gists(gist_id, self.script)
-      Rails.log("updating Gists")
-    end
-    gist_id
-  end
-
-  def next_task(context)
-    #choice of the task manager
-    tm = if (self.redundancy == -1)
-      TasksManagerFree.new(self)
-    else
-      TasksManager.new(self)
-    end
-    tm.perform(context)
-  end
-
-  def gist_id
-    GIT_REG.match(gist_url)[1]
-  end
-
-  def gist_id=(gist_id)
-    self.gist_url = "https://gist.github.com/#{gist_id}"
-  end
-
-  def gf_answers_id
-    gf_table_id(gf_answers_url)
-  end
-
-  def gf_tasks_id
-    gf_table_id(gf_tasks_url)
+  def next_generated_task_id
+    last_known_task = app.tasks.order('input_task_id desc').first
+    last_known_task.input_task_id + 1
   end
 
 protected
 
   def gf_table_id(gf_table_url)
      GOOGLE_TABLE_REG.match(gf_table_url)[1]
+  end
+
+ def clone_gist(gist_id = self.gist_id)
+    cloned_gist_id = GistDao.instance.fork_gists(gist_id)
+    "https://gist.github.com/#{gist_id}"
+  end
+
+  def clone_answers_table
+    clone_table_id = FtDao.clone_table(answers_table_id, table_name, user.email)
+    "https://www.google.com/fusiontables/DataSource?docid=#{clone_table_id}"
   end
 
 end

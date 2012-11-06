@@ -4,9 +4,9 @@
     <li class="active" ><a href="#">dashboard</a></li>
 <% end %>
 
-<% content_for :app_header, @app_header %>
+<% content_for :menu_header, @app_header %>
 <% content_for :header, @header %>
-<style type="">
+<style>
 section{margin-top:10px;}
 </style>
 
@@ -35,9 +35,9 @@ section{margin-top:10px;}
       </section>
 
       <section>
-        <h4>Activity</h4>
+        <h4>challenges solved</h4>
         <% completed, size=@app.completion %>
-        <%= completed %> / <%= size %> challenges solved.
+        <%= completed %> / <%= size %>
         <div class="progress progress-info  progress-striped">
           <div class="bar" style="width: <%= completed.to_f/size.to_f*100 %>%;"></div>
         </div>
