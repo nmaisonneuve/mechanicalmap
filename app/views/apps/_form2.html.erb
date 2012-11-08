@@ -1,0 +1,52 @@
+<% script = capture do %>
+  <%= javascript_include_tag "app_edit" %>
+<% end %>
+<% content_for :script, script %>
+
+<%= semantic_form_for(@app,:html => {:class => 'form-horizontal', :id => "form_app"}) do |f| %>
+  <% if @app.errors.any? %>
+    <div id="error_explanation">
+      <h2>Errors prohibited this app from being saved</h2>
+      <%= f.semantic_errors %>
+    </div>
+  <% end %>
+
+  <%= f.inputs  :name => "Basic" do %>
+    <%= f.input :name, :placeholder => "name of the app"  %>
+    <%= f.input :description,:placeholder => "Short description in HTML", :input_html => {:rows => 5} %>
+    <%= f.input :image_url, :label =>"Image url",:placeholder => "image url" %>
+  <% end %>
+
+  <%= f.inputs :name => "Cloud Elements" do %>
+    <%= f.input :challenges_table_url,
+                :label =>"URL of the Challenges table to index",
+                :hint => "Created automatically if left blank",
+                :placeholder => "URL of a google fusion table" %>
+    <% if @edit %>
+    <a href="reindex" class="btn"/>Reindexing Challenges</a>
+    <% end %>
+    <div id="link_challenges"></div>
+    <%= f.input :answers_table_url,
+                :label => "URL of the Answers table to store data",
+                :placeholder => "URL of a google fusion table",
+                :hint => "Created automatically if left blank" %>
+    <div id="link_answers"></div>
+    <%= f.input :gist_url,
+                :label => "App Source Code URL",
+                :placeholder => "https://gist.github.com/3028982",
+                :hint => "(default code forked if left blank)" %>
+  <% end %>
+
+  <%= f.inputs :name => "Problem solving strategy" do %>
+    <%= f.input :redundancy,
+                :label => " How many solvers per challenge? ",
+                :placeholder => "3",
+                :hint => "(0 for unlimited allocation)" %>
+  <% end %>
+
+  <%= f.actions do %>
+   <%= f.submit "Create & Start coding online", :class =>"btn btn-primary btn-large", :disable_with => 'Wait...'  %>
+  <% end %>
+
+  </div>
+<% end %>

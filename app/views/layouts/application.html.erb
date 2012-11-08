@@ -25,34 +25,27 @@
     <div class="navbar-inner">
       <div class="container" >
         <a class="brand" href="/">microapp.io</a>
-          <div class="nav-collapse collapse">
+        <div class="nav-collapse collapse">
+          <% if content_for?(:menu_header) %>
+            <%= content_for(:menu_header)  %>
+          <% else %>
             <ul class="nav">
-              <% if content_for?(:menu_header)  %>
-                 <%= content_for(:menu_header)  %>
-              <% else %>
-                <li class="<%= 'active' if current_page?(apps_path) %>">
-                  <a href="/apps">apps</a>
-                </li>
-                <li class="<%= 'active' if current_page?(new_app_path) %>">
-                  <a href="/apps/new">new app</a>
-                </li>
-              <% end %>
+              <li> <a href="/apps">Explore apps</a></li>
+              <li class="active"><a href="/apps/new">Create an app</a></li>
             </ul>
-          </div>
+          <% end %>
+          <% if user_signed_in? %>
+            <%= link_to "Sign out", destroy_user_session_path, :method => :delete , :class=>"btn btn-small btn-primary pull-right" %>
+          <% else %>
+            <%= link_to "Sign in", new_user_session_path, :class=>"btn btn-small btn-primary pull-right"  %>
+          <% end %>
 
-          <div class="nav pull-right">
-            <ul class="nav">
-              <li>
-                <a href="#" ><%= current_or_guest_username %></a>
-              </li>
-            </ul>
-            <% if user_signed_in? %>
-            <%= link_to "Sign out", destroy_user_session_path, :method => :delete , :class=>"btn btn-small btn-primary" %>
-            <% else %>
-            <%= link_to "Sign in", new_user_session_path, :class=>"btn btn-small btn-primary"  %>
-            <% end %>
-          </div>
-          <%= content_for(:header)  %>
+          <ul class="nav pull-right">
+            <li>
+              <a href="#" ><%= current_or_guest_username %></a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

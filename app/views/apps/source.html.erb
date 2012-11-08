@@ -1,40 +1,25 @@
-<% @header = capture do %>
+<% header = capture do %>
+  <ul class="nav">
+    <li> <a href="/apps">Explore apps</a></li>
+    <li> <%= link_to @app.name[0..20], app_path(@app) %></li>
+    <li class="active"><%= link_to "Source code", source_app_path(@app) %></li>
+    <li> <a href="https://gist.github.com/<%= @app.gist_id %>" target="_blank" class="">Gist History</a></li>
+  </ul>
 
-<%= form_for(@app, :url => {:action => "source_update"}, :html => {:id => "form_app"}, :remote => true) do |f| %>
-
+  <%= form_for(@app, :url => {:action => "source_update"}, :html => {:id => "form_app"}, :remote => true) do |f| %>
     <input type="hidden" name="app[script]" id="app_script" value=""/>
-  <div class="nav">
-    <button class="btn btn-primary" data-disable-with="Saving..."
-            id="update"
-            <% if @app.user!=current_user %> disabled="true"
-            <% end %>>Update code
-    </button>
-  </div>
-     <% unless @app.gist_id.blank? %>
-      <ul class="nav">  <li>
-          <a href="https://gist.github.com/<%= @app.gist_id %>" target="_blank" class="">Gist History</a>
-        </li>
-      </ul>
-    <% end %>
-
+    <div class="nav">
+      <button class="btn btn-primary" data-disable-with="Saving..."
+              id="update"> Save
+      </button>
+    </div>
+  <% end %>
 <% end %>
 
-<% end %>
+<% content_for :menu_header, header %>
 
-<% content_for :header, @header %>
+<style type="text/css" media="screen">
 
-<% @app_header = capture do %>
-    <li><%= link_to @app.name[0..20], app_path(@app) %></li>
- 
-<% end %>
-<% content_for :app_header, @app_header %>
-
-  <style type="text/css" media="screen">
-
-
-      body {
-
-      }
       form{
         margin:0px;
       }
@@ -49,7 +34,7 @@
 
 
 
-  
+
     <div id="editor"><%= @app.script %></div>
 
 

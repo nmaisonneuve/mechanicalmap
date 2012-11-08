@@ -1,7 +1,7 @@
 class FtIndexer
 
-  MAX_ANSWERS=10000
-  MAX_TASKS=10000
+  MAX_ANSWERS = 10000
+  MAX_TASKS = 10000
 
   include Sidekiq::Worker
 

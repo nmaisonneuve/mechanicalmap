@@ -7,6 +7,8 @@ class FtDao
   include Singleton
 
   SERVICE_URL = "https://tables.googlelabs.com/api/query"
+  TABLE_BASE_URL = "https://www.google.com/fusiontables/DataSource?docid="
+
   MAXIMUM_INSERT=499 #maximum insert queries according to https://developers.google.com/fusiontables/docs/developers_guide
 
   ANSWERS_SCHEMA = [
@@ -48,7 +50,6 @@ class FtDao
     sql="sql=" + CGI::escape(sql)+"&encid=true" #encrypted table id
     resp = @ft.post(SERVICE_URL, sql)
     table_id = resp.body.split("\n")[1].chomp
-    table_id
   end
 
   def create_table_for_owner(table_name, columns,user_email)
@@ -87,7 +88,6 @@ class FtDao
     <entry xmlns="http://www.w3.org/2005/Atom" xmlns:gAcl='http://schemas.google.com/acl/2007'> <category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/acl/2007#accessRule'/><gAcl:role value='reader'/> <gAcl:scope type="default"/> </entry>
     EOF
 
-    #TODO handling errors
     response = @doclist.post("https://docs.google.com/feeds/default/private/full/#{table_id}/acl", acl_entry_visibility).to_xml
   end
 

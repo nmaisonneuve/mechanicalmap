@@ -2,12 +2,12 @@ Mechanicalmap::Application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-
-
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
-   resources :apps do
+  resources :app_steps
+
+  resources :apps do
     get 'reindex', :on => :member
     get 'dashboard', :on => :member
     get 'delete_answers', :on => :member

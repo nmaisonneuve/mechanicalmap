@@ -7,8 +7,7 @@ function create_gf_table(mode, form_field, callback) {
   $.getJSON("/apps/create_gf_table.json?table=" + mode, function(data) {
       $(form_field).val(GF_TABLE_BASE_URL + data.ft_table_id);
       $('#create_' + mode).hide();
-      link = $("<a href='" + GF_TABLE_BASE_URL + data.ft_table_id + "' target='_blank' >see/modify the table</a>");
-      $('#link_' + mode).append(link);
+
   });
 }
 
@@ -18,10 +17,10 @@ function url_google(ft_table) {
     return 'https://www.googleapis.com/fusiontables/v1/query?sql=' + encodeURI(sqlquery) + "&key=" + key;
 }
 
-function load_schema(url, callback_fct) {
+function load_schema(ft_table_id, callback_fct) {
     var columns = [];
     $.ajax({
-        url: url,
+        url: url_google(ft_table_id),
         success: function(data) {
             $.each(data.rows, function(i, row) {
                 columns.push(row[1]);
@@ -39,8 +38,8 @@ function load_schema(url, callback_fct) {
 }
 
 function retrieve_columns_names() {
-    var ft_table = $('#app_challenges_table_url').val().replace(GF_TABLE_BASE_URL, "");
-    load_schema(url_google(ft_table), function(columns) {
+    var ft_table_id = $('#app_challenges_table_url').val().replace(GF_TABLE_BASE_URL, "");
+    load_schema(ft_table_id, function(columns) {
         select = $("#app_task_column");
         select.html("");
         options = "";
@@ -52,35 +51,28 @@ function retrieve_columns_names() {
     });
 }
 
-$(function() {
-    $('a[rel=popover]').popover({
-        placement: 'right',
-        offset: 5,
-        html: true
-    });
-
-
-    $('#create_tasks').click(function(event) {
-      create_gf_table("tasks", '#app_challenges_table_url', function(){
-        retrieve_columns_names();
-      });
-      return false;
-    });
-
-    $('#create_answers').click(function(event) {
-      create_gf_table("answers", '#app_answers_table_url', function(){});
-      return false;
-    });
-
-    $('#app_challenges_table_url').change(function() {
-        retrieve_columns_names();
-    });
-
-    $("#save").click(function() {
-        $("#form_app").submit();
-    });
-
-    if ($('#app_challenges_table_url').val() != "") {
+function process_table(mode){
+  url = $("#app_"+mode+"_table_url").val();
+  if (url != "") {
+    if (mode == "challenges") {
       retrieve_columns_names();
     }
+    link = $("<a href='"+url+"' target='_blank' >view/modify the table</a>");
+    $('#link_' + mode).append(link);
+  }
+}
+
+$(function() {
+  $('a[rel=popover]').popover({
+      placement: 'right',
+      offset: 5,
+      html: true
+  });
+
+  $('#app_challenges_table_url').change(function() {
+      process_table("challenges");
+  });
+
+  process_table("challenges");
+  process_table("answers");
 });

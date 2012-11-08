@@ -16,15 +16,15 @@ gem "omniauth-twitter"
 gem 'omniauth-google-oauth2'
 gem "omniauth-facebook"
 
-# wizard form
-gem 'wicked'
-#gem "validate_url"
+
+
 
 gem 'color'
 #gem "RedCloth"
 gem "fusion_tables"
 gem "nofxx-georuby"
 gem "whenever"
+
 
 group :development, :test do
   gem 'sqlite3'
@@ -35,14 +35,16 @@ group :production do
   gem 'thin'
 end
 
+gem "less-rails"
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'formtastic'
+gem 'formtastic-bootstrap'
+gem 'coffee-rails'
+gem 'backbone-on-rails'
+gem 'therubyracer'
 
-  gem 'coffee-rails'
-  gem 'backbone-on-rails'
-  gem 'therubyracer'
-  gem "less-rails"
-  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-  gem 'uglifier'
-  gem 'ace-rails',  :git => 'git://github.com/jbfeldis/ace-rails.git'
+gem 'uglifier'
+gem 'ace-rails',  :git => 'git://github.com/jbfeldis/ace-rails.git'
 
 
 # Deploy with Capistrano

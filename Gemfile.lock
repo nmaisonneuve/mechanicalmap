@@ -92,6 +92,11 @@ GEM
     facter (1.6.14)
     faraday (0.8.4)
       multipart-post (~> 1.1)
+    formtastic (2.2.1)
+      actionpack (>= 3.0)
+    formtastic-bootstrap (2.0.0)
+      formtastic (~> 2.2)
+      formtastic-bootstrap
     fusion_tables (0.3.1)
       gdata_19 (>= 1.1.2)
     gdata_19 (1.1.5)
@@ -230,9 +235,6 @@ GEM
     whenever (0.7.3)
       activesupport (>= 2.3.4)
       chronic (~> 0.6.3)
-    wicked (0.3.0)
-      activesupport (>= 3.0.7)
-      rails (>= 3.0.7)
 
 PLATFORMS
   ruby
@@ -245,6 +247,8 @@ DEPENDENCIES
   coffee-rails
   color
   devise
+  formtastic
+  formtastic-bootstrap
   fusion_tables
   gravatar_image_tag
   jquery-rails
@@ -266,4 +270,3 @@ DEPENDENCIES
   twitter-bootstrap-rails!
   uglifier
   whenever
-  wicked

@@ -3,6 +3,8 @@ class AppsController < ApplicationController
   before_filter :get_app, :except => [:index, :new, :create, :create_gf_table]
   before_filter :redirect_unless_owner, :except => [:index, :dashboard, :user_stats, :show, :new, :create_gf_table, :create]
 
+
+
   # GET /apps
   # GET /apps.json
   def index
@@ -23,11 +25,9 @@ class AppsController < ApplicationController
   def new
     unless params[:copyof].blank?
       @app = App.find(params[:copyof]).clone
-      @schema = FtDao.instance.get_schema(original.output_ft).to_json.to_s
       @cloned = true
     else
       @app = App.new
-      @schema = ""
       @cloned = false
     end
   end
@@ -35,17 +35,12 @@ class AppsController < ApplicationController
   # POST /apps
   # POST /apps.json
   def create
+    params[:app][:user_id] = current_user.id
     @app = App.create(params[:app])
     if @app.save
-      respond_to do |format|
-        format.html { redirect_to source_app_path(@app), notice: 'app was successfully created.' }
-        format.json { render json: @app, status: :created, location: @app }
-      end
+      redirect_to source_app_path(@app), notice: 'app was successfully created.'
     else
-      respond_to do |format|
-        format.html { render action: "new" }
-        format.json { render json: @app.errors, status: :unprocessable_entity }
-      end
+      render :new
     end
   end
 
@@ -58,7 +53,7 @@ class AppsController < ApplicationController
   end
 
   def reindex
-    @app.index_tasks_start
+    @app.index_tasks
     redirect_to app_path(@app), notice: 'Reindexing tasks'
   end
 
