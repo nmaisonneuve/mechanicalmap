@@ -7,10 +7,10 @@
         <a rel="div" href="#embed_<%= @app.id %>" class="btn <%= _button_size %> btn-danger" style="margin-left:10px">spread it</a>
         <a href="/apps/new?copyof=<%= @app.id %>" class="btn <%= _button_size %> btn-danger"    target="_parent">clone it</a>
         <a href="/apps/<%= @app.id %>/source" class="btn <%= _button_size %> btn-primary" style="margin-left:10px"    target="_blank">source code</a>
-        <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.input_ft %>"
-                    class="btn <%= _button_size %> btn-primary"    target="_blank">task data</a>
-        <a href="http://www.google.com/fusiontables/DataSource?docid=<%= @app.output_ft %>"
-                    class="btn <%= _button_size %> btn-primary"    target="_blank" >answer data</a>
+        <a href="<%= @app.challenges_table_url %>"
+                    class="btn <%= _button_size %> btn-primary"    target="_blank">Challenges data</a>
+        <a href="<%= @app.answers_table_url %>"
+                    class="btn <%= _button_size %> btn-primary"    target="_blank" >Answers data</a>
     </div>
     <div width="100%" id="embed_<%= @app.id %>" class="input" style="display:none;clear:both;">
         copy &amp; paste this code to your web site to support further contributions

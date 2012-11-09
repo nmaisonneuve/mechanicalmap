@@ -56,7 +56,8 @@ class Gist
     query="/gists/#{@gist_id}/fork?access_token=#{TOKEN}"
     req = Net::HTTP::Post.new(query)
     result = execute_request(req)
-    Gist.new(result["id"])
+    p result
+    Gist.new(result["id"].to_i)
   end
 
   protected

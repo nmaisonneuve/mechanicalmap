@@ -36,7 +36,7 @@ window.GFTask = Backbone.Model.extend({
       }
     return data;
   },
-  
+
   parse: function(resp) {
     if (resp.gftable!=undefined) {
       return resp;
@@ -51,7 +51,7 @@ window.GFTask = Backbone.Model.extend({
 
       Backbone.sync(method,model,options);
   },
-  
+
   sql: function(){
     var gftable = this.get('gftable');
     return "SELECT * FROM " + gftable.ft_table + " WHERE " + gftable.ft_task_column + " = '" + this.id + "'";
@@ -62,7 +62,7 @@ window.GFTask = Backbone.Model.extend({
     return this.ft_query("SELECT * FROM " + gftable.ft_table + " WHERE " + gftable.ft_task_column + " = '" + this.id + "'");
   },
 
-  ft_query: function(sql) {   
+  ft_query: function(sql) {
     return 'https://www.googleapis.com/fusiontables/v1/query?sql=' + encodeURI(sql) + "&key=" + this.google_api_key;
   }
 });
@@ -93,13 +93,13 @@ var DefaultTaskManager =  Backbone.Model.extend({
     this.models = this.tasks.models;
     this.tasks.on("no_task",function(){this.notask = true;},this);
   },
-  
+
   caching: function(last_task, callback,no_task_handler){
-      
+
     if ((this.tasks.models.length <= this.cache_size && (!this.notask))) {
-      
+
       var me = this;
-      
+
       var success = function(task){
         if (callback) callback();
         me.caching(task.id); //and cache further tasks
@@ -111,14 +111,14 @@ var DefaultTaskManager =  Backbone.Model.extend({
           me.notask = true;
           if (no_task_handler) no_task_handler.trigger("no_task");
       }});
-      
+
     }
   },
-  
+
   last_task_id:function (){
     return (this.models.length === 0 || this.models[this.models.length - 1].isNew())? "" : this.models[this.models.length - 1].id;
   },
-  
+
   get :function(id){
     return this.tasks.get(id);
   },
@@ -133,25 +133,25 @@ var DefaultTaskManager =  Backbone.Model.extend({
       this.nb_task_done++;
       this.trigger("task_answered");
   },
-  
+
   next: function(options){
 
     var last_task_id = this.last_task_id();
-    
+
     var me = this;
-    
+
     var consume = function(){
       var task = me.models.shift();
       task.on("answered",me.saved,me);
       me.current_task = task;
       me.trigger("next_task",task);
     };
-    
+
     if (this.tasks.models.length > 0){
       consume();
       this.caching(last_task_id);  //and cache further tasks
     }
-    
+
     else{
       if (!this.notask){
         this.trigger("loading_task");
@@ -181,10 +181,13 @@ VolatileTaskApp = Class.extend({
   },
 
   start: function(route) {
+    console.log(this.router);
   // Trigger the initial route and enable HTML5 History API support, set the
   // root folder to '/' by default.  Change in app.js.
   // pushState: true,
-    Backbone.history.start({root: this.root_url+"/"}); 
+    console.log(this.root_url);
+    console.log(Backbone.history);
+    Backbone.history.start({root: this.root_url+"/"});
     this.navigate(route);
  }
 });

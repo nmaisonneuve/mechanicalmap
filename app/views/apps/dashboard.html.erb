@@ -1,13 +1,14 @@
 <% @app_header = capture do %>
-    <li><a href="/apps">apps</a></li>
+<ul class="nav">
+    <li><a href="/apps">Explore apps</a></li>
     <li><%= link_to @app.name[0..20], app_path(@app) %></li>
     <li class="active" ><a href="#">dashboard</a></li>
+</ul>
 <% end %>
 
 <% content_for :menu_header, @app_header %>
-<% content_for :header, @header %>
 <style>
-section{margin-top:10px;}
+  section{ margin-top:10px; }
 </style>
 
 <div class="container">
@@ -35,12 +36,16 @@ section{margin-top:10px;}
       </section>
 
       <section>
-        <h4>challenges solved</h4>
-        <% completed, size=@app.completion %>
-        <%= completed %> / <%= size %>
+        <h4>challenges answered</h4>
+        <% completion = @app.completion %>
+        <% if completion[:total] == 0 %>
+        No challenge indexed
+        <% else %>
+        <%= completion[:completed] %> / <%= completion[:total] %>
         <div class="progress progress-info  progress-striped">
-          <div class="bar" style="width: <%= completed.to_f/size.to_f*100 %>%;"></div>
+          <div class="bar" style="width: <%= completion[:completed] *100/completion[:total] %>%;"></div>
         </div>
+        <% end %>
       </section>
 
       <section>

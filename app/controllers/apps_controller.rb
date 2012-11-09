@@ -78,7 +78,8 @@ class AppsController < ApplicationController
 
   def source_update
     if @app.update_attributes(params[:app])
-      render json: {"gist_id" => @app.synch_gist}.to_json
+       @app.upload_source_code
+      render json: {"gist_id" => @app.gist_id}.to_json
     else
       render json: @app.errors, status: :unprocessable_entity
     end

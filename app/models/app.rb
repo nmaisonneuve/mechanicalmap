@@ -156,7 +156,7 @@ protected
   end
 
   def clone_answers_table
-    clone_table_id = FtDao.clone_table(answers_table_id, table_name, user.email)
+    clone_table_id = FtDao.clone_table(answers_table_id,"Answers Table", user.email)
     "https://www.google.com/fusiontables/DataSource?docid=#{clone_table_id}"
   end
 

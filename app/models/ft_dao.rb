@@ -32,7 +32,7 @@ class FtDao
   end
 
   def self.clone_table(table_id, table_name, owner_email)
-    schema = get_schema(table_id)
+    schema = FtDao.instance.get_schema(table_id)
     FtDao.instance.create_table_for_owner(table_name, schema, owner_email)
   end
 
