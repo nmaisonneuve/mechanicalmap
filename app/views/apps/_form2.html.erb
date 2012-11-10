@@ -17,9 +17,9 @@
     <%= f.input :image_url, :label =>"Image url",:placeholder => "image url" %>
   <% end %>
 
-  <%= f.inputs :name => "Cloud Elements" do %>
+  <%= f.inputs :name => "Problem - Cloud Elements" do %>
     <%= f.input :challenges_table_url,
-                :label =>"URL of the Challenges table to index",
+                :label =>"URL of Challenges data to index",
                 :hint => "Created automatically if left blank",
                 :placeholder => "URL of a google fusion table" %>
     <% if @edit %>
@@ -27,17 +27,17 @@
     <% end %>
     <div id="link_challenges"></div>
     <%= f.input :answers_table_url,
-                :label => "URL of the Answers table to store data",
+                :label => "URL to store micro-contributions",
                 :placeholder => "URL of a google fusion table",
                 :hint => "Created automatically if left blank" %>
     <div id="link_answers"></div>
     <%= f.input :gist_url,
-                :label => "App Source Code URL",
+                :label => "UI Source Code URL",
                 :placeholder => "https://gist.github.com/3028982",
                 :hint => "(default code forked if left blank)" %>
   <% end %>
 
-  <%= f.inputs :name => "Problem solving strategy" do %>
+  <%= f.inputs :name => "Problem - predefined solving strategy" do %>
     <%= f.input :redundancy,
                 :label => " How many solvers per challenge? ",
                 :placeholder => "3",

@@ -1,11 +1,10 @@
-<style type="text/css">
-section{
-    border-radius: 15px;
-    -moz-border-radius: 15px;
-    margin:1em;
-    background-color: #FFF;
-}
-</style>
+<% app_header = capture do %>
+<ul class="nav">
+  <li class="active"> <a href="/apps">Explore apps</a></li>
+  <li ><a href="/apps/new">Create an app</a></li>
+</ul>
+<% end %>
+<% content_for :menu_header, app_header %>
 
 <div class="container">
   <%
@@ -14,7 +13,7 @@ section{
     completed, size= @app.completion
     u = @app.user
   %>
-      <div class="row-fluid">
+      <div class="row">
         <div class="span12">
            <h3><%= link_to app.name, dashboard_app_path(app) %>
             <small> created <%= time_ago_in_words(app.created_at) %> ago</small>

@@ -50,7 +50,10 @@ class App < ActiveRecord::Base
   def complete_with_default_values
     self.gist_url = Gist.new(BASIC_APP_GIST_ID).clone.url if gist_url.blank?
     self.answers_table_url = FusionTable.new(BASIC_APP_ANSWERS_TABLE_ID).clone(user.email).url if answers_table_url.blank?
-    self.challenges_table_url = FusionTable.new(BASIC_APP_CHALLENGES_TABLE_ID ).clone(user.email).url if challenges_table_url.blank?
+    if challenges_table_url.blank?
+      self.challenges_table_url = FusionTable.new(BASIC_APP_CHALLENGES_TABLE_ID ).clone(user.email).url
+      self.add_task({input: "my data"})
+    end
     self.image_url = "http://payload76.cargocollective.com/1/2/88505/3839876/02_nowicki_poland_1949.jpg" if image_url.blank?
   end
 
@@ -159,7 +162,7 @@ class App < ActiveRecord::Base
 
   def next_generated_task_id
     last_known_task = app.tasks.order('input_task_id desc').first
-    last_known_task.input_task_id + 1
+    (last_known_task.nil?)? 1 : last_known_task.input_task_id + 1
   end
 
 protected
