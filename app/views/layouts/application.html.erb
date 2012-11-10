@@ -35,7 +35,9 @@
             </ul>
           <% end %>
           <% if user_signed_in? %>
-            <%= link_to "Sign out", destroy_user_session_path, :method => :delete , :class=>"btn btn-small btn-primary pull-right" %>
+            <%= link_to destroy_user_session_path, :method => :delete , :class=>"btn btn-small btn-primary pull-right"  do %>
+              Sign out <b class=" icon-off"></b>
+            <% end %>
           <% else %>
             <%= link_to "Sign in", new_user_session_path, :class=>"btn btn-small btn-primary pull-right"  %>
           <% end %>

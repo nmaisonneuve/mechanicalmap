@@ -25,6 +25,7 @@ class App < ActiveRecord::Base
   validates_presence_of :challenges_table_url
   validates_presence_of :answers_table_url
   validates_presence_of :gist_url
+  validates_presence_of :task_column
 
   validates_format_of :challenges_table_url, :with => GOOGLE_TABLE_REG
   validates_format_of :answers_table_url, :with => GOOGLE_TABLE_REG
@@ -52,7 +53,8 @@ class App < ActiveRecord::Base
     self.answers_table_url = FusionTable.new(BASIC_APP_ANSWERS_TABLE_ID).clone(user.email).url if answers_table_url.blank?
     if challenges_table_url.blank?
       self.challenges_table_url = FusionTable.new(BASIC_APP_CHALLENGES_TABLE_ID ).clone(user.email).url
-      self.add_task({input: "my data"})
+      self.task_column = "task_id"
+      self.add_task([{input: "Hello world"}])
     end
     self.image_url = "http://payload76.cargocollective.com/1/2/88505/3839876/02_nowicki_poland_1949.jpg" if image_url.blank?
   end
@@ -94,7 +96,7 @@ class App < ActiveRecord::Base
 
     task_id = next_generated_task_id
     data.each { |row|
-      row[app.task_column] = task_id # we fill the new task_ID
+      row[self.task_column] = task_id # we fill the new task_ID
       ft.add_row(row)
     }
     ft.flush
@@ -161,7 +163,7 @@ class App < ActiveRecord::Base
   end
 
   def next_generated_task_id
-    last_known_task = app.tasks.order('input_task_id desc').first
+    last_known_task = self.tasks.order('input_task_id desc').first
     (last_known_task.nil?)? 1 : last_known_task.input_task_id + 1
   end
 

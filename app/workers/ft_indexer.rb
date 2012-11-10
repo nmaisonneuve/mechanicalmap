@@ -10,7 +10,7 @@ class FtIndexer
     index_tasks(app)
   end
 
-  def index_task(task_id, app_id, redundancy = 0)
+  def index(task_id, app_id, redundancy = 0)
   	task = Task.create(input_task_id: task_id, app_id: app_id)
     if (redundancy > 0)
     	redundancy.times do
@@ -28,7 +28,7 @@ class FtIndexer
     Task.transaction do
       FusionTable.new(app.challenges_table_id).import(app.task_column) do |task_id|
         unless task_id.blank?
-        	index_task(task_id, app.id, app.redundancy = 0)
+        	index(task_id, app.id, app.redundancy = 0)
           i = i + 1
           break if (i > MAX_ANSWERS)
         end

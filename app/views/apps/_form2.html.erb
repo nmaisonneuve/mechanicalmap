@@ -13,8 +13,14 @@
 
   <%= f.inputs  :name => "Basic" do %>
     <%= f.input :name, :placeholder => "name of the app"  %>
-    <%= f.input :description,:placeholder => "Short description in HTML", :input_html => {:rows => 5} %>
-    <%= f.input :image_url, :label =>"Image url",:placeholder => "image url" %>
+
+    <%= f.input :description,
+                :placeholder => "Short description in HTML",
+                :input_html => {:rows => 5} %>
+
+    <%= f.input :image_url,
+                :label =>"Image url",
+                :placeholder => "image url" %>
   <% end %>
 
   <%= f.inputs :name => "Problem - Cloud Elements" do %>
@@ -37,7 +43,7 @@
                 :hint => "(default code forked if left blank)" %>
   <% end %>
 
-  <%= f.inputs :name => "Problem - predefined solving strategy" do %>
+  <%= f.inputs :name => "Problem - Collaborative Solving strategy" do %>
     <%= f.input :redundancy,
                 :label => " How many solvers per challenge? ",
                 :placeholder => "3",
@@ -45,7 +51,17 @@
   <% end %>
 
   <%= f.actions do %>
-   <%= f.submit "Create & Start coding online", :class =>"btn btn-primary btn-large", :disable_with => 'Wait...'  %>
+  <% if @edit %>
+     <%= f.submit "update", :class =>"btn btn-primary", :disable_with => 'Wait...'  %>
+      <%= link_to 'delete App', @app, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger"  %>
+
+  <% else %>
+ <%= f.submit "Create & Start coding online", :class =>"btn btn-primary btn-large", :disable_with => 'Wait...'  %>
+  <% end %>
+
+
+
+
   <% end %>
 
   </div>

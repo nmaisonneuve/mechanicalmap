@@ -18,6 +18,7 @@ class FusionTable
   end
 
   def initialize (table_id_or_url)
+    @queries = []
     if table_id_or_url[/http/].nil?
       @table_id = table_id_or_url
     else
@@ -42,18 +43,18 @@ class FusionTable
   end
 
   def add_row(row, force_sync = false)
-    raise ArgumentError unless (rows.is_a? Hash)
+    raise ArgumentError unless (row.is_a? Hash)
 
-    @queries << "INSERT INTO #{table_id} (#{row.keys.join(",")}) VALUES (#{row.values.map { |value| "'#{value}'" }.join(",")});"
-    self.flush() if (@queries >= MAXIMUM_INSERT) || force_sync
+    @queries << "INSERT INTO #{@table_id} (#{row.keys.join(",")}) VALUES (#{row.values.map { |value| "'#{value}'" }.join(",")});"
+    self.flush() if (@queries.size >= MAXIMUM_INSERT) || force_sync
   end
 
 
   def import(task_column)
-    tasks_ids = request_sql("SELECT #{task_column}, count() FROM #{@table_id} group by #{task_column} ").body.split("\n")[1..-1]
-    tasks_ids.each { |task|
-      yield(task[task_column.to_sym])
-    }
+    request_sql("SELECT #{task_column}, count() FROM #{@table_id} group by #{task_column} ").body.split("\n")[1..-1].each do |cols|
+      cols = cols.split(",")
+      yield(cols[0])
+    end
   end
 
   def clone(owner_email = nil)
@@ -84,7 +85,7 @@ class FusionTable
 
   def flush()
       if @queries.size > 0
-        request_sql(queries.join(""))
+        request_sql(@queries.join(""))
         @queries = []
       end
   end

@@ -1,9 +1,11 @@
 <% app_header = capture do %>
 <ul class="nav">
 	<li> <a href="/apps">Explore apps</a></li>
-	<li class="active"><%= link_to @app.name[0..20], app_path(@app) %></li>
+	<%= render 'app_header' %>
 </ul>
 <% end %>
 <% content_for :menu_header, app_header %>
-
-<%= render 'form2' %>
+<% @edit = true %>
+<div class="container">
+	<%= render 'form2' %>
+</div>
