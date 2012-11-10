@@ -1,18 +1,20 @@
 class Answer < ActiveRecord::Base
 
-  STATE={
-    :AVAILABLE=>0,
-    :COMPLETED=>2
+  STATE = {
+    AVAILABLE: 0,
+    COMPLETED: 2
   }
 
-  belongs_to :user,  :touch => true
+  belongs_to :user, :touch => true
   belongs_to :task
   has_one :app, :through => :task
 
   scope :available, where(:state => STATE[:AVAILABLE])
-  scope :not_available, where("state!=?", STATE[:AVAILABLE])
-  scope :answered, where(:state => STATE[:COMPLETED]) 
+  scope :not_available, where("state != ?", STATE[:AVAILABLE])
+  scope :answered, where(:state => STATE[:COMPLETED])
   scope :to_synchronize, answered.where(:ft_sync=>false)
+
+
   #any kind of answer e.g string , json
   # interpreted by the related aggregator
   attr_accessible :state, :answer, :user, :ft_sync
@@ -24,26 +26,32 @@ class Answer < ActiveRecord::Base
   # if some fields are not present
   # we enriched the answers with default values
   def input_from_form(rows)
-    rows.each { |row|
-      if row["answer_id"].blank?
-        # random number
-        # o = [(0..9), ('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
-        # (0..9).map { o[rand(o.length)] }.join 
-        row["answer_id"] = self.id
-      end
-      row["task_id"] = self.task.input_task_id if row["task_id"].blank?
-      row["user_id"] = self.user.username if row["user_id"].blank?
-      row["created_at"] = DateTime.now if row["created_at"].blank?
+    default_options = {
+      "task_id" => self.task.input_task_id,
+      "answer_id" => self.id,
+      "user_id" => self.user.username,
+      "created_at" => DateTime.now
     }
-    self.answer = rows.to_json
+    self.answer = rows.map { |row|
+      row.merge(default_options) { |key, v1, v2| v1 }
+    }.to_json
   end
-  
-  def as_json(options={})
+
+  # as fusion table row
+  def as_ft_row()
+    begin
+      ActiveSupport::JSON.decode(self.answer)
+    rescue
+      YAML::load(self.answer)
+    end
+  end
+
+  def as_json(options = {})
     {
-      :user=>(self.user.nil?)? nil : self.user.username,
-      :updated_at=>self.updated_at,
-      :content=> self.answer,
-      :state=> STATE.invert[state]
+      :user => (self.user.nil?)? nil : self.user.username,
+      :updated_at => self.updated_at,
+      :content => self.answer,
+      :state => STATE.invert[state]
     }
-  end  
+  end
 end

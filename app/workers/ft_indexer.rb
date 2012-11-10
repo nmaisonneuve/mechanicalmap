@@ -26,9 +26,9 @@ class FtIndexer
     app.update_attribute(:status, App::STATE[:INDEXING])
     app.tasks.destroy_all
     Task.transaction do
-      FtDao.instance.import(app.challenges_table_id, app.task_column) do |task_id|
+      FusionTable.new(app.challenges_table_id).import(app.task_column) do |task_id|
         unless task_id.blank?
-        	index_task(task_id, app.id, @app.redundancy = 0)
+        	index_task(task_id, app.id, app.redundancy = 0)
           i = i + 1
           break if (i > MAX_ANSWERS)
         end

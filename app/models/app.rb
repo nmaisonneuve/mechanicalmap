@@ -8,6 +8,14 @@ class App < ActiveRecord::Base
   GOOGLE_TABLE_REG = /https:\/\/www\.google\.com\/fusiontables\/DataSource\?docid=(.*)/
   GIST_REG = /https:\/\/gist\.github.com\/(.*)/
 
+  # BASIC APP
+  # with basic challenges and answers tables
+  # TO MOVE as template
+  BASIC_APP_GIST_ID = 3543287
+  BASIC_APP_CHALLENGES_TABLE_ID = "1s6M2D5zZ5SC-kAvD5uJWHKEIeuivG_my9NbhkgA"
+  BASIC_APP_ANSWERS_TABLE_ID = "17WOhmCa0DtVhGCcxDODljcbrZvLaJM8lURz4Tu4"
+
+
   has_many :tasks, :dependent => :destroy
   has_many :answers, :through => :tasks
   has_many :contributors, :through => :answers, :source => :user, :uniq => true
@@ -40,9 +48,9 @@ class App < ActiveRecord::Base
   after_create :post_processing
 
   def complete_with_default_values
-    self.gist_url = Gist.new(3543287).clone.url if gist_url.blank?
-    self.answers_table_url = FtDao::TABLE_BASE_URL + FtDao.create_answers_table(user.email) if answers_table_url.blank?
-    self.challenges_table_url = FtDao::TABLE_BASE_URL + FtDao.create_challenges_table(user.email) if challenges_table_url.blank?
+    self.gist_url = Gist.new(BASIC_APP_GIST_ID).clone.url if gist_url.blank?
+    self.answers_table_url = FusionTable.new(BASIC_APP_ANSWERS_TABLE_ID).clone(user.email).url if answers_table_url.blank?
+    self.challenges_table_url = FusionTable.new(BASIC_APP_CHALLENGES_TABLE_ID ).clone(user.email).url if challenges_table_url.blank?
     self.image_url = "http://payload76.cargocollective.com/1/2/88505/3839876/02_nowicki_poland_1949.jpg" if image_url.blank?
   end
 
@@ -54,22 +62,19 @@ class App < ActiveRecord::Base
   # delete all answers without
   # deleting the challenges
   def delete_answers
-    ActiveRecord::Base.execute("DELETE FROM answers inner joins tasks on answers.task_id=tasks.id inner join apps on tasks.app_id = apps.id where apps.id = #{self.id}")
-    FtDao.instance.delete_all(app.answers_table_url)
+    ActiveRecord::Base.execute("DELETE FROM answers inner joins tasks on answers.task_id = tasks.id inner join apps on tasks.app_id = apps.id where apps.id = #{self.id}")
+    FusionTable.new(answers_table_url).drop()
   end
 
   def clone
-    clone = App.new
-    clone.name = "Copy of #{self.name}"
-    clone.description = "copy of #{self.description}"
-    clone.challenges_table_url = self.challenges_table_url
-    clone.answers_table_url = clone_answers_table
-    clone.gist_url = Gist.new(gist_id).clone.url
-    clone.script = self.script
-    clone.redundancy = self.redundancy
-    clone.iframe_width = self.iframe_width
-    clone.iframe_height = self.iframe_height
-    clone
+    App.create(name:  "Copy of #{name}",
+      description: "copy of #{description}",
+      challenges_table_url: FusionTable.new(challenges_table_id).clone.url,
+      answers_table_url: FusionTable.new(answers_table_id).clone.url,
+      gist_url: Gist.new(gist_id).clone.url,
+      redundancy: redundancy,
+      iframe_width: iframe_width,
+      iframe_height: iframe_height)
   end
 
   def index_tasks
@@ -81,20 +86,27 @@ class App < ActiveRecord::Base
   end
 
   def add_task(data)
+    ft = FusionTable.new(challenges_table_id)
+    taskIndexer = FtIndexer.new()
+
     task_id = next_generated_task_id
-    # we fill the task_ID column with the next generated task_id
     data.each { |row|
-      row[app.task_column] = task_id
+      row[app.task_column] = task_id # we fill the new task_ID
+      ft.add_row(row)
     }
-    # insert the task on the FT
-    FtDao.instance.enqueue(challenges_table_id, data)
+    ft.flush
+
     # add the task as it was just indexed
-    FtIndexer.new().index_task(task_id, self.id, self.redundancy)
+    taskIndexer.index(task_id, id, redundancy)
   end
 
   def sync_answers
-    to_synch = self.answers.merge(Answer.to_synchronize)
-    FtDao.instance.sync_answers(to_synch)
+    ft = FusionTable.new(answers_table_id)
+    self.answers.merge(Answer.to_synchronize).each { |answer|
+      ft.add_row(answer.as_ft_row)
+      answer.update_attributes({sync: false});
+    }
+    ft.flush
   end
 
   def upload_source_code
@@ -102,15 +114,12 @@ class App < ActiveRecord::Base
   end
 
   def download_source_code
-    self.script = Gist.new(gist_id).script
-    self.save
+    self.update_attributes(script: Gist.new(gist_id).script)
   end
 
   def next_task(context)
     task_manager.perform(context)
   end
-
-
 
   ########## PERSISTENCE AND MODEL ATTRIBUTE #################
 
@@ -135,13 +144,17 @@ class App < ActiveRecord::Base
     self.answers.answered.order("answers.updated_at desc").limit(max_contributors)
   end
 
-  def answer_schema
-    FtDao.instance.get_schema(answers_table_url)
+  def self.create_ft_table(table_name, schema)
+    FusionTable.create(table_name, schema, true, self.user.email).url
+  end
+
+  def schema
+    FusionTable.new(answers_table_url).schema
   end
 
   def completion
     {completed: self.answers.answered.count,
-      total: self.answers.count}
+      total: self.answers.count || 0}
   end
 
   def next_generated_task_id
