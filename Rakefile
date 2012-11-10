@@ -12,10 +12,15 @@ namespace :db do
   desc "fix app "
   task :fix => :environment do
     App.all.each { |app|
-      unless (challenges_table_url.nil? && App::GOOGLE_TABLE_REG.match(challenges_table_url) challenges_table_url.)
-      app.challenges_table_url = "https://www.google.com/fusiontables/DataSource?docid=#{app.challenges_table_url}" unless app.challenges_table_url.nil?
-      app.answers_table_url = "https://www.google.com/fusiontables/DataSource?docid=#{app.challenges_table_url}" unless app.answers_table_url.nil?
-      app.gist_url = "https://gist.github.com/#{app.gist_url}" unless app.gist_url.nil?
+      if FusionTable::GOOGLE_TABLE_REG.match(app.challenges_table_url).nil?
+      app.challenges_table_url = "https://www.google.com/fusiontables/DataSource?docid=#{app.challenges_table_url}"
+      end
+      if FusionTable::GOOGLE_TABLE_REG.match(app.answers_table_url).nil?
+        app.answers_table_url = "https://www.google.com/fusiontables/DataSource?docid=#{app.challenges_table_url}"
+      end
+      if FusionTable::GIST_REG.match(app.gist_url).nil?
+        app.gist_url = "https://gist.github.com/#{app.gist_url}"
+      end
     }
   end
 
