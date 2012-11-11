@@ -11,41 +11,47 @@
     <h1>Explore Crowdsourcing Apps</h1>
   </div>
   <ul class="thumbnails">
-  <%
-  @apps.each_with_index do |app, i|
+  <% @apps.each_with_index do |app, i|
     #completed, size= @app.completion
-@app = app
-  %>
-              <li class="span4">
-                <div class="thumbnail">
-                   <img src="<%= @app.image_url %>" style="height:200px;width:320px;"/>
-                  <div class="caption">
-                    <h3><%= app.name %> </h3><small> created <%= time_ago_in_words(app.created_at) %> ago</small>
-                    <p><%=  app.description.html_safe %></p>
-                    <p>
-                      <a href="<%= app_url(app) %>" class="btn btn-primary">Start</a>
-                       <span class="dropdown" >
-                        <a id="drop_<%= i %>" href="#" role="button" class="btn dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
-     <ul class="dropdown-menu" role="menu" aria-labelledby="drop_<%= i %>">
-      <li><a  href="/apps/new?copyof=<%= @app.id %>"><b class="icon-random"></b> Clone </a></li>
-      <li><a tabindex="-1" href="#"><b class="icon-share"></b> Embed / Share </a></li>
-      <li><a tabindex="-1" href="#"><b class="icon-share"></b> Stats </a></li>
-      <li class="divider"></li>
-      <li>
-        <a href="<%= source_app_url(@app) %>"><b class="icon-file"></b> Source code </a>
-      </li>
-      <li class="divider"></li>
-      <li>
-        <a  target="_blank" href="<%= @app.challenges_table_url %>"><b class="icon-hdd"></b>Challenges Data  </a>
-      </li>
-      <li>
-        <a target="_blank" href="<%= @app.answers_table_url %>"><b class="icon-hdd"></b>  Answers Data </a>
-      </li></ul></span></p>
-                  </div>
-                </div>
-              </li>
+    @app = app %>
+    <li class="span4">
+      <div class="thumbnail">
+        <img src="<%= @app.image_url %>" style="height:200px;width:320px;"/>
+        <div class="caption">
+          <h4><%= app.name %> </h4>
+          <small> created <%= time_ago_in_words(app.created_at) %> ago</small>
+          <p><%=  app.description %></p>
+          <p>
+              <div class="dropdown" >
+            <a href="<%= app_url(app) %>" class="btn btn-primary">Start</a>
 
+              <a id="drop_<%= i %>" href="#" role="button" class="btn dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop_<%= i %>">
+                <li><a  href="/apps/new?copyof=<%= @app.id %>"><b class="icon-random"></b> Clone </a></li>
+                <li><a tabindex="-1" href="#"><b class="icon-share"></b> Embed / Share </a></li>
+                <li><a tabindex="-1" href="#"><b class="icon-share"></b> Stats </a></li>
+                <li class="divider"></li>
+                <li>
+                  <a href="<%= source_app_url(@app) %>"><b class="icon-file"></b> Source code </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a  target="_blank" href="<%= @app.challenges_table_url %>"><b class="icon-hdd"></b>Challenges Data  </a>
+                </li>
+                <li>
+                  <a target="_blank" href="<%= @app.answers_table_url %>"><b class="icon-hdd"></b>  Answers Data </a>
+                </li>
+              </ul>
+            </div>
+          </p>
+        </div>
+      </div>
+    </li>
   <% end %>
-           </ul>
-
+  </ul>
 </div>
+<% script = capture do %>
+ $('.dropdown-toggle').dropdown();
+<% end %>
+<% content_for :script, script %>
+
