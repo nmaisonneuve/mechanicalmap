@@ -12,22 +12,21 @@
   </div>
   <ul class="thumbnails">
   <%
-  @apps.each do |app|
+  @apps.each_with_index do |app, i|
     #completed, size= @app.completion
 @app = app
   %>
-
-
               <li class="span4">
                 <div class="thumbnail">
-                   <img src="<%= @app.image_url %>" style="height:145px;margin:5px"/>
+                   <img src="<%= @app.image_url %>" style="max-height:200px;max-width:320px;"/>
                   <div class="caption">
-                    <h3><%= app.name %> <small> created <%= time_ago_in_words(app.created_at) %> ago</small></h3>
+                    <h3><%= app.name %> </h3><small> created <%= time_ago_in_words(app.created_at) %> ago</small>
                     <p><%=  app.description.html_safe %></p>
                     <p>
-                       <div class="dropdown" style="float:right">
-                        <a id="drop1" href="#" role="button" class="btn dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
-     <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                      <a href="<%= app_url(app) %>" class="btn btn-primary">Start</a>
+                       <span class="dropdown" >
+                        <a id="drop_<%= i %>" href="#" role="button" class="btn dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+     <ul class="dropdown-menu" role="menu" aria-labelledby="drop_<%= i %>">
       <li><a  href="/apps/new?copyof=<%= @app.id %>"><b class="icon-random"></b> Clone </a></li>
       <li><a tabindex="-1" href="#"><b class="icon-share"></b> Embed / Share </a></li>
       <li><a tabindex="-1" href="#"><b class="icon-share"></b> Stats </a></li>
@@ -41,7 +40,7 @@
       </li>
       <li>
         <a target="_blank" href="<%= @app.answers_table_url %>"><b class="icon-hdd"></b>  Answers Data </a>
-      </li></ul></div><a href="<%= app_url(app) %>" class="btn btn-primary">Start</a></p>
+      </li></ul></span></p>
                   </div>
                 </div>
               </li>
