@@ -13,3 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require ace
+//= require theme-chrome.js
+//= require mode-html.js

@@ -25,61 +25,60 @@
 <% content_for :menu_header, header %>
 
 <style type="text/css" media="screen">
+  form { margin:0px; }
+  #editor {
+      margin: 0;
+      top: 40px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+  }
+</style>
 
-      form{
-        margin:0px;
-      }
-      #editor {
-          margin: 0;
-          top: 40px;
-          bottom: 0;
-          left: 0;
-          right: 0;
-      }
-  </style>
-
-
-
-
-    <div id="editor"><%= @app.script %></div>
-
+<div id="editor"><%= @app.script %></div>
 
 
 <%= javascript_include_tag "application" %>
 <!--<script  src="/assets/ace/ace-noconflict.js" type="text/javascript" charset="utf-8"></script>-->
-<script type='text/javascript' src='/assets/ace/ace.js' charset='utf-8' ></script>
-<script type='text/javascript' src='/assets/ace/mode-html.js' charset='utf-8' ></script>
-<script type='text/javascript' src='/assets/ace/theme-twilight.js' charset='utf-8' ></script>
 <script type="text/javascript">
     // Global variables
     var editor;
 
     $('.dropdown-toggle').dropdown();
 
+    function save(){
+        var text = editor.getSession().getValue();
+        $("#app_script").val(text);
+        code_changed = false;
+        $("#update").attr("disable",true);
+        return true;
+    }
+
     // Register an event listener to fire when the page finishes loading.
     $(function () {
+      $("#form_app").submit(save);
+
       var code_changed = false;
 
-      $("#form_app").submit(function () {
-            var text = editor.getSession().getValue();
-            $("#app_script").val(text);
-            code_changed = false;
-            $("#update").attr("disable",true);
-            return true;
+      editor = ace.edit("editor");
+      editor.setTheme("ace/theme/chrome");
+      var Mode = require("ace/mode/html").Mode;
+      editor.getSession().setMode(new Mode());
+      editor.getSession().setUseSoftTabs(true);
+      editor.getSession().setTabSize(2);
+      editor.commands.addCommand({
+        name: 'mySave',
+        bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
+          exec: function(editor) {
+            $("#form_app").submit();
+          }
       });
-
-
-        editor = ace.edit("editor");
-        editor.setTheme("ace/theme/twilight");
-        var Mode = require("ace/mode/html").Mode;
-        editor.getSession().setMode(new Mode());
-        editor.getSession().setUseSoftTabs(true);
-        editor.getSession().setTabSize(2);
-        var text = editor.getSession().on('change', function(){
+      editor.getSession().on('change', function(){
         code_changed = true;
         $("#update").attr("disable","false");
-        });
+      });
 
+      // we save every minute
       (function(){
         // do some stuff
         if (code_changed){
@@ -87,9 +86,5 @@
         }
         setTimeout(arguments.callee, 60000);
       })();
-        // editor.getSession().setMode("ace/mode/html");
-
     });
 </script>
-
-

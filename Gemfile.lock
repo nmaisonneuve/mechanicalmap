@@ -1,8 +1,8 @@
 GIT
-  remote: git://github.com/jbfeldis/ace-rails.git
-  revision: aff5d530ba809241a3ba8dfd9d7a56cda13e6f48
+  remote: git://github.com/codykrieger/ace-rails-ap.git
+  revision: a4a92092feb5f5cacdb2b09bbbc151d429dc629e
   specs:
-    ace-rails (0.0.2)
+    ace-rails-ap (1.0.0)
 
 GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
@@ -241,7 +241,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  ace-rails!
+  ace-rails-ap!
   backbone-on-rails
   capistrano
   coffee-rails

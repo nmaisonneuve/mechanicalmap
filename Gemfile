@@ -44,7 +44,7 @@ gem 'backbone-on-rails'
 gem 'therubyracer'
 
 gem 'uglifier'
-gem 'ace-rails',  :git => 'git://github.com/jbfeldis/ace-rails.git'
+gem 'ace-rails-ap', :git => "git://github.com/codykrieger/ace-rails-ap.git"
 
 
 # Deploy with Capistrano
