@@ -20,7 +20,7 @@
         <div class="caption">
           <h4><%= app.name %> </h4>
           <small> created <%= time_ago_in_words(app.created_at) %> ago</small>
-          <p><%=  app.description %></p>
+          <p><%=  app.description.html_safe %></p>
           <p>
               <div class="dropdown" >
             <a href="<%= app_url(app) %>" class="btn btn-primary">Start</a>

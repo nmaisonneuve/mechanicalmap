@@ -13,7 +13,7 @@ Mechanicalmap::Application.routes.draw do
     get 'delete_answers', :on => :member
     get 'source', :on => :member
     put 'source_update', :on => :member
-    get 'user_state', :on => :member
+    get 'stats', :on => :member
     get 'create_gf_table', :on => :collection
     resources :tasks do
       get 'next', :on => :collection
