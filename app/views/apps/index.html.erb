@@ -18,7 +18,7 @@
   %>
               <li class="span4">
                 <div class="thumbnail">
-                   <img src="<%= @app.image_url %>" style="max-height:200px;max-width:320px;"/>
+                   <img src="<%= @app.image_url %>" style="height:200px;width:320px;"/>
                   <div class="caption">
                     <h3><%= app.name %> </h3><small> created <%= time_ago_in_words(app.created_at) %> ago</small>
                     <p><%=  app.description.html_safe %></p>
