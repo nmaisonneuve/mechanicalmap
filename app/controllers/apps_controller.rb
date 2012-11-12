@@ -38,11 +38,18 @@ class AppsController < ApplicationController
   end
 
   def stats
-    stats = {
+      respond_to do |format|
+        format.html {
+            }
+        format.json {
+
+           stats = {
       :opened => @app.tasks.not_done_by_username(current_or_guest_username).count,
       :completed => @app.tasks.done_by_username(current_or_guest_username).count
     }
     render :json => stats, :callback => params[:callback]
+        }
+end
   end
 
   def reindex
@@ -86,11 +93,11 @@ class AppsController < ApplicationController
   # PUT /apps/1
   # PUT /apps/1.json
   def update
-    params[:app] = App.clean_build_params(params[:app])
+
     if @app.update_attributes(params[:app])
       respond_to do |format|
         format.html {
-          redirect_to dashboard_app_path(@app), notice: 'app was successfully updated.'
+          redirect_to app_path(@app), notice: 'app was successfully updated.'
         }
         format.json { render :nothing => true}
       end

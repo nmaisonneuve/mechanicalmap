@@ -1,14 +1,11 @@
 <% header = capture do %>
   <ul class="nav">
     <li> <a href="/apps">Explore apps</a></li>
-    <li class="dropdown">
-      <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><%= @app.name[0..20] %> <b class="caret"></b></a>
+
       <%= render "app_menu" %>
-    </li>
-    <li class="active dropdown"> <a id="drop2" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Code <b class="caret"></b></a>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
-        <li><a href="<%= @app.gist_url %>" target="_blank" class=""><b class=" icon-list-alt"></b> Gist History</a></li>
-      </ul>
+
+    <li>
+      <a href="<%= @app.gist_url %>" target="_blank" class=""><b class=" icon-list-alt"></b> Gist / History</a>
     </li>
   </ul>
 

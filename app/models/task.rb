@@ -54,7 +54,7 @@ class Task < ActiveRecord::Base
       :id => self.input_task_id,
       :gftable => {
         :ft_task_column => self.app.task_column,
-        :ft_table => self.app.input_ft
+        :ft_table => self.app.challenges_table_id
       } ,
       :answer_id => (answer.nil?)? nil : answer.id
     }
