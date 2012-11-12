@@ -1,15 +1,15 @@
 Mechanicalmap::Application.routes.draw do
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => {
+    :omniauth_callbacks => "users/omniauth_callbacks"
+  }
 
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
-  resources :app_steps
-
   resources :apps do
     get 'reindex', :on => :member
-    get 'dashboard', :on => :member
+    get 'embed', :on => :member
     get 'delete_answers', :on => :member
     get 'source', :on => :member
     put 'source_update', :on => :member
@@ -23,7 +23,6 @@ Mechanicalmap::Application.routes.draw do
     end
   end
 
-  match "/more" => "home#more"
   match "/demo_generator" => "task_generators#new", :via => "get"
   match "/demo_generator" => "task_generators#create", :via => "post"
 

@@ -1,25 +1,18 @@
 class AppsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index,:create_gf_table, :dashboard, :user_stats, :show]
+  before_filter :authenticate_user!, :except => [:index,:create_gf_table, :stats, :show, :embed]
   before_filter :get_app, :except => [:index, :new, :create, :create_gf_table]
-  before_filter :redirect_unless_owner, :except => [:index, :dashboard, :user_stats, :show, :new, :create_gf_table, :create]
+  before_filter :redirect_unless_owner, :except => [:index, :stats, :show, :new, :create_gf_table, :create, :embed]
 
 
-
-  # GET /apps
-  # GET /apps.json
   def index
     @apps = App.order("created_at asc")
   end
 
-  def dashboard
+  def show
   end
 
-  def show
-    respond_to do |format|
-      format.html { render :layout => false }
-      # QRCode
-      format.png  { redirect_to "http://api.qrserver.com/v1/create-qr-code/?size=145x145&data=#{app_url(@app)}" }
-    end
+  def embed
+    render :layout => false
   end
 
   def new
@@ -44,7 +37,7 @@ class AppsController < ApplicationController
     end
   end
 
-  def user_stats
+  def stats
     stats = {
       :opened => @app.tasks.not_done_by_username(current_or_guest_username).count,
       :completed => @app.tasks.done_by_username(current_or_guest_username).count

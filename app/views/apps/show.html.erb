@@ -1,28 +1,28 @@
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="http://cdn.androidblip.com/icn/com_defiant_supermarioentertainment____90218.png" />
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title><%= raw @app.name %></title>
-    <%= csrf_meta_tags %>
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-      <![endif]-->
-    <%= javascript_include_tag "application" %>
-    <script src="http://underscorejs.org/underscore<%= (Rails.env == "production")?
-    "-min" : "" %>.js"></script>
-    <script src="http://backbonejs.org/backbone<%= (Rails.env == "production")?
-    "-min" : "" %>.js"></script>
-    <%= javascript_include_tag "app" %>
-
-
-    <script type="text/javascript">
-    //var underscore = _.noConflict();
-    var user = {name:"<%= current_or_guest_username %>"};
-    var application_url = "<%= app_url(@app) %>";
-    </script>
-  </head>
-  <body>
-     <%= raw @app.script %>
-  </body>
-</html>
+<% app_header = capture do %>
+<ul class="nav">
+  <li> <a href="/apps">Explore apps</a></li>
+    <li class="dropdown">
+      <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><%= @app.name[0..20] %> <b class="caret"></b></a>
+      <%= render "app_menu" %>
+    </li>
+  </ul>
+<% end %>
+<% content_for :menu_header, app_header %>
+<div class="container">
+<iframe scrolling="no" id="app_iframe" src="<%= embed_app_url(@app) %>" style="padding:0;border:0px;margin:0px"></iframe>
+</div>
+<% script = capture do %>
+<!--<script type="text/javascript" src="https://raw.github.com/Sly777/Iframe-Height-Jquery-Plugin/master/Src/iframeheight.min.js"></script> -->
+<script type="text/javascript">
+  $(function () {
+    $('.dropdown-toggle').dropdown();
+    $("#app_iframe").width("<%= @app.iframe_width %>");
+    <% if ((@app.iframe_height == "100%") and (@app.iframe_width == "100%"))  %>
+    $("#app_iframe").height($(document).height()-45);
+    <% else %>
+    $("#app_iframe").height("<%= @app.iframe_height %>");
+    <% end %>
+  });
+</script>
+<% end %>
+<% content_for :script, script %>

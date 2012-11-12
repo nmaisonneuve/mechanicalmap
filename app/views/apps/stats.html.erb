@@ -1,8 +1,10 @@
 <% @app_header = capture do %>
 <ul class="nav">
     <li><a href="/apps">Explore apps</a></li>
-    <li><%= link_to @app.name[0..20], app_path(@app) %></li>
-    <li class="active" ><a href="#">dashboard</a></li>
+     <li class="dropdown">
+      <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><%= @app.name[0..20] %> <b class="caret"></b></a>
+      <%= render "app_menu" %>
+    </li>
 </ul>
 <% end %>
 
