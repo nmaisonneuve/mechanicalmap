@@ -9,7 +9,6 @@ set :rvm_type, :user
 set :rvm_ruby_string, :local
 
 require 'sidekiq/capistrano'
-set :sidekiq_role, :sidekiq
 
 # bundler bootstrap
 require 'bundler/capistrano'
@@ -46,6 +45,11 @@ task :fix_permissions, :roles => [ :app, :db, :web ] do
   run "#{try_sudo} chmod 777 -R #{current_path}/script"
 end
 
+desc "sidekiq"
+task :activate_sidekiq_workers do
+  run "cd #{release_path} && source start_sidekiq.txt"
+end
+
 after "deploy:create_symlink", :fix_permissions
 
 # If you are using Passenger mod_rails uncomment this:
@@ -73,6 +77,7 @@ EOF
 
    task :start do ; end
    task :stop do ; end
+
    task :restart, :roles => :app, :except => { :no_release => true } do
      run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
    end

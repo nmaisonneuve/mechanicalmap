@@ -42,6 +42,10 @@
                 :label =>"URL of Challenges data to index",
                 :hint => "Created automatically if left blank",
                 :placeholder => "URL of a google fusion table" %>
+                 <%= f.input :task_column,
+                :label => "Task column",
+                :placeholder => "Column of the challenge ID to index",
+                :collection=>[]  %>
  <% if @edit %>
     <div style="float:right">
       <div id="link_answers" ></div>
@@ -53,6 +57,7 @@
                 :label => "URL to store micro-contributions",
                 :placeholder => "URL of a google fusion table",
                 :hint => "Created automatically if left blank" %>
+
 
 
 
