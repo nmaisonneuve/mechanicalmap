@@ -21,7 +21,7 @@ class TasksController < ApplicationController
   def next
     context = {
       :from_task => params[:from_task],
-      :current_user => current_or_guest_username
+      :current_username => current_or_guest_username
     }
     task = @app.next_task(context)
     if task.nil?

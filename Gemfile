@@ -16,9 +16,6 @@ gem "omniauth-twitter"
 gem 'omniauth-google-oauth2'
 gem "omniauth-facebook"
 
-
-
-
 gem 'color'
 #gem "RedCloth"
 gem "fusion_tables"

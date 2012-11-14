@@ -7,7 +7,7 @@ class Task < ActiveRecord::Base
   attr_accessible :state, :input_task_id, :app_id, :gold_answer, :answers
 
   scope :available, lambda {
-    joins(:answers).where("answers.state=?", Answer::STATE[:AVAILABLE])
+    joins(:answers).where("answers.state = ?", Answer::STATE[:AVAILABLE])
   }
 
   scope :done_by_username, lambda { |username|
@@ -15,7 +15,7 @@ class Task < ActiveRecord::Base
   }
 
   scope :not_done_by, lambda { |user|
-    tasks_done_ids=Task.joins(:answers).where("answers.state!=?", Answer::STATE[:AVAILABLE]).where("answers.user_id=?", user)
+    tasks_done_ids=Task.joins(:answers).where("answers.user_id=?", user)
     unless (tasks_done_ids.empty?)
       where("#{self.table_name}.id not in (?)", tasks_done_ids)
     end

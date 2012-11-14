@@ -9,6 +9,7 @@ set :rvm_type, :user
 set :rvm_ruby_string, :local
 
 require 'sidekiq/capistrano'
+set :sidekiq_role, :sidekiq
 
 # bundler bootstrap
 require 'bundler/capistrano'
