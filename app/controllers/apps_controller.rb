@@ -52,7 +52,6 @@ end
 
   def action
     @app.send(params[:method])
-    # @app.answers.destroy_all
     redirect_to app_path(@app), notice: 'Reindexing tasks'
   end
 

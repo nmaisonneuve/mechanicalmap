@@ -49,7 +49,7 @@
         var text = editor.getSession().getValue();
         $("#app_script").val(text);
         code_changed = false;
-        $("#update").attr("disable",true);
+        $("#update").attr("disabled",true);
         return true;
     }
 
@@ -72,7 +72,7 @@
       });
       editor.getSession().on('change', function(){
         code_changed = true;
-        $("#update").attr("disable","false");
+        $("#update").attr("disabled","false");
       });
 
       // we save every minute
