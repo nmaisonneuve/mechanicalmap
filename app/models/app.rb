@@ -67,7 +67,7 @@ class App < ActiveRecord::Base
   # delete all answers without
   # deleting the challenges
   def delete_answers
-    ActiveRecord::Base.execute("DELETE FROM answers inner joins tasks on answers.task_id = tasks.id inner join apps on tasks.app_id = apps.id where apps.id = #{self.id}")
+    ActiveRecord::Base.connection.execute("DELETE FROM answers WHERE answers.id in (SELECT answers.id from answers inner join tasks on answers.task_id = tasks.id inner join apps on tasks.app_id = apps.id where apps.id = #{self.id})")
     FusionTable.new(answers_table_url).drop()
   end
 

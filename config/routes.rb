@@ -8,9 +8,8 @@ Mechanicalmap::Application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
 
   resources :apps do
-    get 'reindex', :on => :member
     get 'embed', :on => :member
-    get 'delete_answers', :on => :member
+    get 'action', :on => :member
     get 'source', :on => :member
     put 'source_update', :on => :member
     get 'stats', :on => :member

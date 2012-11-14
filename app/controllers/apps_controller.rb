@@ -50,8 +50,9 @@ class AppsController < ApplicationController
 end
   end
 
-  def reindex
-    @app.index_tasks
+  def action
+    @app.send(params[:method])
+    # @app.answers.destroy_all
     redirect_to app_path(@app), notice: 'Reindexing tasks'
   end
 
@@ -63,11 +64,6 @@ end
       FtDao.create_challenges_table(current_user.email)
     end
     render :json => {:ft_table_id => ft_id}.to_json
-  end
-
-  def delete_answers
-    @app.delete_answers
-    redirect_to app_path(@app), notice: 'Deleting answers'
   end
 
   def source

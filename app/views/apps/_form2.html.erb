@@ -30,19 +30,32 @@
 
 
   <%= f.inputs :name => "Problem - Cloud Elements" do %>
+      <% if @edit %>
+    <div style="float:right">
+      <div id="link_challenges" ></div>
+      <a href="action?method=index_tasks" class="btn"/>Reindexing Challenges</a>
+
+    </div>
+    <% end %>
+
     <%= f.input :challenges_table_url,
                 :label =>"URL of Challenges data to index",
                 :hint => "Created automatically if left blank",
                 :placeholder => "URL of a google fusion table" %>
-    <% if @edit %>
-    <a href="reindex" class="btn"/>Reindexing Challenges</a>
+ <% if @edit %>
+    <div style="float:right">
+      <div id="link_answers" ></div>
+      <a href="action?method=delete_answers" class="btn"/>Delete Answers</a>
+    </div>
     <% end %>
     <div id="link_challenges"></div>
     <%= f.input :answers_table_url,
                 :label => "URL to store micro-contributions",
                 :placeholder => "URL of a google fusion table",
                 :hint => "Created automatically if left blank" %>
-    <div id="link_answers"></div>
+
+
+
     <%= f.input :gist_url,
                 :label => "UI Source Code URL",
                 :placeholder => "https://gist.github.com/3028982",

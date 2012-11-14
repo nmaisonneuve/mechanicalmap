@@ -7,7 +7,6 @@ function create_gf_table(mode, form_field, callback) {
   $.getJSON("/apps/create_gf_table.json?table=" + mode, function(data) {
       $(form_field).val(GF_TABLE_BASE_URL + data.ft_table_id);
       $('#create_' + mode).hide();
-
   });
 }
 
@@ -57,7 +56,7 @@ function process_table(mode){
     if (mode == "challenges") {
       retrieve_columns_names();
     }
-    link = $("<a href='"+url+"' target='_blank' >view/modify the table</a>");
+    link = $("<a href='"+url+"' target='_blank' class='btn btn-primary'>view the "+mode+" table</a>");
     $('#link_' + mode).append(link);
   }
 }
