@@ -4,6 +4,7 @@ class Task < ActiveRecord::Base
 
   has_many :answers, :dependent => :destroy
 
+  validates :input_task_id, :uniqueness => {:scope => :app_id}
   attr_accessible :state, :input_task_id, :app_id, :gold_answer, :answers
 
   scope :available, lambda {
@@ -34,13 +35,13 @@ class Task < ActiveRecord::Base
   end
 
   def completion_ratio
-    completed, size=self.completion
+    completed, size = self.completion
     completed.to_f/size.to_f
   end
 
   def completion
-    completed=self.answers.answered.count
-    size=self.answers.count
+    completed = self.answers.answered.count
+    size = self.answers.count
     [completed, size]
   end
 
@@ -52,6 +53,7 @@ class Task < ActiveRecord::Base
     answer = self.answers.available.first
     {
       :id => self.input_task_id,
+      :created_at => self.created_at,
       :gftable => {
         :ft_task_column => self.app.task_column,
         :ft_table => self.app.challenges_table_id

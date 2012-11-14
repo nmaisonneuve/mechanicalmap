@@ -72,6 +72,7 @@ window.Tasks = Backbone.Collection.extend({
     options = options ? _.clone(options) : {};
     var collection = this;
     var success_fct = function(resp, status, xhr) {
+      console.log(resp);
         collection.models[collection.models.length-1].fetch(options);
       };
     var error_fct = Backbone.wrapError(options.error, this, options);
@@ -86,7 +87,7 @@ var DefaultTaskManager =  Backbone.Model.extend({
   initialize: function(options){
     this.tasks = new Tasks();
     this.tasks.model = options.task_model || GFTask;
-    this.tasks.url   = options.root_url + "/tasks";
+    this.tasks.url   = options.root_url + "tasks";
     this.notask = false;
     this.cache_size = options.cache_size || 2;
     this.nb_task_done=0;
