@@ -108,8 +108,13 @@ class App < ActiveRecord::Base
   def sync_answers
     ft = FusionTable.new(answers_table_id)
     self.answers.merge(Answer.to_synchronize).each { |answer|
-      ft.add_row(answer.as_ft_row)
-      answer.update_attributes({sync: false});
+      ft_row = answer.as_ft_row
+      if (ft_row.is_a? Array)
+        ft_row.each { |row| ft.add_row(row) }
+      else
+        ft.add_row(ft_row)
+      end
+      answer.update_attributes({ft_sync: false});
     }
     ft.flush
   end

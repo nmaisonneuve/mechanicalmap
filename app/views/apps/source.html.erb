@@ -40,7 +40,7 @@
 <script type="text/javascript">
     // Global variables
     var editor;
-
+    var code_changed = false
     $('.dropdown-toggle').dropdown();
 
     function save(){
@@ -54,8 +54,6 @@
     // Register an event listener to fire when the page finishes loading.
     $(function () {
       $("#form_app").submit(save);
-
-      var code_changed = false;
 
       editor = ace.edit("editor");
       editor.setTheme("ace/theme/chrome");

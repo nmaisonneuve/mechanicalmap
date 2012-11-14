@@ -23,6 +23,12 @@
                 :placeholder => "image url" %>
   <% end %>
 
+  <%=  f.inputs "Iframe size", :'data-embeddable' => '1' do %>
+    <%= f.input :iframe_height, :input_html => { :class => 'iframe_height' } %>
+    <%= f.input :iframe_width, :input_html => { :class => 'iframe_width' } %>
+ <% end %>
+
+
   <%= f.inputs :name => "Problem - Cloud Elements" do %>
     <%= f.input :challenges_table_url,
                 :label =>"URL of Challenges data to index",

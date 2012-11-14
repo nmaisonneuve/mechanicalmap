@@ -39,15 +39,13 @@ class AppsController < ApplicationController
 
   def stats
       respond_to do |format|
-        format.html {
-            }
+        format.html {}
         format.json {
-
-           stats = {
-      :opened => @app.tasks.not_done_by_username(current_or_guest_username).count,
-      :completed => @app.tasks.done_by_username(current_or_guest_username).count
-    }
-    render :json => stats, :callback => params[:callback]
+          stats = {
+            :opened => @app.tasks.not_done_by_username(current_or_guest_username).count,
+            :completed => @app.tasks.done_by_username(current_or_guest_username).count
+          }
+          render :json => stats, :callback => params[:callback]
         }
 end
   end

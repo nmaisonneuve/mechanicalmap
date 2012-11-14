@@ -32,7 +32,6 @@ class AnswersController < ApplicationController
     current_or_guest_user.save  #change the updated date
     if answer.save
       app = answer.task.app
-      logger.info("answer #{answer.id} saved for microapp #{answer.task.app.name} (#{app_id}) ");
       if Rails.env == "production"
         FtSyncAnswers.perform_async(app.id) #we wait
       else
