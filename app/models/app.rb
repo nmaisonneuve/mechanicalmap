@@ -5,8 +5,8 @@ class App < ActiveRecord::Base
     INDEXING: 2
   }
 
-  GOOGLE_TABLE_REG = /https:\/\/www\.google\.com\/fusiontables\/DataSource\?docid=(.*)/
-  GIST_REG = /https:\/\/gist\.github.com\/(.*)/
+  GOOGLE_TABLE_REG = /https:\/\/www\.google\.com\/fusiontables\/DataSource\?docid=(.+)/
+  GIST_REG = /https:\/\/gist\.github.com\/(\d{4,})/
 
   # BASIC APP
   # with basic challenges and answers tables

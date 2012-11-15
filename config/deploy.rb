@@ -47,7 +47,7 @@ end
 
 desc "sidekiq"
 task :activate_sidekiq_workers do
-  run "cd #{release_path} && source start_sidekiq.txt"
+  run "cd #{release_path} && bundle exec sidekiq start -e production"
 end
 
 after "deploy:create_symlink", :fix_permissions
