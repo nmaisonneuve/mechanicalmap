@@ -1,7 +1,7 @@
 class AppsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index,:create_gf_table, :stats, :show, :embed, :source]
   before_filter :get_app, :except => [:index, :new, :create, :create_gf_table]
-  before_filter :redirect_unless_owner, :except => [:index, :stats, :show, :new, :create_gf_table, :create, :embed]
+  before_filter :redirect_unless_owner, :except => [:index, :stats, :show, :new, :create_gf_table, :create, :embed, :source]
 
 
   def index
